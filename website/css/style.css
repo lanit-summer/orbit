@@ -1,0 +1,139 @@
+﻿/* Основные */
+
+body {
+    margin: 0px;
+    font: 16px 'Tahoma';
+    color: #fff;
+    background: url('../img/bg.jpg') #000;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#header {
+    margin: 0 auto;
+    width: 1000px;
+    height: 180px;
+}
+
+#content {
+    margin: 0 auto;
+    width: 1000px;
+    background: rgba(0, 0, 255, 0.3);
+    border: 1px solid #fff;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.logo {
+    font: 100px 'opengost';
+    text-align: center;
+    color: #fff;
+    margin-left: -150px;
+}
+
+.xyz { width: 80px;}
+.size{ width: 120px;}
+
+.form {
+    margin: 0 auto;
+    width: 1000px;
+}
+
+.title {
+    font: 30px 'opengost';
+    color: #00FF12;
+}
+
+.pad10 {padding:10px;}
+.padt40 {padding-top:40px;}
+.padb20 {padding-bottom:20px;}
+.padr20 {padding-right:20px;}
+
+.tah18{font: 18px 'Tahoma';}
+.tah21{font: 21px 'Tahoma';}
+.tah24{font: 24px 'Tahoma';}
+
+.line{
+    border-bottom: 2px solid #fff;
+    width: 970px;
+}
+
+.rule {
+    text-align: left;
+}
+
+.yellow {color: #ffff00;}
+.lblue {color: #00fffb;}
+
+input[type="text"] {
+    text-align: center;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    background: transparent !important;
+    outline: none;
+    height: 30px;
+    font: 16px 'Tahoma';
+    color: #fff;
+}
+
+input[type="submit"] {
+    background: transparent !important;
+    border: 2px solid #ff0000;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    outline: none;
+    height: 50px;
+    width: 200px;
+    font: 30px 'opengost';
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #ff0000 !important;
+}
+
+input[type="button"] {
+    background: transparent !important;
+    border: 2px solid #ff0000;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    outline: none;
+    height: 50px;
+    width: 200px;
+    font: 30px 'opengost';
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+input[type="button"]:hover {
+    background: #ff0000 !important;
+}
+
+@font-face {
+    font-family: 'opengost';
+    src: url('fonts/opengost/opengosttypea-regular.eot');
+    src: url('fonts/opengost/opengosttypea-regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opengost/opengosttypea-regular.woff') format('woff'),
+         url('fonts/opengost/opengosttypea-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'opengostb';
+    src: url('fonts/opengost/opengosttypeb-regular.eot');
+    src: url('fonts/opengost/opengosttypeb-regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opengost/opengosttypeb-regular.woff') format('woff'),
+         url('fonts/opengost/opengosttypeb-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
