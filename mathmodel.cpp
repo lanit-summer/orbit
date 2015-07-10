@@ -2,39 +2,35 @@
 #include <algorithm>
 #include <cmath>
 
-const double G = 6.67385 * pow(10, -11), //гравитационная постоянная
-mEarth = 5.9742 * pow(10, 24), //масса Земли
-rEarth = 6365, //радиус Земли
-uEarth = 398600.44159; //гравитационный параметр Земли
+const double G = 6.67385 * pow(10, -11); //„‡‚ËÚ‡ˆËÓÌÌ‡ˇ ÔÓÒÚÓˇÌÌ‡ˇ
 
 using namespace std;
 
-double size, //размер корабля
-maxTorque, //момент вращения
-maxFuel, //максимальный расход топлива
-maxImpulse, //удельный имульс
-fuelLevel, //уровень массового расхода топлива
-limOver; //предельная перегрузка
+double size, //‡ÁÏÂ ÍÓ‡·Îˇ
+maxTorque, //ÏÓÏÂÌÚ ‚‡˘ÂÌËˇ
+maxFuel, //Ï‡ÍÒËÏ‡Î¸Ì˚È ‡ÒıÓ‰ ÚÓÔÎË‚‡
+maxImpulse, //Û‰ÂÎ¸Ì˚È ËÏÛÎ¸Ò
+fuelLevel, //ÛÓ‚ÂÌ¸ Ï‡ÒÒÓ‚Ó„Ó ‡ÒıÓ‰‡ ÚÓÔÎË‚‡
+limOver; //ÔÂ‰ÂÎ¸Ì‡ˇ ÔÂÂ„ÛÁÍ‡
 
-struct vec //ориентация
+struct vec //ÓËÂÌÚ‡ˆËˇ
 {
 double x, y, z;
 };
-vec position; //положение
+vec position; //ÔÓÎÓÊÂÌËÂ
 
-struct m //массы корабля и топлива
+struct m //Ï‡ÒÒ˚ ÍÓ‡·Îˇ Ë ÚÓÔÎË‚‡
 {
 double ship, fuel;
 };
 
-vec rSpeed; //скорость вращения
+vec rSpeed; //ÒÍÓÓÒÚ¸ ‚‡˘ÂÌËˇ
 
+vec momentRotation; //ÏÓÏÂÌÚ ‚‡˘ÂÌËˇ ‚ÓÍÛ„ Í‡Ê‰ÓÈ ÓÒË
 
-vec momentRotation; //момент вращения вокруг каждой оси
+vec rageSim; //‰Ë‡ÔÁÓÌ ÏÓ‰ÂÎËÓ‚‡ÌËˇ
 
-vec rageSim; //диапзон моделирования
-
-struct airD//сопротивление воздуха
+struct airD//ÒÓÔÓÚË‚ÎÂÌËÂ ‚ÓÁ‰Ûı‡
 {
 	double h, p;
 };
@@ -48,7 +44,7 @@ double scalar (vec t)
 double airDens(double H)
 {
 	airD air[55];
-	H -= 6378100; //  в метрах
+	H -= 6378100; //  ‚ ÏÂÚ‡ı
 	air[0].h = 0;       air[0].p=1.225;
 	air[3].h = 50;      air[3].p=1.219;
 	air[6].h = 100;     air[6].p = 1.213;
@@ -76,19 +72,21 @@ double airDens(double H)
 		air[i+1].p = air[i].p + t;
 		air[i+2].p = air[i+1].p + t;
 	}
-	int t = -1;
-	double minH = 1000000000.0;
-	for(int i = 0; i < 52; i++)
+	int t = 0;
+	double P = 0;
+	if (H <= 120000)
 	{
-		if(abs(air[i].h - H) < minH)
+		double minH = H;
+		for(int i = 1; i < 52; i++)
 		{
-			t = i;
-			minH = abs(air[i].h - H);
+			if(abs(air[i].h - H) < minH)
+			{
+				t = i;
+				minH = abs(air[i].h - H);
+			}
 		}
+		P = air[t].p;
 	}
-	double P = air[t].p;
-	if(t == -1)
-        P = 0.0;
 	return P;
 }
 
@@ -102,7 +100,6 @@ vec tracForce(double mLevel, double impulseS, vec v)
     return t;
 }
 
-
 vec multi(vec t1, double t2)
 {
     vec res;
@@ -111,146 +108,178 @@ vec multi(vec t1, double t2)
     res.z = t1.z * t2;
     return res;
 }
-vec speed(vec speedFirst, double t, vec position, double mLevel, double impulseS )//как задается t пока не решили!!!
-{
 
-    vec v;
-    double H = scalar (position);
-    double scSpeedFirst = scalar(speedFirst);
-    double S = size*size;
-    double t1 = tracForce(mLevel, impulseS, speedFirst) / scSpeedFirst + airDens(H) * scSpeedFirst / 2.0 * S;
-    t1 = 1.0 - t1 * t / mass();
-    vec t2;
-    double t3 = G * mEarth / pow(H, 3) * t;
-    t2 = multi(position, t3);
-    vec t4 = multi(speedFirst, t1);
-    t2.x += t4.x;
-    t2.y += t4.y;
-    t2.z += t4.z;
-    return t2;
+double mass(double mLevel, double m)
+{
+	m -= mLevel;
+	return m;
 }
 
-/*
-struct momentRotation { //момент вращения вокруг каждой оси
-    double x, y, z;
-};
-struct rageSim { //диапазон моделирования
-    double x, y, z;
-};
-*/
-
 //вращение объекта
-struct quat {
+struct quaternion
+{
     double w, x, y, z;
 };
 
-vec normalvec(vec v){ //нормализация вектора
-    double length = sqrt(pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2));
-    v.x = v.x / length;
-    v.y = v.y / length;
-    v.z = v.z / length;
-    return v;
+quaternion quatCoordinates(double x, double y, double z, double w)
+{
+    quaternion q;
+    q.w = w;
+    q.x = x;
+    q.y = y;
+    q.z = z;
+    return q;
 }
 
-quat createQuat(vec speed){ //создание кватерниона из набора скоростей
-    quat q;
-    double c1, c2, c3, s1, s2, s3;
-    c1 = cos(speed.z / 2);
-    c2 = cos(speed.y / 2);
-    c3 = cos(speed.x / 2);
-    s1 = sin(speed.z / 2);
-    s2 = sin(speed.y / 2);
+quaternion createQuat(vec speed) //создание кватерниона из набора скоростей
+{
+    double c1 = cos(speed.z / 2),
+    c2 = cos(speed.y / 2),
+    c3 = cos(speed.x / 2),
+    s1 = sin(speed.z / 2),
+    s2 = sin(speed.y / 2),
     s3 = sin(speed.x / 2);
-    q.x = c1 * c2 * s3 - s1 * s2 * c3;
-    q.y = c1 * s2 * c3 + s1 * c2 * s3;
-    q.z = s1 * c2 * c3 - c1 * s2 * s3;
-    q.w = c1 * c2 * c3 + s1 * s2 * s3;
+    quaternion q = quatCoordinates(c1 * c2 * s3 - s1 * s2 * c3, c1 * s2 * c3 + s1 * c2 * s3, s1 * c2 * c3 - c1 * s2 * s3, c1 * c2 * c3 + s1 * s2 * s3);
     return q;
 }
 
-quat mulQQ(quat a, quat b){ //умножение 2 кватернионов
-    quat res;
-    res.w = a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z;
-    res.x = a.w * b.x + a.x * b.w + a.y * b.z - a.z * b.y;
-    res.y = a.w * b.y - a.x * b.z + a.y * b.w + a.z * b.x;
-    res.z = a.w * b.z + a.x * b.y - a.y * b.x + a.z * b.w;
+quaternion mulQQ(quaternion a, quaternion b) //умножение 2 кватернионов
+{
+    quaternion res = quatCoordinates(a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z, a.w * b.x + a.x * b.w + a.y * b.z - a.z * b.y, a.w * b.y - a.x * b.z + a.y * b.w + a.z * b.x, a.w * b.z + a.x * b.y - a.y * b.x + a.z * b.w);
     return res;
 }
 
-quat mulVQ(quat q, vec v){ //умножение вектора на кватернион
-    quat res;
-    res.w = -q.x * v.x - q.y * v.y - q.z * v.z;
-    res.x = q.w * v.x + q.y * v.z - q.z * v.y;
-    res.y = q.w * v.y - q.x * v.z + q.z * v.x;
-    res.z = q.w * v.z + q.x * v.y - q.y * v.x;
+quaternion mulVQ(quaternion q, vec v) //умножение вектора на кватернион
+{
+    quaternion res = quatCoordinates(-q.x * v.x - q.y * v.y - q.z * v.z, q.w * v.x + q.y * v.z - q.z * v.y, q.w * v.y - q.x * v.z + q.z * v.x, q.w * v.z + q.x * v.y - q.y * v.x);
     return res;
 }
 
-quat invertQuat (quat q){ //обратный кватернион
-    q.x = -q.x;
-    q.y = -q.y;
-    q.z = -q.z;
-    return q;
+
+quaternion invertQuat (quaternion q) //обратный кватернион
+{
+    quaternion p = quatCoordinates(0, -q.x, -q.y, -q.z);
+    return p;
 }
 
-vec transformvec (vec v, quat q){ //поворот вектора вокруг 3 осей (тангаж, рыскание, крен)
-    quat res = mulQQ(mulVQ(q, v), invertQuat(q));
+vec vecCoordinates(double x, double y, double z)
+{
     vec t;
-    t.x = res.x;
-    t.y = res.y;
-    t.z = res.z;
+    t.x = x;
+    t.y = y;
+    t.z = z;
+    return t;
+}
+
+vec transformVec (vec v, quaternion q) //поворот вектора вокруг 3 осей (тангаж, рыскание, крен)
+{
+    quaternion res = mulQQ(mulVQ(q, v), invertQuat(q));
+    vec s = vecCoordinates(res.x, res.y, res.z);
+    double n = scalar(s);
+    vec t = vecCoordinates(s.x / n, s.y / n, s.z / n);
     return t;
 }
 
 //вращение под действием маховиков
-
-vec gravity(vec r, double m){ //r - расстояние до центра Земли
-    vec g;
+vec gravityForce(vec r, double m) //r - расстояние до центра Земли
+{
     double R = scalar(r);
-    g.x = G * mEarth * r.x / pow(R, 3);
-    g.y = G * mEarth * r.y / pow(R, 3);
-    g.z = G * mEarth * r.z / pow(R, 3);
+    const double mEarth = 5.9742 * pow(10, 24), //масса Земли
+    G = 6.67385 * pow(10, -11);
+    vec g = vecCoordinates(G * mEarth * r.x / pow(R, 3), G * mEarth * r.y / pow(R, 3), G * mEarth * r.z / pow(R, 3));
     return g;
 }
 
-
-
-vec aerodynamic(double p, vec v, double S){
-    vec a;
+vec aerodynamicForce(double p, vec v, double S)
+{
     double u = scalar(v);
-    a.x = -p * u * v.x * S/ 2;
-    a.y = -p * u * v.y * S/ 2;
-    a.z = -p * u * v.z * S/ 2;
+    vec a = vecCoordinates(-p * u * v.x * S/ 2, -p * u * v.y * S/ 2, -p * u * v.z * S/ 2);
     return a;
 }
 
-vec angularVelocity(vec g, vec a, vec t, vec moment){ //угловая скорость
-    vec v;
-    v.x = (g.x - a.x - t.x)/moment.x;
-    v.y = (g.y - a.y - t.y)/moment.y;
-    v.z = (g.z - a.z - t.z)/moment.z;
+vec angularVelocity(vec g, vec a, vec t, vec moment) //угловая скорость
+{
+    vec v = vecCoordinates((g.x - a.x - t.x)/moment.x, (g.y - a.y - t.y)/moment.y, (g.z - a.z - t.z)/moment.z);
     return v;
 }
 
 vec flywheelON(vec v, vec a){ //вращение с включенными маховиками
-    vec f;
-    f.x = v.x + a.x;
-    f.y = v.y + a.y;
-    f.z = v.z + a.z;
+    vec f = vecCoordinates(v.x + a.x, v.y + a.y, v.z + a.z);
     return f;
 }
-/*int Eccentricity(double speed, double x, double y, double z) {
-    double e = pow(speed, 2)/2 - uEarth/sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2));
-    return e;
+
+vec speed(vec speedFirst, double time, vec position, double mLevel, double impulseS, double m, vec orientation, vec moment, vec speedRotation) //Í‡Í Á‡‰‡ÂÚÒˇ t ÔÓÍ‡ ÌÂ Â¯ËÎË!!!
+{
+    double H = scalar (position);
+    double scSpeedFirst = scalar(speedFirst);
+    double S = size*size;
+    vec x = flywheelON(transformVec(orientation, createQuat(speedRotation)), angularVelocity(gravityForce(position, m), aerodynamicForce(airDens(H), speedFirst, S), tracForce(mLevel, impulseS, speedFirst), moment)); 
+    double v1 = 1 - airDens(H) * scSpeedFirst / 2.0 * S * time / m; // ËÒÔÓÎ¸ÁÛÂÏ ÍÓ˝ÙÙËˆËÂÌÚ ‡˝Ó‰ËÌ‡ÏË˜ÂÒÍÓ„Ó ÒÓÔÓÚË‚ÎÂÌËˇ 1 
+    double v2 = scalar(tracForce(mLevel, impulseS, speedFirst)) * time / m;
+    double mEarth = 5.9742 * pow(10, 24);
+    double v3 = G * mEarth / pow(H, 3) * time;
+    vec t1 = multi(speedFirst, v1);
+    vec t2 = multi(x, v2);
+    vec t3 = multi(position, v3);
+    vec exit;
+    exit.x = t1.x - t2.x + t3.x;
+    return exit;
 }
-int MajorAxis(double u, double e) {
-    double a = u / 2 * e;
-    return a;
+
+//ÔÓÎ¸ÁÓ‚‡ÚÂÎ¸ Á‡ÔÓÎÌˇÂÚ Ï‡ÒÒË‚ ËÁ 100000 ÌÛÎÂÈ Ò‚ÓËÏË ÁÌ‡˜ÂÌËˇÏË
+
+vec ABC (vec position, vec speedFirst, double m, double mLevel[3], double impulse[3],vec orientation, vec moment, double size, vec speedRotation) //ÏÓÊÌÓ ÎË Ú‡Í ÔÂÂ‰‡‚‡Ú¸ Ï‡ÒÒË‚?
+{
+    double S = size * size;
+    double H = scalar (position);
+    vec sp;
+    double impulseS, level;
+    int t = 0;
+    vec orient = orientation;
+    while (H > 9600)
+    {
+        if (t > 2)
+        {
+            level = 0;
+            impulseS = 0;
+        }
+        else
+        {
+            level = mLevel[t];
+            impulseS = impulse[t];
+        }
+        sp = speed(speedFirst, 1.0, position, level, impulseS, m, orient, moment, speedRotation);
+        m = mass(level, m);
+        position.x += sp.x;
+        position.y += sp.y;
+        position.z += sp.z;
+        t++;
+        H = scalar (position); //Ì‡‰Ó ‚˚‰‡Ú¸ position ‚ Ù‡ÈÎ Ì‡ Í‡Ê‰ÓÏ ¯‡„Â!!!!!
+        cout<<position.x<<' '<<position.y<<' '<<position.z<<endl;
+        orient = flywheelON(transformVec(orient, createQuat(speedRotation)), angularVelocity(gravityForce(position, m), aerodynamicForce(airDens(H), speedFirst, S), tracForce(level, impulseS, speedFirst), moment));
+    }
+    return sp;
 }
- */
 
 int main()
 {
-	cout<<airDens(6388100.0);
+    vec position;
+    position.x = 0;
+    position.y = 0;
+    position.z = 6388100;
+    vec speedFirst;
+    speedFirst.x = 8000;
+    speedFirst.y = 0;
+    speedFirst.z = 0;
+    double arr[3] = {0, 0, 0};
+    vec o;
+    o.x = 1;
+    o.y = 0;
+    o.z = 0;
+    vec oo;
+    oo.x = 0;
+    oo.y = 0;
+    oo.z = 0;
+	ABC(position, speedFirst, 50, arr, arr, o, oo, 2, o);
 	return 0;
 }
