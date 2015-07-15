@@ -28,7 +28,7 @@ struct ShipParams
     double impulsePerFuel;
     vector <double> impulseFlightPlan;
     vector <rotation> rotateFlightPlan;
-    vector <shipPosition> position; 
+    vector <shipPosition> position;
 };
 
 struct Quants
@@ -38,5 +38,5 @@ struct Quants
 };
 
 vector <vec> ABC(shipPosition initialPosition,
-           ShipParams shipParams,
-           Quants quants);
+                 ShipParams shipParams,
+                 Quants quants);
