@@ -19,11 +19,11 @@ struct quaternion
 quaternion createQuat(vec speed) //создание кватерниона из набора скоростей
 {
     double c1 = cos(speed.z / 2),
-    c2 = cos(speed.y / 2),
-    c3 = cos(speed.x / 2),
-    s1 = sin(speed.z / 2),
-    s2 = sin(speed.y / 2),
-    s3 = sin(speed.x / 2);
+           c2 = cos(speed.y / 2),
+           c3 = cos(speed.x / 2),
+           s1 = sin(speed.z / 2),
+           s2 = sin(speed.y / 2),
+           s3 = sin(speed.x / 2);
     quaternion q = {c1 * c2 * c3 - s1 * s2 * s3, s1 * s2 * c3 + c1 * c2 * s3,
         c1 * s2 * c3 - s1 * c2 * s3, s1 * c2 * c3 + c1 * s2 * s3};
     return q;
@@ -62,14 +62,20 @@ quaternion mulVQ(quaternion q, vec v) //умножение вектора на �
     return res;
 }
 
-quaternion invertQuat (quaternion q) //обратный кватернион
+quaternion invertQuat(quaternion q) //обратный кватернион
 {
-    quaternion p = {0, -q.x, -q.y, -q.z};
+    quaternion p = {q.w, -q.x, -q.y, -q.z};
     return p;
 }
 
+vec multi(vec t1, double t2)
+{
+    vec res = {t1.x * t2, t1.y * t2, t1.z * t2};
+    return res;
+}
+
 //поворот вектора вокруг 3 осей (тангаж, рыскание, крен)
-vec transformVec (vec v, quaternion q)
+vec transformVec(vec v, quaternion q)
 {
     quaternion res = mulQQ(mulVQ(q, v), invertQuat(q));
     vec t = {res.x, res.y, res.z};
@@ -79,13 +85,12 @@ vec transformVec (vec v, quaternion q)
 //вращение под действием маховиков
 vec gravityForce(vec r, double m) //r - расстояние до центра Земли
 {
-    double G = 6.67385 * pow(10, -11);
-    double mEarth = 5.9742 * pow(10, 24);
-    double R = scalar(r);
+    const double G = 6.67385 * pow(10, -11),
+                 mEarth = 5.9742 * pow(10, 24);
+    double R = pow(scalar(r), 3);
     if (R != 0)
     {
-        vec g = {G * mEarth * r.x / pow(R, 3), G * mEarth * r.y / pow(R, 3),
-            G * mEarth * r.z / pow(R, 3)};
+        vec g = multi(r, G * mEarth / R);
         return g;
     }
     else
@@ -98,7 +103,7 @@ vec gravityForce(vec r, double m) //r - расстояние до центра �
 vec aerodynamicForce(double p, vec v, double S)
 {
     double u = scalar(v);
-    vec a = {-p * u * v.x * S/ 2, -p * u * v.y * S/ 2, -p * u * v.z * S/ 2};
+    vec a = multi(v, -p * u * S / 2);
     return a;
 }
 
@@ -107,9 +112,7 @@ vec tracForce(double mLevel, double specificImpulse, vec v)
     double u = scalar(v);
     if (u != 0)
     {
-        vec t = {-mLevel * specificImpulse * v.x / u,
-            -mLevel * specificImpulse * v.y / u,
-            -mLevel * specificImpulse * v.z / u};
+        vec t = multi(v, -mLevel * specificImpulse / u);
         return t;
     }
     else
@@ -121,9 +124,9 @@ vec tracForce(double mLevel, double specificImpulse, vec v)
 
 vec angularVelocity(vec g, vec a, vec t, rotation moment) //угловая скорость
 {
-    double x = moment.rotationAroundX;
-    double y = moment.rotationAroundY;
-    double z = moment.rotationAroundZ;
+    double x = moment.rotationAroundX,
+           y = moment.rotationAroundY,
+           z = moment.rotationAroundZ;
     if (x != 0)
     {
         x = (g.x - a.x - t.x)/x;
@@ -140,11 +143,7 @@ vec angularVelocity(vec g, vec a, vec t, rotation moment) //угловая ск�
     return exit;
 }
 
-vec multi(vec t1, double t2)
-{
-    vec res = {t1.x * t2, t1.y * t2, t1.z * t2};
-    return res;
-}
+
 
 double mass(double mLevel, double m)
 {
@@ -160,24 +159,42 @@ double airDens(double H)
     };
     airD air[55];
     H -= 6378.1;
-    air[0].h = 0; air[0].p=1.225;
-    air[3].h = 0.050; air[3].p=1.219;
-    air[6].h = 0.100; air[6].p = 1.213;
-    air[9].h = 0.200; air[9].p = 1.202;
-    air[12].h = 0.300; air[12].p = 1.190;
-    air[15].h = 0.500; air[15].p = 1.167;
-    air[18].h = 1.0; air[18].p = 1.112;
-    air[21].h = 2.0; air[21].p = 1.007;
-    air[24].h = 3.000; air[24].p = 0.909;
-    air[27].h = 5.000; air[27].p = 0.736;
-    air[30].h = 8.000; air[30].p = 0.526;
-    air[33].h = 10.000; air[33].p = 0.414;
-    air[36].h = 12.000; air[36].p = 0.312;
-    air[39].h = 15.000; air[39].p = 0.195;
-    air[42].h = 20.000; air[42].p = 0.089;
-    air[45].h = 50.000; air[45].p = 0.001027;
-    air[48].h = 100.000; air[48].p = 0.000000555;
-    air[51].h = 120.000; air[51].p = 0.0000000244;
+    air[0].h = 0;
+    air[0].p=1.225;
+    air[3].h = 0.050;
+    air[3].p=1.219;
+    air[6].h = 0.100;
+    air[6].p = 1.213;
+    air[9].h = 0.200;
+    air[9].p = 1.202;
+    air[12].h = 0.300;
+    air[12].p = 1.190;
+    air[15].h = 0.500;
+    air[15].p = 1.167;
+    air[18].h = 1.0;
+    air[18].p = 1.112;
+    air[21].h = 2.0;
+    air[21].p = 1.007;
+    air[24].h = 3.000;
+    air[24].p = 0.909;
+    air[27].h = 5.000;
+    air[27].p = 0.736;
+    air[30].h = 8.000;
+    air[30].p = 0.526;
+    air[33].h = 10.000;
+    air[33].p = 0.414;
+    air[36].h = 12.000;
+    air[36].p = 0.312;
+    air[39].h = 15.000;
+    air[39].p = 0.195;
+    air[42].h = 20.000;
+    air[42].p = 0.089;
+    air[45].h = 50.000;
+    air[45].p = 0.001027;
+    air[48].h = 100.000;
+    air[48].p = 0.000000555;
+    air[51].h = 120.000;
+    air[51].p = 0.0000000244;
     for (int i = 0 ; i < 52; i += 3)
     {
         double s = (air[i+3].h - air[i].h) / 3.0;
@@ -236,18 +253,23 @@ vec speed(vec speedFirst, double time, shipPosition sPos, double mLevel,
     }
     return exit;
 }
-//пользователь заполняет массив из 100000 нулей своими значениями
-vec outPut (shipPosition sPos, vec speedFirst, double m, double mLevel[3],
-            rotation momentR[3], double size, double specificImpulse) //задать диапазон!!!
-//можно ли так передавать массив?
+double scalarPosition(Position p)
 {
-    double S = size * size;
-    double H = scalar (sPos.position);
+    double res = sqrt(pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2));
+    return res;
+}
+//пользователь заполняет массив из 100000 нулей своими значениями
+//vec outPut( vec speedFirst, double m, double mLevel[3],
+  //         rotation momentR[3], double size, double specificImpulse)
+Position outPut(shipPosition initialPosition, ShipParams shipParams, quants Quants)
+{
+    double S = pow(shipParams.shipEdgeLength, 2);
+    double H = scalar (initialPosition.position);
     vec sp;
     double level;
     rotation moment;
     int t = 0;
-    vec orient = sPos.orientation;
+    vec orient = initialPosition.orientation;
     while (H > 9.6)
     {
         if (t > 2)
@@ -259,20 +281,20 @@ vec outPut (shipPosition sPos, vec speedFirst, double m, double mLevel[3],
         }
         else
         {
-            level = mLevel[t];
-            moment = momentR[t];
+            level = shipParams.impulseFlightPlan[t];
+            moment = shipParams.rotateFlightPlan[t];
         }
-        sp = speed(speedFirst, 1.0, sPos, level, m,
-                   moment, specificImpulse, size);
-        m = mass(level, m);
-        sPos.position.x += sp.x;
-        sPos.position.y += sp.y;
-        sPos.position.z += sp.z;
+        sp = speed(initialPosition.speedFirst, 1.0, initialPosition, level, shipParams.shipMass,
+                   moment, shipParams.impulsePerFuel, shipParams.shipEdgeLength);
+        shipParams.shipMass = mass(level, shipParams.shipMass);
+        initialPosition.position.x += sp.x;
+        initialPosition.position.y += sp.y;
+        initialPosition.position.z += sp.z;
         t++;
-        H = scalar (sPos.position); //надо выдать position в файл на каждом шаге!
-        orient = transformVec(orient, createQuat(angularVelocity(gravityForce(sPos.position, m), aerodynamicForce(airDens(H), speedFirst, S), tracForce(level, specificImpulse, speedFirst), moment)));
+        H = scalarPosition(initialPosition.position); //надо выдать position в файл на каждом шаге!
+        orient = transformVec(orient, createQuat(angularVelocity(gravityForce(initialPosition.position, shipParams.shipMass), aerodynamicForce(airDens(H), initialPosition.speedFirst, S), tracForce(level, shipParams.impulsePerFuel, initialPosition.speedFirst), moment)));
     }
-    return sp;
+    return initialPosition.position;
 }
 
 int main()

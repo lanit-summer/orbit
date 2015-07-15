@@ -14,12 +14,14 @@ struct shipPosition
 {
     Position position;
     Orient orientation;
+    vec speedFirst;
 };
 
 struct ShipParams
 {
     double shipEdgeLength;
     double shipMass;
+    double shipFuel;
     rotation maxRotation;
     double maxFuelUsagePerSec;
     double impulsePerFuel;
@@ -34,6 +36,6 @@ struct quants
     double quantSizeOfSec;
 };
 
-double ABC(shipPosition initialPosition,
+Position outPut(shipPosition initialPosition,
            ShipParams shipParams,
            quants Quants);
