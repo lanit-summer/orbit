@@ -85,7 +85,7 @@ vec transformVec(vec v, quaternion q)
 
 vec gravityForce(vec r, double m) //r - расстояние до центра Земли
 {
-    double G = 6.67385 * pow(10, -11),
+    double G = 6.67385 * pow(10, -20),
            mEarth = 5.9742 * pow(10, 24);
     double R = pow(scalar(r), 3);
     if (R != 0)
@@ -228,7 +228,7 @@ vec speed(vec speedFirst, double time, ShipPosition sPos, double mLevel,
     {
         double M = mShip + mFuel;
         double mEarth = 5.9742 * pow(10, 24);
-        double G = 6.67385 * pow(10, -11);
+        double G = 6.67385 * pow(10, -20);
         double H = scalar (sPos.position);
         double scSpeedFirst = scalar(speedFirst);
         double S = size * size;
@@ -274,54 +274,39 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
     vec sp = initialPosition.speedFirst;
     double level;
     Rotation moment;
-    int t = 0;
     int b = 0;
     vec orient = initialPosition.orientation;
     vector <Position> position;
-    while (H > 6387.7)
+    int i;
+    for (i = 0; i < quants.numberOfQuants && H > 6387.7; i++)
     {
-        if (t > 2)
-        {
-            level = 0;
-            moment.rotationAroundX = 0;
-            moment.rotationAroundY = 0;
-            moment.rotationAroundZ = 0;
-        }
-        else
-        {
-            level = shipParams.impulseFlightPlan[t];
-            moment = shipParams.rotateFlightPlan[t];
-        }
-        int i;
-        for (i = 0; i < quants.numberOfQuants; i++)
-        {
-            sp = speed(sp, 1.0, initialPosition, level,
+        level = shipParams.impulseFlightPlan[i];
+        moment = shipParams.rotateFlightPlan[i];
+        sp = speed(sp, 1.0, initialPosition, level,
                        shipParams.shipMass, shipParams.fuelMass, moment,
                        shipParams.impulsePerFuel, shipParams.shipEdgeLength,
                        quants.quantSizeOfSec);
-            initialPosition.position.x += sp.x;
-            initialPosition.position.y += sp.y;
-            initialPosition.position.z += sp.z;
-            t++;
-            H = scalarPosition(initialPosition.position);
-            orient = transformVec(orient, createQuaternion(angularVelocity(
+        initialPosition.position.x += sp.x;
+        initialPosition.position.y += sp.y;
+        initialPosition.position.z += sp.z;
+        H = scalarPosition(initialPosition.position);
+        orient = transformVec(orient, createQuaternion(angularVelocity(
                 gravityForce(initialPosition.position, shipParams.shipMass),
                 aerodynamicForce(airDens(H), initialPosition.speedFirst, S),
                 tractiveForce(level, shipParams.impulsePerFuel, sp),
                 moment, quants.quantSizeOfSec)));
-            if (level * quants.quantSizeOfSec > fuel)
-            {
-                fuel = 0;
-                m -= fuel;
-                b = 1;
-            }
-            else
-            {
-                fuel -= level;
-                m -= level;
-            }
+        if (level * quants.quantSizeOfSec > fuel)
+        {
+            fuel = 0;
+            m -= fuel;
+            b = 1;
         }
-        position[t] = initialPosition.position;
+        else
+        {
+            fuel -= level;
+            m -= level;
+        }
+        position[i] = initialPosition.position;
         if (b == 1)
         {
             cout<<"Not enough fuel!"<<endl;
