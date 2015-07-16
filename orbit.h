@@ -1,18 +1,19 @@
 #include <vector>
 
-using namespace std;
-
 struct vec
 {
     double x, y, z;
 };
+
 struct Rotation
 {
     double rotationAroundX, rotationAroundY, rotationAroundZ;
 };
+
 typedef vec Orient;
 typedef vec Position;
 typedef Rotation RotationSpeed;
+
 struct ShipPosition
 {
     Position position;
@@ -28,9 +29,9 @@ struct ShipParams
     Rotation maxRotation;
     double maxFuelUsagePerSec;
     double impulsePerFuel;
-    vector <double> impulseFlightPlan;
-    vector <Rotation> rotateFlightPlan;
-    vector <ShipPosition> position;
+    std :: vector <double> impulseFlightPlan;
+    std :: vector <Rotation> rotateFlightPlan;
+    std :: vector <ShipPosition> position;
 };
 
 struct Quants
@@ -39,5 +40,6 @@ struct Quants
     double quantSizeOfSec;
 };
 
-Position outPut(ShipPosition initialPosition, ShipParams shipParams,
-                Quants quants);
+std :: vector <Position> computeFlightPlan(ShipPosition initialPosition,
+                                           ShipParams shipParams,
+                                           Quants quants);
