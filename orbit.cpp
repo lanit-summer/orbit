@@ -10,13 +10,12 @@ double scalar (vec t)
     return res;
 }
 
-//вращение объекта
 struct quaternion
 {
     double w, x, y, z;
 };
 
-quaternion createQuat(vec speed) //создание кватерниона из набора скоростей
+quaternion createQuaternion(vec speed)
 {
     double c1 = cos(speed.z / 2),
            c2 = cos(speed.y / 2),
@@ -24,12 +23,13 @@ quaternion createQuat(vec speed) //создание кватерниона из 
            s1 = sin(speed.z / 2),
            s2 = sin(speed.y / 2),
            s3 = sin(speed.x / 2);
+    
     quaternion q = {c1 * c2 * c3 - s1 * s2 * s3, s1 * s2 * c3 + c1 * c2 * s3,
         c1 * s2 * c3 - s1 * c2 * s3, s1 * c2 * c3 + c1 * s2 * s3};
     return q;
 }
 
-quaternion normalize(quaternion q)
+quaternion normalizeQuaternion(quaternion q)
 {
     double s = sqrt(pow(q.x, 2) + pow(q.y, 2) + pow(q.z, 2) + pow(q.w, 2));
     quaternion p = {0, 0, 0, 0};
@@ -43,17 +43,17 @@ quaternion normalize(quaternion q)
     return p;
 }
 
-quaternion mulQQ(quaternion a, quaternion b) //умножение 2 кватернионов
+quaternion multiQuaternions(quaternion a, quaternion b)
 {
     quaternion res = {a.w * b.w - a.x * b.x - a.y * b.y - a.z * b.z,
         a.w * b.x + a.x * b.w + a.y * b.z - a.z * b.y,
         a.w * b.y - a.x * b.z + a.y * b.w + a.z * b.x,
         a.w * b.z + a.x * b.y - a.y * b.x + a.z * b.w};
-    res = normalize(res);
+    res = normalizeQuaternion(res);
     return res;
 }
 
-quaternion mulVQ(quaternion q, vec v) //умножение вектора на кватернион
+quaternion multiVecQuaternion(quaternion q, vec v)
 {
     quaternion res = {-q.x * v.x - q.y * v.y - q.z * v.z,
         q.w * v.x + q.y * v.z - q.z * v.y,
@@ -62,13 +62,13 @@ quaternion mulVQ(quaternion q, vec v) //умножение вектора на �
     return res;
 }
 
-quaternion invertQuat(quaternion q) //обратный кватернион
+quaternion invertQuaternion(quaternion q)
 {
     quaternion p = {q.w, -q.x, -q.y, -q.z};
     return p;
 }
 
-vec multi(vec t1, double t2)
+vec multiVecDouble(vec t1, double t2)
 {
     vec res = {t1.x * t2, t1.y * t2, t1.z * t2};
     return res;
@@ -77,20 +77,20 @@ vec multi(vec t1, double t2)
 //поворот вектора вокруг 3 осей (тангаж, рыскание, крен)
 vec transformVec(vec v, quaternion q)
 {
-    quaternion res = mulQQ(mulVQ(q, v), invertQuat(q));
+    quaternion res = multiQuaternions(multiVecQuaternion(q, v),
+                                      invertQuaternion(q));
     vec t = {res.x, res.y, res.z};
     return t;
 }
 
-//вращение под действием маховиков
 vec gravityForce(vec r, double m) //r - расстояние до центра Земли
 {
-    const double G = 6.67385 * pow(10, -11),
-                 mEarth = 5.9742 * pow(10, 24);
+    double G = 6.67385 * pow(10, -11),
+           mEarth = 5.9742 * pow(10, 24);
     double R = pow(scalar(r), 3);
     if (R != 0)
     {
-        vec g = multi(r, G * mEarth / R);
+        vec g = multiVecDouble(r, G * mEarth / R);
         return g;
     }
     else
@@ -103,16 +103,16 @@ vec gravityForce(vec r, double m) //r - расстояние до центра �
 vec aerodynamicForce(double p, vec v, double S)
 {
     double u = scalar(v);
-    vec a = multi(v, -p * u * S / 2);
+    vec a = multiVecDouble(v, -p * u * S / 2);
     return a;
 }
 
-vec tracForce(double mLevel, double specificImpulse, vec v)
+vec tractiveForce(double mLevel, double specificImpulse, vec v)
 {
     double u = scalar(v);
     if (u != 0)
     {
-        vec t = multi(v, -mLevel * specificImpulse / u);
+        vec t = multiVecDouble(v, -mLevel * specificImpulse / u);
         return t;
     }
     else
@@ -122,33 +122,25 @@ vec tracForce(double mLevel, double specificImpulse, vec v)
     }
 }
 
-vec angularVelocity(vec g, vec a, vec t, rotation moment) //угловая скорость
+vec angularVelocity(vec g, vec a, vec t, Rotation moment, double quantSizeOfSec)
 {
     double x = moment.rotationAroundX,
            y = moment.rotationAroundY,
            z = moment.rotationAroundZ;
     if (x != 0)
     {
-        x = (g.x - a.x - t.x)/x;
+        x = (g.x - a.x - t.x) * quantSizeOfSec /x;
     }
     if (y != 0)
     {
-        y = (g.y - a.y - t.y)/y;
+        y = (g.y - a.y - t.y) * quantSizeOfSec /y;
     }
     if (z != 0)
     {
-        z = (g.z - a.z - t.z)/z;
+        z = (g.z - a.z - t.z) * quantSizeOfSec /z;
     }
     vec exit = {x, y, z};
     return exit;
-}
-
-
-
-double mass(double mLevel, double m)
-{
-    m -= mLevel;
-    return m;
 }
 
 double airDens(double H)
@@ -195,6 +187,7 @@ double airDens(double H)
     air[48].p = 0.000000555;
     air[51].h = 120.000;
     air[51].p = 0.0000000244;
+    
     for (int i = 0 ; i < 52; i += 3)
     {
         double s = (air[i+3].h - air[i].h) / 3.0;
@@ -204,6 +197,7 @@ double airDens(double H)
         air[i+1].p = air[i].p + t;
         air[i+2].p = air[i+1].p + t;
     }
+    
     int t = 0;
     double P = 0;
     if (H <= 120)
@@ -222,52 +216,65 @@ double airDens(double H)
     return P;
 }
 
-vec speed(vec speedFirst, double time, shipPosition sPos, double mLevel,
-          double m, rotation moment,
-          double specificImpulse, double size)
+vec speed(vec speedFirst, double time, ShipPosition sPos, double mLevel,
+          double mShip, double mFuel, Rotation moment, double specificImpulse,double size,
+          double quantSizeOfSec)
 {
-    double mEarth = 5.9742 * pow(10, 24);
-    double G = 6.67385 * pow(10, -11);
-    double H = scalar (sPos.position);
-    double scSpeedFirst = scalar(speedFirst);
-    double S = size * size;
-    vec x = transformVec(sPos.orientation,
-                         createQuat(angularVelocity(gravityForce(sPos.position, m),
-                                                    aerodynamicForce(airDens(H), speedFirst, S),
-                                                    tracForce(mLevel, specificImpulse, speedFirst), moment)));
-    double v3 = G * mEarth * time / pow(H, 3);
-    vec t3 = multi(sPos.position, v3);
-    vec exit = {0, 0, 0};
-    if (m != 0) {
-        double v1 = 1 - airDens(H) * scSpeedFirst * S * time / (2.0 * m);
-        double v2 = scalar(tracForce(mLevel, specificImpulse, speedFirst)) * time / m;
-        vec t1 = multi(speedFirst, v1);
-        vec t2 = multi(x, v2);
-        exit.x = t1.x - t2.x - t3.x;
-        exit.y = t1.y - t2.y - t3.y;
-        exit.z = t1.z - t2.z - t3.z;
+    if (mLevel * time > mFuel)
+    {
+        cout<<"Not enough fuel!"<<endl;
+        return speedFirst;
     }
     else
     {
-        cout<<"Mass = 0!"<<endl;
+        double M = mShip + mFuel;
+        double mEarth = 5.9742 * pow(10, 24);
+        double G = 6.67385 * pow(10, -11);
+        double H = scalar (sPos.position);
+        double scSpeedFirst = scalar(speedFirst);
+        double S = size * size;
+        vec exit = {0, 0, 0};
+        vec x = transformVec(sPos.orientation,
+            createQuaternion(angularVelocity(gravityForce(sPos.position, M),
+                aerodynamicForce(airDens(H), speedFirst, S),
+                tractiveForce(mLevel, specificImpulse, speedFirst),
+                moment, quantSizeOfSec)));
+        if (M != 0) {
+            double v1 = 1 - airDens(H) * scSpeedFirst * S * time / (2.0 * M);
+            double v2 = scalar(tractiveForce(mLevel, specificImpulse, speedFirst)) * time / M;
+            double v3 = G * mEarth * time / pow(H, 3);
+            vec t1 = multiVecDouble(speedFirst, v1);
+            vec t2 = multiVecDouble(x, v2);
+            vec t3 = multiVecDouble(sPos.position, v3);
+            exit.x = t1.x - t2.x - t3.x;
+            exit.y = t1.y - t2.y - t3.y;
+            exit.z = t1.z - t2.z - t3.z;
+        }
+        else
+        {
+            cout<<"Mass = 0!"<<endl;
+        }
+        return exit;
     }
-    return exit;
 }
+    
 double scalarPosition(Position p)
 {
     double res = sqrt(pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2));
     return res;
 }
-//пользователь заполняет массив из 100000 нулей своими значениями
-//vec outPut( vec speedFirst, double m, double mLevel[3],
-  //         rotation momentR[3], double size, double specificImpulse)
-Position outPut(shipPosition initialPosition, ShipParams shipParams, quants Quants)
+
+//доработать функцию изменения массы топлива
+Position outPut(ShipPosition initialPosition, ShipParams shipParams,
+                Quants quants)
 {
     double S = pow(shipParams.shipEdgeLength, 2);
     double H = scalar (initialPosition.position);
-    vec sp;
+    double fuel = shipParams.fuelMass;
+    double m = fuel + shipParams.shipMass;
+    vec sp = initialPosition.speedFirst;
     double level;
-    rotation moment;
+    Rotation moment;
     int t = 0;
     vec orient = initialPosition.orientation;
     while (H > 9.6)
@@ -284,15 +291,30 @@ Position outPut(shipPosition initialPosition, ShipParams shipParams, quants Quan
             level = shipParams.impulseFlightPlan[t];
             moment = shipParams.rotateFlightPlan[t];
         }
-        sp = speed(initialPosition.speedFirst, 1.0, initialPosition, level, shipParams.shipMass,
-                   moment, shipParams.impulsePerFuel, shipParams.shipEdgeLength);
-        shipParams.shipMass = mass(level, shipParams.shipMass);
+        sp = speed(sp, 1.0, initialPosition, level,
+                   shipParams.shipMass, shipParams.fuelMass, moment,
+                   shipParams.impulsePerFuel, shipParams.shipEdgeLength,
+                   quants.quantSizeOfSec);
         initialPosition.position.x += sp.x;
         initialPosition.position.y += sp.y;
         initialPosition.position.z += sp.z;
         t++;
-        H = scalarPosition(initialPosition.position); //надо выдать position в файл на каждом шаге!
-        orient = transformVec(orient, createQuat(angularVelocity(gravityForce(initialPosition.position, shipParams.shipMass), aerodynamicForce(airDens(H), initialPosition.speedFirst, S), tracForce(level, shipParams.impulsePerFuel, initialPosition.speedFirst), moment)));
+        H = scalarPosition(initialPosition.position);
+        orient = transformVec(orient, createQuaternion(angularVelocity(
+            gravityForce(initialPosition.position, shipParams.shipMass),
+            aerodynamicForce(airDens(H), initialPosition.speedFirst, S),
+            tractiveForce(level, shipParams.impulsePerFuel, sp),
+            moment, quants.quantSizeOfSec)));
+        if (level * 1.0 > fuel)// умножить на время работы двигателя
+        {
+            fuel = 0;
+            m -= fuel;
+        }
+        else
+        {
+            fuel -= level;
+            m -= level;
+        }
     }
     return initialPosition.position;
 }
