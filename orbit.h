@@ -29,8 +29,9 @@ struct ShipParams
     Rotation maxRotation;
     double maxFuelUsagePerSec;
     double impulsePerFuel;
-    std::vector <double> impulseFlightPlan;
-    std::vector <Rotation> rotateFlightPlan;
+    std :: vector <double> impulseFlightPlan;
+    std :: vector <Rotation> rotateFlightPlan;
+    std :: vector <ShipPosition> position;
 };
 
 struct Quants
@@ -39,6 +40,6 @@ struct Quants
     double quantSizeOfSec;
 };
 
-std::vector <Position> computeFlightPlan(ShipPosition initialPosition,
+std :: vector <Position> computeFlightPlan(ShipPosition initialPosition,
                                            ShipParams shipParams,
                                            Quants quants);
