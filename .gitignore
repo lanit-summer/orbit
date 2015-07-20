@@ -28,6 +28,8 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
+*.o
+*.so
 
 ## Directory-based project format:
 .idea/
@@ -45,3 +47,6 @@ ipch/
 # .idea/dynamic.xml
 # .idea/uiDesigner.xml
 
+orbit_binding_test/__pycache__/
+orbit_binding_test/*.o
+orbit_binding_test/*.so
