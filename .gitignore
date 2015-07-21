@@ -29,7 +29,6 @@ ipch/
 *.sdf
 *.cachefile
 *.o
-*.so
 
 ## Directory-based project format:
 .idea/
