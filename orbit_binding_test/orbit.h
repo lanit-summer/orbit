@@ -21,6 +21,13 @@ struct ShipPosition
     vec speedFirst;
 };
 
+struct PartOfFlightPlan
+{
+    int delayTime;
+    double impulseValue;
+    Rotation rotateValue;
+}
+
 struct ShipParams
 {
     double shipEdgeLength;
@@ -29,8 +36,7 @@ struct ShipParams
     Rotation maxRotation;
     double maxFuelUsagePerSec;
     double impulsePerFuel;
-    std::vector <double> impulseFlightPlan;
-    std::vector <Rotation> rotateFlightPlan;
+    std::vector<PartOfFlightPlan> flightPlan;
 };
 
 struct Quants
