@@ -26,7 +26,7 @@ struct PartOfFlightPlan
     int delayTime;
     double impulseValue;
     Rotation rotateValue;
-}
+};
 
 struct ShipParams
 {
