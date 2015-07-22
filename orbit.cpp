@@ -1,5 +1,3 @@
-//#define BOOST_TEST_MODULE orbit
-//#include <boost/test/unit_test.hpp>
 #include "orbit.h"
 #include <iostream>
 #include <algorithm>
@@ -153,42 +151,24 @@ double airDens(double H)
     };
     airD air[55];
     H -= 6378.1;
-    air[0].h = 0;
-    air[0].p=1.225;
-    air[3].h = 0.050;
-    air[3].p=1.219;
-    air[6].h = 0.100;
-    air[6].p = 1.213;
-    air[9].h = 0.200;
-    air[9].p = 1.202;
-    air[12].h = 0.300;
-    air[12].p = 1.190;
-    air[15].h = 0.500;
-    air[15].p = 1.167;
-    air[18].h = 1.0;
-    air[18].p = 1.112;
-    air[21].h = 2.0;
-    air[21].p = 1.007;
-    air[24].h = 3.000;
-    air[24].p = 0.909;
-    air[27].h = 5.000;
-    air[27].p = 0.736;
-    air[30].h = 8.000;
-    air[30].p = 0.526;
-    air[33].h = 10.000;
-    air[33].p = 0.414;
-    air[36].h = 12.000;
-    air[36].p = 0.312;
-    air[39].h = 15.000;
-    air[39].p = 0.195;
-    air[42].h = 20.000;
-    air[42].p = 0.089;
-    air[45].h = 50.000;
-    air[45].p = 0.001027;
-    air[48].h = 100.000;
-    air[48].p = 0.000000555;
-    air[51].h = 120.000;
-    air[51].p = 0.0000000244;
+    air[0].h = 0; air[0].p=1225000000;
+    air[3].h = 0.050; air[3].p=1219000000;
+    air[6].h = 0.100; air[6].p = 1213000000;
+    air[9].h = 0.200; air[9].p = 1202000000;
+    air[12].h = 0.300; air[12].p = 1190000000;
+    air[15].h = 0.500; air[15].p = 1167000000;
+    air[18].h = 1.0; air[18].p = 1112000000;
+    air[21].h = 2.0; air[21].p = 1007000000;
+    air[24].h = 3.000; air[24].p = 909000000;
+    air[27].h = 5.000; air[27].p = 736000000;
+    air[30].h = 8.000; air[30].p = 526000000;
+    air[33].h = 10.000; air[33].p = 414000000;
+    air[36].h = 12.000; air[36].p = 312000000;
+    air[39].h = 15.000; air[39].p = 195000000;
+    air[42].h = 20.000; air[42].p = 89000000;
+    air[45].h = 50.000; air[45].p = 1027000;
+    air[48].h = 100.000; air[48].p = 555;
+    air[51].h = 120.000; air[51].p = 24.4;
     
     for (int i = 0 ; i < 52; i += 3)
     {
@@ -218,11 +198,11 @@ double airDens(double H)
     return P;
 }
 
-vec speed(vec speedFirst, double time, ShipPosition sPos, double mLevel,
+vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
           double mShip, double mFuel, Rotation moment, double specificImpulse,
           double size, double quantSizeOfSec)
 {
-    if (mLevel * time > mFuel)
+    if (mLevel * quantSizeOfSec > mFuel)
     {
         return speedFirst;
     }
@@ -241,9 +221,9 @@ vec speed(vec speedFirst, double time, ShipPosition sPos, double mLevel,
                                                               tractiveForce(mLevel, specificImpulse, speedFirst),
                                                               moment, quantSizeOfSec)));
         if (M != 0) {
-            double v1 = 1 - airDens(H) * scSpeedFirst * S * time / (2.0 * M);
-            double v2 = scalar(tractiveForce(mLevel, specificImpulse, speedFirst)) * time / M;
-            double v3 = G * M * mEarth * time / pow(H, 3);
+            double v1 = 1 - airDens(H) * scSpeedFirst * S * quantSizeOfSec / (2.0 * M);
+            double v2 = scalar(tractiveForce(mLevel, specificImpulse, speedFirst)) * quantSizeOfSec / M;
+            double v3 = G * M * mEarth * quantSizeOfSec / pow(H, 3);
             vec t1 = multiVecDouble(speedFirst, v1);
             vec t2 = multiVecDouble(x, v2);
             vec t3 = multiVecDouble(sPos.position, v3);
@@ -284,7 +264,7 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
     {
         level = shipParams.impulseFlightPlan[i];
         moment = shipParams.rotateFlightPlan[i];
-        sp = speed(sp, 1.0, initialPosition, level,
+        sp = speed(sp, initialPosition, level,
                    shipParams.shipMass, shipParams.fuelMass, moment,
                    shipParams.impulsePerFuel, shipParams.shipEdgeLength,
                    quants.quantSizeOfSec);
@@ -310,6 +290,7 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
         }
         initialPosition.position = extraOrient;
         H = scalarPosition(initialPosition.position);
+        cout<<"H = "<<H<<endl;
         orient = transformVec(orient, createQuaternion(angularVelocity(
                                                                        gravityForce(initialPosition.position, shipParams.shipMass),
                                                                        aerodynamicForce(airDens(H), initialPosition.speedFirst, S),
@@ -334,7 +315,7 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
         }
         b = 0;
     }
-    if (H == 6378.1)
+    if (H <= 6378.1)
     {
         int j;
         for (j = i; j < quants.numberOfQuants; j++)
@@ -353,31 +334,51 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
 
 int main()
 {
-     ShipPosition initialPosition;
-     initialPosition.position = {0.0, 0.0, 6478.0};
-     initialPosition.orientation = {1.0, 0.0, 0.0};
-     initialPosition.speedFirst = {0.0, 0.0, 0.0};
-     ShipParams shipParams;
-     Quants quants;
-     shipParams.shipEdgeLength = 0.001;
-     shipParams.shipMass = 1000.0;
-     shipParams.fuelMass = 0.0;
-     shipParams.maxRotation = {10.0, 10.0, 10.0};
-     shipParams.maxFuelUsagePerSec = 100.0;
-     shipParams.impulsePerFuel = 20.0;
-     quants.quantSizeOfSec = 10;
-     quants.numberOfQuants = 10;
-     shipParams.impulseFlightPlan = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-    shipParams.rotateFlightPlan = {{0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}};
-     std::vector<Position> res = {{0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}};
-     std::vector<Position> result = computeFlightPlan(initialPosition, shipParams, quants);
+    ShipPosition initialPosition;
+    initialPosition.position.x = 0.0;
+    initialPosition.position.y = 0.0;
+    initialPosition.position.z = 6478.1;
+    initialPosition.orientation.x = 1.0;
+    initialPosition.orientation.y = 0.0;
+    initialPosition.orientation.z = 0.0;
+    initialPosition.speedFirst.x = 8.0;
+    initialPosition.speedFirst.y = 0.0;
+    initialPosition.speedFirst.z = 0.0;
+    ShipParams shipParams;
+    Quants quants;
+    shipParams.shipEdgeLength = 0.001;
+    shipParams.shipMass = 3.0;
+    shipParams.fuelMass = 0.0;
+    shipParams.maxRotation.rotationAroundX = 10.0;
+    shipParams.maxRotation.rotationAroundY = 10.0;
+    shipParams.maxRotation.rotationAroundZ = 10.0;
+    shipParams.maxFuelUsagePerSec = 100.0;
+    shipParams.impulsePerFuel = 20.0;
+    quants.quantSizeOfSec = 5;
+    quants.numberOfQuants = 100;
     int i;
+    vector<double> abc(1000);
+    vector<Rotation> a(1000);
+    shipParams.impulseFlightPlan.reserve (1000);
+    shipParams.rotateFlightPlan.reserve (1000);
+    
+    for (i = 0; i < 1000; i++)
+    {
+        abc[i] = 0.0;
+        a[i].rotationAroundX = 0.0;
+        a[i].rotationAroundY = 0.0;
+        a[i].rotationAroundZ = 0.0;
+    }
+    shipParams.impulseFlightPlan = abc;
+    shipParams.rotateFlightPlan = a;
+    std::vector<Position> result = computeFlightPlan(initialPosition, shipParams, quants);
+    
+    //cout<<"number = "<<quants.numberOfQuants<<endl;
     for (i = 0; i < quants.numberOfQuants; i++){
-     cout<<result[i].x<<" "<<result[i].y<<" "<<result[i].z<<endl;
+       // cout<<result[i].x<<" "<<result[i].y<<" "<<result[i].z<<endl;
     }
     return 0;
 }
-
 
 /*BOOST_AUTO_TEST_SUITE(TestFuzzyCompare)
 BOOST_AUTO_TEST_CASE(computeOrbit)
