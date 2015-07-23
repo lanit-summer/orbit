@@ -117,6 +117,7 @@ class vec(_object):
             self.this = this
     __swig_destroy__ = _orbit.delete_vec
     __del__ = lambda self: None
+
 vec_swigregister = _orbit.vec_swigregister
 vec_swigregister(vec)
 
