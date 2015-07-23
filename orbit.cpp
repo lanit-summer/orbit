@@ -74,7 +74,6 @@ vec multiVecDouble(vec t1, double t2)
     return res;
 }
 
-//поворот вектора вокруг 3 осей (тангаж, рыскание, крен)
 vec transformVec(vec v, quaternion q)
 {
     quaternion res = multiQuaternions(multiVecQuaternion(q, v),
@@ -83,7 +82,7 @@ vec transformVec(vec v, quaternion q)
     return t;
 }
 
-vec gravityForce(vec r, double m) //r - расстояние до центра Земли
+vec gravityForce(vec r, double m)
 {
     double G = 6.67385 * pow(10, -20),
     mEarth = 5.9742 * pow(10, 24);
@@ -146,10 +145,10 @@ vec angularVelocity(vec g, vec a, vec t, Rotation moment, double quantSizeOfSec)
 double airDens (double H)
 {
     H -= 6378.1;
-    double p = 101325; //pascals
-    double g = 9.8; // m/sec^2
-    double R = 8.31447; // dz/(mol*K)
-    double M = 0.0289644; // kg/mol
+    double p = 101325;
+    double g = 9.8;
+    double R = 8.31447;
+    double M = 0.0289644;
     double T = 273.15;
     if (H > 10)
     {
@@ -202,66 +201,6 @@ double airDens (double H)
     double dens = P * M / (R * T);
     return (dens * pow(10, 9)) ;
 }
-/*double airDens(double H)
-{
-    struct airD
-    {
-        double h, p;
-    };
-    airD air[55];
-    H -= 6378.1;
-    air[0].h = 0; air[0].p=1225000000;
-    air[3].h = 0.050; air[3].p=1219000000;
-    air[6].h = 0.100; air[6].p = 1213000000;
-    air[9].h = 0.200; air[9].p = 1202000000;
-    air[12].h = 0.300; air[12].p = 1190000000;
-    air[15].h = 0.500; air[15].p = 1167000000;
-    air[18].h = 1.0; air[18].p = 1112000000;
-    air[21].h = 2.0; air[21].p = 1007000000;
-    air[24].h = 3.000; air[24].p = 909000000;
-    air[27].h = 5.000; air[27].p = 736000000;
-    air[30].h = 8.000; air[30].p = 526000000;
-    air[33].h = 10.000; air[33].p = 414000000;
-    air[36].h = 12.000; air[36].p = 312000000;
-    air[39].h = 15.000; air[39].p = 195000000;
-    air[42].h = 20.000; air[42].p = 89000000;
-    air[45].h = 50.000; air[45].p = 1027000;
-    air[48].h = 100.000; air[48].p = 555;
-    air[51].h = 120.000; air[51].p = 24.4;
-    
-    for (int i = 0 ; i < 52; i += 3)
-    {
-        double s = (air[i+3].h - air[i].h) / 3.0;
-        air[i+1].h = air[i].h + s;
-        air[i+2].h = air[i+1].h + s;
-        double t = (air[i+3].p - air[i].p) / 3.0;
-        air[i+1].p = air[i].p + t;
-        air[i+2].p = air[i+1].p + t;
-        cout<<"air.["<<i<<"] = "<<air[i].p<<endl;
-        cout<<"air.["<<i + 1<<"] = "<<air[i + 1].p<<endl;
-        cout<<"air.["<<i + 2<<"] = "<<air[i + 2].p<<endl;
-    }
-    
-    int t = 0;
-    double P = 0;
-    if (H <= 120)
-    {
-        double minH = H;
-        for(int i = 1; i < 52; i++)
-        {
-            if(abs(air[i].h - H) < minH)
-            {
-                t = i;
-                minH = abs(air[i].h - H);
-            }
-        }
-        cout<<"Height =  "<<H<<endl;
-        cout<<"T =  "<<t<<endl;
-        cout<<"P = "<<air[t].p<<endl;
-        P = air[t].p;
-    }
-    return P;
-} */
 
 vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
           double mShip, double mFuel, Rotation moment, double specificImpulse,
@@ -281,10 +220,9 @@ vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
         double S = size * size;
         vec exit = {0, 0, 0};
         vec x = transformVec(sPos.orientation,
-                             createQuaternion(angularVelocity(gravityForce(sPos.position, M),
-                                                              aerodynamicForce(airDens(H), speedFirst, S),
-                                                              tractiveForce(mLevel, specificImpulse, speedFirst),
-                                                              moment, 1.0)));
+            createQuaternion(angularVelocity(gravityForce(sPos.position, M),
+                aerodynamicForce(airDens(H), speedFirst, S),
+                tractiveForce(mLevel, specificImpulse, speedFirst), moment, 1.0)));
         if (M != 0) {
             double v1 = 1 - (airDens(H) * scSpeedFirst * S * quantSizeOfSec / (2.0 * M));
             double v2 = scalar(tractiveForce(mLevel, specificImpulse, speedFirst)) * quantSizeOfSec / M;
@@ -476,33 +414,5 @@ int main()
     shipParams.impulseFlightPlan = abc;
     shipParams.rotateFlightPlan = a;
     vector<Position> result = computeFlightPlan(initialPosition, shipParams, quants);
-    for (i = 0; i < quants.numberOfQuants; i++){
-       //cout<<result[i].x<<" "<<result[i].y<<" "<<result[i].z<<endl;
-    }
     return 0;
 }
-
-/*BOOST_AUTO_TEST_SUITE(TestFuzzyCompare)
-BOOST_AUTO_TEST_CASE(computeOrbit)
-{
-     ShipPosition initialPosition;
-     initialPosition.position = {0.0, 0.0, 6478.0};
-     initialPosition.orientation = {1.0, 0.0, 0.0};
-     initialPosition.speedFirst = {8.0, 0.0, 0.0};
-     ShipParams shipParams;
-     Quants quants;
-     shipParams.shipEdgeLength = 0.001;
-     shipParams.shipMass = 10.0;
-     shipParams.fuelMass = 0.0;
-     shipParams.maxRotation = {10.0, 10.0, 10.0};
-     shipParams.maxFuelUsagePerSec = 100.0;
-     shipParams.impulsePerFuel = 20.0;
-     quants.quantSizeOfSec = 1.0;
-     quants.numberOfQuants = 3.0;
-     shipParams.impulseFlightPlan = {0.0, 0.0, 0.0};
-     shipParams.rotateFlightPlan = {{0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}};
-     vector<Position> res = {{0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}};
-     vector<Position> result = computeFlightPlan(initialPosition, shipParams, quants);
-    BOOST_CHECK_EQUAL(1, 1);
-}
-BOOST_AUTO_TEST_SUITE_END() */
