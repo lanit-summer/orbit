@@ -255,10 +255,13 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
     vec orient = initialPosition.orientation;
     vector <Position> position(quants.numberOfQuants);
     int i;
-    for (i = 0; i < quants.numberOfQuants && H > 6378.1; i++)
+    int j = 0;
+    int count = shipParams.flightPlan[0].delayTime;
+    for (i = 0; i < quants.numberOfQuants && H > 6378.1; i++,
+         count -= quants.quantSizeOfSec)
     {
-        level = shipParams.impulseFlightPlan[i];
-        moment = shipParams.rotateFlightPlan[i];
+        level = shipParams.flightPlan[j].impulseValue;
+        moment = shipParams.flightPlan[j].rotateValue;
         if (level * quants.quantSizeOfSec > fuel)
         {
             double time = fuel / quants.quantSizeOfSec;
@@ -348,6 +351,10 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
         initialPosition.position = nextH;
         H = scalar(initialPosition.position);
         position[i] = initialPosition.position;
+        if (count == 0)
+        {
+            j++;
+        }
     }
     if (H <= 6378.1)
     {
@@ -390,29 +397,16 @@ int main()
     quants.quantSizeOfSec = 10;
     quants.numberOfQuants = 1000;
     int i;
-    vector<double> abc(100000);
-    vector<Rotation> a(100000);
-    shipParams.impulseFlightPlan.reserve (100000);
-    shipParams.rotateFlightPlan.reserve (100000);
-    
-    abc[0] = 1.0;
-    a[0].rotationAroundX = 0.0;
-    a[0].rotationAroundY = 0.0;
-    a[0].rotationAroundZ = 0.0;
-    abc[1] = 1.0;
-    a[1].rotationAroundX = 0.0;
-    a[1].rotationAroundY = 0.0;
-    a[1].rotationAroundZ = 0.0;
-    
-    for (i = 2; i < 100000; i++)
+    vector<PartOfFlightPlan> abc(100000);
+    shipParams.flightPlan.reserve(100000);
+    for (i = 0; i < 100000; i++)
     {
-        abc[i] = 0.0;
-        a[i].rotationAroundX = 0.0;
-        a[i].rotationAroundY = 0.0;
-        a[i].rotationAroundZ = 0.0;
+        abc[i].impulseValue = 0.0;
+        abc[i].rotateValue.rotationAroundX = 0.0;
+        abc[i].rotateValue.rotationAroundY = 0.0;
+        abc[i].rotateValue.rotationAroundZ = 0.0;
     }
-    shipParams.impulseFlightPlan = abc;
-    shipParams.rotateFlightPlan = a;
+    shipParams.flightPlan = abc;
     vector<Position> result = computeFlightPlan(initialPosition, shipParams, quants);
     return 0;
 }
