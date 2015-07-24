@@ -142,13 +142,8 @@ vec angularVelocity(vec g, vec a, vec t, Rotation moment, double quantSizeOfSec)
     return exit;
 }
 
-double airDens (double H)
+double temperature(double H)
 {
-    H -= 6378.1;
-    double p = 101325;
-    double g = 9.8;
-    double R = 8.31447;
-    double M = 0.0289644;
     double T = 273.15;
     if (H > 10)
     {
@@ -174,7 +169,7 @@ double airDens (double H)
                         else
                         {
                             T -= 90;
-                        
+                            
                         }
                     }
                     else
@@ -197,14 +192,31 @@ double airDens (double H)
     {
         T += -8 * H + 20;
     }
+    return T;
+}
+
+double airDens(double H, double T)
+{
+    H -= 6378.1;
+    double p = 101325;
+    double g = 9.8;
+    double R = 8.31447;
+    double M = 0.0289644;
     double P = p * exp(-M * g * H * 1000/ (R * T));
     double dens = P * M / (R * T);
     return (dens * pow(10, 9)) ;
 }
 
+double aerodynamicHeating(double T, vec speed)
+{
+    double a = T + pow(scalar(speed), 2) / 2;
+    return a;
+}
+
+
 vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
           double mShip, double mFuel, Rotation moment, double specificImpulse,
-          double size, double quantSizeOfSec)
+          double size, double quantSizeOfSec, double maxOverload, double maxHeating)
 {
     if (mLevel * quantSizeOfSec > mFuel)
     {
@@ -221,22 +233,39 @@ vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
         vec exit = {0, 0, 0};
         vec x = transformVec(sPos.orientation,
             createQuaternion(angularVelocity(gravityForce(sPos.position, M),
-                aerodynamicForce(airDens(H), speedFirst, S),
+                aerodynamicForce(airDens(H, temperature(H)), speedFirst, S),
                 tractiveForce(mLevel, specificImpulse, speedFirst), moment, 1.0)));
         if (M != 0) {
-            double v1 = 1 - (airDens(H) * scSpeedFirst * S * quantSizeOfSec / (2.0 * M));
-            double v2 = scalar(tractiveForce(mLevel, specificImpulse, speedFirst)) * quantSizeOfSec / M;
-            double v3 = G * mEarth * quantSizeOfSec / pow(H, 3);
+            double v1 = airDens(H, temperature(H)) * scSpeedFirst * S / (2.0 * M);
+            double v2 = 1 - v1;
+            double v3 = scalar(tractiveForce(mLevel, specificImpulse, speedFirst)) / M;
+            double v4 = G * mEarth / pow(H, 3);
             vec t1 = multiVecDouble(speedFirst, v1);
-            vec t2 = multiVecDouble(x, v2);
-            vec t3 = multiVecDouble(sPos.position, v3);
-            exit.x = t1.x - t2.x - t3.x;
-            exit.y = t1.y - t2.y - t3.y;
-            exit.z = t1.z - t2.z - t3.z;
+            vec t2 = multiVecDouble(speedFirst, v2);
+            vec t3 = multiVecDouble(x, v3);
+            vec t4 = multiVecDouble(sPos.position, v4);
+            exit.x = (t2.x - t3.x - t4.x) * quantSizeOfSec;
+            exit.y = (t2.y - t3.y - t4.y) * quantSizeOfSec;
+            exit.z = (t2.z - t3.z - t4.z) * quantSizeOfSec;
+            vec overload = {0.0, 0.0, 0.0};
+            overload.x = - t1.x - t3.x - t4.x;
+            overload.y = - t1.y - t3.y - t4.y;
+            overload.z = - t1.z - t3.z - t4.z;
+            double g = G * mEarth / pow(H, 2);
+            double over = scalar(overload) / g;
+            if (over > maxOverload)
+            {
+                cout<<"Overload"<<endl;
+            }
         }
         else
         {
             cout<<"Mass = 0!"<<endl;
+        }
+        double a = aerodynamicHeating(temperature(scalar(sPos.position)), exit);
+        if (a > maxHeating)
+        {
+            cout<<"Overheating!"<<endl;
         }
         return exit;
     }
@@ -256,7 +285,7 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
     vector <Position> position(quants.numberOfQuants);
     int i;
     int j = 0;
-    int count = shipParams.flightPlan[0].delayTime;
+    double count = shipParams.flightPlan[0].delayTime;
     for (i = 0; i < quants.numberOfQuants && H > 6378.1; i++,
          count -= quants.quantSizeOfSec)
     {
@@ -269,10 +298,10 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
             sp = speed(sp, initialPosition, level,
                        shipParams.shipMass, fuel, moment,
                        shipParams.impulsePerFuel, shipParams.shipEdgeLength,
-                       time);
+                       time, shipParams.maxOverload, shipParams.maxHeating);
             orient = transformVec(orient, createQuaternion(angularVelocity(
                 gravityForce(initialPosition.position, m),
-                aerodynamicForce(airDens(H), sp, S),
+                aerodynamicForce(airDens(H, temperature(H)), sp, S),
                 tractiveForce(level, shipParams.impulsePerFuel, sp), moment, time)));
             m -= fuel;
             fuel = 0;
@@ -303,10 +332,10 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
             sp = speed(sp, initialPosition, 0.0,
                        shipParams.shipMass, fuel, moment,
                        shipParams.impulsePerFuel, shipParams.shipEdgeLength,
-                       timeOut);
+                       timeOut, shipParams.maxOverload, shipParams.maxHeating);
             orient = transformVec(orient, createQuaternion(angularVelocity(
                 gravityForce(initialPosition.position, m),
-                aerodynamicForce(airDens(H), sp, S),
+                aerodynamicForce(airDens(H, temperature(H)), sp, S),
                 tractiveForce(0.0, shipParams.impulsePerFuel, sp), moment, timeOut)));
             cout<<"Not enough fuel!"<<endl;
         }
@@ -315,14 +344,15 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
             sp = speed(sp, initialPosition, level,
                        shipParams.shipMass, fuel, moment,
                        shipParams.impulsePerFuel, shipParams.shipEdgeLength,
-                       quants.quantSizeOfSec);
+                       quants.quantSizeOfSec, shipParams.maxOverload,
+                       shipParams.maxHeating);
             orient = transformVec(orient, createQuaternion(angularVelocity(
                 gravityForce(initialPosition.position, m),
-                aerodynamicForce(airDens(H), sp, S),
+                aerodynamicForce(airDens(H, temperature(H)), sp, S),
                 tractiveForce(level, shipParams.impulsePerFuel, sp), moment,
                     quants.quantSizeOfSec)));
-            fuel -= level;
-            m -= level;
+            fuel -= level * quants.quantSizeOfSec;
+            m -= level * quants.quantSizeOfSec;
         }
         vec nextH = {initialPosition.position.x +
             sp.x * quants.quantSizeOfSec, initialPosition.position.y +
@@ -354,6 +384,7 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
         if (count == 0)
         {
             j++;
+            count = shipParams.flightPlan[j].delayTime;
         }
     }
     if (H <= 6378.1)
@@ -374,39 +405,5 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
 
 int main()
 {
-    ShipPosition initialPosition;
-    initialPosition.position.x = 0.0;
-    initialPosition.position.y = 0.0;
-    initialPosition.position.z = 6578.1;
-    initialPosition.orientation.x = 1.0;
-    initialPosition.orientation.y = 0.0;
-    initialPosition.orientation.z = 0.0;
-    initialPosition.speedFirst.x = 7.9;
-    initialPosition.speedFirst.y = 0.0;
-    initialPosition.speedFirst.z = 0.0;
-    ShipParams shipParams;
-    Quants quants;
-    shipParams.shipEdgeLength = 0.001;
-    shipParams.shipMass = 3.0;
-    shipParams.fuelMass = 0.0;
-    shipParams.maxRotation.rotationAroundX = 10.0;
-    shipParams.maxRotation.rotationAroundY = 10.0;
-    shipParams.maxRotation.rotationAroundZ = 10.0;
-    shipParams.maxFuelUsagePerSec = 100.0;
-    shipParams.impulsePerFuel = 20.0;
-    quants.quantSizeOfSec = 10;
-    quants.numberOfQuants = 1000;
-    int i;
-    vector<PartOfFlightPlan> abc(100000);
-    shipParams.flightPlan.reserve(100000);
-    for (i = 0; i < 100000; i++)
-    {
-        abc[i].impulseValue = 0.0;
-        abc[i].rotateValue.rotationAroundX = 0.0;
-        abc[i].rotateValue.rotationAroundY = 0.0;
-        abc[i].rotateValue.rotationAroundZ = 0.0;
-    }
-    shipParams.flightPlan = abc;
-    vector<Position> result = computeFlightPlan(initialPosition, shipParams, quants);
     return 0;
 }
