@@ -37,6 +37,8 @@ struct ShipParams
     double maxFuelUsagePerSec;
     double impulsePerFuel;
     std::vector<PartOfFlightPlan> flightPlan;
+    double maxOverload;
+    double maxHeating;
 };
 
 struct Quants
