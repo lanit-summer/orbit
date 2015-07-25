@@ -117,7 +117,6 @@ class vec(_object):
             self.this = this
     __swig_destroy__ = _orbit.delete_vec
     __del__ = lambda self: None
-
 vec_swigregister = _orbit.vec_swigregister
 vec_swigregister(vec)
 
@@ -181,6 +180,36 @@ class ShipPosition(_object):
 ShipPosition_swigregister = _orbit.ShipPosition_swigregister
 ShipPosition_swigregister(ShipPosition)
 
+class PartOfFlightPlan(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, PartOfFlightPlan, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, PartOfFlightPlan, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["delayTime"] = _orbit.PartOfFlightPlan_delayTime_set
+    __swig_getmethods__["delayTime"] = _orbit.PartOfFlightPlan_delayTime_get
+    if _newclass:
+        delayTime = _swig_property(_orbit.PartOfFlightPlan_delayTime_get, _orbit.PartOfFlightPlan_delayTime_set)
+    __swig_setmethods__["impulseValue"] = _orbit.PartOfFlightPlan_impulseValue_set
+    __swig_getmethods__["impulseValue"] = _orbit.PartOfFlightPlan_impulseValue_get
+    if _newclass:
+        impulseValue = _swig_property(_orbit.PartOfFlightPlan_impulseValue_get, _orbit.PartOfFlightPlan_impulseValue_set)
+    __swig_setmethods__["rotateValue"] = _orbit.PartOfFlightPlan_rotateValue_set
+    __swig_getmethods__["rotateValue"] = _orbit.PartOfFlightPlan_rotateValue_get
+    if _newclass:
+        rotateValue = _swig_property(_orbit.PartOfFlightPlan_rotateValue_get, _orbit.PartOfFlightPlan_rotateValue_set)
+
+    def __init__(self):
+        this = _orbit.new_PartOfFlightPlan()
+        try:
+            self.this.append(this)
+        except:
+            self.this = this
+    __swig_destroy__ = _orbit.delete_PartOfFlightPlan
+    __del__ = lambda self: None
+PartOfFlightPlan_swigregister = _orbit.PartOfFlightPlan_swigregister
+PartOfFlightPlan_swigregister(PartOfFlightPlan)
+
 class ShipParams(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ShipParams, name, value)
@@ -211,14 +240,18 @@ class ShipParams(_object):
     __swig_getmethods__["impulsePerFuel"] = _orbit.ShipParams_impulsePerFuel_get
     if _newclass:
         impulsePerFuel = _swig_property(_orbit.ShipParams_impulsePerFuel_get, _orbit.ShipParams_impulsePerFuel_set)
-    __swig_setmethods__["impulseFlightPlan"] = _orbit.ShipParams_impulseFlightPlan_set
-    __swig_getmethods__["impulseFlightPlan"] = _orbit.ShipParams_impulseFlightPlan_get
+    __swig_setmethods__["flightPlan"] = _orbit.ShipParams_flightPlan_set
+    __swig_getmethods__["flightPlan"] = _orbit.ShipParams_flightPlan_get
     if _newclass:
-        impulseFlightPlan = _swig_property(_orbit.ShipParams_impulseFlightPlan_get, _orbit.ShipParams_impulseFlightPlan_set)
-    __swig_setmethods__["rotateFlightPlan"] = _orbit.ShipParams_rotateFlightPlan_set
-    __swig_getmethods__["rotateFlightPlan"] = _orbit.ShipParams_rotateFlightPlan_get
+        flightPlan = _swig_property(_orbit.ShipParams_flightPlan_get, _orbit.ShipParams_flightPlan_set)
+    __swig_setmethods__["maxOverload"] = _orbit.ShipParams_maxOverload_set
+    __swig_getmethods__["maxOverload"] = _orbit.ShipParams_maxOverload_get
     if _newclass:
-        rotateFlightPlan = _swig_property(_orbit.ShipParams_rotateFlightPlan_get, _orbit.ShipParams_rotateFlightPlan_set)
+        maxOverload = _swig_property(_orbit.ShipParams_maxOverload_get, _orbit.ShipParams_maxOverload_set)
+    __swig_setmethods__["maxHeating"] = _orbit.ShipParams_maxHeating_set
+    __swig_getmethods__["maxHeating"] = _orbit.ShipParams_maxHeating_get
+    if _newclass:
+        maxHeating = _swig_property(_orbit.ShipParams_maxHeating_get, _orbit.ShipParams_maxHeating_set)
 
     def __init__(self):
         this = _orbit.new_ShipParams()
@@ -438,118 +471,118 @@ class vector_of_double(_object):
 vector_of_double_swigregister = _orbit.vector_of_double_swigregister
 vector_of_double_swigregister(vector_of_double)
 
-class vector_of_rotation(_object):
+class vector_of_part_flight_plan(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, vector_of_rotation, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, vector_of_part_flight_plan, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, vector_of_rotation, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, vector_of_part_flight_plan, name)
     __repr__ = _swig_repr
 
     def iterator(self):
-        return _orbit.vector_of_rotation_iterator(self)
+        return _orbit.vector_of_part_flight_plan_iterator(self)
     def __iter__(self):
         return self.iterator()
 
     def __nonzero__(self):
-        return _orbit.vector_of_rotation___nonzero__(self)
+        return _orbit.vector_of_part_flight_plan___nonzero__(self)
 
     def __bool__(self):
-        return _orbit.vector_of_rotation___bool__(self)
+        return _orbit.vector_of_part_flight_plan___bool__(self)
 
     def __len__(self):
-        return _orbit.vector_of_rotation___len__(self)
+        return _orbit.vector_of_part_flight_plan___len__(self)
 
     def pop(self):
-        return _orbit.vector_of_rotation_pop(self)
+        return _orbit.vector_of_part_flight_plan_pop(self)
 
     def __getslice__(self, i, j):
-        return _orbit.vector_of_rotation___getslice__(self, i, j)
+        return _orbit.vector_of_part_flight_plan___getslice__(self, i, j)
 
     def __setslice__(self, *args):
-        return _orbit.vector_of_rotation___setslice__(self, *args)
+        return _orbit.vector_of_part_flight_plan___setslice__(self, *args)
 
     def __delslice__(self, i, j):
-        return _orbit.vector_of_rotation___delslice__(self, i, j)
+        return _orbit.vector_of_part_flight_plan___delslice__(self, i, j)
 
     def __delitem__(self, *args):
-        return _orbit.vector_of_rotation___delitem__(self, *args)
+        return _orbit.vector_of_part_flight_plan___delitem__(self, *args)
 
     def __getitem__(self, *args):
-        return _orbit.vector_of_rotation___getitem__(self, *args)
+        return _orbit.vector_of_part_flight_plan___getitem__(self, *args)
 
     def __setitem__(self, *args):
-        return _orbit.vector_of_rotation___setitem__(self, *args)
+        return _orbit.vector_of_part_flight_plan___setitem__(self, *args)
 
     def append(self, x):
-        return _orbit.vector_of_rotation_append(self, x)
+        return _orbit.vector_of_part_flight_plan_append(self, x)
 
     def empty(self):
-        return _orbit.vector_of_rotation_empty(self)
+        return _orbit.vector_of_part_flight_plan_empty(self)
 
     def size(self):
-        return _orbit.vector_of_rotation_size(self)
+        return _orbit.vector_of_part_flight_plan_size(self)
 
     def clear(self):
-        return _orbit.vector_of_rotation_clear(self)
+        return _orbit.vector_of_part_flight_plan_clear(self)
 
     def swap(self, v):
-        return _orbit.vector_of_rotation_swap(self, v)
+        return _orbit.vector_of_part_flight_plan_swap(self, v)
 
     def get_allocator(self):
-        return _orbit.vector_of_rotation_get_allocator(self)
+        return _orbit.vector_of_part_flight_plan_get_allocator(self)
 
     def begin(self):
-        return _orbit.vector_of_rotation_begin(self)
+        return _orbit.vector_of_part_flight_plan_begin(self)
 
     def end(self):
-        return _orbit.vector_of_rotation_end(self)
+        return _orbit.vector_of_part_flight_plan_end(self)
 
     def rbegin(self):
-        return _orbit.vector_of_rotation_rbegin(self)
+        return _orbit.vector_of_part_flight_plan_rbegin(self)
 
     def rend(self):
-        return _orbit.vector_of_rotation_rend(self)
+        return _orbit.vector_of_part_flight_plan_rend(self)
 
     def pop_back(self):
-        return _orbit.vector_of_rotation_pop_back(self)
+        return _orbit.vector_of_part_flight_plan_pop_back(self)
 
     def erase(self, *args):
-        return _orbit.vector_of_rotation_erase(self, *args)
+        return _orbit.vector_of_part_flight_plan_erase(self, *args)
 
     def __init__(self, *args):
-        this = _orbit.new_vector_of_rotation(*args)
+        this = _orbit.new_vector_of_part_flight_plan(*args)
         try:
             self.this.append(this)
         except:
             self.this = this
 
     def push_back(self, x):
-        return _orbit.vector_of_rotation_push_back(self, x)
+        return _orbit.vector_of_part_flight_plan_push_back(self, x)
 
     def front(self):
-        return _orbit.vector_of_rotation_front(self)
+        return _orbit.vector_of_part_flight_plan_front(self)
 
     def back(self):
-        return _orbit.vector_of_rotation_back(self)
+        return _orbit.vector_of_part_flight_plan_back(self)
 
     def assign(self, n, x):
-        return _orbit.vector_of_rotation_assign(self, n, x)
+        return _orbit.vector_of_part_flight_plan_assign(self, n, x)
 
     def resize(self, *args):
-        return _orbit.vector_of_rotation_resize(self, *args)
+        return _orbit.vector_of_part_flight_plan_resize(self, *args)
 
     def insert(self, *args):
-        return _orbit.vector_of_rotation_insert(self, *args)
+        return _orbit.vector_of_part_flight_plan_insert(self, *args)
 
     def reserve(self, n):
-        return _orbit.vector_of_rotation_reserve(self, n)
+        return _orbit.vector_of_part_flight_plan_reserve(self, n)
 
     def capacity(self):
-        return _orbit.vector_of_rotation_capacity(self)
-    __swig_destroy__ = _orbit.delete_vector_of_rotation
+        return _orbit.vector_of_part_flight_plan_capacity(self)
+    __swig_destroy__ = _orbit.delete_vector_of_part_flight_plan
     __del__ = lambda self: None
-vector_of_rotation_swigregister = _orbit.vector_of_rotation_swigregister
-vector_of_rotation_swigregister(vector_of_rotation)
+vector_of_part_flight_plan_swigregister = _orbit.vector_of_part_flight_plan_swigregister
+vector_of_part_flight_plan_swigregister(vector_of_part_flight_plan)
 
 class vector_of_position(_object):
     __swig_setmethods__ = {}

@@ -2970,27 +2970,28 @@ SWIG_Python_NonDynamicSetAttr(PyObject *obj, PyObject *name, PyObject *value) {
 
 /* -------- TYPES TABLE (BEGIN) -------- */
 
-#define SWIGTYPE_p_Quants swig_types[0]
-#define SWIGTYPE_p_Rotation swig_types[1]
-#define SWIGTYPE_p_ShipParams swig_types[2]
-#define SWIGTYPE_p_ShipPosition swig_types[3]
-#define SWIGTYPE_p_allocator_type swig_types[4]
-#define SWIGTYPE_p_char swig_types[5]
-#define SWIGTYPE_p_difference_type swig_types[6]
-#define SWIGTYPE_p_p_PyObject swig_types[7]
-#define SWIGTYPE_p_size_type swig_types[8]
-#define SWIGTYPE_p_std__allocatorT_Rotation_t swig_types[9]
-#define SWIGTYPE_p_std__allocatorT_double_t swig_types[10]
-#define SWIGTYPE_p_std__allocatorT_vec_t swig_types[11]
-#define SWIGTYPE_p_std__invalid_argument swig_types[12]
-#define SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t swig_types[13]
-#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[14]
-#define SWIGTYPE_p_std__vectorT_vec_std__allocatorT_vec_t_t swig_types[15]
-#define SWIGTYPE_p_swig__SwigPyIterator swig_types[16]
-#define SWIGTYPE_p_value_type swig_types[17]
-#define SWIGTYPE_p_vec swig_types[18]
-static swig_type_info *swig_types[20];
-static swig_module_info swig_module = {swig_types, 19, 0, 0, 0, 0};
+#define SWIGTYPE_p_PartOfFlightPlan swig_types[0]
+#define SWIGTYPE_p_Quants swig_types[1]
+#define SWIGTYPE_p_Rotation swig_types[2]
+#define SWIGTYPE_p_ShipParams swig_types[3]
+#define SWIGTYPE_p_ShipPosition swig_types[4]
+#define SWIGTYPE_p_allocator_type swig_types[5]
+#define SWIGTYPE_p_char swig_types[6]
+#define SWIGTYPE_p_difference_type swig_types[7]
+#define SWIGTYPE_p_p_PyObject swig_types[8]
+#define SWIGTYPE_p_size_type swig_types[9]
+#define SWIGTYPE_p_std__allocatorT_PartOfFlightPlan_t swig_types[10]
+#define SWIGTYPE_p_std__allocatorT_double_t swig_types[11]
+#define SWIGTYPE_p_std__allocatorT_vec_t swig_types[12]
+#define SWIGTYPE_p_std__invalid_argument swig_types[13]
+#define SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t swig_types[14]
+#define SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t swig_types[15]
+#define SWIGTYPE_p_std__vectorT_vec_std__allocatorT_vec_t_t swig_types[16]
+#define SWIGTYPE_p_swig__SwigPyIterator swig_types[17]
+#define SWIGTYPE_p_value_type swig_types[18]
+#define SWIGTYPE_p_vec swig_types[19]
+static swig_type_info *swig_types[21];
+static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -4749,110 +4750,110 @@ SWIGINTERN std::vector< double >::iterator std_vector_Sl_double_Sg__insert__SWIG
 SWIGINTERN void std_vector_Sl_double_Sg__insert__SWIG_1(std::vector< double > *self,std::vector< double >::iterator pos,std::vector< double >::size_type n,std::vector< double >::value_type const &x){ self->insert(pos, n, x); }
 
   namespace swig {
-    template <>  struct traits<Rotation > {
+    template <>  struct traits<PartOfFlightPlan > {
       typedef pointer_category category;
-      static const char* type_name() { return"Rotation"; }
+      static const char* type_name() { return"PartOfFlightPlan"; }
     };
   }
 
 
       namespace swig {
-	template <>  struct traits<std::vector<Rotation, std::allocator< Rotation > > > {
+	template <>  struct traits<std::vector<PartOfFlightPlan, std::allocator< PartOfFlightPlan > > > {
 	  typedef pointer_category category;
 	  static const char* type_name() {
-	    return "std::vector<" "Rotation" "," "std::allocator< Rotation >" " >";
+	    return "std::vector<" "PartOfFlightPlan" "," "std::allocator< PartOfFlightPlan >" " >";
 	  }
 	};
       }
     
-SWIGINTERN swig::SwigPyIterator *std_vector_Sl_Rotation_Sg__iterator(std::vector< Rotation > *self,PyObject **PYTHON_SELF){
+SWIGINTERN swig::SwigPyIterator *std_vector_Sl_PartOfFlightPlan_Sg__iterator(std::vector< PartOfFlightPlan > *self,PyObject **PYTHON_SELF){
       return swig::make_output_iterator(self->begin(), self->begin(), self->end(), *PYTHON_SELF);
     }
-SWIGINTERN bool std_vector_Sl_Rotation_Sg____nonzero__(std::vector< Rotation > const *self){
+SWIGINTERN bool std_vector_Sl_PartOfFlightPlan_Sg____nonzero__(std::vector< PartOfFlightPlan > const *self){
       return !(self->empty());
     }
-SWIGINTERN bool std_vector_Sl_Rotation_Sg____bool__(std::vector< Rotation > const *self){
+SWIGINTERN bool std_vector_Sl_PartOfFlightPlan_Sg____bool__(std::vector< PartOfFlightPlan > const *self){
       return !(self->empty());
     }
-SWIGINTERN std::vector< Rotation >::size_type std_vector_Sl_Rotation_Sg____len__(std::vector< Rotation > const *self){
+SWIGINTERN std::vector< PartOfFlightPlan >::size_type std_vector_Sl_PartOfFlightPlan_Sg____len__(std::vector< PartOfFlightPlan > const *self){
       return self->size();
     }
-SWIGINTERN std::vector< Rotation >::value_type std_vector_Sl_Rotation_Sg__pop(std::vector< Rotation > *self){
+SWIGINTERN std::vector< PartOfFlightPlan >::value_type std_vector_Sl_PartOfFlightPlan_Sg__pop(std::vector< PartOfFlightPlan > *self){
       if (self->size() == 0)
 	throw std::out_of_range("pop from empty container");
-      std::vector<Rotation,std::allocator< Rotation > >::value_type x = self->back();
+      std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >::value_type x = self->back();
       self->pop_back();
       return x;
     }
-SWIGINTERN std::vector< Rotation,std::allocator< Rotation > > *std_vector_Sl_Rotation_Sg____getslice__(std::vector< Rotation > *self,std::vector< Rotation >::difference_type i,std::vector< Rotation >::difference_type j){
+SWIGINTERN std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *std_vector_Sl_PartOfFlightPlan_Sg____getslice__(std::vector< PartOfFlightPlan > *self,std::vector< PartOfFlightPlan >::difference_type i,std::vector< PartOfFlightPlan >::difference_type j){
       return swig::getslice(self, i, j, 1);
     }
-SWIGINTERN void std_vector_Sl_Rotation_Sg____setslice____SWIG_0(std::vector< Rotation > *self,std::vector< Rotation >::difference_type i,std::vector< Rotation >::difference_type j,std::vector< Rotation,std::allocator< Rotation > > const &v=std::vector< Rotation,std::allocator< Rotation > >()){
+SWIGINTERN void std_vector_Sl_PartOfFlightPlan_Sg____setslice____SWIG_0(std::vector< PartOfFlightPlan > *self,std::vector< PartOfFlightPlan >::difference_type i,std::vector< PartOfFlightPlan >::difference_type j,std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > const &v=std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > >()){
       swig::setslice(self, i, j, 1, v);
     }
-SWIGINTERN void std_vector_Sl_Rotation_Sg____delslice__(std::vector< Rotation > *self,std::vector< Rotation >::difference_type i,std::vector< Rotation >::difference_type j){
+SWIGINTERN void std_vector_Sl_PartOfFlightPlan_Sg____delslice__(std::vector< PartOfFlightPlan > *self,std::vector< PartOfFlightPlan >::difference_type i,std::vector< PartOfFlightPlan >::difference_type j){
       swig::delslice(self, i, j, 1);
     }
-SWIGINTERN void std_vector_Sl_Rotation_Sg____delitem____SWIG_0(std::vector< Rotation > *self,std::vector< Rotation >::difference_type i){
+SWIGINTERN void std_vector_Sl_PartOfFlightPlan_Sg____delitem____SWIG_0(std::vector< PartOfFlightPlan > *self,std::vector< PartOfFlightPlan >::difference_type i){
       self->erase(swig::getpos(self,i));
     }
-SWIGINTERN std::vector< Rotation,std::allocator< Rotation > > *std_vector_Sl_Rotation_Sg____getitem____SWIG_0(std::vector< Rotation > *self,PySliceObject *slice){
+SWIGINTERN std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *std_vector_Sl_PartOfFlightPlan_Sg____getitem____SWIG_0(std::vector< PartOfFlightPlan > *self,PySliceObject *slice){
       Py_ssize_t i, j, step;
       if( !PySlice_Check(slice) ) {
         SWIG_Error(SWIG_TypeError, "Slice object expected.");
         return NULL;
       }
       PySlice_GetIndices(SWIGPY_SLICE_ARG(slice), (Py_ssize_t)self->size(), &i, &j, &step);
-      std::vector<Rotation,std::allocator< Rotation > >::difference_type id = i;
-      std::vector<Rotation,std::allocator< Rotation > >::difference_type jd = j;
+      std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >::difference_type id = i;
+      std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >::difference_type jd = j;
       return swig::getslice(self, id, jd, step);
     }
-SWIGINTERN void std_vector_Sl_Rotation_Sg____setitem____SWIG_0(std::vector< Rotation > *self,PySliceObject *slice,std::vector< Rotation,std::allocator< Rotation > > const &v){
+SWIGINTERN void std_vector_Sl_PartOfFlightPlan_Sg____setitem____SWIG_0(std::vector< PartOfFlightPlan > *self,PySliceObject *slice,std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > const &v){
       Py_ssize_t i, j, step;
       if( !PySlice_Check(slice) ) {
         SWIG_Error(SWIG_TypeError, "Slice object expected.");
         return;
       }
       PySlice_GetIndices(SWIGPY_SLICE_ARG(slice), (Py_ssize_t)self->size(), &i, &j, &step);
-      std::vector<Rotation,std::allocator< Rotation > >::difference_type id = i;
-      std::vector<Rotation,std::allocator< Rotation > >::difference_type jd = j;
+      std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >::difference_type id = i;
+      std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >::difference_type jd = j;
       swig::setslice(self, id, jd, step, v);
     }
-SWIGINTERN void std_vector_Sl_Rotation_Sg____setitem____SWIG_1(std::vector< Rotation > *self,PySliceObject *slice){
+SWIGINTERN void std_vector_Sl_PartOfFlightPlan_Sg____setitem____SWIG_1(std::vector< PartOfFlightPlan > *self,PySliceObject *slice){
       Py_ssize_t i, j, step;
       if( !PySlice_Check(slice) ) {
         SWIG_Error(SWIG_TypeError, "Slice object expected.");
         return;
       }
       PySlice_GetIndices(SWIGPY_SLICE_ARG(slice), (Py_ssize_t)self->size(), &i, &j, &step);
-      std::vector<Rotation,std::allocator< Rotation > >::difference_type id = i;
-      std::vector<Rotation,std::allocator< Rotation > >::difference_type jd = j;
+      std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >::difference_type id = i;
+      std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >::difference_type jd = j;
       swig::delslice(self, id, jd, step);
     }
-SWIGINTERN void std_vector_Sl_Rotation_Sg____delitem____SWIG_1(std::vector< Rotation > *self,PySliceObject *slice){
+SWIGINTERN void std_vector_Sl_PartOfFlightPlan_Sg____delitem____SWIG_1(std::vector< PartOfFlightPlan > *self,PySliceObject *slice){
       Py_ssize_t i, j, step;
       if( !PySlice_Check(slice) ) {
         SWIG_Error(SWIG_TypeError, "Slice object expected.");
         return;
       }
       PySlice_GetIndices(SWIGPY_SLICE_ARG(slice), (Py_ssize_t)self->size(), &i, &j, &step);
-      std::vector<Rotation,std::allocator< Rotation > >::difference_type id = i;
-      std::vector<Rotation,std::allocator< Rotation > >::difference_type jd = j;
+      std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >::difference_type id = i;
+      std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >::difference_type jd = j;
       swig::delslice(self, id, jd, step);
     }
-SWIGINTERN std::vector< Rotation >::value_type const &std_vector_Sl_Rotation_Sg____getitem____SWIG_1(std::vector< Rotation > const *self,std::vector< Rotation >::difference_type i){
+SWIGINTERN std::vector< PartOfFlightPlan >::value_type const &std_vector_Sl_PartOfFlightPlan_Sg____getitem____SWIG_1(std::vector< PartOfFlightPlan > const *self,std::vector< PartOfFlightPlan >::difference_type i){
       return *(swig::cgetpos(self, i));
     }
-SWIGINTERN void std_vector_Sl_Rotation_Sg____setitem____SWIG_2(std::vector< Rotation > *self,std::vector< Rotation >::difference_type i,std::vector< Rotation >::value_type const &x){
+SWIGINTERN void std_vector_Sl_PartOfFlightPlan_Sg____setitem____SWIG_2(std::vector< PartOfFlightPlan > *self,std::vector< PartOfFlightPlan >::difference_type i,std::vector< PartOfFlightPlan >::value_type const &x){
       *(swig::getpos(self,i)) = x;
     }
-SWIGINTERN void std_vector_Sl_Rotation_Sg__append(std::vector< Rotation > *self,std::vector< Rotation >::value_type const &x){
+SWIGINTERN void std_vector_Sl_PartOfFlightPlan_Sg__append(std::vector< PartOfFlightPlan > *self,std::vector< PartOfFlightPlan >::value_type const &x){
       self->push_back(x);
     }
-SWIGINTERN std::vector< Rotation >::iterator std_vector_Sl_Rotation_Sg__erase__SWIG_0(std::vector< Rotation > *self,std::vector< Rotation >::iterator pos){ return self->erase(pos); }
-SWIGINTERN std::vector< Rotation >::iterator std_vector_Sl_Rotation_Sg__erase__SWIG_1(std::vector< Rotation > *self,std::vector< Rotation >::iterator first,std::vector< Rotation >::iterator last){ return self->erase(first, last); }
-SWIGINTERN std::vector< Rotation >::iterator std_vector_Sl_Rotation_Sg__insert__SWIG_0(std::vector< Rotation > *self,std::vector< Rotation >::iterator pos,std::vector< Rotation >::value_type const &x){ return self->insert(pos, x); }
-SWIGINTERN void std_vector_Sl_Rotation_Sg__insert__SWIG_1(std::vector< Rotation > *self,std::vector< Rotation >::iterator pos,std::vector< Rotation >::size_type n,std::vector< Rotation >::value_type const &x){ self->insert(pos, n, x); }
+SWIGINTERN std::vector< PartOfFlightPlan >::iterator std_vector_Sl_PartOfFlightPlan_Sg__erase__SWIG_0(std::vector< PartOfFlightPlan > *self,std::vector< PartOfFlightPlan >::iterator pos){ return self->erase(pos); }
+SWIGINTERN std::vector< PartOfFlightPlan >::iterator std_vector_Sl_PartOfFlightPlan_Sg__erase__SWIG_1(std::vector< PartOfFlightPlan > *self,std::vector< PartOfFlightPlan >::iterator first,std::vector< PartOfFlightPlan >::iterator last){ return self->erase(first, last); }
+SWIGINTERN std::vector< PartOfFlightPlan >::iterator std_vector_Sl_PartOfFlightPlan_Sg__insert__SWIG_0(std::vector< PartOfFlightPlan > *self,std::vector< PartOfFlightPlan >::iterator pos,std::vector< PartOfFlightPlan >::value_type const &x){ return self->insert(pos, x); }
+SWIGINTERN void std_vector_Sl_PartOfFlightPlan_Sg__insert__SWIG_1(std::vector< PartOfFlightPlan > *self,std::vector< PartOfFlightPlan >::iterator pos,std::vector< PartOfFlightPlan >::size_type n,std::vector< PartOfFlightPlan >::value_type const &x){ self->insert(pos, n, x); }
 
   namespace swig {
     template <>  struct traits<vec > {
@@ -5553,6 +5554,203 @@ SWIGINTERN PyObject *ShipPosition_swigregister(PyObject *SWIGUNUSEDPARM(self), P
   return SWIG_Py_Void();
 }
 
+SWIGINTERN PyObject *_wrap_PartOfFlightPlan_delayTime_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
+  int arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  int val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:PartOfFlightPlan_delayTime_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PartOfFlightPlan, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PartOfFlightPlan_delayTime_set" "', argument " "1"" of type '" "PartOfFlightPlan *""'"); 
+  }
+  arg1 = reinterpret_cast< PartOfFlightPlan * >(argp1);
+  ecode2 = SWIG_AsVal_int(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PartOfFlightPlan_delayTime_set" "', argument " "2"" of type '" "int""'");
+  } 
+  arg2 = static_cast< int >(val2);
+  if (arg1) (arg1)->delayTime = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PartOfFlightPlan_delayTime_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  int result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PartOfFlightPlan_delayTime_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PartOfFlightPlan, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PartOfFlightPlan_delayTime_get" "', argument " "1"" of type '" "PartOfFlightPlan *""'"); 
+  }
+  arg1 = reinterpret_cast< PartOfFlightPlan * >(argp1);
+  result = (int) ((arg1)->delayTime);
+  resultobj = SWIG_From_int(static_cast< int >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PartOfFlightPlan_impulseValue_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:PartOfFlightPlan_impulseValue_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PartOfFlightPlan, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PartOfFlightPlan_impulseValue_set" "', argument " "1"" of type '" "PartOfFlightPlan *""'"); 
+  }
+  arg1 = reinterpret_cast< PartOfFlightPlan * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "PartOfFlightPlan_impulseValue_set" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  if (arg1) (arg1)->impulseValue = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PartOfFlightPlan_impulseValue_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PartOfFlightPlan_impulseValue_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PartOfFlightPlan, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PartOfFlightPlan_impulseValue_get" "', argument " "1"" of type '" "PartOfFlightPlan *""'"); 
+  }
+  arg1 = reinterpret_cast< PartOfFlightPlan * >(argp1);
+  result = (double) ((arg1)->impulseValue);
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PartOfFlightPlan_rotateValue_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
+  Rotation *arg2 = (Rotation *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  void *argp2 = 0 ;
+  int res2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:PartOfFlightPlan_rotateValue_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PartOfFlightPlan, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PartOfFlightPlan_rotateValue_set" "', argument " "1"" of type '" "PartOfFlightPlan *""'"); 
+  }
+  arg1 = reinterpret_cast< PartOfFlightPlan * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_Rotation, 0 |  0 );
+  if (!SWIG_IsOK(res2)) {
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "PartOfFlightPlan_rotateValue_set" "', argument " "2"" of type '" "Rotation *""'"); 
+  }
+  arg2 = reinterpret_cast< Rotation * >(argp2);
+  if (arg1) (arg1)->rotateValue = *arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_PartOfFlightPlan_rotateValue_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  Rotation *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:PartOfFlightPlan_rotateValue_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PartOfFlightPlan, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "PartOfFlightPlan_rotateValue_get" "', argument " "1"" of type '" "PartOfFlightPlan *""'"); 
+  }
+  arg1 = reinterpret_cast< PartOfFlightPlan * >(argp1);
+  result = (Rotation *)& ((arg1)->rotateValue);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Rotation, 0 |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_new_PartOfFlightPlan(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PartOfFlightPlan *result = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)":new_PartOfFlightPlan")) SWIG_fail;
+  result = (PartOfFlightPlan *)new PartOfFlightPlan();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_PartOfFlightPlan, SWIG_POINTER_NEW |  0 );
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_delete_PartOfFlightPlan(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_PartOfFlightPlan",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_PartOfFlightPlan, SWIG_POINTER_DISOWN |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_PartOfFlightPlan" "', argument " "1"" of type '" "PartOfFlightPlan *""'"); 
+  }
+  arg1 = reinterpret_cast< PartOfFlightPlan * >(argp1);
+  delete arg1;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *PartOfFlightPlan_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *obj;
+  if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
+  SWIG_TypeNewClientData(SWIGTYPE_p_PartOfFlightPlan, SWIG_NewClientData(obj));
+  return SWIG_Py_Void();
+}
+
 SWIGINTERN PyObject *_wrap_ShipParams_shipEdgeLength_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   ShipParams *arg1 = (ShipParams *) 0 ;
@@ -5865,10 +6063,10 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_ShipParams_impulseFlightPlan_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_ShipParams_flightPlan_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   ShipParams *arg1 = (ShipParams *) 0 ;
-  std::vector< double,std::allocator< double > > *arg2 = (std::vector< double,std::allocator< double > > *) 0 ;
+  std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *arg2 = (std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -5876,18 +6074,18 @@ SWIGINTERN PyObject *_wrap_ShipParams_impulseFlightPlan_set(PyObject *SWIGUNUSED
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:ShipParams_impulseFlightPlan_set",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:ShipParams_flightPlan_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ShipParams, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ShipParams_impulseFlightPlan_set" "', argument " "1"" of type '" "ShipParams *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ShipParams_flightPlan_set" "', argument " "1"" of type '" "ShipParams *""'"); 
   }
   arg1 = reinterpret_cast< ShipParams * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t, 0 |  0 );
+  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ShipParams_impulseFlightPlan_set" "', argument " "2"" of type '" "std::vector< double,std::allocator< double > > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ShipParams_flightPlan_set" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *""'"); 
   }
-  arg2 = reinterpret_cast< std::vector< double,std::allocator< double > > * >(argp2);
-  if (arg1) (arg1)->impulseFlightPlan = *arg2;
+  arg2 = reinterpret_cast< std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > * >(argp2);
+  if (arg1) (arg1)->flightPlan = *arg2;
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -5895,51 +6093,51 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_ShipParams_impulseFlightPlan_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_ShipParams_flightPlan_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   ShipParams *arg1 = (ShipParams *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< double,std::allocator< double > > *result = 0 ;
+  std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:ShipParams_impulseFlightPlan_get",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:ShipParams_flightPlan_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ShipParams, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ShipParams_impulseFlightPlan_get" "', argument " "1"" of type '" "ShipParams *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ShipParams_flightPlan_get" "', argument " "1"" of type '" "ShipParams *""'"); 
   }
   arg1 = reinterpret_cast< ShipParams * >(argp1);
-  result = (std::vector< double,std::allocator< double > > *)& ((arg1)->impulseFlightPlan);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_double_std__allocatorT_double_t_t, 0 |  0 );
+  result = (std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *)& ((arg1)->flightPlan);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_ShipParams_rotateFlightPlan_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_ShipParams_maxOverload_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   ShipParams *arg1 = (ShipParams *) 0 ;
-  std::vector< Rotation,std::allocator< Rotation > > *arg2 = (std::vector< Rotation,std::allocator< Rotation > > *) 0 ;
+  double arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:ShipParams_rotateFlightPlan_set",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:ShipParams_maxOverload_set",&obj0,&obj1)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ShipParams, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ShipParams_rotateFlightPlan_set" "', argument " "1"" of type '" "ShipParams *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ShipParams_maxOverload_set" "', argument " "1"" of type '" "ShipParams *""'"); 
   }
   arg1 = reinterpret_cast< ShipParams * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "ShipParams_rotateFlightPlan_set" "', argument " "2"" of type '" "std::vector< Rotation,std::allocator< Rotation > > *""'"); 
-  }
-  arg2 = reinterpret_cast< std::vector< Rotation,std::allocator< Rotation > > * >(argp2);
-  if (arg1) (arg1)->rotateFlightPlan = *arg2;
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "ShipParams_maxOverload_set" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  if (arg1) (arg1)->maxOverload = arg2;
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -5947,22 +6145,74 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_ShipParams_rotateFlightPlan_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_ShipParams_maxOverload_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   ShipParams *arg1 = (ShipParams *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation,std::allocator< Rotation > > *result = 0 ;
+  double result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:ShipParams_rotateFlightPlan_get",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:ShipParams_maxOverload_get",&obj0)) SWIG_fail;
   res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ShipParams, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ShipParams_rotateFlightPlan_get" "', argument " "1"" of type '" "ShipParams *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ShipParams_maxOverload_get" "', argument " "1"" of type '" "ShipParams *""'"); 
   }
   arg1 = reinterpret_cast< ShipParams * >(argp1);
-  result = (std::vector< Rotation,std::allocator< Rotation > > *)& ((arg1)->rotateFlightPlan);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  result = (double) ((arg1)->maxOverload);
+  resultobj = SWIG_From_double(static_cast< double >(result));
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ShipParams_maxHeating_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  ShipParams *arg1 = (ShipParams *) 0 ;
+  double arg2 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  double val2 ;
+  int ecode2 = 0 ;
+  PyObject * obj0 = 0 ;
+  PyObject * obj1 = 0 ;
+  
+  if (!PyArg_ParseTuple(args,(char *)"OO:ShipParams_maxHeating_set",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ShipParams, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ShipParams_maxHeating_set" "', argument " "1"" of type '" "ShipParams *""'"); 
+  }
+  arg1 = reinterpret_cast< ShipParams * >(argp1);
+  ecode2 = SWIG_AsVal_double(obj1, &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "ShipParams_maxHeating_set" "', argument " "2"" of type '" "double""'");
+  } 
+  arg2 = static_cast< double >(val2);
+  if (arg1) (arg1)->maxHeating = arg2;
+  resultobj = SWIG_Py_Void();
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
+SWIGINTERN PyObject *_wrap_ShipParams_maxHeating_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  ShipParams *arg1 = (ShipParams *) 0 ;
+  void *argp1 = 0 ;
+  int res1 = 0 ;
+  PyObject * obj0 = 0 ;
+  double result;
+  
+  if (!PyArg_ParseTuple(args,(char *)"O:ShipParams_maxHeating_get",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_ShipParams, 0 |  0 );
+  if (!SWIG_IsOK(res1)) {
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "ShipParams_maxHeating_get" "', argument " "1"" of type '" "ShipParams *""'"); 
+  }
+  arg1 = reinterpret_cast< ShipParams * >(argp1);
+  result = (double) ((arg1)->maxHeating);
+  resultobj = SWIG_From_double(static_cast< double >(result));
   return resultobj;
 fail:
   return NULL;
@@ -8962,9 +9212,9 @@ SWIGINTERN PyObject *vector_of_double_swigregister(PyObject *SWIGUNUSEDPARM(self
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_iterator(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_iterator(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   PyObject **arg2 = (PyObject **) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
@@ -8972,13 +9222,13 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_iterator(PyObject *SWIGUNUSEDPARM(
   swig::SwigPyIterator *result = 0 ;
   
   arg2 = &obj0;
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_iterator",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_iterator",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_iterator" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_iterator" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  result = (swig::SwigPyIterator *)std_vector_Sl_Rotation_Sg__iterator(arg1,arg2);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  result = (swig::SwigPyIterator *)std_vector_Sl_PartOfFlightPlan_Sg__iterator(arg1,arg2);
   resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_swig__SwigPyIterator, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
@@ -8986,21 +9236,21 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___nonzero__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___nonzero__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   bool result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation___nonzero__",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan___nonzero__",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___nonzero__" "', argument " "1"" of type '" "std::vector< Rotation > const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___nonzero__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  result = (bool)std_vector_Sl_Rotation_Sg____nonzero__((std::vector< Rotation > const *)arg1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  result = (bool)std_vector_Sl_PartOfFlightPlan_Sg____nonzero__((std::vector< PartOfFlightPlan > const *)arg1);
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -9008,21 +9258,21 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___bool__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___bool__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   bool result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation___bool__",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan___bool__",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___bool__" "', argument " "1"" of type '" "std::vector< Rotation > const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___bool__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  result = (bool)std_vector_Sl_Rotation_Sg____bool__((std::vector< Rotation > const *)arg1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  result = (bool)std_vector_Sl_PartOfFlightPlan_Sg____bool__((std::vector< PartOfFlightPlan > const *)arg1);
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -9030,21 +9280,21 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___len__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___len__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation >::size_type result;
+  std::vector< PartOfFlightPlan >::size_type result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation___len__",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan___len__",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___len__" "', argument " "1"" of type '" "std::vector< Rotation > const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___len__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  result = std_vector_Sl_Rotation_Sg____len__((std::vector< Rotation > const *)arg1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  result = std_vector_Sl_PartOfFlightPlan_Sg____len__((std::vector< PartOfFlightPlan > const *)arg1);
   resultobj = SWIG_From_size_t(static_cast< size_t >(result));
   return resultobj;
 fail:
@@ -9052,39 +9302,39 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_pop(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_pop(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation >::value_type result;
+  std::vector< PartOfFlightPlan >::value_type result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_pop",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_pop",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_pop" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_pop" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   try {
-    result = std_vector_Sl_Rotation_Sg__pop(arg1);
+    result = std_vector_Sl_PartOfFlightPlan_Sg__pop(arg1);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
   }
   
-  resultobj = SWIG_NewPointerObj((new std::vector< Rotation >::value_type(static_cast< const std::vector< Rotation >::value_type& >(result))), SWIGTYPE_p_Rotation, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_NewPointerObj((new std::vector< PartOfFlightPlan >::value_type(static_cast< const std::vector< PartOfFlightPlan >::value_type& >(result))), SWIGTYPE_p_PartOfFlightPlan, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___getslice__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___getslice__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::difference_type arg2 ;
-  std::vector< Rotation >::difference_type arg3 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::difference_type arg2 ;
+  std::vector< PartOfFlightPlan >::difference_type arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   ptrdiff_t val2 ;
@@ -9094,26 +9344,26 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___getslice__(PyObject *SWIGUNUSEDP
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  std::vector< Rotation,std::allocator< Rotation > > *result = 0 ;
+  std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_rotation___getslice__",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_part_flight_plan___getslice__",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___getslice__" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___getslice__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_ptrdiff_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation___getslice__" "', argument " "2"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan___getslice__" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::difference_type >(val2);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val2);
   ecode3 = SWIG_AsVal_ptrdiff_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "vector_of_rotation___getslice__" "', argument " "3"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "vector_of_part_flight_plan___getslice__" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg3 = static_cast< std::vector< Rotation >::difference_type >(val3);
+  arg3 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val3);
   try {
-    result = (std::vector< Rotation,std::allocator< Rotation > > *)std_vector_Sl_Rotation_Sg____getslice__(arg1,arg2,arg3);
+    result = (std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *)std_vector_Sl_PartOfFlightPlan_Sg____getslice__(arg1,arg2,arg3);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
@@ -9122,19 +9372,19 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___getslice__(PyObject *SWIGUNUSEDP
     SWIG_exception_fail(SWIG_ValueError, (&_e)->what());
   }
   
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___setslice____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___setslice____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::difference_type arg2 ;
-  std::vector< Rotation >::difference_type arg3 ;
-  std::vector< Rotation,std::allocator< Rotation > > *arg4 = 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::difference_type arg2 ;
+  std::vector< PartOfFlightPlan >::difference_type arg3 ;
+  std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *arg4 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   ptrdiff_t val2 ;
@@ -9147,35 +9397,35 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___setslice____SWIG_0(PyObject *SWI
   PyObject * obj2 = 0 ;
   PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:vector_of_rotation___setslice__",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:vector_of_part_flight_plan___setslice__",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___setslice__" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___setslice__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_ptrdiff_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation___setslice__" "', argument " "2"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan___setslice__" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::difference_type >(val2);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val2);
   ecode3 = SWIG_AsVal_ptrdiff_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "vector_of_rotation___setslice__" "', argument " "3"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "vector_of_part_flight_plan___setslice__" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg3 = static_cast< std::vector< Rotation >::difference_type >(val3);
+  arg3 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val3);
   {
-    std::vector<Rotation,std::allocator< Rotation > > *ptr = (std::vector<Rotation,std::allocator< Rotation > > *)0;
+    std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *ptr = (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *)0;
     res4 = swig::asptr(obj3, &ptr);
     if (!SWIG_IsOK(res4)) {
-      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "vector_of_rotation___setslice__" "', argument " "4"" of type '" "std::vector< Rotation,std::allocator< Rotation > > const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "vector_of_part_flight_plan___setslice__" "', argument " "4"" of type '" "std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > const &""'"); 
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_rotation___setslice__" "', argument " "4"" of type '" "std::vector< Rotation,std::allocator< Rotation > > const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_part_flight_plan___setslice__" "', argument " "4"" of type '" "std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > const &""'"); 
     }
     arg4 = ptr;
   }
   try {
-    std_vector_Sl_Rotation_Sg____setslice____SWIG_0(arg1,arg2,arg3,(std::vector< Rotation,std::allocator< Rotation > > const &)*arg4);
+    std_vector_Sl_PartOfFlightPlan_Sg____setslice____SWIG_0(arg1,arg2,arg3,(std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > const &)*arg4);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
@@ -9193,11 +9443,11 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___setslice____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___setslice____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::difference_type arg2 ;
-  std::vector< Rotation >::difference_type arg3 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::difference_type arg2 ;
+  std::vector< PartOfFlightPlan >::difference_type arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   ptrdiff_t val2 ;
@@ -9208,24 +9458,24 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___setslice____SWIG_1(PyObject *SWI
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_rotation___setslice__",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_part_flight_plan___setslice__",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___setslice__" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___setslice__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_ptrdiff_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation___setslice__" "', argument " "2"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan___setslice__" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::difference_type >(val2);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val2);
   ecode3 = SWIG_AsVal_ptrdiff_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "vector_of_rotation___setslice__" "', argument " "3"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "vector_of_part_flight_plan___setslice__" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg3 = static_cast< std::vector< Rotation >::difference_type >(val3);
+  arg3 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val3);
   try {
-    std_vector_Sl_Rotation_Sg____setslice____SWIG_0(arg1,arg2,arg3);
+    std_vector_Sl_PartOfFlightPlan_Sg____setslice____SWIG_0(arg1,arg2,arg3);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
@@ -9241,7 +9491,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___setslice__(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___setslice__(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[5];
   int ii;
@@ -9253,7 +9503,7 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___setslice__(PyObject *self, PyObj
   }
   if (argc == 3) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -9266,14 +9516,14 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___setslice__(PyObject *self, PyObj
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          return _wrap_vector_of_rotation___setslice____SWIG_1(self, args);
+          return _wrap_vector_of_part_flight_plan___setslice____SWIG_1(self, args);
         }
       }
     }
   }
   if (argc == 4) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -9286,10 +9536,10 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___setslice__(PyObject *self, PyObj
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          int res = swig::asptr(argv[3], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+          int res = swig::asptr(argv[3], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_vector_of_rotation___setslice____SWIG_0(self, args);
+            return _wrap_vector_of_part_flight_plan___setslice____SWIG_0(self, args);
           }
         }
       }
@@ -9297,19 +9547,19 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___setslice__(PyObject *self, PyObj
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_rotation___setslice__'.\n"
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_part_flight_plan___setslice__'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    std::vector< Rotation >::__setslice__(std::vector< Rotation >::difference_type,std::vector< Rotation >::difference_type,std::vector< Rotation,std::allocator< Rotation > > const &)\n"
-    "    std::vector< Rotation >::__setslice__(std::vector< Rotation >::difference_type,std::vector< Rotation >::difference_type)\n");
+    "    std::vector< PartOfFlightPlan >::__setslice__(std::vector< PartOfFlightPlan >::difference_type,std::vector< PartOfFlightPlan >::difference_type,std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > const &)\n"
+    "    std::vector< PartOfFlightPlan >::__setslice__(std::vector< PartOfFlightPlan >::difference_type,std::vector< PartOfFlightPlan >::difference_type)\n");
   return 0;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___delslice__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___delslice__(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::difference_type arg2 ;
-  std::vector< Rotation >::difference_type arg3 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::difference_type arg2 ;
+  std::vector< PartOfFlightPlan >::difference_type arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   ptrdiff_t val2 ;
@@ -9320,24 +9570,24 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___delslice__(PyObject *SWIGUNUSEDP
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_rotation___delslice__",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_part_flight_plan___delslice__",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___delslice__" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___delslice__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_ptrdiff_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation___delslice__" "', argument " "2"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan___delslice__" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::difference_type >(val2);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val2);
   ecode3 = SWIG_AsVal_ptrdiff_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "vector_of_rotation___delslice__" "', argument " "3"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "vector_of_part_flight_plan___delslice__" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg3 = static_cast< std::vector< Rotation >::difference_type >(val3);
+  arg3 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val3);
   try {
-    std_vector_Sl_Rotation_Sg____delslice__(arg1,arg2,arg3);
+    std_vector_Sl_PartOfFlightPlan_Sg____delslice__(arg1,arg2,arg3);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
@@ -9353,10 +9603,10 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___delitem____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___delitem____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::difference_type arg2 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::difference_type arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   ptrdiff_t val2 ;
@@ -9364,19 +9614,19 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___delitem____SWIG_0(PyObject *SWIG
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation___delitem__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan___delitem__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___delitem__" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___delitem__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_ptrdiff_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation___delitem__" "', argument " "2"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan___delitem__" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::difference_type >(val2);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val2);
   try {
-    std_vector_Sl_Rotation_Sg____delitem____SWIG_0(arg1,arg2);
+    std_vector_Sl_PartOfFlightPlan_Sg____delitem____SWIG_0(arg1,arg2);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
@@ -9389,30 +9639,30 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___getitem____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___getitem____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   PySliceObject *arg2 = (PySliceObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  std::vector< Rotation,std::allocator< Rotation > > *result = 0 ;
+  std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation___getitem__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan___getitem__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___getitem__" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___getitem__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   {
     if (!PySlice_Check(obj1)) {
-      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation___getitem__" "', argument " "2"" of type '" "PySliceObject *""'");
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan___getitem__" "', argument " "2"" of type '" "PySliceObject *""'");
     }
     arg2 = (PySliceObject *) obj1;
   }
   try {
-    result = (std::vector< Rotation,std::allocator< Rotation > > *)std_vector_Sl_Rotation_Sg____getitem____SWIG_0(arg1,arg2);
+    result = (std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *)std_vector_Sl_PartOfFlightPlan_Sg____getitem____SWIG_0(arg1,arg2);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
@@ -9421,18 +9671,18 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___getitem____SWIG_0(PyObject *SWIG
     SWIG_exception_fail(SWIG_ValueError, (&_e)->what());
   }
   
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, SWIG_POINTER_OWN |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___setitem____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___setitem____SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   PySliceObject *arg2 = (PySliceObject *) 0 ;
-  std::vector< Rotation,std::allocator< Rotation > > *arg3 = 0 ;
+  std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   int res3 = SWIG_OLDOBJ ;
@@ -9440,31 +9690,31 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___setitem____SWIG_0(PyObject *SWIG
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_rotation___setitem__",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_part_flight_plan___setitem__",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___setitem__" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___setitem__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   {
     if (!PySlice_Check(obj1)) {
-      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation___setitem__" "', argument " "2"" of type '" "PySliceObject *""'");
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan___setitem__" "', argument " "2"" of type '" "PySliceObject *""'");
     }
     arg2 = (PySliceObject *) obj1;
   }
   {
-    std::vector<Rotation,std::allocator< Rotation > > *ptr = (std::vector<Rotation,std::allocator< Rotation > > *)0;
+    std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *ptr = (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *)0;
     res3 = swig::asptr(obj2, &ptr);
     if (!SWIG_IsOK(res3)) {
-      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "vector_of_rotation___setitem__" "', argument " "3"" of type '" "std::vector< Rotation,std::allocator< Rotation > > const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "vector_of_part_flight_plan___setitem__" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > const &""'"); 
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_rotation___setitem__" "', argument " "3"" of type '" "std::vector< Rotation,std::allocator< Rotation > > const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_part_flight_plan___setitem__" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > const &""'"); 
     }
     arg3 = ptr;
   }
   try {
-    std_vector_Sl_Rotation_Sg____setitem____SWIG_0(arg1,arg2,(std::vector< Rotation,std::allocator< Rotation > > const &)*arg3);
+    std_vector_Sl_PartOfFlightPlan_Sg____setitem____SWIG_0(arg1,arg2,(std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > const &)*arg3);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
@@ -9482,29 +9732,29 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___setitem____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___setitem____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   PySliceObject *arg2 = (PySliceObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation___setitem__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan___setitem__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___setitem__" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___setitem__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   {
     if (!PySlice_Check(obj1)) {
-      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation___setitem__" "', argument " "2"" of type '" "PySliceObject *""'");
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan___setitem__" "', argument " "2"" of type '" "PySliceObject *""'");
     }
     arg2 = (PySliceObject *) obj1;
   }
   try {
-    std_vector_Sl_Rotation_Sg____setitem____SWIG_1(arg1,arg2);
+    std_vector_Sl_PartOfFlightPlan_Sg____setitem____SWIG_1(arg1,arg2);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
@@ -9520,29 +9770,29 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___delitem____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___delitem____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   PySliceObject *arg2 = (PySliceObject *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation___delitem__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan___delitem__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___delitem__" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___delitem__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   {
     if (!PySlice_Check(obj1)) {
-      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation___delitem__" "', argument " "2"" of type '" "PySliceObject *""'");
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan___delitem__" "', argument " "2"" of type '" "PySliceObject *""'");
     }
     arg2 = (PySliceObject *) obj1;
   }
   try {
-    std_vector_Sl_Rotation_Sg____delitem____SWIG_1(arg1,arg2);
+    std_vector_Sl_PartOfFlightPlan_Sg____delitem____SWIG_1(arg1,arg2);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
@@ -9558,7 +9808,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___delitem__(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___delitem__(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[3];
   int ii;
@@ -9570,20 +9820,20 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___delitem__(PyObject *self, PyObje
   }
   if (argc == 2) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
         _v = PySlice_Check(argv[1]);
       }
       if (_v) {
-        return _wrap_vector_of_rotation___delitem____SWIG_1(self, args);
+        return _wrap_vector_of_part_flight_plan___delitem____SWIG_1(self, args);
       }
     }
   }
   if (argc == 2) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -9591,58 +9841,58 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___delitem__(PyObject *self, PyObje
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_vector_of_rotation___delitem____SWIG_0(self, args);
+        return _wrap_vector_of_part_flight_plan___delitem____SWIG_0(self, args);
       }
     }
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_rotation___delitem__'.\n"
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_part_flight_plan___delitem__'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    std::vector< Rotation >::__delitem__(std::vector< Rotation >::difference_type)\n"
-    "    std::vector< Rotation >::__delitem__(PySliceObject *)\n");
+    "    std::vector< PartOfFlightPlan >::__delitem__(std::vector< PartOfFlightPlan >::difference_type)\n"
+    "    std::vector< PartOfFlightPlan >::__delitem__(PySliceObject *)\n");
   return 0;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___getitem____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___getitem____SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::difference_type arg2 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::difference_type arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   ptrdiff_t val2 ;
   int ecode2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  std::vector< Rotation >::value_type *result = 0 ;
+  std::vector< PartOfFlightPlan >::value_type *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation___getitem__",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan___getitem__",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___getitem__" "', argument " "1"" of type '" "std::vector< Rotation > const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___getitem__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_ptrdiff_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation___getitem__" "', argument " "2"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan___getitem__" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::difference_type >(val2);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val2);
   try {
-    result = (std::vector< Rotation >::value_type *) &std_vector_Sl_Rotation_Sg____getitem____SWIG_1((std::vector< Rotation > const *)arg1,arg2);
+    result = (std::vector< PartOfFlightPlan >::value_type *) &std_vector_Sl_PartOfFlightPlan_Sg____getitem____SWIG_1((std::vector< PartOfFlightPlan > const *)arg1,arg2);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
   }
   
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Rotation, 0 |  0 );
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_PartOfFlightPlan, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___getitem__(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___getitem__(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[3];
   int ii;
@@ -9654,20 +9904,20 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___getitem__(PyObject *self, PyObje
   }
   if (argc == 2) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
         _v = PySlice_Check(argv[1]);
       }
       if (_v) {
-        return _wrap_vector_of_rotation___getitem____SWIG_0(self, args);
+        return _wrap_vector_of_part_flight_plan___getitem____SWIG_0(self, args);
       }
     }
   }
   if (argc == 2) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -9675,25 +9925,25 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___getitem__(PyObject *self, PyObje
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_vector_of_rotation___getitem____SWIG_1(self, args);
+        return _wrap_vector_of_part_flight_plan___getitem____SWIG_1(self, args);
       }
     }
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_rotation___getitem__'.\n"
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_part_flight_plan___getitem__'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    std::vector< Rotation >::__getitem__(PySliceObject *)\n"
-    "    std::vector< Rotation >::__getitem__(std::vector< Rotation >::difference_type) const\n");
+    "    std::vector< PartOfFlightPlan >::__getitem__(PySliceObject *)\n"
+    "    std::vector< PartOfFlightPlan >::__getitem__(std::vector< PartOfFlightPlan >::difference_type) const\n");
   return 0;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___setitem____SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___setitem____SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::difference_type arg2 ;
-  std::vector< Rotation >::value_type *arg3 = 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::difference_type arg2 ;
+  std::vector< PartOfFlightPlan >::value_type *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   ptrdiff_t val2 ;
@@ -9704,27 +9954,27 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___setitem____SWIG_2(PyObject *SWIG
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_rotation___setitem__",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_part_flight_plan___setitem__",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation___setitem__" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan___setitem__" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_ptrdiff_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation___setitem__" "', argument " "2"" of type '" "std::vector< Rotation >::difference_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan___setitem__" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::difference_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::difference_type >(val2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_Rotation,  0  | 0);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::difference_type >(val2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PartOfFlightPlan,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "vector_of_rotation___setitem__" "', argument " "3"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "vector_of_part_flight_plan___setitem__" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_rotation___setitem__" "', argument " "3"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_part_flight_plan___setitem__" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
-  arg3 = reinterpret_cast< std::vector< Rotation >::value_type * >(argp3);
+  arg3 = reinterpret_cast< std::vector< PartOfFlightPlan >::value_type * >(argp3);
   try {
-    std_vector_Sl_Rotation_Sg____setitem____SWIG_2(arg1,arg2,(Rotation const &)*arg3);
+    std_vector_Sl_PartOfFlightPlan_Sg____setitem____SWIG_2(arg1,arg2,(PartOfFlightPlan const &)*arg3);
   }
   catch(std::out_of_range &_e) {
     SWIG_exception_fail(SWIG_IndexError, (&_e)->what());
@@ -9737,7 +9987,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation___setitem__(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan___setitem__(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[4];
   int ii;
@@ -9749,37 +9999,37 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___setitem__(PyObject *self, PyObje
   }
   if (argc == 2) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
         _v = PySlice_Check(argv[1]);
       }
       if (_v) {
-        return _wrap_vector_of_rotation___setitem____SWIG_1(self, args);
+        return _wrap_vector_of_part_flight_plan___setitem____SWIG_1(self, args);
       }
     }
   }
   if (argc == 3) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
         _v = PySlice_Check(argv[1]);
       }
       if (_v) {
-        int res = swig::asptr(argv[2], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+        int res = swig::asptr(argv[2], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_vector_of_rotation___setitem____SWIG_0(self, args);
+          return _wrap_vector_of_part_flight_plan___setitem____SWIG_0(self, args);
         }
       }
     }
   }
   if (argc == 3) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -9787,29 +10037,29 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation___setitem__(PyObject *self, PyObje
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_Rotation, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PartOfFlightPlan, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_vector_of_rotation___setitem____SWIG_2(self, args);
+          return _wrap_vector_of_part_flight_plan___setitem____SWIG_2(self, args);
         }
       }
     }
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_rotation___setitem__'.\n"
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_part_flight_plan___setitem__'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    std::vector< Rotation >::__setitem__(PySliceObject *,std::vector< Rotation,std::allocator< Rotation > > const &)\n"
-    "    std::vector< Rotation >::__setitem__(PySliceObject *)\n"
-    "    std::vector< Rotation >::__setitem__(std::vector< Rotation >::difference_type,std::vector< Rotation >::value_type const &)\n");
+    "    std::vector< PartOfFlightPlan >::__setitem__(PySliceObject *,std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > const &)\n"
+    "    std::vector< PartOfFlightPlan >::__setitem__(PySliceObject *)\n"
+    "    std::vector< PartOfFlightPlan >::__setitem__(std::vector< PartOfFlightPlan >::difference_type,std::vector< PartOfFlightPlan >::value_type const &)\n");
   return 0;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_append(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_append(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::value_type *arg2 = 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::value_type *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -9817,21 +10067,21 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_append(PyObject *SWIGUNUSEDPARM(se
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation_append",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan_append",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_append" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_append" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Rotation,  0  | 0);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PartOfFlightPlan,  0  | 0);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "vector_of_rotation_append" "', argument " "2"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "vector_of_part_flight_plan_append" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_rotation_append" "', argument " "2"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_part_flight_plan_append" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
-  arg2 = reinterpret_cast< std::vector< Rotation >::value_type * >(argp2);
-  std_vector_Sl_Rotation_Sg__append(arg1,(Rotation const &)*arg2);
+  arg2 = reinterpret_cast< std::vector< PartOfFlightPlan >::value_type * >(argp2);
+  std_vector_Sl_PartOfFlightPlan_Sg__append(arg1,(PartOfFlightPlan const &)*arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -9839,40 +10089,40 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_new_vector_of_rotation__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_vector_of_part_flight_plan__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *result = 0 ;
+  std::vector< PartOfFlightPlan > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)":new_vector_of_rotation")) SWIG_fail;
-  result = (std::vector< Rotation > *)new std::vector< Rotation >();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, SWIG_POINTER_NEW |  0 );
+  if (!PyArg_ParseTuple(args,(char *)":new_vector_of_part_flight_plan")) SWIG_fail;
+  result = (std::vector< PartOfFlightPlan > *)new std::vector< PartOfFlightPlan >();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_new_vector_of_rotation__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_vector_of_part_flight_plan__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = 0 ;
   int res1 = SWIG_OLDOBJ ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation > *result = 0 ;
+  std::vector< PartOfFlightPlan > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:new_vector_of_rotation",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:new_vector_of_part_flight_plan",&obj0)) SWIG_fail;
   {
-    std::vector<Rotation,std::allocator< Rotation > > *ptr = (std::vector<Rotation,std::allocator< Rotation > > *)0;
+    std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *ptr = (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *)0;
     res1 = swig::asptr(obj0, &ptr);
     if (!SWIG_IsOK(res1)) {
-      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_vector_of_rotation" "', argument " "1"" of type '" "std::vector< Rotation > const &""'"); 
+      SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "new_vector_of_part_flight_plan" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const &""'"); 
     }
     if (!ptr) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_vector_of_rotation" "', argument " "1"" of type '" "std::vector< Rotation > const &""'"); 
+      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_vector_of_part_flight_plan" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const &""'"); 
     }
     arg1 = ptr;
   }
-  result = (std::vector< Rotation > *)new std::vector< Rotation >((std::vector< Rotation > const &)*arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, SWIG_POINTER_NEW |  0 );
+  result = (std::vector< PartOfFlightPlan > *)new std::vector< PartOfFlightPlan >((std::vector< PartOfFlightPlan > const &)*arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, SWIG_POINTER_NEW |  0 );
   if (SWIG_IsNewObj(res1)) delete arg1;
   return resultobj;
 fail:
@@ -9881,21 +10131,21 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_empty(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_empty(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   bool result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_empty",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_empty",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_empty" "', argument " "1"" of type '" "std::vector< Rotation > const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_empty" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  result = (bool)((std::vector< Rotation > const *)arg1)->empty();
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  result = (bool)((std::vector< PartOfFlightPlan > const *)arg1)->empty();
   resultobj = SWIG_From_bool(static_cast< bool >(result));
   return resultobj;
 fail:
@@ -9903,21 +10153,21 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_size(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_size(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation >::size_type result;
+  std::vector< PartOfFlightPlan >::size_type result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_size",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_size",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_size" "', argument " "1"" of type '" "std::vector< Rotation > const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_size" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  result = ((std::vector< Rotation > const *)arg1)->size();
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  result = ((std::vector< PartOfFlightPlan > const *)arg1)->size();
   resultobj = SWIG_From_size_t(static_cast< size_t >(result));
   return resultobj;
 fail:
@@ -9925,19 +10175,19 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_clear(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_clear(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_clear",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_clear",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_clear" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_clear" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   (arg1)->clear();
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -9946,10 +10196,10 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_swap(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_swap(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation > *arg2 = 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -9957,20 +10207,20 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_swap(PyObject *SWIGUNUSEDPARM(self
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation_swap",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan_swap",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_swap" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_swap" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t,  0 );
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t,  0 );
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "vector_of_rotation_swap" "', argument " "2"" of type '" "std::vector< Rotation > &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "vector_of_part_flight_plan_swap" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan > &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_rotation_swap" "', argument " "2"" of type '" "std::vector< Rotation > &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_part_flight_plan_swap" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan > &""'"); 
   }
-  arg2 = reinterpret_cast< std::vector< Rotation > * >(argp2);
+  arg2 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp2);
   (arg1)->swap(*arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -9979,44 +10229,44 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_get_allocator(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_get_allocator(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  SwigValueWrapper< std::allocator< Rotation > > result;
+  SwigValueWrapper< std::allocator< PartOfFlightPlan > > result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_get_allocator",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_get_allocator",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_get_allocator" "', argument " "1"" of type '" "std::vector< Rotation > const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_get_allocator" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  result = ((std::vector< Rotation > const *)arg1)->get_allocator();
-  resultobj = SWIG_NewPointerObj((new std::vector< Rotation >::allocator_type(static_cast< const std::vector< Rotation >::allocator_type& >(result))), SWIGTYPE_p_std__allocatorT_Rotation_t, SWIG_POINTER_OWN |  0 );
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  result = ((std::vector< PartOfFlightPlan > const *)arg1)->get_allocator();
+  resultobj = SWIG_NewPointerObj((new std::vector< PartOfFlightPlan >::allocator_type(static_cast< const std::vector< PartOfFlightPlan >::allocator_type& >(result))), SWIGTYPE_p_std__allocatorT_PartOfFlightPlan_t, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_begin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_begin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation >::iterator result;
+  std::vector< PartOfFlightPlan >::iterator result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_begin",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_begin",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_begin" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_begin" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   result = (arg1)->begin();
-  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< Rotation >::iterator & >(result)),
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< PartOfFlightPlan >::iterator & >(result)),
     swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
   return resultobj;
 fail:
@@ -10024,22 +10274,22 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_end(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_end(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation >::iterator result;
+  std::vector< PartOfFlightPlan >::iterator result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_end",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_end",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_end" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_end" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   result = (arg1)->end();
-  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< Rotation >::iterator & >(result)),
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< PartOfFlightPlan >::iterator & >(result)),
     swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
   return resultobj;
 fail:
@@ -10047,22 +10297,22 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_rbegin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_rbegin(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation >::reverse_iterator result;
+  std::vector< PartOfFlightPlan >::reverse_iterator result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_rbegin",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_rbegin",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_rbegin" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_rbegin" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   result = (arg1)->rbegin();
-  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< Rotation >::reverse_iterator & >(result)),
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< PartOfFlightPlan >::reverse_iterator & >(result)),
     swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
   return resultobj;
 fail:
@@ -10070,22 +10320,22 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_rend(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_rend(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation >::reverse_iterator result;
+  std::vector< PartOfFlightPlan >::reverse_iterator result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_rend",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_rend",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_rend" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_rend" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   result = (arg1)->rend();
-  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< Rotation >::reverse_iterator & >(result)),
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< PartOfFlightPlan >::reverse_iterator & >(result)),
     swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
   return resultobj;
 fail:
@@ -10093,41 +10343,41 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_new_vector_of_rotation__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_vector_of_part_flight_plan__SWIG_2(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation >::size_type arg1 ;
+  std::vector< PartOfFlightPlan >::size_type arg1 ;
   size_t val1 ;
   int ecode1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation > *result = 0 ;
+  std::vector< PartOfFlightPlan > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:new_vector_of_rotation",&obj0)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"O:new_vector_of_part_flight_plan",&obj0)) SWIG_fail;
   ecode1 = SWIG_AsVal_size_t(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_vector_of_rotation" "', argument " "1"" of type '" "std::vector< Rotation >::size_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_vector_of_part_flight_plan" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan >::size_type""'");
   } 
-  arg1 = static_cast< std::vector< Rotation >::size_type >(val1);
-  result = (std::vector< Rotation > *)new std::vector< Rotation >(arg1);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, SWIG_POINTER_NEW |  0 );
+  arg1 = static_cast< std::vector< PartOfFlightPlan >::size_type >(val1);
+  result = (std::vector< PartOfFlightPlan > *)new std::vector< PartOfFlightPlan >(arg1);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_pop_back(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_pop_back(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_pop_back",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_pop_back",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_pop_back" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_pop_back" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   (arg1)->pop_back();
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -10136,10 +10386,10 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_resize__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_resize__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::size_type arg2 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::size_type arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   size_t val2 ;
@@ -10147,17 +10397,17 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_resize__SWIG_0(PyObject *SWIGUNUSE
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation_resize",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan_resize",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_resize" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_resize" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation_resize" "', argument " "2"" of type '" "std::vector< Rotation >::size_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan_resize" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::size_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::size_type >(val2);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::size_type >(val2);
   (arg1)->resize(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -10166,37 +10416,37 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_erase__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_erase__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::iterator arg2 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::iterator arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   swig::SwigPyIterator *iter2 = 0 ;
   int res2 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  std::vector< Rotation >::iterator result;
+  std::vector< PartOfFlightPlan >::iterator result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation_erase",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan_erase",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_erase" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_erase" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   res2 = SWIG_ConvertPtr(obj1, SWIG_as_voidptrptr(&iter2), swig::SwigPyIterator::descriptor(), 0);
   if (!SWIG_IsOK(res2) || !iter2) {
-    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation_erase" "', argument " "2"" of type '" "std::vector< Rotation >::iterator""'");
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan_erase" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::iterator""'");
   } else {
-    swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *>(iter2);
+    swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *>(iter2);
     if (iter_t) {
       arg2 = iter_t->get_current();
     } else {
-      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation_erase" "', argument " "2"" of type '" "std::vector< Rotation >::iterator""'");
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan_erase" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::iterator""'");
     }
   }
-  result = std_vector_Sl_Rotation_Sg__erase__SWIG_0(arg1,arg2);
-  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< Rotation >::iterator & >(result)),
+  result = std_vector_Sl_PartOfFlightPlan_Sg__erase__SWIG_0(arg1,arg2);
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< PartOfFlightPlan >::iterator & >(result)),
     swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
   return resultobj;
 fail:
@@ -10204,11 +10454,11 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_erase__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_erase__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::iterator arg2 ;
-  std::vector< Rotation >::iterator arg3 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::iterator arg2 ;
+  std::vector< PartOfFlightPlan >::iterator arg3 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   swig::SwigPyIterator *iter2 = 0 ;
@@ -10218,38 +10468,38 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_erase__SWIG_1(PyObject *SWIGUNUSED
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  std::vector< Rotation >::iterator result;
+  std::vector< PartOfFlightPlan >::iterator result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_rotation_erase",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_part_flight_plan_erase",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_erase" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_erase" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   res2 = SWIG_ConvertPtr(obj1, SWIG_as_voidptrptr(&iter2), swig::SwigPyIterator::descriptor(), 0);
   if (!SWIG_IsOK(res2) || !iter2) {
-    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation_erase" "', argument " "2"" of type '" "std::vector< Rotation >::iterator""'");
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan_erase" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::iterator""'");
   } else {
-    swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *>(iter2);
+    swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *>(iter2);
     if (iter_t) {
       arg2 = iter_t->get_current();
     } else {
-      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation_erase" "', argument " "2"" of type '" "std::vector< Rotation >::iterator""'");
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan_erase" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::iterator""'");
     }
   }
   res3 = SWIG_ConvertPtr(obj2, SWIG_as_voidptrptr(&iter3), swig::SwigPyIterator::descriptor(), 0);
   if (!SWIG_IsOK(res3) || !iter3) {
-    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation_erase" "', argument " "3"" of type '" "std::vector< Rotation >::iterator""'");
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan_erase" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::iterator""'");
   } else {
-    swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *>(iter3);
+    swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *>(iter3);
     if (iter_t) {
       arg3 = iter_t->get_current();
     } else {
-      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation_erase" "', argument " "3"" of type '" "std::vector< Rotation >::iterator""'");
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan_erase" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::iterator""'");
     }
   }
-  result = std_vector_Sl_Rotation_Sg__erase__SWIG_1(arg1,arg2,arg3);
-  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< Rotation >::iterator & >(result)),
+  result = std_vector_Sl_PartOfFlightPlan_Sg__erase__SWIG_1(arg1,arg2,arg3);
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< PartOfFlightPlan >::iterator & >(result)),
     swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
   return resultobj;
 fail:
@@ -10257,7 +10507,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_erase(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_erase(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[4];
   int ii;
@@ -10269,80 +10519,80 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_erase(PyObject *self, PyObject *ar
   }
   if (argc == 2) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       swig::SwigPyIterator *iter = 0;
       int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
-      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *>(iter) != 0));
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *>(iter) != 0));
       if (_v) {
-        return _wrap_vector_of_rotation_erase__SWIG_0(self, args);
+        return _wrap_vector_of_part_flight_plan_erase__SWIG_0(self, args);
       }
     }
   }
   if (argc == 3) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       swig::SwigPyIterator *iter = 0;
       int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
-      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *>(iter) != 0));
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *>(iter) != 0));
       if (_v) {
         swig::SwigPyIterator *iter = 0;
         int res = SWIG_ConvertPtr(argv[2], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
-        _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *>(iter) != 0));
+        _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *>(iter) != 0));
         if (_v) {
-          return _wrap_vector_of_rotation_erase__SWIG_1(self, args);
+          return _wrap_vector_of_part_flight_plan_erase__SWIG_1(self, args);
         }
       }
     }
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_rotation_erase'.\n"
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_part_flight_plan_erase'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    std::vector< Rotation >::erase(std::vector< Rotation >::iterator)\n"
-    "    std::vector< Rotation >::erase(std::vector< Rotation >::iterator,std::vector< Rotation >::iterator)\n");
+    "    std::vector< PartOfFlightPlan >::erase(std::vector< PartOfFlightPlan >::iterator)\n"
+    "    std::vector< PartOfFlightPlan >::erase(std::vector< PartOfFlightPlan >::iterator,std::vector< PartOfFlightPlan >::iterator)\n");
   return 0;
 }
 
 
-SWIGINTERN PyObject *_wrap_new_vector_of_rotation__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_vector_of_part_flight_plan__SWIG_3(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation >::size_type arg1 ;
-  std::vector< Rotation >::value_type *arg2 = 0 ;
+  std::vector< PartOfFlightPlan >::size_type arg1 ;
+  std::vector< PartOfFlightPlan >::value_type *arg2 = 0 ;
   size_t val1 ;
   int ecode1 = 0 ;
   void *argp2 = 0 ;
   int res2 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
-  std::vector< Rotation > *result = 0 ;
+  std::vector< PartOfFlightPlan > *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:new_vector_of_rotation",&obj0,&obj1)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OO:new_vector_of_part_flight_plan",&obj0,&obj1)) SWIG_fail;
   ecode1 = SWIG_AsVal_size_t(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_vector_of_rotation" "', argument " "1"" of type '" "std::vector< Rotation >::size_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "new_vector_of_part_flight_plan" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan >::size_type""'");
   } 
-  arg1 = static_cast< std::vector< Rotation >::size_type >(val1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Rotation,  0  | 0);
+  arg1 = static_cast< std::vector< PartOfFlightPlan >::size_type >(val1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PartOfFlightPlan,  0  | 0);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_vector_of_rotation" "', argument " "2"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "new_vector_of_part_flight_plan" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_vector_of_rotation" "', argument " "2"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "new_vector_of_part_flight_plan" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
-  arg2 = reinterpret_cast< std::vector< Rotation >::value_type * >(argp2);
-  result = (std::vector< Rotation > *)new std::vector< Rotation >(arg1,(std::vector< Rotation >::value_type const &)*arg2);
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, SWIG_POINTER_NEW |  0 );
+  arg2 = reinterpret_cast< std::vector< PartOfFlightPlan >::value_type * >(argp2);
+  result = (std::vector< PartOfFlightPlan > *)new std::vector< PartOfFlightPlan >(arg1,(std::vector< PartOfFlightPlan >::value_type const &)*arg2);
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, SWIG_POINTER_NEW |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_new_vector_of_rotation(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_new_vector_of_part_flight_plan(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[3];
   int ii;
@@ -10353,7 +10603,7 @@ SWIGINTERN PyObject *_wrap_new_vector_of_rotation(PyObject *self, PyObject *args
     argv[ii] = PyTuple_GET_ITEM(args,ii);
   }
   if (argc == 0) {
-    return _wrap_new_vector_of_rotation__SWIG_0(self, args);
+    return _wrap_new_vector_of_part_flight_plan__SWIG_0(self, args);
   }
   if (argc == 1) {
     int _v;
@@ -10362,15 +10612,15 @@ SWIGINTERN PyObject *_wrap_new_vector_of_rotation(PyObject *self, PyObject *args
       _v = SWIG_CheckState(res);
     }
     if (_v) {
-      return _wrap_new_vector_of_rotation__SWIG_2(self, args);
+      return _wrap_new_vector_of_part_flight_plan__SWIG_2(self, args);
     }
   }
   if (argc == 1) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
-      return _wrap_new_vector_of_rotation__SWIG_1(self, args);
+      return _wrap_new_vector_of_part_flight_plan__SWIG_1(self, args);
     }
   }
   if (argc == 2) {
@@ -10380,29 +10630,29 @@ SWIGINTERN PyObject *_wrap_new_vector_of_rotation(PyObject *self, PyObject *args
       _v = SWIG_CheckState(res);
     }
     if (_v) {
-      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_Rotation, 0);
+      int res = SWIG_ConvertPtr(argv[1], 0, SWIGTYPE_p_PartOfFlightPlan, 0);
       _v = SWIG_CheckState(res);
       if (_v) {
-        return _wrap_new_vector_of_rotation__SWIG_3(self, args);
+        return _wrap_new_vector_of_part_flight_plan__SWIG_3(self, args);
       }
     }
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_vector_of_rotation'.\n"
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'new_vector_of_part_flight_plan'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    std::vector< Rotation >::vector()\n"
-    "    std::vector< Rotation >::vector(std::vector< Rotation > const &)\n"
-    "    std::vector< Rotation >::vector(std::vector< Rotation >::size_type)\n"
-    "    std::vector< Rotation >::vector(std::vector< Rotation >::size_type,std::vector< Rotation >::value_type const &)\n");
+    "    std::vector< PartOfFlightPlan >::vector()\n"
+    "    std::vector< PartOfFlightPlan >::vector(std::vector< PartOfFlightPlan > const &)\n"
+    "    std::vector< PartOfFlightPlan >::vector(std::vector< PartOfFlightPlan >::size_type)\n"
+    "    std::vector< PartOfFlightPlan >::vector(std::vector< PartOfFlightPlan >::size_type,std::vector< PartOfFlightPlan >::value_type const &)\n");
   return 0;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_push_back(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_push_back(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::value_type *arg2 = 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::value_type *arg2 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   void *argp2 = 0 ;
@@ -10410,21 +10660,21 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_push_back(PyObject *SWIGUNUSEDPARM
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation_push_back",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan_push_back",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_push_back" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_push_back" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_Rotation,  0  | 0);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  res2 = SWIG_ConvertPtr(obj1, &argp2, SWIGTYPE_p_PartOfFlightPlan,  0  | 0);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "vector_of_rotation_push_back" "', argument " "2"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "vector_of_part_flight_plan_push_back" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
   if (!argp2) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_rotation_push_back" "', argument " "2"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_part_flight_plan_push_back" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
-  arg2 = reinterpret_cast< std::vector< Rotation >::value_type * >(argp2);
-  (arg1)->push_back((std::vector< Rotation >::value_type const &)*arg2);
+  arg2 = reinterpret_cast< std::vector< PartOfFlightPlan >::value_type * >(argp2);
+  (arg1)->push_back((std::vector< PartOfFlightPlan >::value_type const &)*arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10432,55 +10682,55 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_front(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_front(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation >::value_type *result = 0 ;
+  std::vector< PartOfFlightPlan >::value_type *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_front",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_front",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_front" "', argument " "1"" of type '" "std::vector< Rotation > const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_front" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  result = (std::vector< Rotation >::value_type *) &((std::vector< Rotation > const *)arg1)->front();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Rotation, 0 |  0 );
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  result = (std::vector< PartOfFlightPlan >::value_type *) &((std::vector< PartOfFlightPlan > const *)arg1)->front();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_PartOfFlightPlan, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_back(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_back(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation >::value_type *result = 0 ;
+  std::vector< PartOfFlightPlan >::value_type *result = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_back",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_back",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_back" "', argument " "1"" of type '" "std::vector< Rotation > const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_back" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  result = (std::vector< Rotation >::value_type *) &((std::vector< Rotation > const *)arg1)->back();
-  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Rotation, 0 |  0 );
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  result = (std::vector< PartOfFlightPlan >::value_type *) &((std::vector< PartOfFlightPlan > const *)arg1)->back();
+  resultobj = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_PartOfFlightPlan, 0 |  0 );
   return resultobj;
 fail:
   return NULL;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_assign(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_assign(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::size_type arg2 ;
-  std::vector< Rotation >::value_type *arg3 = 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::size_type arg2 ;
+  std::vector< PartOfFlightPlan >::value_type *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   size_t val2 ;
@@ -10491,26 +10741,26 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_assign(PyObject *SWIGUNUSEDPARM(se
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_rotation_assign",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_part_flight_plan_assign",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_assign" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_assign" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation_assign" "', argument " "2"" of type '" "std::vector< Rotation >::size_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan_assign" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::size_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::size_type >(val2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_Rotation,  0  | 0);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::size_type >(val2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PartOfFlightPlan,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "vector_of_rotation_assign" "', argument " "3"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "vector_of_part_flight_plan_assign" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_rotation_assign" "', argument " "3"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_part_flight_plan_assign" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
-  arg3 = reinterpret_cast< std::vector< Rotation >::value_type * >(argp3);
-  (arg1)->assign(arg2,(std::vector< Rotation >::value_type const &)*arg3);
+  arg3 = reinterpret_cast< std::vector< PartOfFlightPlan >::value_type * >(argp3);
+  (arg1)->assign(arg2,(std::vector< PartOfFlightPlan >::value_type const &)*arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10518,11 +10768,11 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_resize__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_resize__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::size_type arg2 ;
-  std::vector< Rotation >::value_type *arg3 = 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::size_type arg2 ;
+  std::vector< PartOfFlightPlan >::value_type *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   size_t val2 ;
@@ -10533,26 +10783,26 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_resize__SWIG_1(PyObject *SWIGUNUSE
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_rotation_resize",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_part_flight_plan_resize",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_resize" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_resize" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation_resize" "', argument " "2"" of type '" "std::vector< Rotation >::size_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan_resize" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::size_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::size_type >(val2);
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_Rotation,  0  | 0);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::size_type >(val2);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PartOfFlightPlan,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "vector_of_rotation_resize" "', argument " "3"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "vector_of_part_flight_plan_resize" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_rotation_resize" "', argument " "3"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_part_flight_plan_resize" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
-  arg3 = reinterpret_cast< std::vector< Rotation >::value_type * >(argp3);
-  (arg1)->resize(arg2,(std::vector< Rotation >::value_type const &)*arg3);
+  arg3 = reinterpret_cast< std::vector< PartOfFlightPlan >::value_type * >(argp3);
+  (arg1)->resize(arg2,(std::vector< PartOfFlightPlan >::value_type const &)*arg3);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10560,7 +10810,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_resize(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_resize(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[4];
   int ii;
@@ -10572,7 +10822,7 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_resize(PyObject *self, PyObject *a
   }
   if (argc == 2) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -10580,13 +10830,13 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_resize(PyObject *self, PyObject *a
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        return _wrap_vector_of_rotation_resize__SWIG_0(self, args);
+        return _wrap_vector_of_part_flight_plan_resize__SWIG_0(self, args);
       }
     }
   }
   if (argc == 3) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       {
@@ -10594,29 +10844,29 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_resize(PyObject *self, PyObject *a
         _v = SWIG_CheckState(res);
       }
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_Rotation, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PartOfFlightPlan, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_vector_of_rotation_resize__SWIG_1(self, args);
+          return _wrap_vector_of_part_flight_plan_resize__SWIG_1(self, args);
         }
       }
     }
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_rotation_resize'.\n"
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_part_flight_plan_resize'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    std::vector< Rotation >::resize(std::vector< Rotation >::size_type)\n"
-    "    std::vector< Rotation >::resize(std::vector< Rotation >::size_type,std::vector< Rotation >::value_type const &)\n");
+    "    std::vector< PartOfFlightPlan >::resize(std::vector< PartOfFlightPlan >::size_type)\n"
+    "    std::vector< PartOfFlightPlan >::resize(std::vector< PartOfFlightPlan >::size_type,std::vector< PartOfFlightPlan >::value_type const &)\n");
   return 0;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_insert__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_insert__SWIG_0(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::iterator arg2 ;
-  std::vector< Rotation >::value_type *arg3 = 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::iterator arg2 ;
+  std::vector< PartOfFlightPlan >::value_type *arg3 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   swig::SwigPyIterator *iter2 = 0 ;
@@ -10626,35 +10876,35 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_insert__SWIG_0(PyObject *SWIGUNUSE
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
-  std::vector< Rotation >::iterator result;
+  std::vector< PartOfFlightPlan >::iterator result;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_rotation_insert",&obj0,&obj1,&obj2)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOO:vector_of_part_flight_plan_insert",&obj0,&obj1,&obj2)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_insert" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_insert" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   res2 = SWIG_ConvertPtr(obj1, SWIG_as_voidptrptr(&iter2), swig::SwigPyIterator::descriptor(), 0);
   if (!SWIG_IsOK(res2) || !iter2) {
-    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation_insert" "', argument " "2"" of type '" "std::vector< Rotation >::iterator""'");
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan_insert" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::iterator""'");
   } else {
-    swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *>(iter2);
+    swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *>(iter2);
     if (iter_t) {
       arg2 = iter_t->get_current();
     } else {
-      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation_insert" "', argument " "2"" of type '" "std::vector< Rotation >::iterator""'");
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan_insert" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::iterator""'");
     }
   }
-  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_Rotation,  0  | 0);
+  res3 = SWIG_ConvertPtr(obj2, &argp3, SWIGTYPE_p_PartOfFlightPlan,  0  | 0);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "vector_of_rotation_insert" "', argument " "3"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "vector_of_part_flight_plan_insert" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
   if (!argp3) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_rotation_insert" "', argument " "3"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_part_flight_plan_insert" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
-  arg3 = reinterpret_cast< std::vector< Rotation >::value_type * >(argp3);
-  result = std_vector_Sl_Rotation_Sg__insert__SWIG_0(arg1,arg2,(Rotation const &)*arg3);
-  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< Rotation >::iterator & >(result)),
+  arg3 = reinterpret_cast< std::vector< PartOfFlightPlan >::value_type * >(argp3);
+  result = std_vector_Sl_PartOfFlightPlan_Sg__insert__SWIG_0(arg1,arg2,(PartOfFlightPlan const &)*arg3);
+  resultobj = SWIG_NewPointerObj(swig::make_output_iterator(static_cast< const std::vector< PartOfFlightPlan >::iterator & >(result)),
     swig::SwigPyIterator::descriptor(),SWIG_POINTER_OWN);
   return resultobj;
 fail:
@@ -10662,12 +10912,12 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_insert__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_insert__SWIG_1(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::iterator arg2 ;
-  std::vector< Rotation >::size_type arg3 ;
-  std::vector< Rotation >::value_type *arg4 = 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::iterator arg2 ;
+  std::vector< PartOfFlightPlan >::size_type arg3 ;
+  std::vector< PartOfFlightPlan >::value_type *arg4 = 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   swig::SwigPyIterator *iter2 = 0 ;
@@ -10681,37 +10931,37 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_insert__SWIG_1(PyObject *SWIGUNUSE
   PyObject * obj2 = 0 ;
   PyObject * obj3 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOO:vector_of_rotation_insert",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OOOO:vector_of_part_flight_plan_insert",&obj0,&obj1,&obj2,&obj3)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_insert" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_insert" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   res2 = SWIG_ConvertPtr(obj1, SWIG_as_voidptrptr(&iter2), swig::SwigPyIterator::descriptor(), 0);
   if (!SWIG_IsOK(res2) || !iter2) {
-    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation_insert" "', argument " "2"" of type '" "std::vector< Rotation >::iterator""'");
+    SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan_insert" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::iterator""'");
   } else {
-    swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *>(iter2);
+    swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *iter_t = dynamic_cast<swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *>(iter2);
     if (iter_t) {
       arg2 = iter_t->get_current();
     } else {
-      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_rotation_insert" "', argument " "2"" of type '" "std::vector< Rotation >::iterator""'");
+      SWIG_exception_fail(SWIG_ArgError(SWIG_TypeError), "in method '" "vector_of_part_flight_plan_insert" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::iterator""'");
     }
   }
   ecode3 = SWIG_AsVal_size_t(obj2, &val3);
   if (!SWIG_IsOK(ecode3)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "vector_of_rotation_insert" "', argument " "3"" of type '" "std::vector< Rotation >::size_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "vector_of_part_flight_plan_insert" "', argument " "3"" of type '" "std::vector< PartOfFlightPlan >::size_type""'");
   } 
-  arg3 = static_cast< std::vector< Rotation >::size_type >(val3);
-  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_Rotation,  0  | 0);
+  arg3 = static_cast< std::vector< PartOfFlightPlan >::size_type >(val3);
+  res4 = SWIG_ConvertPtr(obj3, &argp4, SWIGTYPE_p_PartOfFlightPlan,  0  | 0);
   if (!SWIG_IsOK(res4)) {
-    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "vector_of_rotation_insert" "', argument " "4"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res4), "in method '" "vector_of_part_flight_plan_insert" "', argument " "4"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
   if (!argp4) {
-    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_rotation_insert" "', argument " "4"" of type '" "std::vector< Rotation >::value_type const &""'"); 
+    SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "vector_of_part_flight_plan_insert" "', argument " "4"" of type '" "std::vector< PartOfFlightPlan >::value_type const &""'"); 
   }
-  arg4 = reinterpret_cast< std::vector< Rotation >::value_type * >(argp4);
-  std_vector_Sl_Rotation_Sg__insert__SWIG_1(arg1,arg2,arg3,(Rotation const &)*arg4);
+  arg4 = reinterpret_cast< std::vector< PartOfFlightPlan >::value_type * >(argp4);
+  std_vector_Sl_PartOfFlightPlan_Sg__insert__SWIG_1(arg1,arg2,arg3,(PartOfFlightPlan const &)*arg4);
   resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
@@ -10719,7 +10969,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_insert(PyObject *self, PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_insert(PyObject *self, PyObject *args) {
   int argc;
   PyObject *argv[5];
   int ii;
@@ -10731,39 +10981,39 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_insert(PyObject *self, PyObject *a
   }
   if (argc == 3) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       swig::SwigPyIterator *iter = 0;
       int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
-      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *>(iter) != 0));
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *>(iter) != 0));
       if (_v) {
-        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_Rotation, 0);
+        int res = SWIG_ConvertPtr(argv[2], 0, SWIGTYPE_p_PartOfFlightPlan, 0);
         _v = SWIG_CheckState(res);
         if (_v) {
-          return _wrap_vector_of_rotation_insert__SWIG_0(self, args);
+          return _wrap_vector_of_part_flight_plan_insert__SWIG_0(self, args);
         }
       }
     }
   }
   if (argc == 4) {
     int _v;
-    int res = swig::asptr(argv[0], (std::vector<Rotation,std::allocator< Rotation > >**)(0));
+    int res = swig::asptr(argv[0], (std::vector<PartOfFlightPlan,std::allocator< PartOfFlightPlan > >**)(0));
     _v = SWIG_CheckState(res);
     if (_v) {
       swig::SwigPyIterator *iter = 0;
       int res = SWIG_ConvertPtr(argv[1], SWIG_as_voidptrptr(&iter), swig::SwigPyIterator::descriptor(), 0);
-      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::vector< Rotation >::iterator > *>(iter) != 0));
+      _v = (SWIG_IsOK(res) && iter && (dynamic_cast<swig::SwigPyIterator_T<std::vector< PartOfFlightPlan >::iterator > *>(iter) != 0));
       if (_v) {
         {
           int res = SWIG_AsVal_size_t(argv[2], NULL);
           _v = SWIG_CheckState(res);
         }
         if (_v) {
-          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_Rotation, 0);
+          int res = SWIG_ConvertPtr(argv[3], 0, SWIGTYPE_p_PartOfFlightPlan, 0);
           _v = SWIG_CheckState(res);
           if (_v) {
-            return _wrap_vector_of_rotation_insert__SWIG_1(self, args);
+            return _wrap_vector_of_part_flight_plan_insert__SWIG_1(self, args);
           }
         }
       }
@@ -10771,18 +11021,18 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_insert(PyObject *self, PyObject *a
   }
   
 fail:
-  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_rotation_insert'.\n"
+  SWIG_SetErrorMsg(PyExc_NotImplementedError,"Wrong number or type of arguments for overloaded function 'vector_of_part_flight_plan_insert'.\n"
     "  Possible C/C++ prototypes are:\n"
-    "    std::vector< Rotation >::insert(std::vector< Rotation >::iterator,std::vector< Rotation >::value_type const &)\n"
-    "    std::vector< Rotation >::insert(std::vector< Rotation >::iterator,std::vector< Rotation >::size_type,std::vector< Rotation >::value_type const &)\n");
+    "    std::vector< PartOfFlightPlan >::insert(std::vector< PartOfFlightPlan >::iterator,std::vector< PartOfFlightPlan >::value_type const &)\n"
+    "    std::vector< PartOfFlightPlan >::insert(std::vector< PartOfFlightPlan >::iterator,std::vector< PartOfFlightPlan >::size_type,std::vector< PartOfFlightPlan >::value_type const &)\n");
   return 0;
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_reserve(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_reserve(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
-  std::vector< Rotation >::size_type arg2 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
+  std::vector< PartOfFlightPlan >::size_type arg2 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   size_t val2 ;
@@ -10790,17 +11040,17 @@ SWIGINTERN PyObject *_wrap_vector_of_rotation_reserve(PyObject *SWIGUNUSEDPARM(s
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_rotation_reserve",&obj0,&obj1)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"OO:vector_of_part_flight_plan_reserve",&obj0,&obj1)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_reserve" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_reserve" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   ecode2 = SWIG_AsVal_size_t(obj1, &val2);
   if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_rotation_reserve" "', argument " "2"" of type '" "std::vector< Rotation >::size_type""'");
+    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "vector_of_part_flight_plan_reserve" "', argument " "2"" of type '" "std::vector< PartOfFlightPlan >::size_type""'");
   } 
-  arg2 = static_cast< std::vector< Rotation >::size_type >(val2);
+  arg2 = static_cast< std::vector< PartOfFlightPlan >::size_type >(val2);
   (arg1)->reserve(arg2);
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -10809,21 +11059,21 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_vector_of_rotation_capacity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_vector_of_part_flight_plan_capacity(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
-  std::vector< Rotation >::size_type result;
+  std::vector< PartOfFlightPlan >::size_type result;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_rotation_capacity",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0 |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:vector_of_part_flight_plan_capacity",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_rotation_capacity" "', argument " "1"" of type '" "std::vector< Rotation > const *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "vector_of_part_flight_plan_capacity" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > const *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
-  result = ((std::vector< Rotation > const *)arg1)->capacity();
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
+  result = ((std::vector< PartOfFlightPlan > const *)arg1)->capacity();
   resultobj = SWIG_From_size_t(static_cast< size_t >(result));
   return resultobj;
 fail:
@@ -10831,19 +11081,19 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_delete_vector_of_rotation(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_delete_vector_of_part_flight_plan(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
-  std::vector< Rotation > *arg1 = (std::vector< Rotation > *) 0 ;
+  std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   void *argp1 = 0 ;
   int res1 = 0 ;
   PyObject * obj0 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"O:delete_vector_of_rotation",&obj0)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, SWIG_POINTER_DISOWN |  0 );
+  if (!PyArg_ParseTuple(args,(char *)"O:delete_vector_of_part_flight_plan",&obj0)) SWIG_fail;
+  res1 = SWIG_ConvertPtr(obj0, &argp1,SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, SWIG_POINTER_DISOWN |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_vector_of_rotation" "', argument " "1"" of type '" "std::vector< Rotation > *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "delete_vector_of_part_flight_plan" "', argument " "1"" of type '" "std::vector< PartOfFlightPlan > *""'"); 
   }
-  arg1 = reinterpret_cast< std::vector< Rotation > * >(argp1);
+  arg1 = reinterpret_cast< std::vector< PartOfFlightPlan > * >(argp1);
   delete arg1;
   resultobj = SWIG_Py_Void();
   return resultobj;
@@ -10852,10 +11102,10 @@ fail:
 }
 
 
-SWIGINTERN PyObject *vector_of_rotation_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *vector_of_part_flight_plan_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *obj;
   if (!PyArg_ParseTuple(args,(char*)"O:swigregister", &obj)) return NULL;
-  SWIG_TypeNewClientData(SWIGTYPE_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, SWIG_NewClientData(obj));
+  SWIG_TypeNewClientData(SWIGTYPE_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, SWIG_NewClientData(obj));
   return SWIG_Py_Void();
 }
 
@@ -12785,6 +13035,15 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"new_ShipPosition", _wrap_new_ShipPosition, METH_VARARGS, NULL},
 	 { (char *)"delete_ShipPosition", _wrap_delete_ShipPosition, METH_VARARGS, NULL},
 	 { (char *)"ShipPosition_swigregister", ShipPosition_swigregister, METH_VARARGS, NULL},
+	 { (char *)"PartOfFlightPlan_delayTime_set", _wrap_PartOfFlightPlan_delayTime_set, METH_VARARGS, NULL},
+	 { (char *)"PartOfFlightPlan_delayTime_get", _wrap_PartOfFlightPlan_delayTime_get, METH_VARARGS, NULL},
+	 { (char *)"PartOfFlightPlan_impulseValue_set", _wrap_PartOfFlightPlan_impulseValue_set, METH_VARARGS, NULL},
+	 { (char *)"PartOfFlightPlan_impulseValue_get", _wrap_PartOfFlightPlan_impulseValue_get, METH_VARARGS, NULL},
+	 { (char *)"PartOfFlightPlan_rotateValue_set", _wrap_PartOfFlightPlan_rotateValue_set, METH_VARARGS, NULL},
+	 { (char *)"PartOfFlightPlan_rotateValue_get", _wrap_PartOfFlightPlan_rotateValue_get, METH_VARARGS, NULL},
+	 { (char *)"new_PartOfFlightPlan", _wrap_new_PartOfFlightPlan, METH_VARARGS, NULL},
+	 { (char *)"delete_PartOfFlightPlan", _wrap_delete_PartOfFlightPlan, METH_VARARGS, NULL},
+	 { (char *)"PartOfFlightPlan_swigregister", PartOfFlightPlan_swigregister, METH_VARARGS, NULL},
 	 { (char *)"ShipParams_shipEdgeLength_set", _wrap_ShipParams_shipEdgeLength_set, METH_VARARGS, NULL},
 	 { (char *)"ShipParams_shipEdgeLength_get", _wrap_ShipParams_shipEdgeLength_get, METH_VARARGS, NULL},
 	 { (char *)"ShipParams_shipMass_set", _wrap_ShipParams_shipMass_set, METH_VARARGS, NULL},
@@ -12797,10 +13056,12 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"ShipParams_maxFuelUsagePerSec_get", _wrap_ShipParams_maxFuelUsagePerSec_get, METH_VARARGS, NULL},
 	 { (char *)"ShipParams_impulsePerFuel_set", _wrap_ShipParams_impulsePerFuel_set, METH_VARARGS, NULL},
 	 { (char *)"ShipParams_impulsePerFuel_get", _wrap_ShipParams_impulsePerFuel_get, METH_VARARGS, NULL},
-	 { (char *)"ShipParams_impulseFlightPlan_set", _wrap_ShipParams_impulseFlightPlan_set, METH_VARARGS, NULL},
-	 { (char *)"ShipParams_impulseFlightPlan_get", _wrap_ShipParams_impulseFlightPlan_get, METH_VARARGS, NULL},
-	 { (char *)"ShipParams_rotateFlightPlan_set", _wrap_ShipParams_rotateFlightPlan_set, METH_VARARGS, NULL},
-	 { (char *)"ShipParams_rotateFlightPlan_get", _wrap_ShipParams_rotateFlightPlan_get, METH_VARARGS, NULL},
+	 { (char *)"ShipParams_flightPlan_set", _wrap_ShipParams_flightPlan_set, METH_VARARGS, NULL},
+	 { (char *)"ShipParams_flightPlan_get", _wrap_ShipParams_flightPlan_get, METH_VARARGS, NULL},
+	 { (char *)"ShipParams_maxOverload_set", _wrap_ShipParams_maxOverload_set, METH_VARARGS, NULL},
+	 { (char *)"ShipParams_maxOverload_get", _wrap_ShipParams_maxOverload_get, METH_VARARGS, NULL},
+	 { (char *)"ShipParams_maxHeating_set", _wrap_ShipParams_maxHeating_set, METH_VARARGS, NULL},
+	 { (char *)"ShipParams_maxHeating_get", _wrap_ShipParams_maxHeating_get, METH_VARARGS, NULL},
 	 { (char *)"new_ShipParams", _wrap_new_ShipParams, METH_VARARGS, NULL},
 	 { (char *)"delete_ShipParams", _wrap_delete_ShipParams, METH_VARARGS, NULL},
 	 { (char *)"ShipParams_swigregister", ShipParams_swigregister, METH_VARARGS, NULL},
@@ -12864,40 +13125,40 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"vector_of_double_capacity", _wrap_vector_of_double_capacity, METH_VARARGS, NULL},
 	 { (char *)"delete_vector_of_double", _wrap_delete_vector_of_double, METH_VARARGS, NULL},
 	 { (char *)"vector_of_double_swigregister", vector_of_double_swigregister, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_iterator", _wrap_vector_of_rotation_iterator, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation___nonzero__", _wrap_vector_of_rotation___nonzero__, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation___bool__", _wrap_vector_of_rotation___bool__, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation___len__", _wrap_vector_of_rotation___len__, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_pop", _wrap_vector_of_rotation_pop, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation___getslice__", _wrap_vector_of_rotation___getslice__, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation___setslice__", _wrap_vector_of_rotation___setslice__, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation___delslice__", _wrap_vector_of_rotation___delslice__, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation___delitem__", _wrap_vector_of_rotation___delitem__, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation___getitem__", _wrap_vector_of_rotation___getitem__, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation___setitem__", _wrap_vector_of_rotation___setitem__, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_append", _wrap_vector_of_rotation_append, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_empty", _wrap_vector_of_rotation_empty, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_size", _wrap_vector_of_rotation_size, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_clear", _wrap_vector_of_rotation_clear, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_swap", _wrap_vector_of_rotation_swap, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_get_allocator", _wrap_vector_of_rotation_get_allocator, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_begin", _wrap_vector_of_rotation_begin, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_end", _wrap_vector_of_rotation_end, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_rbegin", _wrap_vector_of_rotation_rbegin, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_rend", _wrap_vector_of_rotation_rend, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_pop_back", _wrap_vector_of_rotation_pop_back, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_erase", _wrap_vector_of_rotation_erase, METH_VARARGS, NULL},
-	 { (char *)"new_vector_of_rotation", _wrap_new_vector_of_rotation, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_push_back", _wrap_vector_of_rotation_push_back, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_front", _wrap_vector_of_rotation_front, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_back", _wrap_vector_of_rotation_back, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_assign", _wrap_vector_of_rotation_assign, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_resize", _wrap_vector_of_rotation_resize, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_insert", _wrap_vector_of_rotation_insert, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_reserve", _wrap_vector_of_rotation_reserve, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_capacity", _wrap_vector_of_rotation_capacity, METH_VARARGS, NULL},
-	 { (char *)"delete_vector_of_rotation", _wrap_delete_vector_of_rotation, METH_VARARGS, NULL},
-	 { (char *)"vector_of_rotation_swigregister", vector_of_rotation_swigregister, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_iterator", _wrap_vector_of_part_flight_plan_iterator, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan___nonzero__", _wrap_vector_of_part_flight_plan___nonzero__, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan___bool__", _wrap_vector_of_part_flight_plan___bool__, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan___len__", _wrap_vector_of_part_flight_plan___len__, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_pop", _wrap_vector_of_part_flight_plan_pop, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan___getslice__", _wrap_vector_of_part_flight_plan___getslice__, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan___setslice__", _wrap_vector_of_part_flight_plan___setslice__, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan___delslice__", _wrap_vector_of_part_flight_plan___delslice__, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan___delitem__", _wrap_vector_of_part_flight_plan___delitem__, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan___getitem__", _wrap_vector_of_part_flight_plan___getitem__, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan___setitem__", _wrap_vector_of_part_flight_plan___setitem__, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_append", _wrap_vector_of_part_flight_plan_append, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_empty", _wrap_vector_of_part_flight_plan_empty, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_size", _wrap_vector_of_part_flight_plan_size, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_clear", _wrap_vector_of_part_flight_plan_clear, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_swap", _wrap_vector_of_part_flight_plan_swap, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_get_allocator", _wrap_vector_of_part_flight_plan_get_allocator, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_begin", _wrap_vector_of_part_flight_plan_begin, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_end", _wrap_vector_of_part_flight_plan_end, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_rbegin", _wrap_vector_of_part_flight_plan_rbegin, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_rend", _wrap_vector_of_part_flight_plan_rend, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_pop_back", _wrap_vector_of_part_flight_plan_pop_back, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_erase", _wrap_vector_of_part_flight_plan_erase, METH_VARARGS, NULL},
+	 { (char *)"new_vector_of_part_flight_plan", _wrap_new_vector_of_part_flight_plan, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_push_back", _wrap_vector_of_part_flight_plan_push_back, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_front", _wrap_vector_of_part_flight_plan_front, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_back", _wrap_vector_of_part_flight_plan_back, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_assign", _wrap_vector_of_part_flight_plan_assign, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_resize", _wrap_vector_of_part_flight_plan_resize, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_insert", _wrap_vector_of_part_flight_plan_insert, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_reserve", _wrap_vector_of_part_flight_plan_reserve, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_capacity", _wrap_vector_of_part_flight_plan_capacity, METH_VARARGS, NULL},
+	 { (char *)"delete_vector_of_part_flight_plan", _wrap_delete_vector_of_part_flight_plan, METH_VARARGS, NULL},
+	 { (char *)"vector_of_part_flight_plan_swigregister", vector_of_part_flight_plan_swigregister, METH_VARARGS, NULL},
 	 { (char *)"vector_of_position_iterator", _wrap_vector_of_position_iterator, METH_VARARGS, NULL},
 	 { (char *)"vector_of_position___nonzero__", _wrap_vector_of_position___nonzero__, METH_VARARGS, NULL},
 	 { (char *)"vector_of_position___bool__", _wrap_vector_of_position___bool__, METH_VARARGS, NULL},
@@ -12938,8 +13199,9 @@ static PyMethodDef SwigMethods[] = {
 
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
+static swig_type_info _swigt__p_PartOfFlightPlan = {"_p_PartOfFlightPlan", "std::vector< PartOfFlightPlan >::value_type *|PartOfFlightPlan *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Quants = {"_p_Quants", "Quants *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_Rotation = {"_p_Rotation", "std::vector< Rotation >::value_type *|Rotation *|RotationSpeed *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_Rotation = {"_p_Rotation", "Rotation *|RotationSpeed *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ShipParams = {"_p_ShipParams", "ShipParams *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_ShipPosition = {"_p_ShipPosition", "ShipPosition *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_allocator_type = {"_p_allocator_type", "allocator_type *", 0, 0, (void*)0, 0};
@@ -12947,11 +13209,11 @@ static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_difference_type = {"_p_difference_type", "difference_type *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_PyObject = {"_p_p_PyObject", "PyObject **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_size_type = {"_p_size_type", "size_type *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__allocatorT_Rotation_t = {"_p_std__allocatorT_Rotation_t", "std::vector< Rotation >::allocator_type *|std::allocator< Rotation > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__allocatorT_PartOfFlightPlan_t = {"_p_std__allocatorT_PartOfFlightPlan_t", "std::vector< PartOfFlightPlan >::allocator_type *|std::allocator< PartOfFlightPlan > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__allocatorT_double_t = {"_p_std__allocatorT_double_t", "std::vector< double >::allocator_type *|std::allocator< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__allocatorT_vec_t = {"_p_std__allocatorT_vec_t", "std::vector< vec >::allocator_type *|std::allocator< vec > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__invalid_argument = {"_p_std__invalid_argument", "std::invalid_argument *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t = {"_p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t", "std::vector< Rotation,std::allocator< Rotation > > *|std::vector< Rotation > *", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t = {"_p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t", "std::vector< PartOfFlightPlan,std::allocator< PartOfFlightPlan > > *|std::vector< PartOfFlightPlan > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_double_std__allocatorT_double_t_t = {"_p_std__vectorT_double_std__allocatorT_double_t_t", "std::vector< double,std::allocator< double > > *|std::vector< double > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_std__vectorT_vec_std__allocatorT_vec_t_t = {"_p_std__vectorT_vec_std__allocatorT_vec_t_t", "std::vector< vec,std::allocator< vec > > *|std::vector< Position,std::allocator< Position > > *|std::vector< vec > *|std::vector< Position > *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_swig__SwigPyIterator = {"_p_swig__SwigPyIterator", "swig::SwigPyIterator *", 0, 0, (void*)0, 0};
@@ -12959,6 +13221,7 @@ static swig_type_info _swigt__p_value_type = {"_p_value_type", "value_type *", 0
 static swig_type_info _swigt__p_vec = {"_p_vec", "std::vector< vec >::value_type *|Position *|vec *|Orient *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
+  &_swigt__p_PartOfFlightPlan,
   &_swigt__p_Quants,
   &_swigt__p_Rotation,
   &_swigt__p_ShipParams,
@@ -12968,11 +13231,11 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_difference_type,
   &_swigt__p_p_PyObject,
   &_swigt__p_size_type,
-  &_swigt__p_std__allocatorT_Rotation_t,
+  &_swigt__p_std__allocatorT_PartOfFlightPlan_t,
   &_swigt__p_std__allocatorT_double_t,
   &_swigt__p_std__allocatorT_vec_t,
   &_swigt__p_std__invalid_argument,
-  &_swigt__p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t,
+  &_swigt__p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t,
   &_swigt__p_std__vectorT_double_std__allocatorT_double_t_t,
   &_swigt__p_std__vectorT_vec_std__allocatorT_vec_t_t,
   &_swigt__p_swig__SwigPyIterator,
@@ -12980,6 +13243,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_vec,
 };
 
+static swig_cast_info _swigc__p_PartOfFlightPlan[] = {  {&_swigt__p_PartOfFlightPlan, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Quants[] = {  {&_swigt__p_Quants, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Rotation[] = {  {&_swigt__p_Rotation, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_ShipParams[] = {  {&_swigt__p_ShipParams, 0, 0, 0},{0, 0, 0, 0}};
@@ -12989,11 +13253,11 @@ static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0,
 static swig_cast_info _swigc__p_difference_type[] = {  {&_swigt__p_difference_type, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_PyObject[] = {  {&_swigt__p_p_PyObject, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_size_type[] = {  {&_swigt__p_size_type, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__allocatorT_Rotation_t[] = {  {&_swigt__p_std__allocatorT_Rotation_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__allocatorT_PartOfFlightPlan_t[] = {  {&_swigt__p_std__allocatorT_PartOfFlightPlan_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__allocatorT_double_t[] = {  {&_swigt__p_std__allocatorT_double_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__allocatorT_vec_t[] = {  {&_swigt__p_std__allocatorT_vec_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__invalid_argument[] = {  {&_swigt__p_std__invalid_argument, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t[] = {  {&_swigt__p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t[] = {  {&_swigt__p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_double_std__allocatorT_double_t_t[] = {  {&_swigt__p_std__vectorT_double_std__allocatorT_double_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__vectorT_vec_std__allocatorT_vec_t_t[] = {  {&_swigt__p_std__vectorT_vec_std__allocatorT_vec_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_swig__SwigPyIterator[] = {  {&_swigt__p_swig__SwigPyIterator, 0, 0, 0},{0, 0, 0, 0}};
@@ -13001,6 +13265,7 @@ static swig_cast_info _swigc__p_value_type[] = {  {&_swigt__p_value_type, 0, 0, 
 static swig_cast_info _swigc__p_vec[] = {  {&_swigt__p_vec, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
+  _swigc__p_PartOfFlightPlan,
   _swigc__p_Quants,
   _swigc__p_Rotation,
   _swigc__p_ShipParams,
@@ -13010,11 +13275,11 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_difference_type,
   _swigc__p_p_PyObject,
   _swigc__p_size_type,
-  _swigc__p_std__allocatorT_Rotation_t,
+  _swigc__p_std__allocatorT_PartOfFlightPlan_t,
   _swigc__p_std__allocatorT_double_t,
   _swigc__p_std__allocatorT_vec_t,
   _swigc__p_std__invalid_argument,
-  _swigc__p_std__vectorT_Rotation_std__allocatorT_Rotation_t_t,
+  _swigc__p_std__vectorT_PartOfFlightPlan_std__allocatorT_PartOfFlightPlan_t_t,
   _swigc__p_std__vectorT_double_std__allocatorT_double_t_t,
   _swigc__p_std__vectorT_vec_std__allocatorT_vec_t_t,
   _swigc__p_swig__SwigPyIterator,
