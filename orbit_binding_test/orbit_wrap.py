@@ -20,14 +20,30 @@ def create_rotation(aroundX, aroundY, aroundZ):
     return rotation
 
 
+def create_part_of_flight_plan(delay_time=0, impulse_value=0, rotation_value=create_rotation(0, 0, 0)):
+    """
+    :param delay_time: has type int
+    :param impulse_value:  has type double
+    :param rotation_value: has type Rotation
+    :return: object PartOfFlightPlan
+    """
+    part_of_flight_plan = orbit.PartOfFlightPlan()
+    part_of_flight_plan.delayTime = delay_time
+    part_of_flight_plan.impulseValue = impulse_value
+    part_of_flight_plan.rotateValue = rotation_value
+
+    return part_of_flight_plan
+
+
 def create_ship_params(ship_edge_length,
                        ship_mass,
                        fuel_mass,
                        max_rotation,
                        max_fuel_usage_per_second,
                        impulse_per_fuel,
-                       impulse_flight_plan,
-                       rotate_flight_plan) :
+                       max_overload,
+                       max_heating,
+                       flight_plan):
     """
     :param ship_edge_length: has type double
     :param ship_mass: has type double
@@ -35,8 +51,9 @@ def create_ship_params(ship_edge_length,
     :param max_rotation: has type rotation
     :param max_fuel_usage_per_second: has type double
     :param impulse_per_fuel: has type double
-    :param impulse_flight_plan: has type list of doubles
-    :param rotate_flight_plan: has type list of rotations
+    :param max_overload: has type double
+    :param max_heating: has type double
+    :param flight_plan has type list of Part_of_flight_plan
     :return: object that ha type ShipParams
     """
     ship_params = orbit.ShipParams()
@@ -46,8 +63,9 @@ def create_ship_params(ship_edge_length,
     ship_params.maxRotation = max_rotation
     ship_params.maxFuelUsagePerSec = max_fuel_usage_per_second
     ship_params.impulsePerFuel = impulse_per_fuel
-    ship_params.impulseFlightPlan = orbit.vector_of_double(impulse_flight_plan)
-    ship_params.rotateFlightPlan = orbit.vector_of_rotation(rotate_flight_plan)
+    ship_params.maxOverload = max_overload
+    ship_params.maxHeating = max_heating
+    ship_params.flightPlan = orbit.vector_of_part_flight_plan(flight_plan)
 
     return ship_params
 
@@ -75,6 +93,18 @@ def create_quants(number_of_quants, quant_size_of_sec):
     return quants
 
 
+def copy_rotation(rotation):
+    return create_rotation(rotation.rotationAroundX,
+                           rotation.rotationAroundY,
+                           rotation.rotationAroundZ)
+
+
+def copy_part_of_flight_plan(part_of_fligth_plan):
+    return create_part_of_flight_plan(part_of_fligth_plan.delayTime,
+                                      part_of_fligth_plan.impulseValue,
+                                      copy_rotation(part_of_fligth_plan.rotateValue))
+
+
 def vec_print(vector):
     print(vector.x, vector.y, vector.z)
 
@@ -94,9 +124,11 @@ def primitive_vector_print(vector):
 def vector_of_vec_print(vector):
     if vector:
         if 'x' in dir(vector[0]):
+            # for vec
             for item in vector:
                 vec_print(item)
         else:
+            # for rotation
             for item in vector:
                 rotation_print(item)
 
@@ -108,39 +140,25 @@ def vector_of_vec_to_str(vector):
     return result_string
 
 
+def part_of_flight_print(part_of_flight_plan):
+    print(part_of_flight_plan.delayTime)
+    print(part_of_flight_plan.impulseValue)
+    rotation_print(part_of_flight_plan.rotateValue)
+
+
+def vector_flight_plan_print(vector):
+    for part_flight_plan in vector:
+        part_of_flight_print(part_flight_plan)
+        print()
+
 Orient = Position = orbit.vec
 create_orient = create_position = create_vec
 
 
-class Part_of_flight_plan:
-    def __init__(self, delayTime=0, impulse=0, rotateAroundX=0, rotateAroundY=0, rotateAroundZ=0):
-        """
-        :param impulse: has type double
-        :param rotate: has type Rotation
-        """
-        self.delayTime = delayTime
-        self.impulse = impulse
-        self.rotate = create_rotation(rotateAroundX, rotateAroundY, rotateAroundZ)
-
-    def __str__(self):
-        return "delayTime = {}, impulse = {}\n" \
-               "rotation = {rotation.rotationAroundX}, " \
-                          "{rotation.rotationAroundY}, " \
-                          "{rotation.rotationAroundZ}" \
-               "\n".format(self.delayTime, self.impulse, rotation=self.rotate)
-    def __repr__(self):
-        return self.__str__()
-
-    def copy(self):
-        return Part_of_flight_plan(self.delayTime, self.impulse,
-                                   self.rotate.rotationAroundX,
-                                   self.rotate.rotationAroundY,
-                                   self.rotate.rotationAroundZ)
-
 def parse_input_code(code):
     commands = [command.strip() for command in code.split('\n') if command.strip()]
     flight_plan = []  # list of part_of_flight_plan
-    part_of_flight_plan = Part_of_flight_plan()
+    part_of_flight_plan = create_part_of_flight_plan()  # Part_of_flight_plan()
 
     # if True then current params are actual to the end of the flight
     there_is_commands_without_delay = False
@@ -150,19 +168,18 @@ def parse_input_code(code):
         splited_command = command.split()  # has form [action, value] in correct case
         if len(splited_command) == 2:
             action = splited_command[0]
-            splited_command[1] = float(splited_command[1])
             if action == 'engine':
-                part_of_flight_plan.impulse = splited_command[1]
+                part_of_flight_plan.impulseValue = float(splited_command[1])
             elif action == 'torqueX':
-                part_of_flight_plan.rotate.rotationAroundX = splited_command[1]
+                part_of_flight_plan.rotateValue.rotationAroundX = float(splited_command[1])
             elif action == 'torqueY':
-                part_of_flight_plan.rotate.rotationAroundY = splited_command[1]
+                part_of_flight_plan.rotateValue.rotationAroundY = float(splited_command[1])
             elif action == 'torqueZ':
-                part_of_flight_plan.rotate.rotationAroundZ = splited_command[1]
+                part_of_flight_plan.rotateValue.rotationAroundZ = float(splited_command[1])
             elif action == 'delay':
                 there_is_commands_without_delay = False
-                part_of_flight_plan.delayTime = splited_command[1]
-                flight_plan.append(part_of_flight_plan.copy())
+                part_of_flight_plan.delayTime = int(splited_command[1])
+                flight_plan.append(copy_part_of_flight_plan(part_of_flight_plan))
             else:
                 raise ValueError("Incorrect input set of commands")
         else:
@@ -174,3 +191,4 @@ def parse_input_code(code):
 
     #print(flight_plan)
     return flight_plan
+
