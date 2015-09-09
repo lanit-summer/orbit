@@ -1,6 +1,5 @@
 #include "orbit.h"
 #include <iostream>
-#include <algorithm>
 #include <cmath>
 using namespace std;
 
@@ -23,7 +22,6 @@ quaternion createQuaternion(vec speed)
     s1 = sin(speed.z / 2),
     s2 = sin(speed.y / 2),
     s3 = sin(speed.x / 2);
-    
     quaternion q = {c1 * c2 * c3 - s1 * s2 * s3, s1 * s2 * c3 + c1 * c2 * s3,
         c1 * s2 * c3 - s1 * c2 * s3, s1 * c2 * c3 + c1 * s2 * s3};
     return q;
@@ -85,7 +83,7 @@ vec transformVec(vec v, quaternion q)
 vec gravityForce(vec r, double m)
 {
     double G = 6.67385 * pow(10.0, -20),
-           mEarth = 5.9742 * pow(10.0, 24);
+    mEarth = 5.9742 * pow(10.0, 24);
     double R = pow(scalar(r), 3);
     if (R != 0)
     {
@@ -128,15 +126,15 @@ vec angularVelocity(vec g, vec a, vec t, Rotation moment, double quantSizeOfSec)
     z = moment.rotationAroundZ;
     if (x != 0)
     {
-        x = (g.x - a.x - t.x) * quantSizeOfSec /x;
+        x = (g.x - a.x - t.x) * quantSizeOfSec / x;
     }
     if (y != 0)
     {
-        y = (g.y - a.y - t.y) * quantSizeOfSec /y;
+        y = (g.y - a.y - t.y) * quantSizeOfSec / y;
     }
     if (z != 0)
     {
-        z = (g.z - a.z - t.z) * quantSizeOfSec /z;
+        z = (g.z - a.z - t.z) * quantSizeOfSec / z;
     }
     vec exit = {x, y, z};
     return exit;
@@ -239,10 +237,10 @@ vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
         double scSpeedFirst = scalar(speedFirst);
         double S = size * size;
         vec exit = {0, 0, 0};
-        vec x = transformVec(sPos.orientation,
-            createQuaternion(angularVelocity(gravityForce(sPos.position, M),
-                aerodynamicForce(airDens(H, temperature(H)), speedFirst, S),
-                tractiveForce(mLevel, specificImpulse, speedFirst), moment, 1.0)));
+        vec x = transformVec(sPos.orientation, createQuaternion(
+            angularVelocity(gravityForce(sPos.position, M),
+            aerodynamicForce(airDens(H, temperature(H)), speedFirst, S),
+            tractiveForce(mLevel, specificImpulse, speedFirst), moment, 1.0)));
         if (M != 0) {
             if (quantSizeOfSec > 0.0)
             {
@@ -289,8 +287,8 @@ vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
     }
 }
 
-vector <Position> computeFlightPlan(ShipPosition initialPosition,
-                                    ShipParams shipParams, Quants quants)
+vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
+                                        ShipParams shipParams, Quants quants)
 {
     double S = pow(shipParams.shipEdgeLength, 2);
     double H = scalar (initialPosition.position);
@@ -300,7 +298,7 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
     double level;
     Rotation moment;
     vec orient = initialPosition.orientation;
-    vector <Position> position(quants.numberOfQuants);
+    vector<ReturnValues> returnValue(quants.numberOfQuants);
     int i;
     int j = 0;
     double count = shipParams.flightPlan[0].delayTime;
@@ -317,6 +315,7 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
                        shipParams.shipMass, fuel, moment,
                        shipParams.impulsePerFuel, shipParams.shipEdgeLength,
                        time, shipParams.maxOverload, shipParams.maxHeating);
+            returnValue[i].speed = sp;
             orient = transformVec(orient, createQuaternion(angularVelocity(
                 gravityForce(initialPosition.position, m),
                 aerodynamicForce(airDens(H, temperature(H)), sp, S),
@@ -343,7 +342,7 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
                 sp.z * time;
                 initialPosition.position = nextH;
                 H = 6378.1;
-                position[i] = initialPosition.position;
+                returnValue[i].position = initialPosition.position;
                 break;
             }
             initialPosition.position = nextH;
@@ -365,11 +364,12 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
                        shipParams.impulsePerFuel, shipParams.shipEdgeLength,
                        quants.quantSizeOfSec, shipParams.maxOverload,
                        shipParams.maxHeating);
+            returnValue[i].speed = sp;
             orient = transformVec(orient, createQuaternion(angularVelocity(
-                gravityForce(initialPosition.position, m),
-                aerodynamicForce(airDens(H, temperature(H)), sp, S),
-                tractiveForce(level, shipParams.impulsePerFuel, sp), moment,
-                    quants.quantSizeOfSec)));
+                        gravityForce(initialPosition.position, m),
+                        aerodynamicForce(airDens(H, temperature(H)), sp, S),
+                        tractiveForce(level, shipParams.impulsePerFuel, sp), moment,
+                            quants.quantSizeOfSec)));
             fuel -= level * quants.quantSizeOfSec;
             m -= level * quants.quantSizeOfSec;
         }
@@ -394,13 +394,13 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
             sp.z * quants.quantSizeOfSec;
             initialPosition.position = nextH;
             H = 6378.1;
-            position[i] = initialPosition.position;
+            returnValue[i].position = initialPosition.position;
             break;
             
         }
         initialPosition.position = nextH;
         H = scalar(initialPosition.position);
-        position[i] = initialPosition.position;
+        returnValue[i].position = initialPosition.position;
         if (count == 0)
         {
             j++;
@@ -412,7 +412,7 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
         int j;
         for (j = i; j < quants.numberOfQuants; j++)
         {
-            position[j] = position[i - 1];
+            returnValue[j].position = returnValue[i - 1].position;
         }
         cout<<"Successful landing!!!"<<endl;
     }
@@ -420,47 +420,10 @@ vector <Position> computeFlightPlan(ShipPosition initialPosition,
     {
         cout<<"Time is over!!!"<<endl;
     }
-    return position;
+    return returnValue;
 }
 
 int main()
 {
-  /*  ShipPosition initialPosition;
-    initialPosition.position.x = 0.0;
-    initialPosition.position.y = 0.0;
-    initialPosition.position.z = 6578.1;
-    initialPosition.orientation.x = 0.0;
-    initialPosition.orientation.y = 0.0;
-    initialPosition.orientation.z = 1.0;
-    initialPosition.speedFirst.x = 0.0;
-    initialPosition.speedFirst.y = 0.0;
-    initialPosition.speedFirst.z = 0.0;
-    ShipParams shipParams;
-    Quants quants;
-    shipParams.shipEdgeLength = 0.001;
-    shipParams.shipMass = 3.0;
-    shipParams.fuelMass = 0.0;
-    shipParams.maxRotation.rotationAroundX = 10.0;
-    shipParams.maxRotation.rotationAroundY = 10.0;
-    shipParams.maxRotation.rotationAroundZ = 10.0;
-    shipParams.maxFuelUsagePerSec = 100.0;
-    shipParams.impulsePerFuel = 20.0;
-    shipParams.maxOverload = 2.0;
-    shipParams.maxHeating = 100.0;
-    quants.quantSizeOfSec = 10;
-    quants.numberOfQuants = 1000;
-    int i;
-    vector<PartOfFlightPlan> abc(100000);
-    shipParams.flightPlan.reserve(100000);
-    for (i = 0; i < 100000; i++)
-    {
-        abc[i].impulseValue = 10.0;
-        abc[i].rotateValue.rotationAroundX = 0.0;
-        abc[i].rotateValue.rotationAroundY = 0.0;
-        abc[i].rotateValue.rotationAroundZ = 0.0;
-        shipParams.flightPlan[i].delayTime = 1.0;
-    }
-    shipParams.flightPlan = abc;
-    vector<Position> result = computeFlightPlan(initialPosition, shipParams, quants); */
     return 0;
 }
