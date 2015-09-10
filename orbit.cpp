@@ -238,9 +238,9 @@ vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
         double S = size * size;
         vec exit = {0, 0, 0};
         vec x = transformVec(sPos.orientation,
-                             createQuaternion(angularVelocity(gravityForce(sPos.position, M),
-                                                              aerodynamicForce(airDens(H, temperature(H)), speedFirst, S),
-                                                              tractiveForce(mLevel, specificImpulse, speedFirst), moment, 1.0)));
+            createQuaternion(angularVelocity(gravityForce(sPos.position, M),
+            aerodynamicForce(airDens(H, temperature(H)), speedFirst, S),
+            tractiveForce(mLevel, specificImpulse, speedFirst), moment, 1.0)));
         if (M != 0) {
             if (quantSizeOfSec > 0.0)
             {
@@ -263,7 +263,7 @@ vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
                 double over = scalar(overload) / g;
                 if (over > maxOverload)
                 {
-                    cout<<"Overload!"<<endl;
+                    cout<<"Overload!"<<endl; //exception
                 }
             }
             else
@@ -271,16 +271,12 @@ vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
                 return speedFirst;
             }
         }
-        else
-        {
-            cout<<"Mass = 0!"<<endl;
-        }
         if (H <= 6523.1)
         {
             double a = aerodynamicHeating(temperature(scalar(sPos.position)), exit);
             if (a > maxHeating)
             {
-                cout<<"Overheating!"<<endl;
+                cout<<"Overheating!"<<endl; //exception
             }
         }
         return exit;
@@ -317,9 +313,9 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
                        time, shipParams.maxOverload, shipParams.maxHeating);
             returnValue[i].speed = sp;
             orient = transformVec(orient, createQuaternion(angularVelocity(
-                                                                           gravityForce(initialPosition.position, m),
-                                                                           aerodynamicForce(airDens(H, temperature(H)), sp, S),
-                                                                           tractiveForce(level, shipParams.impulsePerFuel, sp), moment, time)));
+                gravityForce(initialPosition.position, m),
+                aerodynamicForce(airDens(H, temperature(H)), sp, S),
+                tractiveForce(level, shipParams.impulsePerFuel, sp), moment, time)));
             m -= fuel;
             fuel = 0;
             vec nextH = {initialPosition.position.x +
@@ -353,10 +349,10 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
                        shipParams.impulsePerFuel, shipParams.shipEdgeLength,
                        timeOut, shipParams.maxOverload, shipParams.maxHeating);
             orient = transformVec(orient, createQuaternion(angularVelocity(
-                                                                           gravityForce(initialPosition.position, m),
-                                                                           aerodynamicForce(airDens(H, temperature(H)), sp, S),
-                                                                           tractiveForce(0.0, shipParams.impulsePerFuel, sp), moment, timeOut)));
-            cout<<"Not enough fuel!"<<endl;
+                gravityForce(initialPosition.position, m),
+                aerodynamicForce(airDens(H, temperature(H)), sp, S),
+                tractiveForce(0.0, shipParams.impulsePerFuel, sp), moment, timeOut)));
+            cout<<"Not enough fuel!"<<endl; //exception
         }
         else
         {
@@ -378,10 +374,8 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
             sp.x * quants.quantSizeOfSec, initialPosition.position.y +
             sp.y * quants.quantSizeOfSec, initialPosition.position.z +
             sp.z * quants.quantSizeOfSec};
-        //cout<<scalar(nextH)<<"\n";
         if (scalar(nextH) < 6378.1)
         {
-            cout<<"GO!\n";
             vec way = {sp.x * quants.quantSizeOfSec, sp.y * quants.quantSizeOfSec,
                 sp.z * quants.quantSizeOfSec};
             double cosA = (pow(scalar(way), 2) + pow(H, 2) -
@@ -417,13 +411,12 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
         {
             
             returnValue[j].position = returnValue[i].position;
-            cout<<"Z =  "<<returnValue[j].position.z<<"\n";
         }
-        cout<<"Successful landing!!!"<<endl;
+        cout<<"Successful landing!!!"<<endl; //exception
     }
     else if (i >= quants.numberOfQuants)
     {
-        cout<<"Time is over!!!"<<endl;
+        cout<<"Time is over!!!"<<endl; //exception
     }
     return returnValue;
 }
