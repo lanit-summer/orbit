@@ -1,22 +1,28 @@
 #include <vector>
 
-//вектор положения в пространстве
+//РІРµРєС‚РѕСЂ РїРѕР»РѕР¶РµРЅРёСЏ РІ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ
 struct vec
 {
     double x, y, z;
 };
 
-//вектор вращения в пространстве
+//РєРІР°С‚РµСЂРЅРёРѕРЅ
+struct quaternion
+{
+    double w, x, y, z;
+};
+
+//РІРµРєС‚РѕСЂ РІСЂР°С‰РµРЅРёСЏ РІ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ
 struct Rotation
 {
     double rotationAroundX, rotationAroundY, rotationAroundZ;
 };
 
-typedef vec Orient; //вектор ориентации в пространстве
-typedef vec Position; //вектор положения в пространстве
-typedef Rotation RotationSpeed; //вектор скорости вращения вокруг трех осей
+typedef vec Orient; //РІРµРєС‚РѕСЂ РѕСЂРёРµРЅС‚Р°С†РёРё РІ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ
+typedef vec Position; //РІРµРєС‚РѕСЂ РїРѕР»РѕР¶РµРЅРёСЏ РІ РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ
+typedef Rotation RotationSpeed; //РІРµРєС‚РѕСЂ СЃРєРѕСЂРѕСЃС‚Рё РІСЂР°С‰РµРЅРёСЏ РІРѕРєСЂСѓРі С‚СЂРµС… РѕСЃРµР№
 
-//начальные положение, ориентация и скорость корабля
+//РЅР°С‡Р°Р»СЊРЅС‹Рµ РїРѕР»РѕР¶РµРЅРёРµ, РѕСЂРёРµРЅС‚Р°С†РёСЏ Рё СЃРєРѕСЂРѕСЃС‚СЊ РєРѕСЂР°Р±Р»СЏ
 struct ShipPosition
 {
     Position position;
@@ -24,35 +30,35 @@ struct ShipPosition
     vec speedFirst;
 };
 
-//команды, доступные пользователю
+//РєРѕРјР°РЅРґС‹, РґРѕСЃС‚СѓРїРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
 struct PartOfFlightPlan
 {
-    int delayTime; //время задержки
-    double impulseValue; //уровень массового расхода топлива
-    Rotation rotateValue; //момент вращения вокруг каждой из осей
+    int delayTime; //РІСЂРµРјСЏ Р·Р°РґРµСЂР¶РєРё
+    double impulseValue; //СѓСЂРѕРІРµРЅСЊ РјР°СЃСЃРѕРІРѕРіРѕ СЂР°СЃС…РѕРґР° С‚РѕРїР»РёРІР°
+    Rotation rotateValue; //РјРѕРјРµРЅС‚ РІСЂР°С‰РµРЅРёСЏ РІРѕРєСЂСѓРі РєР°Р¶РґРѕР№ РёР· РѕСЃРµР№
 };
 
-//параметры корабля
+//РїР°СЂР°РјРµС‚СЂС‹ РєРѕСЂР°Р±Р»СЏ
 struct ShipParams
 {
-    double shipEdgeLength; //длина
-    double shipMass; //масса без топлива
-    double fuelMass; //масса топлива
-    Rotation maxRotation; //максимальные моменты вращения
-    double maxFuelUsagePerSec; //максимальный массовый расход топлива
-    double impulsePerFuel; //удельный импульс двигателя
-    std::vector<PartOfFlightPlan> flightPlan; //массив команд
-    double maxOverload; //предельная перегрузка
-    double maxHeating; //максимальный перегрев
+    double shipEdgeLength; //РґР»РёРЅР°
+    double shipMass; //РјР°СЃСЃР° Р±РµР· С‚РѕРїР»РёРІР°
+    double fuelMass; //РјР°СЃСЃР° С‚РѕРїР»РёРІР°
+    Rotation maxRotation; //РјР°РєСЃРёРјР°Р»СЊРЅС‹Рµ РјРѕРјРµРЅС‚С‹ РІСЂР°С‰РµРЅРёСЏ
+    double maxFuelUsagePerSec; //РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РјР°СЃСЃРѕРІС‹Р№ СЂР°СЃС…РѕРґ С‚РѕРїР»РёРІР°
+    double impulsePerFuel; //СѓРґРµР»СЊРЅС‹Р№ РёРјРїСѓР»СЊСЃ РґРІРёРіР°С‚РµР»СЏ
+    std::vector<PartOfFlightPlan> flightPlan; //РјР°СЃСЃРёРІ РєРѕРјР°РЅРґ
+    double maxOverload; //РїСЂРµРґРµР»СЊРЅР°СЏ РїРµСЂРµРіСЂСѓР·РєР°
+    double maxHeating; //РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РїРµСЂРµРіСЂРµРІ
 };
 
 struct Quants
 {
-    int numberOfQuants; //количество отрезков времени
-    double quantSizeOfSec; //размер отрезка в секундах
+    int numberOfQuants; //РєРѕР»РёС‡РµСЃС‚РІРѕ РѕС‚СЂРµР·РєРѕРІ РІСЂРµРјРµРЅРё
+    double quantSizeOfSec; //СЂР°Р·РјРµСЂ РѕС‚СЂРµР·РєР° РІ СЃРµРєСѓРЅРґР°С…
 };
 
-//возвращаемые значения положения и скорости
+//РІРѕР·РІСЂР°С‰Р°РµРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»РѕР¶РµРЅРёСЏ Рё СЃРєРѕСЂРѕСЃС‚Рё
 struct ReturnValues
 {
     Position position;
