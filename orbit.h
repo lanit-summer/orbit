@@ -6,12 +6,6 @@ struct vec
     double x, y, z;
 };
 
-//кватернион
-struct quaternion
-{
-    double w, x, y, z;
-};
-
 //вектор вращения в пространстве
 struct Rotation
 {
