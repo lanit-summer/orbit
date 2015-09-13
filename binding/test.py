@@ -1,5 +1,4 @@
 import orbit_wrap
-import datetime
 
 def first_test():
     init_position = orbit_wrap.create_position(0, 0, 6578.1)
@@ -74,6 +73,3 @@ if __name__ == '__main__':
 
     v1 = orbit_wrap.orbit.vector_of_part_flight_plan(fl_plan_l)
     orbit_wrap.vector_flight_plan_print(v1)
-
-    dt = datetime.datetime(2015, 1, 1)
-    print(dt + datetime.timedelta(seconds=100))
