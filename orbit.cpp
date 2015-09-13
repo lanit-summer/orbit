@@ -275,7 +275,7 @@ vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
 
                 if (over > maxOverload)
                 {
-                    throw "Overload";
+                    throw invalid_argument("Overload");
                 }
             }
             else
@@ -288,7 +288,7 @@ vec speed(vec speedFirst, ShipPosition sPos, double mLevel,
             double a = aerodynamicHeating(temperature(scalar(sPos.position)), exit);
             if (a > maxHeating)
             {
-                throw "Overheating"; 
+                throw invalid_argument("Overheating");
             }
         }
         return exit;
