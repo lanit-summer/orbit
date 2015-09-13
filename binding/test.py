@@ -46,6 +46,7 @@ def first_test():
 
 if __name__ == '__main__':
 
+    # check for correct copying when item is added
     part = orbit_wrap.create_part_of_flight_plan()
     x = []
     x.append(orbit_wrap.copy_part_of_flight_plan(part))
@@ -58,18 +59,22 @@ if __name__ == '__main__':
     orbit_wrap.part_of_flight_print(part)
 
     print()
-    try:
-        print(first_test())
-    except:
-        print("ok")
-    #------------------------------------------------------
 
+    # check parse function for independence from whitespace,
+    # saving values from prev instruction,
+    # automatic adding delay with max flught time
     fl_plan_l = orbit_wrap.parse_input_code('delay   10 \n '
                                             'engine 80 \n torqueX 10 \n torqueY 12 \n torqueZ 3 \n delay 1000 \n'
                                             'engine 10 \n torqueY 70 \n \n    \n  delay 10000 \n'
                                             'torqueZ 50'
     )
 
-
     v1 = orbit_wrap.orbit.vector_of_part_flight_plan(fl_plan_l)
     orbit_wrap.vector_flight_plan_print(v1)
+
+    # check resulting script and c++ exception handling
+    try:
+        script = first_test()
+        print(script)
+    except ValueError as err:
+        print(err)
