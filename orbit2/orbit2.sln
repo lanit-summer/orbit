@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "orbit2", "orbit2\orbit2.vcxproj", "{657575AC-9F22-41D2-8A10-C094D0A59FB5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "te", "te\te.vcxproj", "{3E034C3B-E961-4BA5-8F92-94C8BE23A6B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{657575AC-9F22-41D2-8A10-C094D0A59FB5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{657575AC-9F22-41D2-8A10-C094D0A59FB5}.Debug|Win32.Build.0 = Debug|Win32
+		{657575AC-9F22-41D2-8A10-C094D0A59FB5}.Release|Win32.ActiveCfg = Release|Win32
+		{657575AC-9F22-41D2-8A10-C094D0A59FB5}.Release|Win32.Build.0 = Release|Win32
+		{3E034C3B-E961-4BA5-8F92-94C8BE23A6B7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3E034C3B-E961-4BA5-8F92-94C8BE23A6B7}.Debug|Win32.Build.0 = Debug|Win32
+		{3E034C3B-E961-4BA5-8F92-94C8BE23A6B7}.Release|Win32.ActiveCfg = Release|Win32
+		{3E034C3B-E961-4BA5-8F92-94C8BE23A6B7}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
