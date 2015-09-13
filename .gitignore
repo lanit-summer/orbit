@@ -28,6 +28,7 @@ ipch/
 *.opensdf
 *.sdf
 *.cachefile
+*.o
 
 ## Directory-based project format:
 .idea/
@@ -45,3 +46,4 @@ ipch/
 # .idea/dynamic.xml
 # .idea/uiDesigner.xml
 
+__pycache__/
