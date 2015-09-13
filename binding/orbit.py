@@ -290,6 +290,32 @@ class Quants(_object):
 Quants_swigregister = _orbit.Quants_swigregister
 Quants_swigregister(Quants)
 
+class ReturnValues(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ReturnValues, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ReturnValues, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["position"] = _orbit.ReturnValues_position_set
+    __swig_getmethods__["position"] = _orbit.ReturnValues_position_get
+    if _newclass:
+        position = _swig_property(_orbit.ReturnValues_position_get, _orbit.ReturnValues_position_set)
+    __swig_setmethods__["speed"] = _orbit.ReturnValues_speed_set
+    __swig_getmethods__["speed"] = _orbit.ReturnValues_speed_get
+    if _newclass:
+        speed = _swig_property(_orbit.ReturnValues_speed_get, _orbit.ReturnValues_speed_set)
+
+    def __init__(self):
+        this = _orbit.new_ReturnValues()
+        try:
+            self.this.append(this)
+        except:
+            self.this = this
+    __swig_destroy__ = _orbit.delete_ReturnValues
+    __del__ = lambda self: None
+ReturnValues_swigregister = _orbit.ReturnValues_swigregister
+ReturnValues_swigregister(ReturnValues)
+
 
 def computeFlightPlan(initialPosition, shipParams, quants):
     return _orbit.computeFlightPlan(initialPosition, shipParams, quants)
@@ -584,118 +610,118 @@ class vector_of_part_flight_plan(_object):
 vector_of_part_flight_plan_swigregister = _orbit.vector_of_part_flight_plan_swigregister
 vector_of_part_flight_plan_swigregister(vector_of_part_flight_plan)
 
-class vector_of_position(_object):
+class vector_of_return_values(_object):
     __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, vector_of_position, name, value)
+    __setattr__ = lambda self, name, value: _swig_setattr(self, vector_of_return_values, name, value)
     __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, vector_of_position, name)
+    __getattr__ = lambda self, name: _swig_getattr(self, vector_of_return_values, name)
     __repr__ = _swig_repr
 
     def iterator(self):
-        return _orbit.vector_of_position_iterator(self)
+        return _orbit.vector_of_return_values_iterator(self)
     def __iter__(self):
         return self.iterator()
 
     def __nonzero__(self):
-        return _orbit.vector_of_position___nonzero__(self)
+        return _orbit.vector_of_return_values___nonzero__(self)
 
     def __bool__(self):
-        return _orbit.vector_of_position___bool__(self)
+        return _orbit.vector_of_return_values___bool__(self)
 
     def __len__(self):
-        return _orbit.vector_of_position___len__(self)
+        return _orbit.vector_of_return_values___len__(self)
 
     def pop(self):
-        return _orbit.vector_of_position_pop(self)
+        return _orbit.vector_of_return_values_pop(self)
 
     def __getslice__(self, i, j):
-        return _orbit.vector_of_position___getslice__(self, i, j)
+        return _orbit.vector_of_return_values___getslice__(self, i, j)
 
     def __setslice__(self, *args):
-        return _orbit.vector_of_position___setslice__(self, *args)
+        return _orbit.vector_of_return_values___setslice__(self, *args)
 
     def __delslice__(self, i, j):
-        return _orbit.vector_of_position___delslice__(self, i, j)
+        return _orbit.vector_of_return_values___delslice__(self, i, j)
 
     def __delitem__(self, *args):
-        return _orbit.vector_of_position___delitem__(self, *args)
+        return _orbit.vector_of_return_values___delitem__(self, *args)
 
     def __getitem__(self, *args):
-        return _orbit.vector_of_position___getitem__(self, *args)
+        return _orbit.vector_of_return_values___getitem__(self, *args)
 
     def __setitem__(self, *args):
-        return _orbit.vector_of_position___setitem__(self, *args)
+        return _orbit.vector_of_return_values___setitem__(self, *args)
 
     def append(self, x):
-        return _orbit.vector_of_position_append(self, x)
+        return _orbit.vector_of_return_values_append(self, x)
 
     def empty(self):
-        return _orbit.vector_of_position_empty(self)
+        return _orbit.vector_of_return_values_empty(self)
 
     def size(self):
-        return _orbit.vector_of_position_size(self)
+        return _orbit.vector_of_return_values_size(self)
 
     def clear(self):
-        return _orbit.vector_of_position_clear(self)
+        return _orbit.vector_of_return_values_clear(self)
 
     def swap(self, v):
-        return _orbit.vector_of_position_swap(self, v)
+        return _orbit.vector_of_return_values_swap(self, v)
 
     def get_allocator(self):
-        return _orbit.vector_of_position_get_allocator(self)
+        return _orbit.vector_of_return_values_get_allocator(self)
 
     def begin(self):
-        return _orbit.vector_of_position_begin(self)
+        return _orbit.vector_of_return_values_begin(self)
 
     def end(self):
-        return _orbit.vector_of_position_end(self)
+        return _orbit.vector_of_return_values_end(self)
 
     def rbegin(self):
-        return _orbit.vector_of_position_rbegin(self)
+        return _orbit.vector_of_return_values_rbegin(self)
 
     def rend(self):
-        return _orbit.vector_of_position_rend(self)
+        return _orbit.vector_of_return_values_rend(self)
 
     def pop_back(self):
-        return _orbit.vector_of_position_pop_back(self)
+        return _orbit.vector_of_return_values_pop_back(self)
 
     def erase(self, *args):
-        return _orbit.vector_of_position_erase(self, *args)
+        return _orbit.vector_of_return_values_erase(self, *args)
 
     def __init__(self, *args):
-        this = _orbit.new_vector_of_position(*args)
+        this = _orbit.new_vector_of_return_values(*args)
         try:
             self.this.append(this)
         except:
             self.this = this
 
     def push_back(self, x):
-        return _orbit.vector_of_position_push_back(self, x)
+        return _orbit.vector_of_return_values_push_back(self, x)
 
     def front(self):
-        return _orbit.vector_of_position_front(self)
+        return _orbit.vector_of_return_values_front(self)
 
     def back(self):
-        return _orbit.vector_of_position_back(self)
+        return _orbit.vector_of_return_values_back(self)
 
     def assign(self, n, x):
-        return _orbit.vector_of_position_assign(self, n, x)
+        return _orbit.vector_of_return_values_assign(self, n, x)
 
     def resize(self, *args):
-        return _orbit.vector_of_position_resize(self, *args)
+        return _orbit.vector_of_return_values_resize(self, *args)
 
     def insert(self, *args):
-        return _orbit.vector_of_position_insert(self, *args)
+        return _orbit.vector_of_return_values_insert(self, *args)
 
     def reserve(self, n):
-        return _orbit.vector_of_position_reserve(self, n)
+        return _orbit.vector_of_return_values_reserve(self, n)
 
     def capacity(self):
-        return _orbit.vector_of_position_capacity(self)
-    __swig_destroy__ = _orbit.delete_vector_of_position
+        return _orbit.vector_of_return_values_capacity(self)
+    __swig_destroy__ = _orbit.delete_vector_of_return_values
     __del__ = lambda self: None
-vector_of_position_swigregister = _orbit.vector_of_position_swigregister
-vector_of_position_swigregister(vector_of_position)
+vector_of_return_values_swigregister = _orbit.vector_of_return_values_swigregister
+vector_of_return_values_swigregister(vector_of_return_values)
 
 # This file is compatible with both classic and new-style classes.
 

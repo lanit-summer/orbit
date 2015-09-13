@@ -1,3 +1,4 @@
+import datetime
 import orbit
 
 # make as param in UI
@@ -133,13 +134,6 @@ def vector_of_vec_print(vector):
                 rotation_print(item)
 
 
-def vector_of_vec_to_str(vector):
-    result_string = ''
-    for vec in vector:
-        result_string += '{vec.x} {vec.y} {vec.z}\n'.format(vec=vec)
-    return result_string
-
-
 def part_of_flight_print(part_of_flight_plan):
     print(part_of_flight_plan.delayTime)
     print(part_of_flight_plan.impulseValue)
@@ -151,13 +145,20 @@ def vector_flight_plan_print(vector):
         part_of_flight_print(part_flight_plan)
         print()
 
+
+def vec_to_str(vec):
+    return '{vec.x} {vec.y} {vec.z}'.format(vec=vec)
+
+
+def return_value_to_str(return_value):
+    return vec_to_str(return_value.speed) + ' ' + vec_to_str(return_value.position)
+
+
 Orient = Position = orbit.vec
 create_orient = create_position = create_vec
 
 
 def parse_input_code(code):
-    if not code:
-        raise ValueError("List of command is empty")
     commands = [command.strip() for command in code.split('\n') if command.strip()]
     flight_plan = []  # list of part_of_flight_plan
     part_of_flight_plan = create_part_of_flight_plan()  # Part_of_flight_plan()
@@ -194,3 +195,46 @@ def parse_input_code(code):
     #print(flight_plan)
     return flight_plan
 
+
+def julian_day(year, month=1, day=1):
+        """Given a proleptic Gregorian calendar date, return a Julian day int."""
+        janfeb = month < 3
+        return (day
+                + 1461 * (year + 4800 - janfeb) // 4
+                + 367 * (month - 2 + janfeb * 12) // 12
+                - 3 * ((year + 4900 - janfeb) // 100) // 4
+                - 32075)
+
+
+DAY_S = 86400.0
+
+def julian_date(year, month=1, day=1, hour=0, minute=0, second=0.0):
+    """Given a proleptic Gregorian calendar date, return a Julian date float."""
+    jd = julian_day(year, month, day) - 0.5 + (
+        second + minute * 60.0 + hour * 3600.0) / DAY_S
+    return round(jd, 5)
+
+
+def generate_celestia_script(vector_of_ret_val, quant_size):
+    """
+    :param vector_of_ret_val: vector of ReturnTypes
+    :param quant_size: number sec in quant
+    :return: object str with script for celestia
+    """
+
+    current_dt = datetime.datetime(2015, 1, 1)
+    delta = datetime.timedelta(seconds=quant_size)
+
+    script = ''
+    for ret_value in vector_of_ret_val:
+        script += '{datetime} {value}\n'.format(datetime=julian_date(current_dt.year,
+                                                                     current_dt.month,
+                                                                     current_dt.day,
+                                                                     current_dt.hour,
+                                                                     current_dt.minute,
+                                                                     current_dt.second),
+                                                value=return_value_to_str(ret_value)
+        )
+        current_dt += delta
+
+    return script

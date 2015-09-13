@@ -1,4 +1,5 @@
 import orbit_wrap
+import datetime
 
 def first_test():
     init_position = orbit_wrap.create_position(0, 0, 6578.1)
@@ -40,7 +41,8 @@ def first_test():
 
     flight_plan = orbit_wrap.orbit.computeFlightPlan(initial_position, ship_params, quants)
 
-    return orbit_wrap.vector_of_vec_to_str(flight_plan)
+    return orbit_wrap.generate_celestia_script(flight_plan, quants.quantSizeOfSec)
+    #return orbit_wrap.vector_of_vec_to_str(flight_plan)
 
 
 if __name__ == '__main__':
@@ -57,8 +59,10 @@ if __name__ == '__main__':
     orbit_wrap.part_of_flight_print(part)
 
     print()
-    print()
-    print(first_test())
+    try:
+        print(first_test())
+    except:
+        print("ok")
     #------------------------------------------------------
 
     fl_plan_l = orbit_wrap.parse_input_code('delay   10 \n '
@@ -67,6 +71,9 @@ if __name__ == '__main__':
                                             'torqueZ 50'
     )
 
-    v1 = orbit_wrap.orbit.vector_of_part_flight_plan(fl_plan_l)
 
+    v1 = orbit_wrap.orbit.vector_of_part_flight_plan(fl_plan_l)
     orbit_wrap.vector_flight_plan_print(v1)
+
+    dt = datetime.datetime(2015, 1, 1)
+    print(dt + datetime.timedelta(seconds=100))
