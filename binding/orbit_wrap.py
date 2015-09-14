@@ -151,7 +151,7 @@ def vec_to_str(vec):
 
 
 def return_value_to_str(return_value):
-    return vec_to_str(return_value.speed) + ' ' + vec_to_str(return_value.position)
+    return vec_to_str(return_value.position) + ' ' + vec_to_str(return_value.speed)
 
 
 Orient = Position = orbit.vec

@@ -1,7 +1,7 @@
 import orbit_wrap
 
 def first_test():
-    init_position = orbit_wrap.create_position(0, 0, 6578.1)
+    init_position = orbit_wrap.create_position(0, 0, 32650.1)
     init_orientation = orbit_wrap.create_orient(0, 0, 1)
     speed_first = orbit_wrap.create_vec(0, 0, 0)
 
@@ -9,7 +9,7 @@ def first_test():
                                                        init_orientation,
                                                        speed_first)
 
-    quants = orbit_wrap.create_quants(10, 10)
+    quants = orbit_wrap.create_quants(10, 1000)
 
     ship_edge_length = 0.001
     ship_mass = 3
@@ -17,8 +17,8 @@ def first_test():
     max_rotation = orbit_wrap.create_rotation(10, 10, 10)
     max_fuel_usage_per_second = 100
     impulse_per_fuel = 20
-    max_overload = 2
-    max_heating = 100
+    max_overload = 200000
+    max_heating = 100000000
 
     rot = orbit_wrap.create_rotation(0, 0, 0)
     parts_of_flight_plan = [orbit_wrap.create_part_of_flight_plan(1, 0, rot) for i in range(100000)]
@@ -75,6 +75,7 @@ if __name__ == '__main__':
     # check resulting script and c++ exception handling
     try:
         script = first_test()
-        print(script)
+        with open('script.xyzw', 'w') as file:
+            file.write(script)
     except ValueError as err:
         print(err)
