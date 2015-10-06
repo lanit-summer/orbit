@@ -75,7 +75,7 @@ if __name__ == '__main__':
     # check resulting script and c++ exception handling
     try:
         script = first_test()
-        with open('script.xyzw', 'w') as file:
+        with open('script.xyzv', 'w') as file:
             file.write(script)
     except ValueError as err:
         print(err)
