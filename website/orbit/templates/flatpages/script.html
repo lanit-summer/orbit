@@ -1,0 +1,44 @@
+<html>
+    <head>
+        {% load staticfiles %}
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css" />
+        <title>
+            {{ flatpage.title }}
+        </title>
+    </head>
+    <body>
+        {% load staticfiles %}
+        <div id="header">	
+                <table cellpadding="10" cellspacing="0" width="1000">
+                    <tr>
+                        <td width="150"><img src="/static/img/logo.png" width="150"></td>
+                        <td width="850"><div class="logo">О Р Б И Т А</div></td>
+                    </tr>
+                </table>	
+        </div>
+        <div id="content">
+            <table cellpadding="0" cellspacing="15" width="1000">
+                <tr>
+                    <td align="center">
+                        <span class="tah20 title">Скрипт</span><br><br>
+                        <textarea name="script" cols="100" rows="30" readonly>
+{{ script }}
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <table cellpadding="0" cellspacing="0" width="500">
+                            <tr>
+                                <td><a href="get_file" class="download"><input type="submit" value="СКАЧАТЬ"/></a></td>
+                                <td align="right"><form action="/home/" style="margin: 0;"><input type="submit" value="НА ГЛАВНУЮ"/></form></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        {{ flatpage.content }}
+    </body>
+</html>

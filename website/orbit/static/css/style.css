@@ -1,4 +1,4 @@
-﻿/* Основные */
+/* Основные */
 
 body {
     margin: 0px;
@@ -64,6 +64,9 @@ body {
     text-align: left;
 }
 
+.download {
+    text-decoration: none;
+}
 .yellow {color: #ffff00;}
 .lblue {color: #00fffb;}
 
@@ -82,7 +85,7 @@ input[type="text"] {
 
 input[type="submit"] {
     background: transparent !important;
-    border: 2px solid #ff0000;
+    border: 2px solid #fff;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -96,12 +99,12 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background: #ff0000 !important;
+    background: #0000ff !important;
 }
 
 input[type="button"] {
     background: transparent !important;
-    border: 2px solid #ff0000;
+    border: 2px solid #fff;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -115,7 +118,7 @@ input[type="button"] {
 }
 
 input[type="button"]:hover {
-    background: #ff0000 !important;
+    background: #0000ff !important;
 }
 
 @font-face {

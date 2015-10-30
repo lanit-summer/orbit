@@ -1,0 +1,14 @@
+<html>
+	<head>
+		{% load staticfiles %}
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css" />
+		<title>
+			{{ flatpage.title }}
+		</title>
+	</head>
+	<body>
+		{% load staticfiles %} 
+		{{ flatpage.content }}
+	</body>
+</html>
