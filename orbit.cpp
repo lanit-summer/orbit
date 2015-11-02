@@ -9,6 +9,9 @@ double scalar (vec t)
     return res;
 }
 
+struct quaternion {
+    double w, x, y, z;
+};
 quaternion createQuaternion(vec speed)
 {
     double c1 = cos(speed.z / 2),
