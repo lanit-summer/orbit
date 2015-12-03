@@ -1,10 +1,18 @@
 package orbit.model;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import orbit.view.Celestia;
+
 public class Ship {
 
 	private ShipParams params;
 	private ShipPosition initial;
 	private Quants quants;
+	private Celestia celestia;
 
 	public Ship(){
 		this.params = new ShipParams();
@@ -65,10 +73,14 @@ public class Ship {
 		this.quants.setQuantSizeOfSec(quantsize);
 	}
 
-	public vector_of_return_values makeTrajectory(){
+	public void setCelestia(Celestia cel){
+		this.celestia = cel;
+	}
+
+	public void makeTrajectory(){
 		vector_of_return_values result = orbit.computeFlightPlan(initial, params, quants);
-		print_result(result);
-		return result;
+		createXYZVFile(result);
+		runCelestia();
 	}
 
 	public void setCommands(String listOfCommands){
@@ -147,13 +159,55 @@ public class Ship {
 		return newRot;
 	}
 
-	public void print_result(vector_of_return_values result){
-		for (int i=0;i<result.size();i++){
-			ReturnValues rv = result.get(i);
-			vec pos = rv.getPosition();
-			System.out.println(pos.getX()+" "+pos.getY()+" "+pos.getZ());
+	public void createXYZVFile(vector_of_return_values result) {
+		GregorianCalendar calen = new GregorianCalendar(2015, 1, 1, 0, 0, 0);
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(celestia.getPathToTrajectory());
+		}catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		for (int i=0;i<quants.getNumberOfQuants();i++){
+
+			double date = julianDate(calen);
+			vec speed = result.get(i).getSpeed();
+			vec position = result.get(i).getPosition();
+			String line = String.format(Locale.US, "%f %f %f %f %f %f %f \n",
+					date,position.getX(),speed.getX(),
+					position.getY(),speed.getY(),
+					position.getZ(),speed.getZ());
+			writer.write(line);
+			calen.add(GregorianCalendar.SECOND, (int)quants.getQuantSizeOfSec());
+		}
+		writer.close();
+	}
+
+	private void runCelestia() {
+		try {
+			Runtime.getRuntime().exec("celestia");
+		}
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
+
+	public double julianDate(GregorianCalendar greg){
+
+		int year = greg.get(GregorianCalendar.YEAR);
+		int month = greg.get(GregorianCalendar.MONTH);
+		int day = greg.get(GregorianCalendar.DAY_OF_MONTH);
+		int hour = greg.get(GregorianCalendar.HOUR);
+		int minute = greg.get(GregorianCalendar.MINUTE);
+		int seconds = greg.get(GregorianCalendar.SECOND);
+
+		int a = (14 - month)/12;
+		int y = year + 4800 - a;
+		int m = month + 12* a -3;
+		long jdn = day + (153*m +2)/5 + 365*y + y/4 - y/100 + y/400 - 32045;
+		double jd = (hour*3600 + minute*60 + seconds)/86400.0;
+		return jdn+jd;
+	}
+
 }
 
 

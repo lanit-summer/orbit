@@ -4,17 +4,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
-
-
-
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import orbit.model.Ship;
-
+import javafx.application.Platform;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
 
 public class gameController {
-
-
-
 	@FXML
 	private TextField shipEdgeLength;
 	@FXML
@@ -59,16 +61,23 @@ public class gameController {
 	private TextField quantsize;
 	@FXML
 	private TextField quantnumber;
-
-
+	@FXML
+	private Stage parent;
+	@FXML
+	private BorderPane border;
 	private Ship ship;
+	private Celestia celestia;
+
 
 	public void handleGetTrajectory(){
+
 		if (isValid()){
-			this.ship = new Ship(Double.parseDouble(this.shipEdgeLength.getText()),
-				Double.parseDouble(this.shipMass.getText()),Double.parseDouble(this.fuelMass.getText()),
-				Double.parseDouble(this.maxFuelUsagePerSec.getText()),Double.parseDouble(this.impulsePerFuel.getText()),
-				Double.parseDouble(this.maxOverload.getText()),Double.parseDouble(this.maxHeating.getText()));
+			this.ship = new Ship();
+
+			this.ship.setParams(Double.parseDouble(this.shipEdgeLength.getText()),
+					Double.parseDouble(this.shipMass.getText()),Double.parseDouble(this.fuelMass.getText()),
+					Double.parseDouble(this.maxFuelUsagePerSec.getText()),Double.parseDouble(this.impulsePerFuel.getText()),
+					Double.parseDouble(this.maxOverload.getText()),Double.parseDouble(this.maxHeating.getText()));
 
 			this.ship.setInitial(Double.parseDouble(this.initialX.getText()),
 				Double.parseDouble(this.initialY.getText()),
@@ -84,23 +93,64 @@ public class gameController {
 
 			this.ship.setQuants(Integer.parseInt(this.quantsize.getText()), Integer.parseInt(this.quantnumber.getText()));
 
-			if(commands.getText() != null || commands.getText().length() != 0){
-				String cmd =  commands.getText().replace('\n', ',').replace(' ', '=');
-				System.out.println(cmd);
-				this.ship.setCommands(cmd);
+			this.ship.setFirstSpeed(0.0, 0.0, 0.0);
+
+			if(commands.getText() != null || commands.getText().length() != 0){;
+				this.ship.setCommands(commands.getText());
 			}
-
+			getCelestiaPath();
+			this.ship.setCelestia(celestia);
 			this.ship.makeTrajectory();
-
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Траетория готова");
-	        alert.setHeaderText("Расположена в файле trajectory.xyzv");
+	        alert.setHeaderText("Расположена в файле orbit.xyzv");
 	        alert.showAndWait();
-
 		}
 
 	}
 
+	public void setCelestiaPath(){
+		Stage stage = (Stage) border.getScene().getWindow();
+		DirectoryChooser chooser = new DirectoryChooser();
+		chooser.setTitle("Путь к Celestia");
+		String celPath = chooser.showDialog(stage).getAbsolutePath();
+		celestia = new Celestia();
+		celestia.setPath(celPath);
+		if(System.getProperty("os.name").equals("Linux")){
+			celestia.setPathToTrajectory(celPath+"/extras-standard/Orbit-test/data/orbit.xyzv");
+		}
+		else {
+			celestia.setPathToTrajectory(celPath+"/extras/Orbit-test/data/orbit.xyzv");
+		}
+		try {
+			File file = new File("data/settings.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Celestia.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			jaxbMarshaller.marshal(celestia, file);
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	public void getCelestiaPath(){
+		try {
+
+			File file = new File("data/settings.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Celestia.class);
+
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+		    celestia = (Celestia) jaxbUnmarshaller.unmarshal(file);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void onExit(){
+		Platform.exit();
+	}
 
 	public void setTest(){
 		initialX.setText("0");
@@ -126,9 +176,9 @@ public class gameController {
 		quantsize.setText("10");
 		quantnumber.setText("10");
 
-
+		commands.setText("delay 10\nengine 80\ntorqueX 10\ntorqueY 12\ntorqueZ 3\ndelay 1000\nengine 10\ntorqueY 70\ndelay 10000\ntorqueZ 50");
 	}
-	
+
 	private boolean isValid(){
 		String errorMessage ="";
 		if (shipEdgeLength.getText() == null || shipEdgeLength.getText().length() == 0) {
@@ -206,5 +256,4 @@ public class gameController {
 
         }
 	}
-	
 }
