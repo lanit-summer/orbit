@@ -160,7 +160,7 @@ public class Ship {
 	}
 
 	public void createXYZVFile(vector_of_return_values result) {
-		GregorianCalendar calen = new GregorianCalendar(2015, 1, 1, 0, 0, 0);
+		GregorianCalendar calen = new GregorianCalendar(2014, 12, 31, 12, 0, 0);
 		PrintWriter writer = null;
 		try {
 			writer = new PrintWriter(celestia.getPathToTrajectory());
@@ -173,9 +173,8 @@ public class Ship {
 			vec speed = result.get(i).getSpeed();
 			vec position = result.get(i).getPosition();
 			String line = String.format(Locale.US, "%f %f %f %f %f %f %f \n",
-					date,position.getX(),speed.getX(),
-					position.getY(),speed.getY(),
-					position.getZ(),speed.getZ());
+					date,position.getX(),position.getY(),position.getZ(),
+					speed.getX(),speed.getY(),speed.getZ());
 			writer.write(line);
 			calen.add(GregorianCalendar.SECOND, (int)quants.getQuantSizeOfSec());
 		}
@@ -196,7 +195,7 @@ public class Ship {
 		int year = greg.get(GregorianCalendar.YEAR);
 		int month = greg.get(GregorianCalendar.MONTH);
 		int day = greg.get(GregorianCalendar.DAY_OF_MONTH);
-		int hour = greg.get(GregorianCalendar.HOUR);
+		int hour = greg.get(GregorianCalendar.HOUR_OF_DAY);
 		int minute = greg.get(GregorianCalendar.MINUTE);
 		int seconds = greg.get(GregorianCalendar.SECOND);
 

@@ -155,7 +155,7 @@ public class gameController {
 	public void setTest(){
 		initialX.setText("0");
 		initialY.setText("0");
-		initialZ.setText("6578.1");
+		initialZ.setText("32650.1");
 
 		orientationX.setText("0");
 		orientationY.setText("0");
@@ -164,19 +164,19 @@ public class gameController {
 		shipEdgeLength.setText("0.001");
 		shipMass.setText("3.0");
 		fuelMass.setText("10.0");
-		maxFuelUsagePerSec.setText("100.0");
-		impulsePerFuel.setText("20.0");
-		maxOverload.setText("2.0");
-		maxHeating.setText("100.0");
+		maxFuelUsagePerSec.setText("100");
+		impulsePerFuel.setText("20");
+		maxOverload.setText("200000");
+		maxHeating.setText("100000000");
 
 		maxRotationX.setText("10.0");
 		maxRotationY.setText("10.0");
 		maxRotationZ.setText("10.0");
 
-		quantsize.setText("10");
+		quantsize.setText("1000");
 		quantnumber.setText("10");
 
-		commands.setText("delay 10\nengine 80\ntorqueX 10\ntorqueY 12\ntorqueZ 3\ndelay 1000\nengine 10\ntorqueY 70\ndelay 10000\ntorqueZ 50");
+		commands.setText("delay 100000");
 	}
 
 	private boolean isValid(){
