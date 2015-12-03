@@ -128,11 +128,14 @@ public class gameController {
 
 
 	}
-
+	
 	private boolean isValid(){
 		String errorMessage ="";
 		if (shipEdgeLength.getText() == null || shipEdgeLength.getText().length() == 0) {
 	           errorMessage += "Не указана длина!\n";
+		}
+		if (Double.parseDouble(shipEdgeLength.getText())>100000000){
+			   errorMessage += "Длина должна быть меньше 100000000";
 		}
 		if (shipMass.getText() == null || shipMass.getText().length() == 0) {
 	           errorMessage += "Не указана масса!\n";
@@ -143,8 +146,14 @@ public class gameController {
 		if (maxFuelUsagePerSec.getText() == null || maxFuelUsagePerSec.getText().length() == 0) {
 	           errorMessage += "Не указан максимальный расход топлива!\n";
 		}
+		if (Double.parseDouble(maxFuelUsagePerSec.getText())>1000){
+			   errorMessage += "Массовый расход должен быть меньше 1000";
+		}
 		if (impulsePerFuel.getText() == null || impulsePerFuel.getText().length() == 0) {
 	           errorMessage += "Не указан удельный импульс двигателя!\n";
+		}
+		if (Double.parseDouble(impulsePerFuel.getText())>10000){
+			   errorMessage += "Удельный импульс должен быть меньше 10000";
 		}
 		if (maxOverload.getText() == null || maxOverload.getText().length() == 0) {
 	           errorMessage += "Не указана предельная нагрузка!\n";
@@ -157,6 +166,11 @@ public class gameController {
 			orientationZ.getText() == null || orientationZ.getText().length() == 0) {
 		       errorMessage += "Не указана ориентация в пространстве!\n";
 		}
+		if (Double.parseDouble(orientationX.getText())>360 ||
+			Double.parseDouble(orientationY.getText())>360 ||
+			Double.parseDouble(orientationZ.getText())>360){
+				errorMessage += "Угол должен быть меньше 360";
+		}
 		if (initialX.getText() == null || initialX.getText().length() == 0 ||
 			initialY.getText() == null || initialY.getText().length() == 0 ||
 			initialZ.getText() == null || initialZ.getText().length() == 0) {
@@ -165,12 +179,21 @@ public class gameController {
 		if (maxRotationX.getText() == null || maxRotationX.getText().length() == 0 ||
 			maxRotationY.getText() == null || maxRotationY.getText().length() == 0 ||
 			maxRotationZ.getText() == null || maxRotationZ.getText().length() == 0) {
-				   errorMessage += "Не указан максимальный момент вращения!\n";
+			   errorMessage += "Не указан максимальный момент вращения!\n";
+		}
+		if (Double.parseDouble(maxRotationX.getText())>1000 ||
+			Double.parseDouble(maxRotationY.getText())>1000 ||
+			Double.parseDouble(maxRotationZ.getText())>1000){
+				errorMessage += "Момент должен быть меньше 1000";
 		}
 		if (quantsize.getText() == null || quantsize.getText().length() == 0 ||
 			quantnumber.getText()==null || quantnumber.getText().length() == 0){
-				errorMessage += "Не указан квант!\n";
+			   errorMessage += "Не указан квант!\n";
 			}
+		int secondsInDay = 86400;
+		if (Integer.parseInt(quantsize.getText())*Integer.parseInt(quantnumber.getText())>secondsInDay){
+			   errorMessage += "Симуляция должна быть менее одного дня";
+		}
 		if (errorMessage.length() == 0) {
             return true;
         } else {
@@ -183,4 +206,5 @@ public class gameController {
 
         }
 	}
+	
 }
