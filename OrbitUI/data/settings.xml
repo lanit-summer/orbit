@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<celestia>
+    <path>/usr/share/celestia</path>
+    <pathToTrajectory>/usr/share/celestia/extras-standard/Orbit-test/data/orbit.xyzv</pathToTrajectory>
+</celestia>
