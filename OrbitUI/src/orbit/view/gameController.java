@@ -44,11 +44,11 @@ public class gameController {
 	@FXML
 	private TextField orientationZ;
 	@FXML
-	private TextField rotationX;
+	private TextField speedFirstX;
 	@FXML
-	private TextField rotationY;
+	private TextField speedFirstY;
 	@FXML
-	private TextField rotationZ;
+	private TextField speedFirstZ;
 	@FXML
 	private TextField maxRotationX;
 	@FXML
@@ -93,7 +93,9 @@ public class gameController {
 
 			this.ship.setQuants(Integer.parseInt(this.quantsize.getText()), Integer.parseInt(this.quantnumber.getText()));
 
-			this.ship.setFirstSpeed(0.0, 0.0, 0.0);
+			this.ship.setFirstSpeed(Double.parseDouble(this.speedFirstX.getText()),
+				Double.parseDouble(this.speedFirstY.getText()),
+				Double.parseDouble(this.speedFirstZ.getText()));
 
 			if(commands.getText() != null || commands.getText().length() != 0){;
 				this.ship.setCommands(commands.getText());
@@ -161,6 +163,10 @@ public class gameController {
 		orientationY.setText("0");
 		orientationZ.setText("1");
 
+		speedFirstX.setText("0");
+		speedFirstY.setText("0");
+		speedFirstZ.setText("0");
+
 		shipEdgeLength.setText("0.001");
 		shipMass.setText("3.0");
 		fuelMass.setText("10.0");
@@ -224,18 +230,31 @@ public class gameController {
 		if (initialX.getText() == null || initialX.getText().length() == 0 ||
 			initialY.getText() == null || initialY.getText().length() == 0 ||
 			initialZ.getText() == null || initialZ.getText().length() == 0) {
-			   errorMessage += "Не указано положение в пространстве!\n";
+			    errorMessage += "Не указано положение в пространстве!\n";
 		}
 		if (maxRotationX.getText() == null || maxRotationX.getText().length() == 0 ||
 			maxRotationY.getText() == null || maxRotationY.getText().length() == 0 ||
 			maxRotationZ.getText() == null || maxRotationZ.getText().length() == 0) {
-			   errorMessage += "Не указан максимальный момент вращения!\n";
+			    errorMessage += "Не указан максимальный момент вращения!\n";
 		}
 		if (Double.parseDouble(maxRotationX.getText())>1000 ||
 			Double.parseDouble(maxRotationY.getText())>1000 ||
 			Double.parseDouble(maxRotationZ.getText())>1000){
 				errorMessage += "Момент должен быть меньше 1000";
 		}
+		if (speedFirstX.getText() == null || speedFirstX.getText().length() == 0 ||
+				speedFirstY.getText() == null || speedFirstY.getText().length() == 0 ||
+				speedFirstZ.getText() == null || speedFirstZ.getText().length() == 0) {
+				errorMessage += "Не указана начальная скорость!\n";
+		}
+
+		if (Double.parseDouble(speedFirstX.getText())>20000 ||
+			Double.parseDouble(speedFirstY.getText())>20000 ||
+			Double.parseDouble(speedFirstZ.getText())>20000){
+				errorMessage += "Компоненты скорости должны быть меньше 20000";
+		}
+
+
 		if (quantsize.getText() == null || quantsize.getText().length() == 0 ||
 			quantnumber.getText()==null || quantnumber.getText().length() == 0){
 			   errorMessage += "Не указан квант!\n";
@@ -244,6 +263,15 @@ public class gameController {
 		if (Integer.parseInt(quantsize.getText())*Integer.parseInt(quantnumber.getText())>secondsInDay){
 			   errorMessage += "Симуляция должна быть менее одного дня";
 		}
+
+		double x = Double.parseDouble(initialX.getText());
+		double y = Double.parseDouble(initialY.getText());
+		double z = Double.parseDouble(initialZ.getText());
+
+		if (Math.sqrt(x*x+y*y+z*z)>1000000){
+			   errorMessage += "Высота должна быть меньше 1000000 км";
+		}
+
 		if (errorMessage.length() == 0) {
             return true;
         } else {

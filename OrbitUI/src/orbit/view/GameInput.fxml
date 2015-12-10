@@ -56,8 +56,8 @@
     <TextField fx:id="fuelMass" layoutX="427.0" layoutY="122.0" prefHeight="15.0" prefWidth="48.0" />
     <Label font="$x1" layoutX="569.0" layoutY="128.0" text="Размер аппарата (м)" />
     <TextField fx:id="shipEdgeLength" layoutX="712.0" layoutY="122.0" prefHeight="25.0" prefWidth="48.0" />
-    <Label font="$x1" layoutX="257.0" layoutY="271.0" text="Максимальные моменты вращения (кг*м²)" />
-    <GridPane layoutX="551.0" layoutY="266.0" prefHeight="25.0" prefWidth="218.0">
+    <Label font="$x1" layoutX="277.0" layoutY="313.0" text="Максимальные моменты вращения (кг*м²)" />
+    <GridPane layoutX="571.0" layoutY="308.0" prefHeight="25.0" prefWidth="218.0">
       <children>
         <TextField fx:id="maxRotationX" prefWidth="200.0" promptText="x" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <TextField fx:id="maxRotationY" prefWidth="200.0" promptText="y" GridPane.columnIndex="1" GridPane.rowIndex="0" />
@@ -78,15 +78,32 @@
     <TextField fx:id="impulsePerFuel" layoutX="686.0" layoutY="158.0" prefHeight="25.0" prefWidth="41.0" />
     <Label font="$x1" layoutX="31.0" layoutY="198.0" text="Предельная перегрузка" />
     <TextField fx:id="maxOverload" layoutX="346.0" layoutY="193.0" prefHeight="25.0" prefWidth="48.0" />
-    <Label font="$x1" layoutX="257.0" layoutY="308.0" text="Размер кванта" />
+    <Label font="$x1" layoutX="277.0" layoutY="350.0" text="Размер кванта" />
     <Button layoutX="277.0" layoutY="405.0" mnemonicParsing="false" onAction="#handleGetTrajectory" prefHeight="53.0" prefWidth="207.0" text="Получить траекторию" />
     <Label font="$x1" layoutX="441.0" layoutY="198.0" text="Максимальный нагрев" />
     <TextField fx:id="maxHeating" layoutX="686.0" layoutY="193.0" prefHeight="25.0" prefWidth="41.0" />
       <TextArea fx:id="commands" layoutX="22.0" layoutY="266.0" prefHeight="207.0" prefWidth="218.0" />
       <Label layoutX="31.0" layoutY="234.0" text="Команды" />
-      <TextField fx:id="quantsize" layoutX="356.0" layoutY="303.0" prefHeight="25.0" prefWidth="48.0" />
-      <Label layoutX="433.0" layoutY="308.0" text="Количество квантов" />
-      <TextField fx:id="quantnumber" layoutX="583.0" layoutY="303.0" prefHeight="25.0" prefWidth="48.0" />
+      <TextField fx:id="quantsize" layoutX="376.0" layoutY="345.0" prefHeight="25.0" prefWidth="48.0" />
+      <Label layoutX="453.0" layoutY="350.0" text="Количество квантов" />
+      <TextField fx:id="quantnumber" layoutX="603.0" layoutY="345.0" prefHeight="25.0" prefWidth="48.0" />
       <Button layoutX="551.0" layoutY="405.0" mnemonicParsing="false" onAction="#setTest" prefHeight="53.0" prefWidth="207.0" text="Тестовые значения " />
+      <Label layoutX="277.0" layoutY="277.0" />
+      <Label font="$x1" layoutX="277.0" layoutY="277.0" text="Начальная скорость" />
+      <GridPane layoutX="571.0" layoutY="272.0" prefHeight="25.0" prefWidth="218.0">
+         <children>
+            <TextField fx:id="speedFirstX" prefWidth="200.0" promptText="x" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="speedFirstY" prefWidth="200.0" promptText="y" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <TextField fx:id="speedFirstZ" prefWidth="200.0" promptText="z" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
   </children>
 </AnchorPane>
