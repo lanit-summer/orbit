@@ -33,7 +33,14 @@ struct quaternion
     
     quaternion invert()
     {
-        quaternion p = {w, -x, -y, -z}; //перед w не нужен минус
+        quaternion p = {w, -x, -y, -z}; //РїРµСЂРµРґ w РЅРµ РЅСѓР¶РµРЅ РјРёРЅСѓСЃ
         return p;
     }
 };
+
+
+
+
+
+
+

@@ -22,7 +22,8 @@ struct vec
     {
         quaternion q1 = multiplyWithQuaternion(q);
         quaternion q2 = q.invert();
-        vec res = {q1.multiply(q2).x, q1.multiply(q2).y, q1.multiply(q2).z};
+        quaternion qRes = q1.multiply(q2);
+        vec res = {qRes.x, qRes.y, qRes.z};
         return res;
     }
     
@@ -34,7 +35,7 @@ struct vec
         res.z = x * b.y - y * b.x;
         return res;
     }
-
+    
     quaternion createQuaternion()
     {
         double cosZ = cos(z / 2),
@@ -50,7 +51,7 @@ struct vec
         q.z = sinZ * cosY * cosX + cosZ * sinY * sinX;
         return q;
     }
-
+    
     quaternion multiplyWithQuaternion(quaternion quat)
     {
         quaternion res;

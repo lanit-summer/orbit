@@ -13,14 +13,15 @@ struct Rotation
     double rotationAroundX, rotationAroundY, rotationAroundZ;
 };
 
-vec Orient; //вектор ориентации в пространстве
-vec Position; //вектор положения в пространстве
+typedef vec Orient; //вектор ориентации в пространстве
+typedef vec Position; //вектор положения в пространстве
+//typedef Rotation RotationSpeed; //вектор скорости вращения вокруг трех осей
 
 //начальные положение, ориентация, скорость и моменты вращения корабля
 struct ShipPosition
 {
-    vec position;
-    vec orientation;
+    Position position;
+    Orient orientation;
     vec speedFirst;
     Rotation moment;
 };
@@ -57,8 +58,7 @@ struct Quants
 //возвращаемые значения положения и скорости
 struct ReturnValues
 {
-    //Position position;
-    vec position;
+    Position position;
     vec speed;
 };
 
