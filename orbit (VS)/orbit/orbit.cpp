@@ -1,4 +1,5 @@
 #include "orbit.h"
+//#include "Orbit_internal.h"
 
 vec calculateGravityForce(vec distance, double shipMass)
 {
@@ -126,6 +127,8 @@ vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
     return currentAngularVelocity;
 }
 
+//Calculate aerodynamic heating for spaceship. 
+//Formula: T+(v^2)/2
 double aerodynamicHeating(double temperature, vec speed)
 {
     double heating = temperature + pow(speed.getScalar(), 2) / 2; // (K)
