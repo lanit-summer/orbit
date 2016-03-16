@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "orbit.cpp"
+#include "OrbitSimulator.cpp"
 using namespace std;
 
 //Check that spaceship is not heating if speed is zero.
