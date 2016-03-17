@@ -15,19 +15,7 @@ TEST_CASE("Calculate Aerodynamic heating", "[AerodynamicHeating]") {
 	REQUIRE(result==100); 
 }
 
-//Check the temperature at 6 km
-TEST_CASE("Calculate temperature", "[temperature]") {
-	double H = 6 + EarthRadius;
-	double result = temperature(H);
-	REQUIRE(result == 255.7); 
-}
 
-//Check the air density at 40 km
-TEST_CASE("Calculate air density", "[airDensity]") {
-	double H = 40 + EarthRadius;
-	double result = airDensity(H);
-	REQUIRE(result ==  0.004);
-}
 
 
 
