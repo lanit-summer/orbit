@@ -66,6 +66,6 @@ struct vec
     }
 
 	bool operator == (vec b) {
-		return x == b.x & y == b.y & b.z == b.z;
+		return (x == b.x) & (y == b.y) & (b.z == b.z);
 	}
 };

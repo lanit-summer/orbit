@@ -5,7 +5,7 @@
 #include "OrbitSimulator.h"
 
 
-vec calculateGravityForce(vec distance, double shipMass)
+vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / R^2
 {
     double distanceScalar = distance.getScalar();
     if (distanceScalar == 0) {
@@ -68,19 +68,20 @@ double airDensity(double height) //calculates the air density at a certain heigh
         return 0.0;
     }
     else
-    {
-        double p = 101325, //normal atmospheric pressure at sea level (Pa)
+	// p = p0 * e^(-M * g * H / (R * T)) 
+	// airDensity = p * M / (R * T) 
+    { 
+        double p0 = 101325, //normal atmospheric pressure at sea level (Pa)
         g = G * EarthMass / pow(height, 2), //acceleration due to gravity
                                             //on the Earth's surface (m/s^2)
         R = 8.31447, //universal gas constant (J / (mol * K))
         M = 0.0289644, //the molar mass of dry air (kg / mol)
-        P = p * exp(-M * g * height * 1000 / (R * T)), //pressure at the certain height (Pa)
-        density = P * M / (R * T); //air density at the certain height (kg / m^3)
-        return density * pow(10.0, 9); //transfer to kg / km^3
+        p = p0 * exp(-M * g * height * 1000 / (R * T)), //pressure at the certain height (Pa)
+        density = p * M / (R * T); //air density at the certain height (kg / m^3)
+        return density * pow(10.0, 9); //transfer to kg / km^3 
     }
 }
-
-vec calculateAerodynamicForce(vec speed, double square, double height)
+vec calculateAerodynamicForce(vec speed, double square, double height) // p * v * S^2 / 2
 {
     double v = speed.getScalar();
     double p = airDensity(height);
@@ -88,7 +89,8 @@ vec calculateAerodynamicForce(vec speed, double square, double height)
     return result;
 }
 
-vec calculateTractiveForce(double massLevel, double specificImpulse, vec speed)
+// mLevel * specificImpulse / v
+vec calculateTractiveForce(double massLevel, double specificImpulse, vec speed) 
 {
     double v = speed.getScalar();
     if (v == 0) {
@@ -99,6 +101,7 @@ vec calculateTractiveForce(double massLevel, double specificImpulse, vec speed)
     return result;
 }
 
+//distance * F * sizeOfSec / moment + previousVelocity 
 vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
                              vec tractiveForce, Rotation moment, double quantSizeOfSec,
                              double length, vec previousAngularVelocity)
@@ -139,10 +142,10 @@ double aerodynamicHeating(double temperature, vec speed)
     return heating;
 }
 
+//calculates a speed at each time interval
 vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumption,
           double mShip, double mFuel, Rotation moment, double specificImpulse,
           double size, double quantSizeOfSec, double maxOverload, double maxHeating)
-//calculates a speed at each time interval
 {
     double mTotal = mShip + mFuel;
     double H = position.getScalar();
@@ -150,41 +153,34 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
     double S = size * size;
     vec exit = {0, 0, 0};
     if (mTotal != 0) {
-        if (quantSizeOfSec > 0.0)
-        {
-            double v1 = airDensity(H) * scSpeedFirst * S / (2.0 * mTotal),
-            v2 = 1 / quantSizeOfSec  - v1,
-            v3 = calculateTractiveForce(fuelConsumption, specificImpulse,
-                                        previousSpeed).getScalar() / mTotal,
-            v4 = G * EarthMass / pow(H, 3);
+		if (quantSizeOfSec <= 0.0) { return previousSpeed; }
+		double v1 = airDensity(H) * scSpeedFirst * S / (2.0 * mTotal),
+        v2 = 1 / quantSizeOfSec  - v1,
+        v3 = calculateTractiveForce(fuelConsumption, specificImpulse,
+                                    previousSpeed).getScalar() / mTotal,
+        v4 = G * EarthMass / pow(H, 3);
             
-            vec t1 = previousSpeed.multiplyWithDouble(v1),
+        vec t1 = previousSpeed.multiplyWithDouble(v1),
             t2 = previousSpeed.multiplyWithDouble(v2),
             t3 = orientation.multiplyWithDouble(v3),
             t4 = position.multiplyWithDouble(v4);
-            exit.x = (t2.x + t3.x - t4.x) * quantSizeOfSec;
-            exit.y = (t2.y + t3.y - t4.y) * quantSizeOfSec;
-            exit.z = (t2.z + t3.z - t4.z) * quantSizeOfSec;
+        exit.x = (t2.x + t3.x - t4.x) * quantSizeOfSec;
+        exit.y = (t2.y + t3.y - t4.y) * quantSizeOfSec;
+        exit.z = (t2.z + t3.z - t4.z) * quantSizeOfSec;
             
-            vec overload = {0, 0, 0};
-            overload.x = - t1.x + t3.x - t4.x;
-            overload.y = - t1.y + t3.y - t4.y;
-            overload.z = - t1.z + t3.z - t4.z;
-            double g = G * EarthMass / pow(H, 2),
-            over = overload.getScalar() / g;
-
-            if (over > maxOverload)
-            {
-                throw invalid_argument("Overload");
-            }
-        }
-        else
+        vec overload = {0, 0, 0};
+        overload.x = - t1.x + t3.x - t4.x;
+        overload.y = - t1.y + t3.y - t4.y;
+        overload.z = - t1.z + t3.z - t4.z;
+        double g = G * EarthMass / pow(H, 2),
+        over = overload.getScalar() / g;
+        if (over > maxOverload)
         {
-            return previousSpeed;
-        }
+            throw invalid_argument("Overload");
+		}
     }
-    
-    if (H <= 6523.1)
+
+    if (H <= AtmosphereBoundary)
     {
         double a = aerodynamicHeating(temperature(position.getScalar()), exit);
         if (a > maxHeating)
@@ -195,6 +191,7 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
     return exit;
 }
 
+//calculates speed and position at each time interval
 vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
                                         ShipParams shipParams, Quants quants)
 {
@@ -208,7 +205,6 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
     vec currentOrientation = initialPosition.orientation;
     vec previousAngularVelocity = {0, 0, 0};
     vec currentPosition = initialPosition.position;
-    
     vector<ReturnValues> calculatedFlightPlan(quants.numberOfQuants);
     int i = 0,
     j = 0;
