@@ -64,4 +64,8 @@ struct vec
         result = result.normalize();
         return result;
     }
+
+	bool operator == (vec b) {
+		return x == b.x & y == b.y & b.z == b.z;
+	}
 };
