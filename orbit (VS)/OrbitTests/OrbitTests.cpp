@@ -69,6 +69,72 @@ TEST_CASE("Calculate air density", "[airDensity]") {
 	REQUIRE(result ==  0.004);
 }
 
+TEST_CASE("Calculate Gravity force", "[GravityForce]") {
+    SECTION( "if position is the center of the Earth" ) {
+        vec position = {0, 0, 0};
+        double mass = 100;
+        vec result = calculateGravityForce(position, mass);
+        vec zeroVec = {0, 0, 0};
+        REQUIRE(result == zeroVec);
+    }
+    SECTION( "normal values" ) {
+        vec position = {1, 0, 0};
+        double mass = 1;
+        vec result = calculateGravityForce(position, mass);
+        REQUIRE(result.x >= 398709.1466);
+        REQUIRE(result.x <= 398709.1468);
+    }
+}
+
+TEST_CASE("Calculate Tractive force", "[TractiveForce]") {
+    SECTION( "if the speed is zero" ) {
+        vec speed = {0, 0, 0};
+        double massLevel = 1;
+        double specificImpulse = 1;
+        vec result = calculateTractiveForce(massLevel, specificImpulse, speed);
+        vec zeroVec = {0, 0, 0};
+        REQUIRE(result == zeroVec);
+    }
+    SECTION( "normal values" ) {
+        vec speed = {10, 0, 0};
+        double massLevel = 0.5;
+        double specificImpulse = 20;
+        vec result = calculateTractiveForce(massLevel, specificImpulse, speed);
+        vec calculatedVec = {10, 0, 0};
+        REQUIRE(result == calculatedVec);
+    }
+    SECTION( "calculation doesn't depend on scalar of the speed, only on it's direction)" ) {
+        vec speed1 = {0, 1, 0};
+        vec speed2 = {0, 10, 0};
+        double massLevel = 2;
+        double specificImpulse = 5;
+        vec result1 = calculateTractiveForce(massLevel, specificImpulse, speed1);
+        vec result2 = calculateTractiveForce(massLevel, specificImpulse, speed2);
+        vec calculatedVec = {0, 10, 0};
+        REQUIRE(result1 == calculatedVec);
+        REQUIRE(result2 == calculatedVec);
+    }
+}
+
+TEST_CASE("Calculate Aerodynamic force", "[AerodynamicForce]") {
+    SECTION( "if we are too far from Earth" ) {
+        vec speed = {1, 1, 1};
+        double square = 2;
+        double height = 100000;
+        vec result = calculateAerodynamicForce (speed, square, height);
+        vec zeroVec = {0, 0, 0};
+        REQUIRE(result == zeroVec);
+    }
+    SECTION( "if we have zero speed" ) {
+        vec speed = {0, 0, 0};
+        double square = 2;
+        double height = 6471;
+        vec result = calculateAerodynamicForce (speed, square, height);
+        vec zeroVec = {0, 0, 0};
+        REQUIRE(result == zeroVec);
+    }
+}
+
 
 
 

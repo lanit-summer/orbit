@@ -2,9 +2,9 @@
 #include "vec.cpp"
 using namespace std;
 
-const double G = 6.67385 * pow(10.0, -20), //gravitational constant
-   EarthMass = 5.9742 * pow(10.0, 24), //Earth's mass
-   EarthRadius = 6378.1, //radius of the Earth
+const double G = 6.67385 * pow(10.0, -20), //gravitational constant, km^3 / (kg * sec^2)
+   EarthMass = 5.9742 * pow(10.0, 24), //Earth's mass, kg
+   EarthRadius = 6378.1, //radius of the Earth, km
    ZeroCelsius = 273.15, //absolute zero
    AtmosphereBoundary = 6523.1; //end of atmosphere
 
