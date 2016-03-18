@@ -14,7 +14,7 @@ vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / 
     }
     double a = G * EarthMass * shipMass / pow(distanceScalar, 3);
     vec res = distance.multiplyWithDouble(a);
-    return res;
+    return res; // (N * 10^3)
 }
 
 double temperature(double height) //calculates the temperature at a certain height (K)
@@ -76,7 +76,7 @@ double airDensity(double height) //calculates the air density at a certain heigh
                                             //on the Earth's surface (m/s^2)
         R = 8.31447, //universal gas constant (J / (mol * K))
         M = 0.0289644, //the molar mass of dry air (kg / mol)
-        p = p0 * exp(-M * g * height * 1000 / (R * T)), //pressure at the certain height (Pa)
+        p = p0 * exp(-M * g * 1000 * height * 1000 / (R * T)), //pressure at the certain height (Pa)
         density = p * M / (R * T); //air density at the certain height (kg / m^3)
         return density * pow(10.0, 9); //transfer to kg / km^3 
     }
