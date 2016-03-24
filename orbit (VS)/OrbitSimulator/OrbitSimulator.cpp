@@ -60,8 +60,8 @@ double temperature(double height) //calculates the temperature at a certain heig
 
 double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
 {
-	if (height <= EarthRadius) { return SeaLevelAirDensity; }
-	double heightAboveSeaLevel = height - EarthRadius;
+    if (height <= EarthRadius) { return SeaLevelAirDensity; }
+    double heightAboveSeaLevel = height - EarthRadius;
     double T = temperature(heightAboveSeaLevel); //temperature at a certain height
     if (T <= 0.0) { return 0.0; }
     else
@@ -78,6 +78,7 @@ double airDensity(double height) //calculates the air density at a certain heigh
         return density;  
     }
 }
+
 vec calculateAerodynamicForce(vec speed, double square, double height) // p * v * S^2 / 2
 {
     double v = speed.getScalar();

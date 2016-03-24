@@ -61,7 +61,6 @@ TEST_CASE("Calculate Angular Velocity", "[AngularVelocity]") {
 	}
 }
 
-//Check the temperature at 6 km
 TEST_CASE("Calculate temperature", "[temperature]") {
 	SECTION("1st equation - at 6 km") {
 		double H = 6;
@@ -100,7 +99,6 @@ TEST_CASE("Calculate temperature", "[temperature]") {
 	}
 }
 
-//Check the air density at 0 km
 TEST_CASE("Calculate air density", "[airDensity]") {
 	SECTION("at 0 km") {
 		double H = EarthRadius;
