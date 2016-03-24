@@ -17,31 +17,21 @@ TEST_CASE("Calculate Aerodynamic heating", "[AerodynamicHeating]") {
 
 //Angular velocity, result values from Maple 14
 TEST_CASE("Calculate Angular Velocity", "[AngularVelocity]") {
-	//all zero test
-	vec tractiveForce = { 0,0,0 },
-		aeroDynamicForce = { 0,0,0 },
-		gravity = { 0,0,0 },
-		previous = { 0,0,0 };
-	Rotation rotate = { 0,0,0 };
-	double quantSize = 0,
-		length = 0;
-	
-	vec result = { 0,0,0 };
-	REQUIRE(result == calculateAngularVelocity(gravity, aeroDynamicForce, tractiveForce, rotate,
-		quantSize, length, previous));
+	SECTION("all zero test") {
+		vec tractiveForce = { 0,0,0 },
+			aeroDynamicForce = { 0,0,0 },
+			gravity = { 0,0,0 },
+			previous = { 0,0,0 };
+		Rotation rotate = { 0,0,0 };
+		double quantSize = 0,
+			length = 0;
 
-	//some average values
-	tractiveForce = { 100,200,300 };
-	aeroDynamicForce = { 100,200,300 };
-	gravity = { 100,200,300 };
-	previous = { 100,200,300 };
-	rotate = { 100,200,300 };
-	length = 1000;
-	quantSize = 100;
-	result = { 150100, -149800, 50300 };
-	REQUIRE(result == calculateAngularVelocity(gravity, aeroDynamicForce, tractiveForce, rotate,
-		quantSize, length, previous));
+		vec result = { 0,0,0 };
+		REQUIRE(result == calculateAngularVelocity(gravity, aeroDynamicForce, tractiveForce, rotate,
+			quantSize, length, previous));
+	}
 
+<<<<<<< HEAD
 	//big values (max double value C++ ~e308)
 	tractiveForce = { 1e300,1e300,1e300 };
 	aeroDynamicForce = { 1e300,1e300,1e300 };
@@ -73,3 +63,119 @@ TEST_CASE("Calculate air density", "[airDensity]") {
 
 
 
+=======
+	SECTION("some average values") {
+		vec	tractiveForce = { 100,200,300 },
+			aeroDynamicForce = { 100,200,300 },
+			gravity = { 100,200,300 },
+			previous = { 100,200,300 },
+			result = { 150100, -149800, 50300 };
+		Rotation rotate = { 100,200,300 };
+		double	length = 1000,
+			quantSize = 100;
+
+		REQUIRE(result == calculateAngularVelocity(gravity, aeroDynamicForce, tractiveForce, rotate,
+			quantSize, length, previous));
+	}
+
+	SECTION("big values") {
+		//(max double value C++ ~e308)
+		vec	tractiveForce = { 1e300,1e300,1e300 },
+			aeroDynamicForce = { 1e300,1e300,1e300 },
+			gravity = { 1e300,1e300,1e300 },
+			previous = { 1e300,1e300,1e300 },
+			result = { 1e300,1e300,1e300 };
+		Rotation rotate = { 1e300,1e300,1e300 };
+		double	length = 1e300,
+			quantSize = 100;
+
+		REQUIRE(result == calculateAngularVelocity(gravity, aeroDynamicForce, tractiveForce, rotate,
+			quantSize, length, previous));
+	}
+}
+
+//Check the temperature at 6 km
+TEST_CASE("Calculate temperature", "[temperature]") {
+	double H = 6 + EarthRadius;
+	double result = temperature(H);
+	REQUIRE(result == 255.7); 
+}
+
+//Check the air density at 40 km
+TEST_CASE("Calculate air density", "[airDensity]") {
+	double H = 40 + EarthRadius;
+	double result = airDensity(H);
+	REQUIRE(result ==  0.004);
+}
+
+TEST_CASE("Calculate Gravity force", "[GravityForce]") {
+    SECTION( "if position is the center of the Earth" ) {
+        vec position = {0, 0, 0};
+        double mass = 100;
+        vec result = calculateGravityForce(position, mass);
+        vec zeroVec = {0, 0, 0};
+        REQUIRE(result == zeroVec);
+    }
+    SECTION( "normal values" ) {
+        vec position = {1, 0, 0};
+        double mass = 1;
+        vec result = calculateGravityForce(position, mass);
+        REQUIRE(result.x >= 398709.1466);
+        REQUIRE(result.x <= 398709.1468);
+    }
+}
+
+TEST_CASE("Calculate Tractive force", "[TractiveForce]") {
+    SECTION( "if the speed is zero" ) {
+        vec speed = {0, 0, 0};
+        double massLevel = 1;
+        double specificImpulse = 1;
+        vec result = calculateTractiveForce(massLevel, specificImpulse, speed);
+        vec zeroVec = {0, 0, 0};
+        REQUIRE(result == zeroVec);
+    }
+    SECTION( "normal values" ) {
+        vec speed = {10, 0, 0};
+        double massLevel = 0.5;
+        double specificImpulse = 20;
+        vec result = calculateTractiveForce(massLevel, specificImpulse, speed);
+        vec calculatedVec = {10, 0, 0};
+        REQUIRE(result == calculatedVec);
+    }
+    SECTION( "calculation doesn't depend on scalar of the speed, only on it's direction)" ) {
+        vec speed1 = {0, 1, 0};
+        vec speed2 = {0, 10, 0};
+        double massLevel = 2;
+        double specificImpulse = 5;
+        vec result1 = calculateTractiveForce(massLevel, specificImpulse, speed1);
+        vec result2 = calculateTractiveForce(massLevel, specificImpulse, speed2);
+        vec calculatedVec = {0, 10, 0};
+        REQUIRE(result1 == calculatedVec);
+        REQUIRE(result2 == calculatedVec);
+    }
+}
+
+TEST_CASE("Calculate Aerodynamic force", "[AerodynamicForce]") {
+    SECTION( "if we are too far from Earth" ) {
+        vec speed = {1, 1, 1};
+        double square = 2;
+        double height = 100000;
+        vec result = calculateAerodynamicForce (speed, square, height);
+        vec zeroVec = {0, 0, 0};
+        REQUIRE(result == zeroVec);
+    }
+    SECTION( "if we have zero speed" ) {
+        vec speed = {0, 0, 0};
+        double square = 2;
+        double height = 6471;
+        vec result = calculateAerodynamicForce (speed, square, height);
+        vec zeroVec = {0, 0, 0};
+        REQUIRE(result == zeroVec);
+    }
+}
+
+
+
+
+
+>>>>>>> bd8026da8a13a1ae87182a557f69f85dc62abe95
