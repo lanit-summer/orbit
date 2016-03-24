@@ -31,39 +31,6 @@ TEST_CASE("Calculate Angular Velocity", "[AngularVelocity]") {
 			quantSize, length, previous));
 	}
 
-<<<<<<< HEAD
-	//big values (max double value C++ ~e308)
-	tractiveForce = { 1e300,1e300,1e300 };
-	aeroDynamicForce = { 1e300,1e300,1e300 };
-	gravity = { 1e300,1e300,1e300 };
-	previous = { 1e300,1e300,1e300 };
-	rotate = { 1e300,1e300,1e300 };
-	length = 1e300;
-	quantSize = 100;
-    result = { 1e300,1e300,1e300 };
-	REQUIRE(result == calculateAngularVelocity(gravity, aeroDynamicForce, tractiveForce, rotate,
-		quantSize, length, previous));
-}
-
-//Check the temperature at 6 km
-TEST_CASE("Calculate temperature", "[temperature]") {
-	double H = 6 + EarthRadius;
-	double result = temperature(H);
-	REQUIRE(result == 255.7); 
-}
-
-//Check the air density at 40 km
-TEST_CASE("Calculate air density", "[airDensity]") {
-	double H = 40 + EarthRadius;
-	double result = airDensity(H);
-	REQUIRE(result ==  0.004);
-}
-
-
-
-
-
-=======
 	SECTION("some average values") {
 		vec	tractiveForce = { 100,200,300 },
 			aeroDynamicForce = { 100,200,300 },
@@ -96,16 +63,65 @@ TEST_CASE("Calculate air density", "[airDensity]") {
 
 //Check the temperature at 6 km
 TEST_CASE("Calculate temperature", "[temperature]") {
-	double H = 6 + EarthRadius;
+	SECTION("1st equation - at 6 km") {
+		double H = 6;
+		double result = temperature(H);
+		REQUIRE(floor(result) == 245); 
+	}
+	SECTION("2nd equation - at 15 km") {
+		double H = 15;
+		double result = temperature(H);
+		REQUIRE(floor(result) == 213); 
+	}
+	SECTION("3rd equation - at 30 km") {
+		double H = 30;
+		double result = temperature(H);
+		REQUIRE(floor(result) == 235); 
+	}
+	SECTION("4th equation - at 50 km") {
+		double H = 50;
+		double result = temperature(H);
+		REQUIRE(result == ZeroCelsius); 
+	}
+	SECTION("5th equation - at 80 km") {
+		double H = 80;
+		double result = temperature(H);
+		REQUIRE(floor(result) == 195); 
+	}
+	SECTION("6th equation - at 90 km") {
+	double H = 90;
 	double result = temperature(H);
-	REQUIRE(result == 255.7); 
+	REQUIRE(floor(result) == 183); 
+	}
+	SECTION("7th equation - at 140 km") {
+	double H = 140;
+	double result = temperature(H);
+	REQUIRE(floor(result) == 309); 
+	}
 }
 
-//Check the air density at 40 km
+//Check the air density at 0 km
 TEST_CASE("Calculate air density", "[airDensity]") {
-	double H = 40 + EarthRadius;
-	double result = airDensity(H);
-	REQUIRE(result ==  0.004);
+	SECTION("at 0 km") {
+		double H = EarthRadius;
+		double result = airDensity(H);
+		REQUIRE(result == 1225000000);
+	}
+	SECTION("at 30 km") {
+		double H = 30 + EarthRadius;
+		double result = airDensity(H);
+		REQUIRE(floor(result) == 20119443);
+	}
+	SECTION("at 50 km") {
+		double H = 50 + EarthRadius;
+		double result = airDensity(H);
+		REQUIRE(floor(result) == 2748034);
+	}
+	SECTION("at 80 km") {
+		double H = 80 + EarthRadius;
+		double result = airDensity(H);
+		REQUIRE(floor(result) == 2128);
+	}
 }
 
 TEST_CASE("Calculate Gravity force", "[GravityForce]") {
@@ -173,9 +189,3 @@ TEST_CASE("Calculate Aerodynamic force", "[AerodynamicForce]") {
         REQUIRE(result == zeroVec);
     }
 }
-
-
-
-
-
->>>>>>> bd8026da8a13a1ae87182a557f69f85dc62abe95
