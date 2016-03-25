@@ -4,7 +4,6 @@
 #include "stdafx.h"
 #include "OrbitSimulator.h"
 
-
 vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / R^2
 {
     double distanceScalar = distance.getScalar();
@@ -19,7 +18,7 @@ vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / 
 
 double temperature(double height) //calculates the temperature at a certain height (K)
 {
-    if (height <= 0)
+    if (height < 0)
     {
         throw invalid_argument("Height is less than the radius of the Earth");
     }
@@ -28,27 +27,27 @@ double temperature(double height) //calculates the temperature at a certain heig
     {
         return 0.0;
     }
-    if (height > 94)
+    else if (height > 94)
     {
         temperature += 140 * (height - 94) / 51 - 90;
     }
-    if (height > 84)
+    else if (height > 84)
     {
         temperature -= 90;
     }
-    if (height > 54)
+    else if (height > 54)
     {
         temperature += -3 * height + 162;
     }
-    if (height > 47)
+    else if (height > 47)
     {
         return temperature;
     }
-    if (height > 20)
+    else if (height > 20)
     {
         temperature += (20 * height - 940) / 9;
     }
-    if (height > 10)
+    else if (height > 10)
     {
         temperature -= 60;
     }
@@ -59,28 +58,27 @@ double temperature(double height) //calculates the temperature at a certain heig
     return temperature;
 }
 
-double airDensity(double height) //calculates the air density at a certain height
+double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
 {
-    height -= EarthRadius;
-    double T = temperature(height); //temperature at a certain height
-    if (T <= 0.0)
-    {
-        return 0.0;
-    }
+    if (height <= EarthRadius) { return SeaLevelAirDensity; }
+    double heightAboveSeaLevel = height - EarthRadius;
+    double T = temperature(heightAboveSeaLevel); //temperature at a certain height
+    if (T <= 0.0) { return 0.0; }
     else
 	// p = p0 * e^(-M * g * H / (R * T)) 
 	// airDensity = p * M / (R * T) 
     { 
         double p0 = 101325, //normal atmospheric pressure at sea level (Pa)
         g = G * EarthMass / pow(height, 2), //acceleration due to gravity
-                                            //on the Earth's surface (m/s^2)
+                                            //on the Earth's surface (km/s^2)
         R = 8.31447, //universal gas constant (J / (mol * K))
         M = 0.0289644, //the molar mass of dry air (kg / mol)
-        p = p0 * exp(-M * g * 1000 * height * 1000 / (R * T)), //pressure at the certain height (Pa)
-        density = p * M / (R * T); //air density at the certain height (kg / m^3)
-        return density * pow(10.0, 9); //transfer to kg / km^3 
+		p = p0 * exp(-M * g * heightAboveSeaLevel * pow(10.0, 6) / (R * T)), //pressure at the certain height (Pa)
+        density = p * M * pow(10.0, 9) / (R * T); //air density at the certain height (kg / km^3)
+        return density;  
     }
 }
+
 vec calculateAerodynamicForce(vec speed, double square, double height) // p * v * S^2 / 2
 {
     double v = speed.getScalar();
