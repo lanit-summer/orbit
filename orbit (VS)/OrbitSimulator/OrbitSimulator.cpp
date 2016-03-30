@@ -79,7 +79,7 @@ double airDensity(double height) //calculates the air density at a certain heigh
     }
 }
 
-vec calculateAerodynamicForce(vec speed, double square, double height) // p * v * S^2 / 2
+vec calculateAerodynamicForce(vec speed, double square, double height) // p * v^2 * S^2 / 2
 {
     double v = speed.getScalar();
     double p = airDensity(height);
@@ -87,7 +87,7 @@ vec calculateAerodynamicForce(vec speed, double square, double height) // p * v 
     return result;
 }
 
-// mLevel * specificImpulse / v
+// mLevel * specificImpulse 
 vec calculateTractiveForce(double massLevel, double specificImpulse, vec speed) 
 {
     double v = speed.getScalar();
@@ -99,7 +99,8 @@ vec calculateTractiveForce(double massLevel, double specificImpulse, vec speed)
     return result;
 }
 
-//distance * F * sizeOfSec / moment + previousVelocity 
+//calculates an angular velocity by the moment of inertia
+//momentForce* sizeOfSec / momentInertia + previousVelocity 
 vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
                              vec tractiveForce, Rotation moment, double quantSizeOfSec,
                              double length, vec previousAngularVelocity)
@@ -189,6 +190,8 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
     return exit;
 }
 
+//input: ShipPosition, ShipParams & Quants structures
+//output: structure of vector of position and scalar of speed at each time interval  
 //calculates speed and position at each time interval
 vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
                                         ShipParams shipParams, Quants quants)
