@@ -44,21 +44,6 @@ TEST_CASE("Calculate Angular Velocity", "[AngularVelocity]") {
 		REQUIRE(result == calculateAngularVelocity(gravity, aeroDynamicForce, tractiveForce, rotate,
 			quantSize, length, previous));
 	}
-
-	SECTION("big values") {
-		//(max double value C++ ~e308)
-		vec	tractiveForce = { 1e300,1e300,1e300 },
-			aeroDynamicForce = { 1e300,1e300,1e300 },
-			gravity = { 1e300,1e300,1e300 },
-			previous = { 1e300,1e300,1e300 },
-			result = { 1e300,1e300,1e300 };
-		Rotation rotate = { 1e300,1e300,1e300 };
-		double	length = 1e300,
-			quantSize = 100;
-
-		REQUIRE(result == calculateAngularVelocity(gravity, aeroDynamicForce, tractiveForce, rotate,
-			quantSize, length, previous));
-	}
 }
 
 TEST_CASE("Calculate temperature", "[temperature]") {
