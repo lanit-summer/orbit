@@ -216,7 +216,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
         moment = shipParams.flightPlan[j].rotateValue;
         vec gravityForce = calculateGravityForce(currentPosition, m);
         vec aerodynamicForce = calculateAerodynamicForce(currentSpeed, S, height);
-        vec tractiveForce = calculateTractiveForce(level, shipParams.impulsePerFuel, currentSpeed);
+        vec tractiveForce = calculateTractiveForce(level, shipParams.impulsePerFuel, currentOrientation);
         previousAngularVelocity = calculateAngularVelocity(
                                     gravityForce, aerodynamicForce, tractiveForce,
                                     moment, quants.quantSizeOfSec, shipParams.shipEdgeLength,
