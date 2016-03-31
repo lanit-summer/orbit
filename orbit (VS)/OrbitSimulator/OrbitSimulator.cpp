@@ -87,15 +87,15 @@ vec calculateAerodynamicForce(vec speed, double square, double height) // p * v 
     return result;
 }
 
-// mLevel * specificImpulse / v
-vec calculateTractiveForce(double massLevel, double specificImpulse, vec speed) 
+// mLevel * specificImpulse 
+vec calculateTractiveForce(double massLevel, double specificImpulse, vec orientation) 
 {
-    double v = speed.getScalar();
-    if (v == 0) {
+    double orient = orientation.getScalar();
+    if (orient == 0) {
         vec result = {0, 0, 0};
         return result;
     }
-    vec result = speed.multiplyWithDouble(massLevel * specificImpulse / v);
+    vec result = orientation.multiplyWithDouble(massLevel * specificImpulse / orient);
     return result;
 }
 
@@ -155,7 +155,7 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 		double v1 = airDensity(H) * scSpeedFirst * S / (2.0 * mTotal),
         v2 = 1 / quantSizeOfSec  - v1,
         v3 = calculateTractiveForce(fuelConsumption, specificImpulse,
-                                    previousSpeed).getScalar() / mTotal,
+                                    orientation).getScalar() / mTotal,
         v4 = G * EarthMass / pow(H, 3);
             
         vec t1 = previousSpeed.multiplyWithDouble(v1),
