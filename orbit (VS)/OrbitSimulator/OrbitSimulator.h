@@ -2,11 +2,12 @@
 #include "vec.cpp"
 using namespace std;
 
-const double G = 6.67385 * pow(10.0, -20), //gravitational constant, km^3 / (kg * sec^2)
+const double G = 6.67408 * pow(10.0, -20), //gravitational constant, km^3 / (kg * sec^2)
    EarthMass = 5.9742 * pow(10.0, 24), //Earth's mass, kg
    EarthRadius = 6378.1, //radius of the Earth, km
    ZeroCelsius = 273.15, //absolute zero
-   AtmosphereBoundary = 6523.1; //end of atmosphere
+   AtmosphereBoundary = 6523.1, //end of atmosphere
+   SeaLevelAirDensity = 1225000000; // kg/km^3
 
 //rotation vector
 struct Rotation

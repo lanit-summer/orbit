@@ -52,5 +52,6 @@ int main() {
         cout<<"Position: "<<result[i].position.x<<" "<<result[i].position.y<<" "<<result[i].position.z<<"\n";
         cout<<"NormalSpeed = "<<sqrt(pow(result[i].speed.x, 2) + pow(result[i].speed.y, 2) + pow(result[i].speed.z, 2))<<"\n";
     }
+	_gettch(); 
 }
 
