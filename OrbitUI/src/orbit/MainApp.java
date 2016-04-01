@@ -8,6 +8,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
+	static {
+	    try {
+	     System.loadLibrary("orbit");
+	    } catch (UnsatisfiedLinkError e) {
+	      System.err.println("Native code library failed to load. " + e);
+	      System.exit(1);
+	    }
+	  }
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
