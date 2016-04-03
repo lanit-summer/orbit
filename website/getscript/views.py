@@ -104,7 +104,7 @@ def script(request):
 
             with open("getscript/result_script.txt", 'w') as file:
                 file.write(script)
-
+            
             return render_to_response('flatpages/script.html', {
                 'script': script,
                 })
