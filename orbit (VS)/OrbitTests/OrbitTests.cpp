@@ -44,21 +44,6 @@ TEST_CASE("Calculate Angular Velocity", "[AngularVelocity]") {
 		REQUIRE(result == calculateAngularVelocity(gravity, aeroDynamicForce, tractiveForce, rotate,
 			quantSize, length, previous));
 	}
-
-	SECTION("big values") {
-		//(max double value C++ ~e308)
-		vec	tractiveForce = { 1e300,1e300,1e300 },
-			aeroDynamicForce = { 1e300,1e300,1e300 },
-			gravity = { 1e300,1e300,1e300 },
-			previous = { 1e300,1e300,1e300 },
-			result = { 1e300,1e300,1e300 };
-		Rotation rotate = { 1e300,1e300,1e300 };
-		double	length = 1e300,
-			quantSize = 100;
-
-		REQUIRE(result == calculateAngularVelocity(gravity, aeroDynamicForce, tractiveForce, rotate,
-			quantSize, length, previous));
-	}
 }
 
 TEST_CASE("Calculate temperature", "[temperature]") {
@@ -131,11 +116,11 @@ TEST_CASE("Calculate Gravity force", "[GravityForce]") {
         REQUIRE(result == zeroVec);
     }
     SECTION( "normal values" ) {
-        vec position = {1, 0, 0};
+        vec position = {6471, 0, 0};
         double mass = 1;
         vec result = calculateGravityForce(position, mass);
-        REQUIRE(result.x >= 398709.1466);
-        REQUIRE(result.x <= 398709.1468);
+        REQUIRE(result.x >= 0.0094);
+        REQUIRE(result.x <= 0.0096);
     }
 }
 
@@ -185,5 +170,45 @@ TEST_CASE("Calculate Aerodynamic force", "[AerodynamicForce]") {
         vec result = calculateAerodynamicForce (speed, square, height);
         vec zeroVec = {0, 0, 0};
         REQUIRE(result == zeroVec);
+    }
+}
+
+TEST_CASE("Calculate speed", "[Speed]") {
+    SECTION( "average values" ) {
+        vec previousSpeed = {1, 0, 0};
+        vec position = {6550, 0, 0};
+        vec orientation = {1, 0, 0};
+        double fuelConsumption = 1;
+        double mShip = 100;
+        double mFuel = 50;
+        Rotation moment = {0, 0, 0};
+        double specificImpulse = 1;
+        double size = 1;
+        double quantSizeOfSec = 1;
+        double maxOverload = 10;
+        double maxHeating = 100;
+        vec result = speed(previousSpeed, position, orientation, fuelConsumption,
+          mShip, mFuel, moment, specificImpulse,
+          size, quantSizeOfSec, maxOverload, maxHeating);
+        REQUIRE(result.x >= 0.997);
+        REQUIRE(result.x <= 0.998);
+    }
+    SECTION( "if quantSizeOfSec is zero" ) {
+        vec previousSpeed = {1, 0, 0};
+        vec position = {6471, 0, 0};
+        vec orientation = {1, 0, 0};
+        double fuelConsumption = 1;
+        double mShip = 1000;
+        double mFuel = 50;
+        Rotation moment = {0, 0, 0};
+        double specificImpulse = 100;
+        double size = 100;
+        double quantSizeOfSec = 0;
+        double maxOverload = 10;
+        double maxHeating = 100;
+        vec result = speed(previousSpeed, position, orientation, fuelConsumption,
+          mShip, mFuel, moment, specificImpulse,
+          size, quantSizeOfSec, maxOverload, maxHeating);
+        REQUIRE(result == previousSpeed);
     }
 }
