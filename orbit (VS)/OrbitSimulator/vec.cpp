@@ -19,10 +19,10 @@ struct vec
         return result;
     }
     
-    vec rotate(quaternion orientationQuaternion) //rotates vector by quaternion
+    vec rotate(quaternion rotationQuaternion) //rotates vector by quaternion
     {
-        quaternion quaternion1 = multiplyWithQuaternion(orientationQuaternion);
-        quaternion quaternion2 = orientationQuaternion.invert();
+        quaternion quaternion1 = multiplyWithQuaternion(rotationQuaternion);
+        quaternion quaternion2 = rotationQuaternion.invert();
         quaternion quaternionResult = quaternion1.multiply(quaternion2);
         vec result = {quaternionResult.x, quaternionResult.y, quaternionResult.z};
         return result;

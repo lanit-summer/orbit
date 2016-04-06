@@ -79,7 +79,9 @@ double airDensity(double height) //calculates the air density at a certain heigh
     }
 }
 
-vec calculateAerodynamicForce(vec speed, double square, double height) // p * v * S^2 / 2
+//calculates an aerodynamic force 
+// p * v^2 * S^2 / 2
+vec calculateAerodynamicForce(vec speed, double square, double height) 
 {
     double v = speed.getScalar();
     double p = airDensity(height);
@@ -87,7 +89,7 @@ vec calculateAerodynamicForce(vec speed, double square, double height) // p * v 
     return result;
 }
 
-// mLevel * specificImpulse / v
+// fuel mass flow rate * specific impulse of the engine
 vec calculateTractiveForce(double massLevel, double specificImpulse, vec speed) 
 {
     double v = speed.getScalar();
@@ -99,7 +101,8 @@ vec calculateTractiveForce(double massLevel, double specificImpulse, vec speed)
     return result;
 }
 
-//distance * F * sizeOfSec / moment + previousVelocity 
+//calculates an angular velocity by the moment of inertia
+//momentForce* sizeOfSec / momentInertia + previousVelocity 
 vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
                              vec tractiveForce, Rotation moment, double quantSizeOfSec,
                              double length, vec previousAngularVelocity)
@@ -189,6 +192,19 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
     return exit;
 }
 
+//calculates a flight plan for the ship with specified parameters.
+//input parameters:
+//ShipPosition - Starting position of the ship (position, orientation, speedFirst, rotationalMoment)
+//ShipParams - Parameters of the ship (edge length, ship mass without fuel, fuel mass, 
+//             maximum moment of inertia, maximum fuel mass flow rate, 
+//             specific impulse of the engine, an array of commands, maximum overload,
+//             maximum heating)
+//Quants - Represents a time period the ship's path is calculated for 
+//         (number of time intervals, size of interval (sec))
+
+
+//input: ShipPosition, ShipParams & Quants structures
+//output: structure of vector of position and scalar of speed at each time interval  
 //calculates speed and position at each time interval
 vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
                                         ShipParams shipParams, Quants quants)
@@ -213,7 +229,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
         moment = shipParams.flightPlan[j].rotateValue;
         vec gravityForce = calculateGravityForce(currentPosition, m);
         vec aerodynamicForce = calculateAerodynamicForce(currentSpeed, S, height);
-        vec tractiveForce = calculateTractiveForce(level, shipParams.impulsePerFuel, currentSpeed);
+        vec tractiveForce = calculateTractiveForce(level, shipParams.impulsePerFuel, currentOrientation);
         previousAngularVelocity = calculateAngularVelocity(
                                     gravityForce, aerodynamicForce, tractiveForce,
                                     moment, quants.quantSizeOfSec, shipParams.shipEdgeLength,
