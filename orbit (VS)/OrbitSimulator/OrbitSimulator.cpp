@@ -87,15 +87,20 @@ vec calculateAerodynamicForce(vec speed, double square, double height) // p * v 
     return result;
 }
 
-// mLevel * specificImpulse 
-vec calculateTractiveForce(double massLevel, double specificImpulse, vec orientation) 
+// Calculate tractive force using next formula: 
+//                  mLevel * impulse * (vectorOrientation / scalarOrientation)
+// Input parameters:
+// massLevel - fuel mass flow
+// impulse - specific impulse
+// (vectorOrientation / scalarOrientation) - unit vector of ship orientation
+vec calculateTractiveForce(double massLevel, double impulse, vec vectorOrientation) 
 {
-    double orient = orientation.getScalar();
-    if (orient == 0) {
+    double scalarOrientation = vectorOrientation.getScalar();
+    if (scalarOrientation == 0) {
         vec result = {0, 0, 0};
         return result;
     }
-    vec result = orientation.multiplyWithDouble(massLevel * specificImpulse / orient);
+    vec result = vectorOrientation.multiplyWithDouble(massLevel * impulse / scalarOrientation);
     return result;
 }
 
@@ -142,7 +147,7 @@ double aerodynamicHeating(double temperature, vec speed)
 
 //calculates a speed at each time interval
 vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumption,
-          double mShip, double mFuel, Rotation moment, double specificImpulse,
+          double mShip, double mFuel, Rotation moment, double impulse,
           double size, double quantSizeOfSec, double maxOverload, double maxHeating)
 {
     double mTotal = mShip + mFuel;
@@ -154,7 +159,7 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 		if (quantSizeOfSec <= 0.0) { return previousSpeed; }
 		double v1 = airDensity(H) * scSpeedFirst * S / (2.0 * mTotal),
         v2 = 1 / quantSizeOfSec  - v1,
-        v3 = calculateTractiveForce(fuelConsumption, specificImpulse,
+        v3 = calculateTractiveForce(fuelConsumption, impulse,
                                     orientation).getScalar() / mTotal,
         v4 = G * EarthMass / pow(H, 3);
             
