@@ -159,11 +159,14 @@ create_orient = create_position = create_vec
 
 
 def parse_input_code(code):
-    if not code:
-        raise ValueError('List of command is empty')
-    commands = [command.strip() for command in code.split('\n') if command.strip()]
     flight_plan = []  # list of part_of_flight_plan
     part_of_flight_plan = create_part_of_flight_plan()  # Part_of_flight_plan()
+    if not code:
+        part_of_flight_plan.delayTime = 0
+        flight_plan.append(part_of_flight_plan)
+        return flight_plan
+
+    commands = [command.strip() for command in code.split('\n') if command.strip()]
 
     # if True then current params are actual to the end of the flight
     there_is_commands_without_delay = False

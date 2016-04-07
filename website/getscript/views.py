@@ -29,7 +29,7 @@ class MainForm(forms.Form):
     numberOfQuants = forms.CharField(required=True, max_length=10)
     quantSizeOfSec = forms.CharField(required=True, max_length=10)
     displayPrecision = forms.CharField(required=True, max_length=10)
-    Program = forms.CharField(required=True, widget=forms.Textarea)
+    Program = forms.CharField(required=False, widget=forms.Textarea)
 
 
 def script(request):
