@@ -29,7 +29,7 @@ class MainForm(forms.Form):
     numberOfQuants = forms.CharField(required=True, max_length=10)
     quantSizeOfSec = forms.CharField(required=True, max_length=10)
     displayPrecision = forms.CharField(required=True, max_length=10)
-    Program = forms.CharField(required=True, widget=forms.Textarea)
+    Program = forms.CharField(required=False, widget=forms.Textarea)
 
 
 def script(request):
@@ -104,7 +104,7 @@ def script(request):
 
             with open("getscript/result_script.txt", 'w') as file:
                 file.write(script)
-
+            
             return render_to_response('flatpages/script.html', {
                 'script': script,
                 })

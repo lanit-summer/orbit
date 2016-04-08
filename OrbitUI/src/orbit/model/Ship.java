@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+
 import orbit.view.Celestia;
 
 public class Ship {
@@ -78,9 +80,20 @@ public class Ship {
 	}
 
 	public void makeTrajectory(){
-		vector_of_return_values result = orbit.computeFlightPlan(initial, params, quants);
+		vector_of_return_values result = OrbitSimulator.computeFlightPlan(initial, params, quants);
+
 		createXYZVFile(result);
-		runCelestia();
+
+		double visualSeconds = 50.0;
+		double rate = (quants.getQuantSizeOfSec()*quants.getNumberOfQuants()) / visualSeconds;
+		try {
+			celestia.setTimeRate(rate);
+			celestia.setVisualTime(visualSeconds);
+		} catch (IOException e) {
+			System.out.println("Файл скрипта не найден");
+			e.printStackTrace();
+		}
+		celestia.runCelestia();
 	}
 
 	public void setCommands(String listOfCommands){
@@ -170,6 +183,7 @@ public class Ship {
 		for (int i=0;i<quants.getNumberOfQuants();i++){
 
 			double date = julianDate(calen);
+
 			vec speed = result.get(i).getSpeed();
 			vec position = result.get(i).getPosition();
 			String line = String.format(Locale.US, "%f %f %f %f %f %f %f \n",
@@ -181,14 +195,6 @@ public class Ship {
 		writer.close();
 	}
 
-	private void runCelestia() {
-		try {
-			Runtime.getRuntime().exec("celestia");
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public double julianDate(GregorianCalendar greg){
 
@@ -202,6 +208,7 @@ public class Ship {
 		int a = (14 - month)/12;
 		int y = year + 4800 - a;
 		int m = month + 12* a -3;
+
 		long jdn = day + (153*m +2)/5 + 365*y + y/4 - y/100 + y/400 - 32045;
 		double jd = (hour*3600 + minute*60 + seconds)/86400.0;
 		return jdn+jd;

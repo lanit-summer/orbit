@@ -210,63 +210,8 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 
 #define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) {SWIG_JavaThrowException(jenv, SWIG_JavaIllegalArgumentException, msg); return nullreturn; } else
 
-/*  Errors in SWIG */
-#define  SWIG_UnknownError    	   -1
-#define  SWIG_IOError        	   -2
-#define  SWIG_RuntimeError   	   -3
-#define  SWIG_IndexError     	   -4
-#define  SWIG_TypeError      	   -5
-#define  SWIG_DivisionByZero 	   -6
-#define  SWIG_OverflowError  	   -7
-#define  SWIG_SyntaxError    	   -8
-#define  SWIG_ValueError     	   -9
-#define  SWIG_SystemError    	   -10
-#define  SWIG_AttributeError 	   -11
-#define  SWIG_MemoryError    	   -12
-#define  SWIG_NullReferenceError   -13
 
-
-
-
-#include "orbit.h"
-#include <vector>
-
-
-SWIGINTERN void SWIG_JavaException(JNIEnv *jenv, int code, const char *msg) {
-  SWIG_JavaExceptionCodes exception_code = SWIG_JavaUnknownError;
-  switch(code) {
-  case SWIG_MemoryError:
-    exception_code = SWIG_JavaOutOfMemoryError;
-    break;
-  case SWIG_IOError:
-    exception_code = SWIG_JavaIOException;
-    break;
-  case SWIG_SystemError:
-  case SWIG_RuntimeError:
-    exception_code = SWIG_JavaRuntimeException;
-    break;
-  case SWIG_OverflowError:
-  case SWIG_IndexError:
-    exception_code = SWIG_JavaIndexOutOfBoundsException;
-    break;
-  case SWIG_DivisionByZero:
-    exception_code = SWIG_JavaArithmeticException;
-    break;
-  case SWIG_SyntaxError:
-  case SWIG_ValueError:
-  case SWIG_TypeError:
-    exception_code = SWIG_JavaIllegalArgumentException;
-    break;
-  case SWIG_UnknownError:
-  default:
-    exception_code = SWIG_JavaUnknownError;
-    break;
-  }
-  SWIG_JavaThrowException(jenv, exception_code, msg);
-}
-
-
-#include <stdexcept>
+    #include "OrbitSimulator.h"
 
 
 #include <stdexcept>
@@ -308,131 +253,79 @@ SWIGINTERN void std_vector_Sl_ReturnValues_Sg__set(std::vector< ReturnValues > *
 extern "C" {
 #endif
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vec_1x_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
-  vec *arg1 = (vec *) 0 ;
-  double arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(vec **)&jarg1; 
-  arg2 = (double)jarg2; 
-  if (arg1) (arg1)->x = arg2;
-}
-
-
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_vec_1x_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_G_1get(JNIEnv *jenv, jclass jcls) {
   jdouble jresult = 0 ;
-  vec *arg1 = (vec *) 0 ;
   double result;
   
   (void)jenv;
   (void)jcls;
-  (void)jarg1_;
-  arg1 = *(vec **)&jarg1; 
-  result = (double) ((arg1)->x);
+  result = (double)(double)G;
   jresult = (jdouble)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vec_1y_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
-  vec *arg1 = (vec *) 0 ;
-  double arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(vec **)&jarg1; 
-  arg2 = (double)jarg2; 
-  if (arg1) (arg1)->y = arg2;
-}
-
-
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_vec_1y_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_EarthMass_1get(JNIEnv *jenv, jclass jcls) {
   jdouble jresult = 0 ;
-  vec *arg1 = (vec *) 0 ;
   double result;
   
   (void)jenv;
   (void)jcls;
-  (void)jarg1_;
-  arg1 = *(vec **)&jarg1; 
-  result = (double) ((arg1)->y);
+  result = (double)(double)EarthMass;
   jresult = (jdouble)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vec_1z_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
-  vec *arg1 = (vec *) 0 ;
-  double arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(vec **)&jarg1; 
-  arg2 = (double)jarg2; 
-  if (arg1) (arg1)->z = arg2;
-}
-
-
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_vec_1z_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_EarthRadius_1get(JNIEnv *jenv, jclass jcls) {
   jdouble jresult = 0 ;
-  vec *arg1 = (vec *) 0 ;
   double result;
   
   (void)jenv;
   (void)jcls;
-  (void)jarg1_;
-  arg1 = *(vec **)&jarg1; 
-  result = (double) ((arg1)->z);
+  result = (double)(double)EarthRadius;
   jresult = (jdouble)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1vec(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  vec *result = 0 ;
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_ZeroCelsius_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
   
   (void)jenv;
   (void)jcls;
-  {
-    try {
-      result = (vec *)new vec();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
-  *(vec **)&jresult = result; 
+  result = (double)(double)ZeroCelsius;
+  jresult = (jdouble)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_delete_1vec(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  vec *arg1 = (vec *) 0 ;
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_AtmosphereBoundary_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = *(vec **)&jarg1; 
-  {
-    try {
-      delete arg1;
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  result = (double)(double)AtmosphereBoundary;
+  jresult = (jdouble)result; 
+  return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundX_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_SeaLevelAirDensity_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (double)(double)SeaLevelAirDensity;
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_Rotation_1rotationAroundX_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   Rotation *arg1 = (Rotation *) 0 ;
   double arg2 ;
   
@@ -445,7 +338,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundX_1set
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundX_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_Rotation_1rotationAroundX_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   Rotation *arg1 = (Rotation *) 0 ;
   double result;
@@ -460,7 +353,7 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundX_1
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundY_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_Rotation_1rotationAroundY_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   Rotation *arg1 = (Rotation *) 0 ;
   double arg2 ;
   
@@ -473,7 +366,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundY_1set
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundY_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_Rotation_1rotationAroundY_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   Rotation *arg1 = (Rotation *) 0 ;
   double result;
@@ -488,7 +381,7 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundY_1
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundZ_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_Rotation_1rotationAroundZ_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   Rotation *arg1 = (Rotation *) 0 ;
   double arg2 ;
   
@@ -501,7 +394,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundZ_1set
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundZ_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_Rotation_1rotationAroundZ_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   Rotation *arg1 = (Rotation *) 0 ;
   double result;
@@ -516,47 +409,29 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_Rotation_1rotationAroundZ_1
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1Rotation(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1Rotation(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   Rotation *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  {
-    try {
-      result = (Rotation *)new Rotation();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (Rotation *)new Rotation();
   *(Rotation **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_delete_1Rotation(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_delete_1Rotation(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   Rotation *arg1 = (Rotation *) 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(Rotation **)&jarg1; 
-  {
-    try {
-      delete arg1;
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  delete arg1;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipPosition_1position_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipPosition_1position_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   ShipPosition *arg1 = (ShipPosition *) 0 ;
   Position *arg2 = (Position *) 0 ;
   
@@ -570,7 +445,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipPosition_1position_1set(JN
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ShipPosition_1position_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipPosition_1position_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   ShipPosition *arg1 = (ShipPosition *) 0 ;
   Position *result = 0 ;
@@ -585,7 +460,7 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ShipPosition_1position_1get(J
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipPosition_1orientation_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipPosition_1orientation_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   ShipPosition *arg1 = (ShipPosition *) 0 ;
   Orient *arg2 = (Orient *) 0 ;
   
@@ -599,7 +474,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipPosition_1orientation_1set
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ShipPosition_1orientation_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipPosition_1orientation_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   ShipPosition *arg1 = (ShipPosition *) 0 ;
   Orient *result = 0 ;
@@ -614,7 +489,7 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ShipPosition_1orientation_1ge
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipPosition_1speedFirst_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipPosition_1speedFirst_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   ShipPosition *arg1 = (ShipPosition *) 0 ;
   vec *arg2 = (vec *) 0 ;
   
@@ -628,7 +503,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipPosition_1speedFirst_1set(
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ShipPosition_1speedFirst_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipPosition_1speedFirst_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   ShipPosition *arg1 = (ShipPosition *) 0 ;
   vec *result = 0 ;
@@ -643,47 +518,58 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ShipPosition_1speedFirst_1get
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1ShipPosition(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipPosition_1moment_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  ShipPosition *arg1 = (ShipPosition *) 0 ;
+  Rotation *arg2 = (Rotation *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(ShipPosition **)&jarg1; 
+  arg2 = *(Rotation **)&jarg2; 
+  if (arg1) (arg1)->moment = *arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipPosition_1moment_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  ShipPosition *arg1 = (ShipPosition *) 0 ;
+  Rotation *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(ShipPosition **)&jarg1; 
+  result = (Rotation *)& ((arg1)->moment);
+  *(Rotation **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1ShipPosition(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   ShipPosition *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  {
-    try {
-      result = (ShipPosition *)new ShipPosition();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (ShipPosition *)new ShipPosition();
   *(ShipPosition **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_delete_1ShipPosition(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_delete_1ShipPosition(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   ShipPosition *arg1 = (ShipPosition *) 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(ShipPosition **)&jarg1; 
-  {
-    try {
-      delete arg1;
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  delete arg1;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1delayTime_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_PartOfFlightPlan_1delayTime_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
   int arg2 ;
   
@@ -696,7 +582,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1delayTime_1s
 }
 
 
-SWIGEXPORT jint JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1delayTime_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jint JNICALL Java_orbit_model_OrbitSimulatorJNI_PartOfFlightPlan_1delayTime_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
   int result;
@@ -711,7 +597,7 @@ SWIGEXPORT jint JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1delayTime_1g
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1impulseValue_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_PartOfFlightPlan_1impulseValue_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
   double arg2 ;
   
@@ -724,7 +610,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1impulseValue
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1impulseValue_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_PartOfFlightPlan_1impulseValue_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
   double result;
@@ -739,7 +625,7 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1impulseVa
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1rotateValue_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_PartOfFlightPlan_1rotateValue_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
   Rotation *arg2 = (Rotation *) 0 ;
   
@@ -753,7 +639,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1rotateValue_
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1rotateValue_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_PartOfFlightPlan_1rotateValue_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
   Rotation *result = 0 ;
@@ -768,47 +654,29 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_PartOfFlightPlan_1rotateValue
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1PartOfFlightPlan(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1PartOfFlightPlan(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   PartOfFlightPlan *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  {
-    try {
-      result = (PartOfFlightPlan *)new PartOfFlightPlan();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (PartOfFlightPlan *)new PartOfFlightPlan();
   *(PartOfFlightPlan **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_delete_1PartOfFlightPlan(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_delete_1PartOfFlightPlan(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   PartOfFlightPlan *arg1 = (PartOfFlightPlan *) 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(PartOfFlightPlan **)&jarg1; 
-  {
-    try {
-      delete arg1;
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  delete arg1;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1shipEdgeLength_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1shipEdgeLength_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   ShipParams *arg1 = (ShipParams *) 0 ;
   double arg2 ;
   
@@ -821,7 +689,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1shipEdgeLength_1se
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1shipEdgeLength_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1shipEdgeLength_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   ShipParams *arg1 = (ShipParams *) 0 ;
   double result;
@@ -836,7 +704,7 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1shipEdgeLength_
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1shipMass_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1shipMass_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   ShipParams *arg1 = (ShipParams *) 0 ;
   double arg2 ;
   
@@ -849,7 +717,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1shipMass_1set(JNIE
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1shipMass_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1shipMass_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   ShipParams *arg1 = (ShipParams *) 0 ;
   double result;
@@ -864,7 +732,7 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1shipMass_1get(J
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1fuelMass_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1fuelMass_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   ShipParams *arg1 = (ShipParams *) 0 ;
   double arg2 ;
   
@@ -877,7 +745,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1fuelMass_1set(JNIE
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1fuelMass_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1fuelMass_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   ShipParams *arg1 = (ShipParams *) 0 ;
   double result;
@@ -892,7 +760,7 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1fuelMass_1get(J
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxRotation_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1maxRotation_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   ShipParams *arg1 = (ShipParams *) 0 ;
   Rotation *arg2 = (Rotation *) 0 ;
   
@@ -906,7 +774,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxRotation_1set(J
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxRotation_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1maxRotation_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   ShipParams *arg1 = (ShipParams *) 0 ;
   Rotation *result = 0 ;
@@ -921,7 +789,7 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxRotation_1get(
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxFuelUsagePerSec_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1maxFuelUsagePerSec_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   ShipParams *arg1 = (ShipParams *) 0 ;
   double arg2 ;
   
@@ -934,7 +802,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxFuelUsagePerSec
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxFuelUsagePerSec_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1maxFuelUsagePerSec_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   ShipParams *arg1 = (ShipParams *) 0 ;
   double result;
@@ -949,7 +817,7 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxFuelUsagePer
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1impulsePerFuel_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1impulsePerFuel_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   ShipParams *arg1 = (ShipParams *) 0 ;
   double arg2 ;
   
@@ -962,7 +830,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1impulsePerFuel_1se
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1impulsePerFuel_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1impulsePerFuel_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   ShipParams *arg1 = (ShipParams *) 0 ;
   double result;
@@ -977,7 +845,7 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1impulsePerFuel_
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1flightPlan_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1flightPlan_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   ShipParams *arg1 = (ShipParams *) 0 ;
   std::vector< PartOfFlightPlan > *arg2 = (std::vector< PartOfFlightPlan > *) 0 ;
   
@@ -991,7 +859,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1flightPlan_1set(JN
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ShipParams_1flightPlan_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1flightPlan_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   ShipParams *arg1 = (ShipParams *) 0 ;
   std::vector< PartOfFlightPlan > *result = 0 ;
@@ -1006,7 +874,7 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ShipParams_1flightPlan_1get(J
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxOverload_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1maxOverload_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   ShipParams *arg1 = (ShipParams *) 0 ;
   double arg2 ;
   
@@ -1019,7 +887,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxOverload_1set(J
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxOverload_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1maxOverload_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   ShipParams *arg1 = (ShipParams *) 0 ;
   double result;
@@ -1034,7 +902,7 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxOverload_1ge
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxHeating_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1maxHeating_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   ShipParams *arg1 = (ShipParams *) 0 ;
   double arg2 ;
   
@@ -1047,7 +915,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxHeating_1set(JN
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxHeating_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_ShipParams_1maxHeating_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   ShipParams *arg1 = (ShipParams *) 0 ;
   double result;
@@ -1062,47 +930,29 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_ShipParams_1maxHeating_1get
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1ShipParams(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1ShipParams(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   ShipParams *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  {
-    try {
-      result = (ShipParams *)new ShipParams();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (ShipParams *)new ShipParams();
   *(ShipParams **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_delete_1ShipParams(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_delete_1ShipParams(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   ShipParams *arg1 = (ShipParams *) 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(ShipParams **)&jarg1; 
-  {
-    try {
-      delete arg1;
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  delete arg1;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_Quants_1numberOfQuants_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_Quants_1numberOfQuants_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   Quants *arg1 = (Quants *) 0 ;
   int arg2 ;
   
@@ -1115,7 +965,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_Quants_1numberOfQuants_1set(JN
 }
 
 
-SWIGEXPORT jint JNICALL Java_orbit_model_orbitJNI_Quants_1numberOfQuants_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jint JNICALL Java_orbit_model_OrbitSimulatorJNI_Quants_1numberOfQuants_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   Quants *arg1 = (Quants *) 0 ;
   int result;
@@ -1130,7 +980,7 @@ SWIGEXPORT jint JNICALL Java_orbit_model_orbitJNI_Quants_1numberOfQuants_1get(JN
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_Quants_1quantSizeOfSec_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_Quants_1quantSizeOfSec_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
   Quants *arg1 = (Quants *) 0 ;
   double arg2 ;
   
@@ -1143,7 +993,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_Quants_1quantSizeOfSec_1set(JN
 }
 
 
-SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_Quants_1quantSizeOfSec_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_Quants_1quantSizeOfSec_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jdouble jresult = 0 ;
   Quants *arg1 = (Quants *) 0 ;
   double result;
@@ -1158,47 +1008,29 @@ SWIGEXPORT jdouble JNICALL Java_orbit_model_orbitJNI_Quants_1quantSizeOfSec_1get
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1Quants(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1Quants(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   Quants *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  {
-    try {
-      result = (Quants *)new Quants();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (Quants *)new Quants();
   *(Quants **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_delete_1Quants(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_delete_1Quants(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   Quants *arg1 = (Quants *) 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(Quants **)&jarg1; 
-  {
-    try {
-      delete arg1;
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  delete arg1;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ReturnValues_1position_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ReturnValues_1position_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   ReturnValues *arg1 = (ReturnValues *) 0 ;
   Position *arg2 = (Position *) 0 ;
   
@@ -1212,7 +1044,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ReturnValues_1position_1set(JN
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ReturnValues_1position_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_ReturnValues_1position_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   ReturnValues *arg1 = (ReturnValues *) 0 ;
   Position *result = 0 ;
@@ -1227,7 +1059,7 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ReturnValues_1position_1get(J
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ReturnValues_1speed_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_ReturnValues_1speed_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   ReturnValues *arg1 = (ReturnValues *) 0 ;
   vec *arg2 = (vec *) 0 ;
   
@@ -1241,7 +1073,7 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_ReturnValues_1speed_1set(JNIEn
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ReturnValues_1speed_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_ReturnValues_1speed_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   ReturnValues *arg1 = (ReturnValues *) 0 ;
   vec *result = 0 ;
@@ -1256,47 +1088,29 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_ReturnValues_1speed_1get(JNIE
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1ReturnValues(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1ReturnValues(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   ReturnValues *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  {
-    try {
-      result = (ReturnValues *)new ReturnValues();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (ReturnValues *)new ReturnValues();
   *(ReturnValues **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_delete_1ReturnValues(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_delete_1ReturnValues(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   ReturnValues *arg1 = (ReturnValues *) 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(ReturnValues **)&jarg1; 
-  {
-    try {
-      delete arg1;
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  delete arg1;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_computeFlightPlan(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_computeFlightPlan(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
   jlong jresult = 0 ;
   ShipPosition arg1 ;
   ShipParams arg2 ;
@@ -1329,43 +1143,438 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_computeFlightPlan(JNIEnv *jen
     return 0;
   }
   arg3 = *argp3; 
-  {
-    try {
-      result = computeFlightPlan(arg1,arg2,arg3);
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = computeFlightPlan(arg1,arg2,arg3);
   *(std::vector< ReturnValues > **)&jresult = new std::vector< ReturnValues >((const std::vector< ReturnValues > &)result); 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1vector_1of_1part_1flight_1plan_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1x_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  vec *arg1 = (vec *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(vec **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->x = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1x_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  vec *arg1 = (vec *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(vec **)&jarg1; 
+  result = (double) ((arg1)->x);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1y_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  vec *arg1 = (vec *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(vec **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->y = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1y_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  vec *arg1 = (vec *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(vec **)&jarg1; 
+  result = (double) ((arg1)->y);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1z_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  vec *arg1 = (vec *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(vec **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->z = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1z_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  vec *arg1 = (vec *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(vec **)&jarg1; 
+  result = (double) ((arg1)->z);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1getScalar(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  vec *arg1 = (vec *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(vec **)&jarg1; 
+  result = (double)(arg1)->getScalar();
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1multiplyWithDouble(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  jlong jresult = 0 ;
+  vec *arg1 = (vec *) 0 ;
+  double arg2 ;
+  vec result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(vec **)&jarg1; 
+  arg2 = (double)jarg2; 
+  result = (arg1)->multiplyWithDouble(arg2);
+  *(vec **)&jresult = new vec((const vec &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1rotate(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  vec *arg1 = (vec *) 0 ;
+  quaternion arg2 ;
+  quaternion *argp2 ;
+  vec result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(vec **)&jarg1; 
+  argp2 = *(quaternion **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null quaternion");
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = (arg1)->rotate(arg2);
+  *(vec **)&jresult = new vec((const vec &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1multiply(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  vec *arg1 = (vec *) 0 ;
+  vec arg2 ;
+  vec *argp2 ;
+  vec result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(vec **)&jarg1; 
+  argp2 = *(vec **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null vec");
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = (arg1)->multiply(arg2);
+  *(vec **)&jresult = new vec((const vec &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1createQuaternion(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  vec *arg1 = (vec *) 0 ;
+  quaternion result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(vec **)&jarg1; 
+  result = (arg1)->createQuaternion();
+  *(quaternion **)&jresult = new quaternion((const quaternion &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vec_1multiplyWithQuaternion(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  vec *arg1 = (vec *) 0 ;
+  quaternion arg2 ;
+  quaternion *argp2 ;
+  quaternion result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(vec **)&jarg1; 
+  argp2 = *(quaternion **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null quaternion");
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = (arg1)->multiplyWithQuaternion(arg2);
+  *(quaternion **)&jresult = new quaternion((const quaternion &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1vec(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  vec *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (vec *)new vec();
+  *(vec **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_delete_1vec(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  vec *arg1 = (vec *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(vec **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1w_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  quaternion *arg1 = (quaternion *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(quaternion **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->w = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1w_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  quaternion *arg1 = (quaternion *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(quaternion **)&jarg1; 
+  result = (double) ((arg1)->w);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1x_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  quaternion *arg1 = (quaternion *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(quaternion **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->x = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1x_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  quaternion *arg1 = (quaternion *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(quaternion **)&jarg1; 
+  result = (double) ((arg1)->x);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1y_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  quaternion *arg1 = (quaternion *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(quaternion **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->y = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1y_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  quaternion *arg1 = (quaternion *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(quaternion **)&jarg1; 
+  result = (double) ((arg1)->y);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1z_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  quaternion *arg1 = (quaternion *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(quaternion **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->z = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1z_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  quaternion *arg1 = (quaternion *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(quaternion **)&jarg1; 
+  result = (double) ((arg1)->z);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1normalize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  quaternion *arg1 = (quaternion *) 0 ;
+  quaternion result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(quaternion **)&jarg1; 
+  result = (arg1)->normalize();
+  *(quaternion **)&jresult = new quaternion((const quaternion &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1multiply(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+  jlong jresult = 0 ;
+  quaternion *arg1 = (quaternion *) 0 ;
+  quaternion arg2 ;
+  quaternion *argp2 ;
+  quaternion result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  arg1 = *(quaternion **)&jarg1; 
+  argp2 = *(quaternion **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null quaternion");
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = (arg1)->multiply(arg2);
+  *(quaternion **)&jresult = new quaternion((const quaternion &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_quaternion_1invert(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  quaternion *arg1 = (quaternion *) 0 ;
+  quaternion result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(quaternion **)&jarg1; 
+  result = (arg1)->invert();
+  *(quaternion **)&jresult = new quaternion((const quaternion &)result); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1quaternion(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  quaternion *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (quaternion *)new quaternion();
+  *(quaternion **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_delete_1quaternion(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  quaternion *arg1 = (quaternion *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(quaternion **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1vector_1of_1part_1flight_1plan_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   std::vector< PartOfFlightPlan > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  {
-    try {
-      result = (std::vector< PartOfFlightPlan > *)new std::vector< PartOfFlightPlan >();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (std::vector< PartOfFlightPlan > *)new std::vector< PartOfFlightPlan >();
   *(std::vector< PartOfFlightPlan > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1vector_1of_1part_1flight_1plan_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1vector_1of_1part_1flight_1plan_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   std::vector< PartOfFlightPlan >::size_type arg1 ;
   std::vector< PartOfFlightPlan > *result = 0 ;
@@ -1373,22 +1582,13 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1vector_1of_1part_1flight
   (void)jenv;
   (void)jcls;
   arg1 = (std::vector< PartOfFlightPlan >::size_type)jarg1; 
-  {
-    try {
-      result = (std::vector< PartOfFlightPlan > *)new std::vector< PartOfFlightPlan >(arg1);
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (std::vector< PartOfFlightPlan > *)new std::vector< PartOfFlightPlan >(arg1);
   *(std::vector< PartOfFlightPlan > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1part_1flight_1plan_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   std::vector< PartOfFlightPlan >::size_type result;
@@ -1397,22 +1597,13 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1pla
   (void)jcls;
   (void)jarg1_;
   arg1 = *(std::vector< PartOfFlightPlan > **)&jarg1; 
-  {
-    try {
-      result = ((std::vector< PartOfFlightPlan > const *)arg1)->size();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = ((std::vector< PartOfFlightPlan > const *)arg1)->size();
   jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1part_1flight_1plan_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   std::vector< PartOfFlightPlan >::size_type result;
@@ -1421,22 +1612,13 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1pla
   (void)jcls;
   (void)jarg1_;
   arg1 = *(std::vector< PartOfFlightPlan > **)&jarg1; 
-  {
-    try {
-      result = ((std::vector< PartOfFlightPlan > const *)arg1)->capacity();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = ((std::vector< PartOfFlightPlan > const *)arg1)->capacity();
   jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1part_1flight_1plan_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   std::vector< PartOfFlightPlan >::size_type arg2 ;
   
@@ -1445,20 +1627,11 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan
   (void)jarg1_;
   arg1 = *(std::vector< PartOfFlightPlan > **)&jarg1; 
   arg2 = (std::vector< PartOfFlightPlan >::size_type)jarg2; 
-  {
-    try {
-      (arg1)->reserve(arg2);
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  (arg1)->reserve(arg2);
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jboolean JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1part_1flight_1plan_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
   std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   bool result;
@@ -1467,42 +1640,24 @@ SWIGEXPORT jboolean JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1
   (void)jcls;
   (void)jarg1_;
   arg1 = *(std::vector< PartOfFlightPlan > **)&jarg1; 
-  {
-    try {
-      result = (bool)((std::vector< PartOfFlightPlan > const *)arg1)->empty();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (bool)((std::vector< PartOfFlightPlan > const *)arg1)->empty();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1part_1flight_1plan_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(std::vector< PartOfFlightPlan > **)&jarg1; 
-  {
-    try {
-      (arg1)->clear();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  (arg1)->clear();
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan_1add(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1part_1flight_1plan_1add(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   std::vector< PartOfFlightPlan >::value_type *arg2 = 0 ;
   
@@ -1516,20 +1671,11 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< PartOfFlightPlan >::value_type const & reference is null");
     return ;
   } 
-  {
-    try {
-      (arg1)->push_back((std::vector< PartOfFlightPlan >::value_type const &)*arg2);
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  (arg1)->push_back((std::vector< PartOfFlightPlan >::value_type const &)*arg2);
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1part_1flight_1plan_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
   std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   int arg2 ;
@@ -1540,29 +1686,20 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1pla
   (void)jarg1_;
   arg1 = *(std::vector< PartOfFlightPlan > **)&jarg1; 
   arg2 = (int)jarg2; 
-  {
-    try {
-      try {
-        result = (std::vector< PartOfFlightPlan >::value_type *) &std_vector_Sl_PartOfFlightPlan_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
-        return 0;
-      }
-      
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
+  try {
+    result = (std::vector< PartOfFlightPlan >::value_type *) &std_vector_Sl_PartOfFlightPlan_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  
   *(std::vector< PartOfFlightPlan >::value_type **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1part_1flight_1plan_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
   std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   int arg2 ;
   std::vector< PartOfFlightPlan >::value_type *arg3 = 0 ;
@@ -1578,67 +1715,40 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1part_1flight_1plan
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< PartOfFlightPlan >::value_type const & reference is null");
     return ;
   } 
-  {
-    try {
-      try {
-        std_vector_Sl_PartOfFlightPlan_Sg__set(arg1,arg2,(PartOfFlightPlan const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
-        return ;
-      }
-      
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
+  try {
+    std_vector_Sl_PartOfFlightPlan_Sg__set(arg1,arg2,(PartOfFlightPlan const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+  
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_delete_1vector_1of_1part_1flight_1plan(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_delete_1vector_1of_1part_1flight_1plan(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   std::vector< PartOfFlightPlan > *arg1 = (std::vector< PartOfFlightPlan > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(std::vector< PartOfFlightPlan > **)&jarg1; 
-  {
-    try {
-      delete arg1;
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  delete arg1;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1vector_1of_1return_1values_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1vector_1of_1return_1values_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   std::vector< ReturnValues > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
-  {
-    try {
-      result = (std::vector< ReturnValues > *)new std::vector< ReturnValues >();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (std::vector< ReturnValues > *)new std::vector< ReturnValues >();
   *(std::vector< ReturnValues > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1vector_1of_1return_1values_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_new_1vector_1of_1return_1values_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   std::vector< ReturnValues >::size_type arg1 ;
   std::vector< ReturnValues > *result = 0 ;
@@ -1646,22 +1756,13 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_new_1vector_1of_1return_1valu
   (void)jenv;
   (void)jcls;
   arg1 = (std::vector< ReturnValues >::size_type)jarg1; 
-  {
-    try {
-      result = (std::vector< ReturnValues > *)new std::vector< ReturnValues >(arg1);
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (std::vector< ReturnValues > *)new std::vector< ReturnValues >(arg1);
   *(std::vector< ReturnValues > **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1return_1values_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   std::vector< ReturnValues > *arg1 = (std::vector< ReturnValues > *) 0 ;
   std::vector< ReturnValues >::size_type result;
@@ -1670,22 +1771,13 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1s
   (void)jcls;
   (void)jarg1_;
   arg1 = *(std::vector< ReturnValues > **)&jarg1; 
-  {
-    try {
-      result = ((std::vector< ReturnValues > const *)arg1)->size();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = ((std::vector< ReturnValues > const *)arg1)->size();
   jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1return_1values_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   std::vector< ReturnValues > *arg1 = (std::vector< ReturnValues > *) 0 ;
   std::vector< ReturnValues >::size_type result;
@@ -1694,22 +1786,13 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1c
   (void)jcls;
   (void)jarg1_;
   arg1 = *(std::vector< ReturnValues > **)&jarg1; 
-  {
-    try {
-      result = ((std::vector< ReturnValues > const *)arg1)->capacity();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = ((std::vector< ReturnValues > const *)arg1)->capacity();
   jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1return_1values_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   std::vector< ReturnValues > *arg1 = (std::vector< ReturnValues > *) 0 ;
   std::vector< ReturnValues >::size_type arg2 ;
   
@@ -1718,20 +1801,11 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1re
   (void)jarg1_;
   arg1 = *(std::vector< ReturnValues > **)&jarg1; 
   arg2 = (std::vector< ReturnValues >::size_type)jarg2; 
-  {
-    try {
-      (arg1)->reserve(arg2);
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  (arg1)->reserve(arg2);
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jboolean JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1return_1values_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
   std::vector< ReturnValues > *arg1 = (std::vector< ReturnValues > *) 0 ;
   bool result;
@@ -1740,42 +1814,24 @@ SWIGEXPORT jboolean JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values
   (void)jcls;
   (void)jarg1_;
   arg1 = *(std::vector< ReturnValues > **)&jarg1; 
-  {
-    try {
-      result = (bool)((std::vector< ReturnValues > const *)arg1)->empty();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
-  }
+  result = (bool)((std::vector< ReturnValues > const *)arg1)->empty();
   jresult = (jboolean)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1return_1values_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   std::vector< ReturnValues > *arg1 = (std::vector< ReturnValues > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(std::vector< ReturnValues > **)&jarg1; 
-  {
-    try {
-      (arg1)->clear();
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  (arg1)->clear();
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1add(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1return_1values_1add(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   std::vector< ReturnValues > *arg1 = (std::vector< ReturnValues > *) 0 ;
   std::vector< ReturnValues >::value_type *arg2 = 0 ;
   
@@ -1789,20 +1845,11 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1ad
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< ReturnValues >::value_type const & reference is null");
     return ;
   } 
-  {
-    try {
-      (arg1)->push_back((std::vector< ReturnValues >::value_type const &)*arg2);
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  (arg1)->push_back((std::vector< ReturnValues >::value_type const &)*arg2);
 }
 
 
-SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jlong JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1return_1values_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
   std::vector< ReturnValues > *arg1 = (std::vector< ReturnValues > *) 0 ;
   int arg2 ;
@@ -1813,29 +1860,20 @@ SWIGEXPORT jlong JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1g
   (void)jarg1_;
   arg1 = *(std::vector< ReturnValues > **)&jarg1; 
   arg2 = (int)jarg2; 
-  {
-    try {
-      try {
-        result = (std::vector< ReturnValues >::value_type *) &std_vector_Sl_ReturnValues_Sg__get(arg1,arg2);
-      }
-      catch(std::out_of_range &_e) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
-        return 0;
-      }
-      
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return 0; 
-      };
-    }
+  try {
+    result = (std::vector< ReturnValues >::value_type *) &std_vector_Sl_ReturnValues_Sg__get(arg1,arg2);
   }
+  catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return 0;
+  }
+  
   *(std::vector< ReturnValues >::value_type **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_vector_1of_1return_1values_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
   std::vector< ReturnValues > *arg1 = (std::vector< ReturnValues > *) 0 ;
   int arg2 ;
   std::vector< ReturnValues >::value_type *arg3 = 0 ;
@@ -1851,42 +1889,24 @@ SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_vector_1of_1return_1values_1se
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< ReturnValues >::value_type const & reference is null");
     return ;
   } 
-  {
-    try {
-      try {
-        std_vector_Sl_ReturnValues_Sg__set(arg1,arg2,(ReturnValues const &)*arg3);
-      }
-      catch(std::out_of_range &_e) {
-        SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
-        return ;
-      }
-      
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
+  try {
+    std_vector_Sl_ReturnValues_Sg__set(arg1,arg2,(ReturnValues const &)*arg3);
   }
+  catch(std::out_of_range &_e) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, (&_e)->what());
+    return ;
+  }
+  
 }
 
 
-SWIGEXPORT void JNICALL Java_orbit_model_orbitJNI_delete_1vector_1of_1return_1values(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_orbit_model_OrbitSimulatorJNI_delete_1vector_1of_1return_1values(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   std::vector< ReturnValues > *arg1 = (std::vector< ReturnValues > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = *(std::vector< ReturnValues > **)&jarg1; 
-  {
-    try {
-      delete arg1;
-    }
-    catch (std::exception &e) {
-      {
-        SWIG_JavaException(jenv, SWIG_ValueError, e.what()); return ; 
-      };
-    }
-  }
+  delete arg1;
 }
 
 

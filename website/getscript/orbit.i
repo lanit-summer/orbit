@@ -1,7 +1,8 @@
 %module orbit
 %{
-    #include "../orbfinal/orbfinal/orbit.h"
+    #include "OrbitSimulator.h"
     #include <vector>
+
 %}
 
 %include "exception.i"
@@ -14,9 +15,10 @@
     }
 }
 
-%include "../orbfinal/orbfinal/orbit.h"
+%include "OrbitSimulator.h"
 %include "std_vector.i"
-
+%include "vec.cpp"
+%include "quaternion.cpp"
 namespace std
 {
 	%template(vector_of_part_flight_plan) vector<PartOfFlightPlan>;

@@ -103,10 +103,7 @@ public class gameController {
 			getCelestiaPath();
 			this.ship.setCelestia(celestia);
 			this.ship.makeTrajectory();
-			Alert alert = new Alert(AlertType.INFORMATION);
-	        alert.setTitle("Траетория готова");
-	        alert.setHeaderText("Расположена в файле orbit.xyzv");
-	        alert.showAndWait();
+
 		}
 
 	}
