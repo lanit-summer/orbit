@@ -125,29 +125,29 @@ TEST_CASE("Calculate Gravity force", "[GravityForce]") {
 }
 
 TEST_CASE("Calculate Tractive force", "[TractiveForce]") {
-    SECTION( "if the speed is zero" ) {
-        vec speed = {0, 0, 0};
+    SECTION( "if the orientation is zero" ) {
+        vec orientation = {0, 0, 0};
         double massLevel = 1;
         double specificImpulse = 1;
-        vec result = calculateTractiveForce(massLevel, specificImpulse, speed);
+        vec result = calculateTractiveForce(massLevel, specificImpulse, orientation);
         vec zeroVec = {0, 0, 0};
         REQUIRE(result == zeroVec);
     }
     SECTION( "normal values" ) {
-        vec speed = {10, 0, 0};
-        double massLevel = 0.5;
-        double specificImpulse = 20;
-        vec result = calculateTractiveForce(massLevel, specificImpulse, speed);
-        vec calculatedVec = {10, 0, 0};
+        vec orientation = {10, 0, 0};
+        double massLevel = 0.3;
+        double specificImpulse = 21;
+        vec result = calculateTractiveForce(massLevel, specificImpulse, orientation);
+        vec calculatedVec = {6.3, 0, 0};
         REQUIRE(result == calculatedVec);
     }
-    SECTION( "calculation doesn't depend on scalar of the speed, only on it's direction)" ) {
-        vec speed1 = {0, 1, 0};
-        vec speed2 = {0, 10, 0};
+    SECTION( "calculation doesn't depend on scalar of the orientation, only on it's direction)" ) {
+        vec orientation1 = {0, 1, 0};
+        vec orientation2 = {0, 10, 0};
         double massLevel = 2;
         double specificImpulse = 5;
-        vec result1 = calculateTractiveForce(massLevel, specificImpulse, speed1);
-        vec result2 = calculateTractiveForce(massLevel, specificImpulse, speed2);
+        vec result1 = calculateTractiveForce(massLevel, specificImpulse, orientation1);
+        vec result2 = calculateTractiveForce(massLevel, specificImpulse, orientation2);
         vec calculatedVec = {0, 10, 0};
         REQUIRE(result1 == calculatedVec);
         REQUIRE(result2 == calculatedVec);
