@@ -1,142 +1,237 @@
-/* Основные */
+/* Reset styles */
+html, body, div, span, applet, object, iframe,
+h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+}
 
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
 body {
-    margin: 0px;
-    font: 16px 'Tahoma';
-    color: #fff;
-    background: url('../img/bg.jpg') #000;
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Basic */
+body {
+    margin: 0 auto;
+    width: 100%;
+    min-width: 1280px;
+    min-height: 100vh;
+    background: url('../img/bg.jpg') no-repeat;
     background-size: 100%;
-    background-repeat: no-repeat;
     background-attachment: fixed;
-}
-
-#header {
-    margin: 0 auto;
-    width: 1000px;
-    height: 180px;
-}
-
-#content {
-    margin: 0 auto;
-    width: 1000px;
-    background: rgba(0, 0, 255, 0.3);
-    border: 1px solid #fff;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-}
-
-.logo {
-    font: 100px 'opengost';
-    text-align: center;
+    font: 18px "Roboto Light";
     color: #fff;
-    margin-left: -150px;
 }
-
-.xyz { width: 80px;}
-.size{ width: 120px;}
-
-.form {
-    margin: 0 auto;
-    width: 1000px;
+header {
+    margin: 0px auto;
+    width: 100%;
+    text-align: center;
 }
-
-.title {
-    font: 30px 'opengost';
-    color: #00FF12;
+.logo {
+    margin: 20px auto;
+    font: 84px "Roboto Light";
+	text-shadow: 
+        10px 0px 30px rgba(0, 0, 255, 0.6),
+        0px 10px 30px rgba(0, 0, 255, 0.6),
+        -10px 0px 30px rgba(0, 0, 255, 0.6),
+        0px -10px 30px rgba(0, 0, 255, 0.6);
 }
-
-.pad10 {padding:10px;}
-.padt40 {padding-top:40px;}
-.padb20 {padding-bottom:20px;}
-.padr20 {padding-right:20px;}
-
-.tah18{font: 18px 'Tahoma';}
-.tah21{font: 21px 'Tahoma';}
-.tah24{font: 24px 'Tahoma';}
-
-.line{
-    border-bottom: 2px solid #fff;
-    width: 970px;
-}
-
-.rule {
+nav {
+    margin: 0px auto;
+    width: 1200px;
+    background: #000050;
+    font-size: 0px;
     text-align: left;
 }
-
-.download {
+nav a {
+    display: inline-block;
+    margin: 0px;
+    padding: 15px 30px;
+    font: 24px "Roboto Light";
+    color: #fff;
     text-decoration: none;
 }
-.yellow {color: #ffff00;}
-.lblue {color: #00fffb;}
-
-input[type="text"] {
-    text-align: center;
-    border: 2px solid #fff;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    background: transparent !important;
-    outline: none;
-    height: 30px;
-    font: 16px 'Tahoma';
-    color: #fff;
+nav a:hover {
+    background: #000038;
+    -webkit-transition: background 700ms;
+    -moz-transition: background 700ms;
+    -o-transition: background 700ms;
+    transition: background 700ms;
 }
-
-input[type="submit"] {
-    background: transparent !important;
-    border: 2px solid #fff;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    outline: none;
-    height: 50px;
-    width: 200px;
-    font: 30px 'opengost';
-    color: #fff;
+nav img {
+    width: 35px;
+    margin-bottom: -8px;
+    margin-right: 10px;
+}
+.nav-active {
+    background: #000038;
+}
+.content {
+    margin: 0px auto;
+    margin-bottom: 80px;
+    padding: 20px 40px;
+    width: 1120px;
+    background: rgba(0, 0, 70, 0.8);
+}
+h2 {
+    margin: 20px auto;
+    font: 27px "Roboto Light";
+    color: #0ff;
     text-align: center;
+    text-transform: uppercase;
+}
+.options {
+    margin: 0px auto;
+    width: 750px;
+}
+.options td {
+    padding: 5px 0px;
+    font: 18px "Roboto Light";
+}
+.options td:nth-child(2n) {
+    text-align: right;
+}
+.options input[type="text"] {
+    margin: 0px 5px;
+    padding: 3px 5px;
+    width: 50px;
+    background: #fff;
+    border: none;
+    font: 16px "Roboto";
+    color: #000;
+    text-align: center;
+    -webkit-appearance: none;
+    outline: none;
+}
+.options input[type="text"]::-webkit-input-placeholder {color: #ccc;}
+.options input[type="text"]::-moz-placeholder {color: #ccc;}
+.options input[type="text"]:-moz-placeholder {color: #ccc;}
+.options input[type="text"]:-ms-input-placeholder {color: #ccc;}
+.units {
+    color: #ffff00;
+}
+.program {
+    text-align: center;
+}
+.program textarea {
+    margin: 0 auto;
+    padding: 10px;
+    width: 500px;
+    height: 400px;
+    background: #fff;
+    border: none;
+    font: 16px "Roboto";
+    color: #000;
+    -webkit-appearance: none;
+    outline: none;
+    resize: none;
+}
+.script {
+    text-align: center;
+}
+.script textarea {
+    margin: 0 auto;
+    padding: 10px;
+    width: 900px;
+    height: 300px;
+    background: #fff;
+    border: none;
+    font: 16px "Roboto";
+    color: #000;
+    -webkit-appearance: none;
+    outline: none;
+    resize: none;
+}
+.form-error {
+    margin: 0px 0px 20px 0px;
+    font: 21px "Roboto Light";
+    color: #ff0000;
+    text-align: center;
+}
+.submit {
+    text-align: center;
+}
+.submit input[type="submit"] {
+    margin: 20px 0px;
+    padding: 20px 30px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    font: 24px "Roboto Light";
+    color: #000050;
+    text-transform: uppercase;
+    -webkit-appearance: none;
+    outline: none;
     cursor: pointer;
 }
-
-input[type="submit"]:hover {
-    background: #0000ff !important;
-}
-
-input[type="button"] {
-    background: transparent !important;
-    border: 2px solid #fff;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    outline: none;
-    height: 50px;
-    width: 200px;
-    font: 30px 'opengost';
+.submit input[type="submit"]:hover {
     color: #fff;
-    text-align: center;
-    cursor: pointer;
+    background: #000050;
+    -webkit-transition: 700ms;
+    -moz-transition: 700ms;
+    -o-transition: 700ms;
+    transition: 700ms;
 }
-
-input[type="button"]:hover {
-    background: #0000ff !important;
+.help-title {
+    margin-bottom: 3px;
+    font: 21px "Roboto Bold";
+    color: #fff;
 }
-
+.help-text {
+    margin-bottom: 20px;
+}
+.a-btn {
+    display: inline-block;
+    margin: 20px;
+    text-decoration: none;
+}
+/* Fonts*/
 @font-face {
-    font-family: 'opengost';
-    src: url('fonts/opengost/opengosttypea-regular.eot');
-    src: url('fonts/opengost/opengosttypea-regular.eot?#iefix') format('embedded-opentype'),
-         url('fonts/opengost/opengosttypea-regular.woff') format('woff'),
-         url('fonts/opengost/opengosttypea-regular.ttf') format('truetype');
-    font-weight: normal;
+    font-family: "Roboto";
+    src: local("Roboto"), local("Roboto-Regular"), url('../fonts/roboto/roboto.woff2') format('woff2'), url('../fonts/roboto/roboto.woff') format('woff'), url('../fonts/roboto/roboto.ttf') format('truetype');
+    font-weight: 400;
     font-style: normal;
 }
-
 @font-face {
-    font-family: 'opengostb';
-    src: url('fonts/opengost/opengosttypeb-regular.eot');
-    src: url('fonts/opengost/opengosttypeb-regular.eot?#iefix') format('embedded-opentype'),
-         url('fonts/opengost/opengosttypeb-regular.woff') format('woff'),
-         url('fonts/opengost/opengosttypeb-regular.ttf') format('truetype');
-    font-weight: normal;
+    font-family: "Roboto Light";
+    src: local("Roboto Light"), local("Roboto-Light"), url('../fonts/roboto/robotolight.woff2') format('woff2'), url('../fonts/roboto/robotolight.woff') format('woff'), url('../fonts/roboto/robotolight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto Bold";
+    src: local("Roboto Bold"), local("Roboto-Bold"), url('../fonts/roboto/robotobold.woff2') format('woff2'), url('../fonts/roboto/robotobold.woff') format('woff'), url('../fonts/roboto/robotobold.ttf') format('truetype');
+    font-weight: 700;
     font-style: normal;
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang=ru>
+	<head>
+		{% load staticfiles %}
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css" />
+		<title>
+			{{ flatpage.title }}
+		</title>
+	</head>
+	<body>
+		{% load staticfiles %}
+        <header>
+            <div class="logo">ОРБИТА</div>
+            <nav>
+                <a href="/"><img src="{% static "img/icons/icon1.png" %}" alt="">Главная</a>
+                <a class="nav-active" href="/calculator/"><img src="{% static "img/icons/icon2.png" %}" alt="">Калькулятор</a>
+                <a href="/help/"><img src="{% static "img/icons/icon3.png" %}" alt="">Помощь</a>
+            </nav>
+        </header>
+        <div class="content">
+            <form action="/script/" method="POST" class="form">
+                {% csrf_token %}
+                <h2>Ввод начальных параметров</h2>
+                <div class="form-error">{{ form_error }}</div>
+                <table class="options">
+                    <tr>
+                        <td>1. Положение в пространстве <span class="units">(x y z) (км)</span></td>
+                        <td>{{ form.PositionX }}{{ form.PositionY }}{{ form.PositionZ }}</td>
+                    </tr>
+                    <tr>
+                        <td>2. Ориентация в пространстве <span class="units">(x y z) (б/р)</span></td>
+                        <td>{{ form.OrientX }}{{ form.OrientY }}{{ form.OrientZ }}</td>
+                    </tr>
+                    <tr>
+                        <td>3. Масса аппарата <span class="units">(кг)</span></td>
+                        <td>{{ form.shipMass }}</td>
+                    </tr>
+                    <tr>
+                        <td>4. Масса топлива <span class="units">(кг)</span></td>
+                        <td>{{ form.fuelMass }}</td>
+                    </tr>
+                    <tr>
+                        <td>5. Размер аппарата <span class="units">(км)</span></td>
+                        <td>{{ form.shipEdgeLength }}</td>
+                    </tr>
+                    <tr>
+                        <td>6. Начальная скорость <span class="units">(км/с)</span></td>
+                        <td>{{ form.speedFirstX }}{{ form.speedFirstY }}{{ form.speedFirstZ }}</td>
+                    </tr>
+                    <tr>
+                        <td>7. Максимальные моменты вращения <span class="units">(кг*км²)</span></td>
+                        <td>{{ form.maxRotationX }}{{ form.maxRotationY }}{{ form.maxRotationZ }}</td>
+                    </tr>
+                    <tr>
+                        <td>8. Максимальный массовый расход топлива <span class="units">(кг/с)</span></td>
+                        <td>{{ form.maxFuelUsagePerSec }}</td>
+                    </tr>
+                    <tr>
+                        <td>9. Удельный импульс двигателя <span class="units">(км/с)</span></td>
+                        <td>{{ form.impulsePerFuel }}</td>
+                    </tr>
+                    <tr>
+                        <td>10. Предельная перегрузка <span class="units">(g)</span></td>
+                        <td>{{ form.limitOverload }}</td>
+                    </tr>
+                    <tr>
+                        <td>11. Максимальная температура при входе в атмосферу <span class="units">(К)</span></td>
+                        <td>{{ form.maxTemperature }}</td>
+                    </tr>
+                    <tr>
+                        <td>12. Максимальное время полёта <span class="units">(с)</span></td>
+                        <td>{{ form.maxFlightTime }}</td>
+                    </tr>
+                    <tr>
+                        <td>13. Количество квантов</td>
+                        <td>{{ form.numberOfQuants }}</td>
+                    </tr>
+                    <tr>
+                        <td>14. Размер кванта (точность расчёта) <span class="units">(с)</span></td>
+                        <td>{{ form.quantSizeOfSec }}</td>
+                    </tr>
+                    <tr>
+                        <td>15. Точность отображения <span class="units">(с)</span></td>
+                        <td>{{ form.displayPrecision }}</td>
+                    </tr>
+                </table>
+                <h2>Ввод команд управления</h2>
+                <div class="program">{{ form.Program }}</div>
+                <div class="submit"><input type="submit" value="Рассчитать"/></div>
+            </form>
+        </div>	
+		{{ flatpage.content }}
+	</body>
+</html>
