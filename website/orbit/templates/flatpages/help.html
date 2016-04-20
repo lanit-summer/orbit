@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang=ru>
+	<head>
+		{% load staticfiles %}
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css" />
+		<title>
+			{{ flatpage.title }}
+		</title>
+	</head>
+	<body>
+		{% load staticfiles %}
+        <header>
+            <div class="logo">ОРБИТА</div>
+            <nav>
+                <a href="/"><img src="{% static "img/icons/icon1.png" %}" alt="">Главная</a>
+                <a href="/calculator/"><img src="{% static "img/icons/icon2.png" %}" alt="">Калькулятор</a>
+                <a class="nav-active" href="/help/"><img src="{% static "img/icons/icon3.png" %}" alt="">Помощь</a>
+            </nav>
+        </header>
+        <div class="content">
+            <h2>Описание начальных параметров</h2>
+            <div class="help-title">1. Положение в пространстве</div> 
+            <div class="help-text">- положение аппарата в трехмерной прямоугольной системе координат с началом отсчета в центре Земли.
+            <br />Единица измерения – километр. Минимальное значение для задания каждой координаты - 6378.1 км (радиус планеты).</div>
+            <div class="help-title">2. Ориентация в пространстве</div>
+            <div class="help-text">– вектор ориентации аппарата в прямоугольной системе координат с началом в центре Земли.
+            <br />Направление вектора - от сопла корабля к его носу. (Длина вектора может быть любой)</div>
+            <div class="help-title">3. Масса аппарата</div>
+            <div class="help-text">– масса корабля без учета массы топлива. Измеряется в килограммах.</div>
+            <div class="help-title">4. Масса топлива</div>
+            <div class="help-text">– масса топлива в начале полета. Измеряется в килограммах.</div>
+            <div class="help-title">5. Размер аппарата</div>
+            <div class="help-text">– длина ребра куба, который задает форму аппарата. Измеряется в метрах.
+                <br />Ограничения: размер грани аппарата до 10 м</div>
+            <div class="help-title">6. Начальная скорость</div>
+            <div class="help-text">– </div>
+            <div class="help-title">7. Максимальные моменты вращения</div>
+            <div class="help-text">– 
+                <br />Ограничения: до 1000 Н*м</div>
+            <div class="help-title">8. Максимальный массовый расход топлива</div>
+            <div class="help-text">– 
+                <br />Ограничения: до 1000 кг в секунду</div>
+            <div class="help-title">9. Удельный импульс двигателя</div>
+            <div class="help-text">– 
+                <br />Ограничения: до 10000 м/с</div>
+            <div class="help-title">10. Предельная перегрузка</div>
+            <div class="help-text">– </div>
+            <div class="help-title">11. Максимальная температура при входе в атмосферу</div>
+            <div class="help-text">– </div>
+            <div class="help-title">12. Максимальное время полёта</div>
+            <div class="help-text">– </div>
+            <div class="help-title">13. Количество квантов</div>
+            <div class="help-text">– </div>
+            <div class="help-title">14. Размер кванта (точность расчёта)</div>
+            <div class="help-text">– </div>
+            <div class="help-title">15. Точность отображения</div>
+            <div class="help-text">– </div>
+            <h2>Команды управления</h2>
+            <div class="help-title">В поле для ввода программы можно использовать только указанные ниже команды.<br /><br />
+            Каждая команда должна быть написана на отдельной строчке.</div>
+            <br />
+            <div class="help-title">engine 0..10000</div>
+            <div class="help-text">- уровень массового расхода топлива(кг/с)</div>
+            <div class="help-title">torqueX 0..10000</div>
+            <div class="help-text">- момент вращения вокруг оси Х</div>
+            <div class="help-title">torqueY 0..10000</div>
+            <div class="help-text">- момент вращения вокруг оси Y</div>
+            <div class="help-title">torqueZ 0..10000</div>
+            <div class="help-text">- момент вращения вокруг оси Z</div>
+            <div class="help-title">delay 1..10000</div>
+            <div class="help-text">- задержка в секундах</div>
+            <h2>Пример команд управления</h2>
+        </div>
+		{{ flatpage.content }}
+	</body>
+</html>

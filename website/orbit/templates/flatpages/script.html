@@ -9,36 +9,27 @@
     </head>
     <body>
         {% load staticfiles %}
-        <div id="header">	
-                <table cellpadding="10" cellspacing="0" width="1000">
-                    <tr>
-                        <td width="150"><img src="/static/img/logo.png" width="150"></td>
-                        <td width="850"><div class="logo">О Р Б И Т А</div></td>
-                    </tr>
-                </table>	
-        </div>
-        <div id="content">
-            <table cellpadding="0" cellspacing="15" width="1000">
-                <tr>
-                    <td align="center">
-                        <span class="tah20 title">Скрипт</span><br><br>
-                        <textarea name="script" cols="100" rows="30" readonly>
-{{ script }}
-                        </textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center">
-                        <table cellpadding="0" cellspacing="0" width="500">
-                            <tr>
-                                <td><a href="get_file" class="download"><input type="submit" value="СКАЧАТЬ"/></a></td>
-                                <td align="right"><form action="/home/" style="margin: 0;"><input type="submit" value="НА ГЛАВНУЮ"/></form></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <header>
+            <div class="logo">ОРБИТА</div>
+            <nav>
+                <a href="/"><img src="{% static "img/icons/icon1.png" %}" alt="">Главная</a>
+                <a href="/calculator/"><img src="{% static "img/icons/icon2.png" %}" alt="">Калькулятор</a>
+                <a href="/help/"><img src="{% static "img/icons/icon3.png" %}" alt="">Помощь</a>
+            </nav>
+        </header>
+        <div class="content">
+            <h2>Скрипт</h2>
+            <div class="script">
+                <textarea name="script" readonly>
+                    {{ script }}
+                </textarea>
+            </div>
+            <br />
+            <div class="submit">
+                <a class="a-btn" href="get_file"><input type="submit" value="СКАЧАТЬ"/></a>
+                <a class="a-btn" href="/calculator"><input type="submit" value="ИЗМЕНИТЬ ДАННЫЕ"/></a>
+                <a class="a-btn" href="/clear_form"><input type="submit" value="ВВЕСТИ НОВЫЕ ДАННЫЕ"/></a></div>
+            </div>
         {{ flatpage.content }}
     </body>
 </html>
