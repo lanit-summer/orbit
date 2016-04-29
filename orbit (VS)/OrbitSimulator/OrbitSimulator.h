@@ -8,6 +8,7 @@ const double G = 6.67408 * pow(10.0, -20), //gravitational constant, km^3 / (kg 
    ZeroCelsius = 273.15, //absolute zero
    AtmosphereBoundary = 6523.1, //end of atmosphere
    SeaLevelAirDensity = 1225000000; // kg/km^3
+const double g = G * EarthMass / pow(EarthRadius, 2); //Acceleration of gravity.
 
 //rotation vector
 struct Rotation
