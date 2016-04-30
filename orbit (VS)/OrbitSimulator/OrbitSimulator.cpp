@@ -1,4 +1,4 @@
-// OrbitSimulator.cpp : Defines the exported functions for the DLL application.
+﻿// OrbitSimulator.cpp : Defines the exported functions for the DLL application.
 //
 
 #include "stdafx.h"
@@ -148,44 +148,95 @@ double aerodynamicHeating(double temperature, vec speed)
 	return heating;
 }
 
+//Calculate acceleration scalar value
+//for current ship parameters and position.
+vec CalculateAcceleration(
+	double size,
+	double totalMass,
+	double fuelConsumption,
+	double impulse,
+	vec previousSpeed,
+	vec position,
+	vec orientation)
+{
+	const double Cx = 1;
+	double currentHeight = position.getScalar(); 
+	double accFromAirScalar =
+		- Cx*airDensity(currentHeight) * previousSpeed.getScalar()  * (size*size) / (2.0 * totalMass);
+	vec accFromAir = previousSpeed*accFromAirScalar;
+	double speedGravityComponent = G * EarthMass / pow(currentHeight, 3);
+	vec acc =
+		accFromAir +
+		calculateTractiveForce(fuelConsumption, impulse, orientation)*( 1 / totalMass) +
+		position*speedGravityComponent;
+	return acc;
+}
+
 //calculates a speed at each time interval
 vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumption,
 		  double mShip, double mFuel, Rotation moment, double impulse,
 		  double size, double quantSizeOfSec, double maxOverload, double maxHeating)
-{
+{			
 	double mTotal = mShip + mFuel;
 	double H = position.getScalar();
 	double scSpeedFirst = previousSpeed.getScalar();
 	double S = size * size;
 	vec exit = {0, 0, 0};
 	if (mTotal != 0) {
-		if (quantSizeOfSec <= 0.0) { return previousSpeed; }
-		double v1 = airDensity(H) * scSpeedFirst * S / (2.0 * mTotal),
-			v2 = 1 / quantSizeOfSec  - v1,
-			v3 = calculateTractiveForce(fuelConsumption, impulse,
-			orientation).getScalar() / mTotal,
-			v4 = G * EarthMass / pow(H, 3);
-
-		vec t1 = previousSpeed.multiplyWithDouble(v1),
-			t2 = previousSpeed.multiplyWithDouble(v2),
-			t3 = orientation.multiplyWithDouble(v3),
-			t4 = position.multiplyWithDouble(v4);
-		exit.x = (t2.x + t3.x - t4.x) * quantSizeOfSec;
-		exit.y = (t2.y + t3.y - t4.y) * quantSizeOfSec;
-		exit.z = (t2.z + t3.z - t4.z) * quantSizeOfSec;
-
-		vec overload = {0, 0, 0};
-		overload.x = - t1.x + t3.x - t4.x;
-		overload.y = - t1.y + t3.y - t4.y;
-		overload.z = - t1.z + t3.z - t4.z;
-		//g should be constant.
-		double g = G * EarthMass / pow(EarthRadius, 2);
-		//Calculate current overload proportional to g.
-		double currentOverload = overload.getScalar() / g;
-		if (currentOverload > maxOverload)
+		if (quantSizeOfSec <= 0.0)
 		{
-			throw invalid_argument("Overload");
+			return previousSpeed;
 		}
+
+		try
+		{
+			vec acceleration =
+				CalculateAcceleration(
+				size, mTotal, fuelConsumption, impulse, previousSpeed, position, orientation);
+			double currentOverloadScalar =	acceleration.getScalar()/g; 	// calculate overload in proportions to g.
+			if(currentOverloadScalar <0)
+			{
+				int t = 0;
+			}
+			if (currentOverloadScalar > maxOverload) //TODO: Check on the site that maxOverload set in proportions to g.
+			{
+				throw invalid_argument("Overload");
+			}
+			exit = previousSpeed + acceleration*quantSizeOfSec;   
+		}
+		catch(...)
+		{
+		}
+		//double v1 = airDensity(H) * scSpeedFirst * S / (2.0 * mTotal);
+		////Change of speed because of 
+		//double v2 = 1 / quantSizeOfSec  - v1,
+		//	v3 = calculateTractiveForce(fuelConsumption, impulse,
+		//	orientation).getScalar() / mTotal,
+		//	v4 = G * EarthMass / pow(H, 3);
+
+		/*
+		double accFromAirScalar =  - Cx ( = 1) * airDensity(H) * scSpeedFirst * S / (2.0 * mTotal) ;
+		veс accFromAir = previousSpeed.multiplyWithDouble(deltaVFromAirCoeff);
+		vec acc = accFromAir + calculateTractiveForce(fuelConsumption, impulse,
+		orientation).multiplyWith( 1 / mTotalv3) + position.multiplyWithDouble(v4)
+		vec exit = previousSpeed + acc * quantSizeOfSec;
+		double currentOverload = acc.getScalar() / g;
+		*/
+
+		//vec t1 = previousSpeed.multiplyWithDouble(v1),
+		//	t2 = previousSpeed.multiplyWithDouble(v2),
+		//	t3 = orientation.multiplyWithDouble(v3),
+		//	t4 = position.multiplyWithDouble(v4);
+		//exit.x = (t2.x + t3.x - t4.x) * quantSizeOfSec;
+		//exit.y = (t2.y + t3.y - t4.y) * quantSizeOfSec;
+		//exit.z = (t2.z + t3.z - t4.z) * quantSizeOfSec;
+
+		//vec overload = {0, 0, 0};
+		//overload.x = - t1.x + t3.x - t4.x;
+		//overload.y = - t1.y + t3.y - t4.y;
+		//overload.z = - t1.z + t3.z - t4.z;
+		//Calculate current overload proportional to g.
+		//double currentOverload = overload.getScalar() / g;
 	}
 
 	if (H <= AtmosphereBoundary)
@@ -246,9 +297,11 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 	vec previousAngularVelocity = {0, 0, 0};
 	vec currentPosition = initialPosition.position;
 	vector<PartOfFlightPlan> flightCommands = GetTraectoryFlightPlan(shipParams.flightPlan, quants); 
-	ReturnValues* calculatedFlightPlan = new ReturnValues[quants.numberOfQuants];
+
 	int i = 0,
 		j = 0;
+	ReturnValues currentFlightPlan;
+	vector<ReturnValues> calculatedFlightPlan;
 	for (i = 0; i < quants.numberOfQuants && height > EarthRadius; i++)
 	{
 		currentFlightPlanTime = flightCommands[j].delayTime;
@@ -271,7 +324,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 				level, shipParams.shipMass, fuel, moment,
 				shipParams.impulsePerFuel, shipParams.shipEdgeLength,
 				time, shipParams.maxOverload, shipParams.maxHeating);
-			calculatedFlightPlan[i].speed = currentSpeed;
+			currentFlightPlan.speed = currentSpeed;
 			m -= fuel;
 			fuel = 0.0;
 			currentPosition.x = currentPosition.x + currentSpeed.x * time;
@@ -289,7 +342,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 				shipParams.impulsePerFuel, shipParams.shipEdgeLength,
 				quants.quantSizeOfSec, shipParams.maxOverload,
 				shipParams.maxHeating);
-			calculatedFlightPlan[i].speed = currentSpeed;
+			currentFlightPlan.speed = currentSpeed;
 			fuel -= level * quants.quantSizeOfSec;
 			m -= level * quants.quantSizeOfSec;
 		}
@@ -300,7 +353,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 		if (height < EarthRadius + 0.1 && height >= EarthRadius) //too small value to calculate the exact
 		{
 			height = EarthRadius;
-			calculatedFlightPlan[i].position = currentPosition;
+			currentFlightPlan.position = currentPosition;
 			break;
 		}
 		if (height < EarthRadius) //we are below the level of the ground surface
@@ -318,29 +371,31 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 			currentPosition.y = currentPosition.y + currentSpeed.y * landingTime;
 			currentPosition.z = currentPosition.z + currentSpeed.z * landingTime;
 			height = EarthRadius;
-			calculatedFlightPlan[i].position = currentPosition;
+			currentFlightPlan.position = currentPosition;
 			break;
 		}
 
 		height = currentPosition.getScalar();
-		calculatedFlightPlan[i].position = currentPosition;
+		currentFlightPlan.position = currentPosition;
 		if (currentFlightPlanTime <= 0) //delay time is over, so we need to take the next pack of commands
 		{
 			j++;
 			currentFlightPlanTime = flightCommands[j].delayTime;
 		}
-		else { currentFlightPlanTime -= quants.quantSizeOfSec; }
+		else
+		{
+			currentFlightPlanTime -= quants.quantSizeOfSec;
+		}
+		calculatedFlightPlan.push_back(currentFlightPlan);
 	}
+
 	if (height <= EarthRadius) //we have landed, so position & speed will not be changed
 	{
-		int j;
-		for (j = i; j < quants.numberOfQuants; j++)
+		for (int k = i; k < quants.numberOfQuants; k++)
 		{
-
-			calculatedFlightPlan[j].position = calculatedFlightPlan[i].position;
+			calculatedFlightPlan.push_back(currentFlightPlan);
 		}
-	}
-	vector<ReturnValues> test(1);
-	return test;
+	} 
+	return calculatedFlightPlan;
 }
 
