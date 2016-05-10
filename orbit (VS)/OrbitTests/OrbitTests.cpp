@@ -1,4 +1,4 @@
-// OrbitTests2.cpp : Defines the entry point for the console application.
+// Tests for Orbit Simulator 
 //
 #pragma once
 #include "stdafx.h"
@@ -226,4 +226,63 @@ TEST_CASE("Calculate speed", "[Speed]") {
 			size, quantSizeOfSec, maxOverload, maxHeating);
 		REQUIRE(result == previousSpeed);
 	}
+}
+
+TEST_CASE("Calculate Explorer 6 orbit (russian/deutsch wikipedia)", "[computeFlightPlan]") {
+	SECTION("Launched from 245 km, start speed = 10.296 km/s")
+	{
+		vec position = {0, 6623.1, 0};
+		vec orientation = {-1, 0, 0};
+		vec initialSpeed = {-10.296099, 0, 0};
+		Rotation initialRotation = {0, 0, 0};
+		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
+		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
+			std::vector<PartOfFlightPlan>(), 1000000, 1000000};
+		Quants flightTime = {45910, 1};
+		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
+		double max = 0;
+		for (int i = 0; i < flightTime.numberOfQuants; i++) {
+			double height = calculationResults[i].position.getScalar();
+			double speed  = calculationResults[i].speed.getScalar();
+			if (height > max) { max = height; }
+			REQUIRE(height < 48800);
+			REQUIRE(height > 6623);
+			REQUIRE(speed < 11.2);
+			if (height <= 6623.1 && i > 10) { 
+				double period = (double) i / 60;
+				REQUIRE(period < 766.0);
+				REQUIRE(period >= 764.0);
+			}
+		}
+	}
+}
+
+TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]") {
+	SECTION("Launched from 237 km, start speed = 10.29 km/s")
+	{
+		vec position = {0, 6615.1, 0};
+		vec orientation = {-1, 0, 0};
+		vec initialSpeed = {-10.2967, 0, 0};
+		Rotation initialRotation = {0, 0, 0};
+		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
+		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
+			std::vector<PartOfFlightPlan>(), 1000000, 1000000};
+		Quants flightTime = {45300, 1};
+		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
+		double max = 0;
+		for (int i = 0; i < flightTime.numberOfQuants; i++) {
+			double height = calculationResults[i].position.getScalar();
+			double speed  = calculationResults[i].speed.getScalar();
+			if (height > max) { max = height; }
+			REQUIRE(height < 48300);
+			REQUIRE(height > 6615);
+			REQUIRE(speed < 11.2);
+			if (height <= 6615.1 && i > 10) { 
+				double period = (double) i / 60;
+				REQUIRE(period < 755.0);
+				REQUIRE(period >= 753.0);
+			}
+		}
+	}
+	_gettch(); 
 }

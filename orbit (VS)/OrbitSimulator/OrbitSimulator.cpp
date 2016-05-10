@@ -280,9 +280,9 @@ vector<PartOfFlightPlan> GetTraectoryFlightPlan(
 //             maximum heating)
 //Quants - Represents a time period the ship's path is calculated for 
 //         (number of time intervals, size of interval (sec))
-//input: ShipPosition, ShipParams & Quants structures
+//
 //output: structure of vector of position and scalar of speed at each time interval  
-//calculates speed and position at each time interval
+
 vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 										ShipParams shipParams, Quants quants)
 {
@@ -398,4 +398,3 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 	} 
 	return calculatedFlightPlan;
 }
-
