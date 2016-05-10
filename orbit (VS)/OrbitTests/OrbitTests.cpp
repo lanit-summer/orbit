@@ -1,6 +1,6 @@
-// OrbitTests2.cpp : Defines the entry point for the console application.
+// Tests for Orbit Simulator 
 //
-
+#pragma once
 #include "stdafx.h"
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
@@ -129,12 +129,12 @@ TEST_CASE("Calculate geostationary orbit", "[computeFlightPlan]") {
 	{
 		vec position = {42164,0,0};
 		vec orientation = {1,0,0};
-		vec initialSpeed = {-2.17,2.17,0};
+		vec initialSpeed = {0,3.07,0};
 		Rotation initialRotation = {0,0,0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
 		 
 		ShipParams spaceCraftParameters = {1, 2, 0, initialRotation, 0, 0,std::vector<PartOfFlightPlan>(),1000000,1000000};
-		Quants flightTime = {300, 60};
+		Quants flightTime = {86000, 1};
 		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);   
 	}
 }
@@ -286,3 +286,4 @@ TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]
 	}
 	_gettch(); 
 }
+

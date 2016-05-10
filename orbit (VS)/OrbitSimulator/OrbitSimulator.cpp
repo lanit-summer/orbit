@@ -1,6 +1,6 @@
 ﻿// OrbitSimulator.cpp : Defines the exported functions for the DLL application.
 //
-
+#pragma once
 #include "stdafx.h"
 #include "OrbitSimulator.h"
 
@@ -164,7 +164,7 @@ vec CalculateAcceleration(
 	double accFromAirScalar =
 		- Cx*airDensity(currentHeight) * previousSpeed.getScalar()  * (size*size) / (2.0 * totalMass);
 	vec accFromAir = previousSpeed*accFromAirScalar;
-	double speedGravityComponent = G * EarthMass / pow(currentHeight, 3);
+	double speedGravityComponent = -G * EarthMass / pow(currentHeight, 3);
 	vec acc =
 		accFromAir +
 		calculateTractiveForce(fuelConsumption, impulse, orientation)*( 1 / totalMass) +
@@ -258,7 +258,7 @@ vector<PartOfFlightPlan> GetTraectoryFlightPlan(
 {
 	double fullFlightTime = quants.numberOfQuants * quants.quantSizeOfSec;
 	double controlledFlightTime = 0;
-	for(unsigned int i = 0; i<flightPlan.size(); i++)
+	for(int i = 0; i<flightPlan.size(); i++)
 	{
 		controlledFlightTime +=flightPlan[i].delayTime;  
 	}
@@ -398,4 +398,3 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 	} 
 	return calculatedFlightPlan;
 }
-
