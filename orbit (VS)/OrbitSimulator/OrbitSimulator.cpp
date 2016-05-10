@@ -1,6 +1,6 @@
 ﻿// OrbitSimulator.cpp : Defines the exported functions for the DLL application.
 //
-
+#pragma once
 #include "stdafx.h"
 #include "OrbitSimulator.h"
 
@@ -164,7 +164,7 @@ vec CalculateAcceleration(
 	double accFromAirScalar =
 		- Cx*airDensity(currentHeight) * previousSpeed.getScalar()  * (size*size) / (2.0 * totalMass);
 	vec accFromAir = previousSpeed*accFromAirScalar;
-	double speedGravityComponent = G * EarthMass / pow(currentHeight, 3);
+	double speedGravityComponent = -G * EarthMass / pow(currentHeight, 3);
 	vec acc =
 		accFromAir +
 		calculateTractiveForce(fuelConsumption, impulse, orientation)*( 1 / totalMass) +

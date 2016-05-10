@@ -1,3 +1,4 @@
+#pragma once
 #include "quaternion.cpp"
 
 struct vec
