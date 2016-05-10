@@ -33,7 +33,7 @@ struct ShipPosition
 //user's commands
 struct PartOfFlightPlan
 {
-    int delayTime; //delay time (must be a multiple of the size of quant)
+    double delayTime; //delay time (must be a multiple of the size of quant)
     double impulseValue; //fuel mass flow rate
     Rotation rotateValue; //moment of inertia
 };

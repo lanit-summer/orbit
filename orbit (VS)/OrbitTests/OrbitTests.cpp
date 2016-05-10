@@ -286,3 +286,4 @@ TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]
 	}
 	_gettch(); 
 }
+
