@@ -350,10 +350,13 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 		currentPosition.y = currentPosition.y + currentSpeed.y * quants.quantSizeOfSec;
 		currentPosition.z = currentPosition.z + currentSpeed.z * quants.quantSizeOfSec;
 		height = currentPosition.getScalar();
-		if (height < EarthRadius + 0.1 && height >= EarthRadius) //too small value to calculate the exact
+		if (height < EarthRadius + 0.12 && height >= EarthRadius) //too small value to calculate the exact
 		{
 			height = EarthRadius;
 			currentFlightPlan.position = currentPosition;
+			currentFlightPlan.speed.x = 0.0;
+			currentFlightPlan.speed.y = 0.0;
+			currentFlightPlan.speed.z = 0.0;
 			break;
 		}
 		if (height < EarthRadius) //we are below the level of the ground surface
@@ -372,6 +375,9 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 			currentPosition.z = currentPosition.z + currentSpeed.z * landingTime;
 			height = EarthRadius;
 			currentFlightPlan.position = currentPosition;
+			currentFlightPlan.speed.x = 0.0;
+			currentFlightPlan.speed.y = 0.0;
+			currentFlightPlan.speed.z = 0.0;
 			break;
 		}
 
