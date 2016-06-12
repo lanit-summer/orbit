@@ -304,7 +304,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 	vector<ReturnValues> calculatedFlightPlan;
 	for (i = 0; i < quants.numberOfQuants && height > EarthRadius; i++)
 	{
-		currentFlightPlanTime = flightCommands[j].delayTime;
+		currentFlightPlanTime = flightCommands[j].delayTime - 1;
 		level = flightCommands[j].impulseValue;
 		moment = flightCommands[j].rotateValue;
 
