@@ -304,7 +304,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 	vector<ReturnValues> calculatedFlightPlan;
 	for (i = 0; i < quants.numberOfQuants && height > EarthRadius; i++)
 	{
-		currentFlightPlanTime = flightCommands[j].delayTime - 1;
+		currentFlightPlanTime = flightCommands[j].delayTime;
 		level = flightCommands[j].impulseValue;
 		moment = flightCommands[j].rotateValue;
 
@@ -383,7 +383,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 
 		height = currentPosition.getScalar();
 		currentFlightPlan.position = currentPosition;
-		if (currentFlightPlanTime <= 0) //delay time is over, so we need to take the next pack of commands
+		if (currentFlightPlanTime <= quants.quantSizeOfSec) //delay time is over, so we need to take the next pack of commands
 		{
 			j++;
 			currentFlightPlanTime = flightCommands[j].delayTime;
