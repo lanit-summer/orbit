@@ -302,12 +302,11 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 		j = 0;
 	ReturnValues currentFlightPlan;
 	vector<ReturnValues> calculatedFlightPlan;
+	currentFlightPlanTime = flightCommands[0].delayTime;
 	for (i = 0; i < quants.numberOfQuants && height > EarthRadius; i++)
 	{
-		currentFlightPlanTime = flightCommands[j].delayTime;
 		level = flightCommands[j].impulseValue;
 		moment = flightCommands[j].rotateValue;
-
 		vec gravityForce = calculateGravityForce(currentPosition, m);
 		vec aerodynamicForce = calculateAerodynamicForce(currentSpeed, S, height);
 		vec tractiveForce = calculateTractiveForce(level, shipParams.impulsePerFuel, currentOrientation);

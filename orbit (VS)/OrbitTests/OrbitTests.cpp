@@ -6,7 +6,7 @@
 #include "catch.hpp"
 #include "OrbitSimulator.cpp"
 using namespace std;
-
+/*
 //Check that spaceship is not heating if speed is zero.
 TEST_CASE("Calculate Aerodynamic heating", "[AerodynamicHeating]") {
 	vec speedZero = {0, 0, 0};
@@ -284,6 +284,33 @@ TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]
 			}
 		}
 	}
-	_gettch(); 
+}*/
+TEST_CASE("Calculate Vostok 1 orbit", "[computeFlightPlan]") {
+	SECTION("Launched from 175 km, start speed = 7.8375 km/s")
+	{
+		vec position = {0, 0, 6553.22};
+		vec orientation = {1, 0, 0};
+		vec initialSpeed = {-7.8375, 0, 0};
+		Rotation initialRotation = {0, 0, 0};
+		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
+		Quants flightTime = {6480, 1};
+		vector<PartOfFlightPlan> flightPlan(flightTime.numberOfQuants);
+		PartOfFlightPlan plan1 = {5420, 0, {0, 0, 0}};
+		PartOfFlightPlan plan2 = {29, 11, {0, 0, 0}};
+		flightPlan[0] = plan1;
+		flightPlan[1] = plan2;
+		ShipParams spaceCraftParameters = {0.0025, 3725.0, 1000, initialRotation, 100.0, 2.61,
+			flightPlan, 10, 5274.0};
+		vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
+		double max = 0;
+		for (int i = 0; i < flightTime.numberOfQuants; i++) {
+			double height = calculationResults[i].position.getScalar();
+			double speed  = calculationResults[i].speed.getScalar();
+			REQUIRE(height < EarthRadius + 302.0);
+			REQUIRE(height > EarthRadius);
+			REQUIRE(speed < 7.9);
+			cout<<height<<"\n";
+		}
+	}
+	_gettch();
 }
-
