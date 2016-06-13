@@ -6,7 +6,7 @@
 #include "catch.hpp"
 #include "OrbitSimulator.cpp"
 using namespace std;
-/*
+
 //Check that spaceship is not heating if speed is zero.
 TEST_CASE("Calculate Aerodynamic heating", "[AerodynamicHeating]") {
 	vec speedZero = {0, 0, 0};
@@ -284,7 +284,8 @@ TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]
 			}
 		}
 	}
-}*/
+}
+
 TEST_CASE("Calculate Vostok 1 orbit", "[computeFlightPlan]") {
 	SECTION("Launched from 175 km, start speed = 7.8375 km/s")
 	{
