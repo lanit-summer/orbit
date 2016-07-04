@@ -118,7 +118,7 @@ def rotation_print(vector):
 
 def primitive_vector_print(vector):
     for item in vector:
-        print(item, end=' ')
+        print(item)
     print()
 
 

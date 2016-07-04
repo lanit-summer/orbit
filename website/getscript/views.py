@@ -1,3 +1,6 @@
+
+# -*- coding: utf-8 -*-
+from __future__ import with_statement
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.shortcuts import render
@@ -25,7 +28,7 @@ class MainForm(forms.Form):
     impulsePerFuel = forms.CharField(required=True, max_length=10)
     limitOverload = forms.CharField(required=True, max_length=10)
     maxTemperature = forms.CharField(required=True, max_length=10)
-    maxFlightTime = forms.CharField(required=True, max_length=10)
+    maxFlightTime = forms.CharField(required=False, max_length=10)
     numberOfQuants = forms.CharField(required=True, max_length=10)
     quantSizeOfSec = forms.CharField(required=True, max_length=10)
     displayPrecision = forms.CharField(required=True, max_length=10)
@@ -82,7 +85,7 @@ def script(request):
         impulsePerFuel = float(form.cleaned_data['impulsePerFuel']); request.session['impulsePerFuel'] = form.data['impulsePerFuel']
         limitOverload = float(form.cleaned_data['limitOverload']); request.session['limitOverload'] = form.data['limitOverload']
         maxTemperature = float(form.cleaned_data['maxTemperature']); request.session['maxTemperature'] = form.data['maxTemperature']
-        maxFlightTime = float(form.cleaned_data['maxFlightTime']); request.session['maxFlightTime'] = form.data['maxFlightTime']
+       # maxFlightTime = float(form.cleaned_data['maxFlightTime']); request.session['maxFlightTime'] = form.data['maxFlightTime']
         numberOfQuants = int(form.cleaned_data['numberOfQuants']); request.session['numberOfQuants'] = form.data['numberOfQuants']
         quantSizeOfSec = float(form.cleaned_data['quantSizeOfSec']); request.session['quantSizeOfSec'] = form.data['quantSizeOfSec']
         displayPrecision = float(form.cleaned_data['displayPrecision']); request.session['displayPrecision'] = form.data['displayPrecision']
@@ -129,7 +132,7 @@ def script(request):
 
         script = orbit_wrap.generate_celestia_script(flight_plan, quants.quantSizeOfSec)
 
-        with open("getscript/result_script.txt", 'w') as file:
+        with open("getscript/Orbit-test/data/orbit.xyzv", 'w') as file:
             file.write(script)     
         return render(request, 'flatpages/script.html', {'form': form, 'script': script})
     else:
@@ -158,7 +161,7 @@ def clear_form(request):
         del request.session['impulsePerFuel']
         del request.session['limitOverload']
         del request.session['maxTemperature']
-        del request.session['maxFlightTime']
+       # del request.session['maxFlightTime']
         del request.session['numberOfQuants']
         del request.session['quantSizeOfSec']
         del request.session['displayPrecision']
@@ -167,6 +170,18 @@ def clear_form(request):
         pass
     return HttpResponseRedirect('/calculator/')
 
+
+def zipdir(basedir, archivename):
+    from contextlib import closing
+    from zipfile import ZipFile, ZIP_DEFLATED
+    import os   
+    assert os.path.isdir(basedir)
+    with closing(ZipFile(archivename, "w", ZIP_DEFLATED)) as z:
+	z.write("getscript/Orbit-test/data/orbit.xyzv", "data/orbit.xyzv")
+	z.write("getscript/Orbit-test/models/orbit.3ds", "models/orbit.3ds")
+	z.write("getscript/Orbit-test/orbit.ssc", "orbit.ssc")
+        z.write("getscript/spacesimulator.cel", "spacesimulator.cel")
+	z.write("getscript/install.txt", "install.txt")
 def get_file(request):
 
     import os, tempfile, zipfile
@@ -174,9 +189,11 @@ def get_file(request):
     from django.conf import settings
     from django.http import HttpResponse
     import mimetypes
+    from zipfile import ZipFile   
 
-    filename     = "getscript/result_script.txt"
-    download_name = "result_script.txt"
+    zipdir("getscript/Orbit-test", "getscript/SimulatorTrajectory.zip")
+    filename     = "getscript/SimulatorTrajectory.zip"
+    download_name = "SimulatorTrajectory.zip"
     wrapper      = FileWrapper(open(filename))
     content_type = mimetypes.guess_type(filename)[0]
     response     = HttpResponse(wrapper,content_type=content_type)

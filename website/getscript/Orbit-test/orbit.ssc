@@ -1,0 +1,20 @@
+"Orbit-test-spacecraft" "Sol"
+{
+    Class "spacecraft"
+    Mesh "orbit.3ds"
+    Radius 0.011
+    Orientation [ 180 1 0 0 ]
+
+    Timeline [
+
+    # Phase 3: Solstice mission
+    {
+	Beginning "2015 01 01 00:00:00"        
+	Ending    "2020  9 15 17:02:00"
+
+        OrbitFrame { EclipticJ2000 { Center "Sol/Earth" } }
+        SampledTrajectory { Source "orbit.xyzv" }
+    }
+
+    ]
+}
