@@ -22,5 +22,4 @@ urlpatterns = [
     url(r'^script/$', 'getscript.views.script'),
     url(r'^clear_form/$', 'getscript.views.clear_form'),
     url(r'^script/get_file/$', 'getscript.views.get_file'),
-
 ]
