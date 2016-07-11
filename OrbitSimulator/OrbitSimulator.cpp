@@ -15,7 +15,49 @@ vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / 
 	vec res = distance.multiplyWithDouble(a);
 	return res; // (N * 10^3)
 }
-
+//что было раньше в коде
+//double temperature(double height) //calculates the temperature at a certain height (K)
+//{
+//	if (height < 0)
+//	{
+//		throw invalid_argument("Height is less than the radius of the Earth");
+//	}
+//	double temperature = ZeroCelsius;
+//	if (height > 145) //at each height there's an equation of temperature calculation
+//	{
+//		return 0.0;
+//	}
+//	else if (height > 94)
+//	{
+//		temperature += 140 * (height - 94) / 51 - 90;
+//	}
+//	else if (height > 84)
+//	{
+//		temperature -= 90;
+//	}
+//	else if (height > 54)
+//	{
+//		temperature += -3 * height + 162;
+//	}
+//	else if (height > 47)
+//	{
+//		return temperature;
+//	}
+//	else if (height > 20)
+//	{
+//		temperature += (20 * height - 940) / 9;
+//	}
+//	else if (height > 10)
+//	{
+//		temperature -= 60;
+//	}
+//	else
+//	{
+//		temperature += -8 * height + 20;
+//	}
+//	return temperature;
+//}
+//температура в соответствии с ГОСТ
 double temperature(double height) //calculates the temperature at a certain height (K)
 {
 	if (height < 0)
@@ -57,7 +99,7 @@ double temperature(double height) //calculates the temperature at a certain heig
 	}
 	return temperature;
 }
-
+//
 double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
 {
 	if (height <= EarthRadius) { return SeaLevelAirDensity; }
