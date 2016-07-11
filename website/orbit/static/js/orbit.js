@@ -4,6 +4,9 @@ var earth;
 var ship;
 var mouseX = 0, mouseY = 0;
 var boost = 1; //ускорение
+var prevBoost = 1; //нужно для stop
+var paused = false;
+
 var mouseDown = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
@@ -11,16 +14,44 @@ var windowHalfY = window.innerHeight / 2;
 var speedArray;
 var posArray;
 
-init();
-animate();
-function init() {
+document.addEventListener('DOMContentLoaded', function() {
+    init();
+    animate();
+}, false);
 
+function init() {
     loadSampleOrbit();
+
     document.onmousedown = function() {
         ++mouseDown;
     }
     document.onmouseup = function() {
         --mouseDown;
+    }
+
+    document.getElementById("increase").onclick = function(){
+        if (!paused) {
+            inrecaseBoost();
+            renewBoostSign();
+        }
+    }
+
+    document.getElementById("decrease").onclick = function(){
+        if (!paused) {
+            decreaseBoost();
+            renewBoostSign();
+        }
+    }
+
+    document.getElementById("play").onclick = function(){
+        if (paused)
+            playBoost();
+    }
+
+    document.getElementById("stop").onclick = function(){
+        if (!paused) {
+            stopBoost();
+        }
     }
 
     container = document.getElementById( 'scene' );
@@ -65,6 +96,10 @@ function onWindowResize() {
     renderer.setSize( window.innerWidth, window.innerHeight );
 }
 
+function renewBoostSign() {
+    document.getElementById("currentBoost").innerHTML="x"+boost;
+}
+
 function mousewheel( e ) {      
     var d = ((typeof e.wheelDelta != "undefined")?(-e.wheelDelta):e.detail);
     d = 100 * ((d>0)?1:-1);
@@ -103,6 +138,25 @@ function onDocumentMouseMove(event) {
     }
 }
 
+function inrecaseBoost() {
+    boost ++;
+}
+
+function decreaseBoost() {
+    if (boost > 0 )
+        boost --;
+}
+
+function stopBoost() {
+    prevBoost = boost;
+    boost = 0;
+    paused = true;
+}
+
+function playBoost() {
+    paused = false;
+    boost = prevBoost;
+}
 
 function animate() {
     requestAnimationFrame(animate);
@@ -131,9 +185,7 @@ function updateShipOrbit() {
 
 function updateEarthRotation() {
     //TODO
-    earth.rotation.y -= 0.001 * boost;
-    earth.rotation.x -= 0.001 * boost;
-    earth.rotation.z -= 0.001 * boost;
+    earth.rotation.y -= 0.0001 * boost;
 }
 
 function updateEarthSolRotation() {
@@ -179,7 +231,7 @@ function loadSampleOrbit() {
                 speedArray[i] = speed;
             }
             boost = Math.ceil(posArray.length / 180);
-            console.log(boost);
+            renewBoostSign();
         }
     };
 }

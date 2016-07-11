@@ -12,6 +12,11 @@
     </head>
     <body>
         {% load staticfiles %}
+        <script type="text/javascript" src="{% static "js/three.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/Projector.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/CanvasRenderer.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/orbit.js" %}"></script>
+
         <header>
             <nav>
                 <a href="/"><img src="{% static "img/icons/icon1.png" %}" alt="">Главная</a>
@@ -19,18 +24,19 @@
                 <a href="/help/"><img src="{% static "img/icons/icon3.png" %}" alt="">Справка</a>
             </nav>
         </header>
+
         <div class="panel">
             <div class="v-block-title">Панель управления</div>
             <div class="v-block">
                 <div class="controls">
                     <div class="arg-block">
                         <span class="arg">Скорость</span>
-                        <span class="val">x2</span>
+                        <span class="val" id = "currentBoost">x2</span>
                     </div>
-                    <img src="{% static "img/icons/icon6.png" %}" alt="">
-                    <img src="{% static "img/icons/icon9.png" %}" alt="">
-                    <img src="{% static "img/icons/icon8.png" %}" alt="">
-                    <img src="{% static "img/icons/icon7.png" %}" alt="">
+                    <img src="{% static "img/icons/icon6.png" %}" id = "decrease" alt="">
+                    <img src="{% static "img/icons/icon9.png" %}" id = "play" alt="">
+                    <img src="{% static "img/icons/icon8.png" %}" id = "stop" alt="">
+                    <img src="{% static "img/icons/icon7.png" %}" id = "increase" alt="">
                 </div>
                 <div class="logs-block">
                     <textarea readonly></textarea>
@@ -62,13 +68,7 @@
 
         <div id="scene"></div>
 
-        <script type="text/javascript" src="{% static "js/three.js" %}"></script>
-        <script type="text/javascript" src="{% static "js/Projector.js" %}"></script>
-        <script type="text/javascript" src="{% static "js/CanvasRenderer.js" %}"></script>
-        <script type="text/javascript" src="{% static "js/orbit.js" %}"></script>
-        <script>
 
-        </script>
         <script type="text/javascript" src="{% static "js/jquery-2.0.3.min.js" %}"></script>
         <script type="text/javascript" src="{% static "js/jquery-ui.min.js" %}"></script>
         <script type="text/javascript" src="{% static "js/panel.js" %}"></script>
