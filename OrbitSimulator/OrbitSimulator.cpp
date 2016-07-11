@@ -103,7 +103,43 @@ double temperature(double height) //calculates the temperature at a certain heig
 	}
 	else if (height < 120000)
 	{
-		temperature = 334.417
+		temperature = 203.81;
+	}
+	else if (height < 140000)
+	{
+		temperature = 334.42+0.011259*(height-120000);
+	}
+	else if (height < 160000)
+	{
+		temperatire = 559.60+0.006800*(height-140000);
+	}
+	else if (height < 200000)
+	{
+		temperature = 695.60+0.003970*(height-160000);
+	}
+	else if (height < 250000)
+	{
+		temperature = 834.40+0.001750*(height-200000);
+	}
+	else if (height < 325000)
+	{
+		temperature = 941.90+0.00057*(height-250000);
+	}
+	else if (height < 400000)
+	{
+		temperature = 984.65+0.0001500*(height-325000);
+	}
+	else if (height < 600000)
+	{
+		temperature = 995.90+0.00002*(height-400000);
+	}
+	else if (height < 800000)
+	{
+		temperature = 999.9-0.0000005*(height-600000);
+	}
+	else if (height <1200000)
+	{
+		temperature = 1000;
 	}
 	return temperature;
 }
