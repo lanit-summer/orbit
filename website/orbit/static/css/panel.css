@@ -64,3 +64,16 @@ nav {
     margin: 10px 10px;
     cursor: pointer;
 }
+.logs-block {
+    margin-top: 10px;
+}
+.logs-block textarea {
+    width: 235px;
+    height: 300px;
+    padding: 10px;
+    margin: 10px;
+    font: 14px "Roboto";
+    -webkit-appearance: none;
+    outline: none;
+    resize: none;
+}
