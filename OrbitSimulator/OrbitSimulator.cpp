@@ -144,7 +144,7 @@ double temperature(double height) //calculates the temperature at a certain heig
 	return temperature;
 }
 //
-
+// molar mass 
 double molarMass(double height)
 {
 	if (height < 94000)
@@ -166,7 +166,27 @@ double molarMass(double height)
 	else if (height < 250000)
 	{
 		molarMass = (46.9083-29.71210*pow(10,-5)*height+12.08693*pow(10,-10)*pow(height,2)-1.85675*pow(10,-15)*pow(height,3))*pow(10,-3);
-			}
+	}
+	else if (height < 400000)
+	{
+		molarMass = (40.4668-15.52722*pow(10,-5)*height+3.55735*pow(10,-10)*pow(height,2)-3.02340*pow(10,-15)*pow(height,3))*pow(10,-3);
+	}
+	else if (height < 650000)
+	{
+		molarMass = (6.3770+6.25497*pow(10,-5)*height-1.10144*pow(10,-10)*pow(height,2)+3.36907*pow(10,-17)*pow(height,3))*pow(10,-3);
+	}
+	else if (height < 900000)
+	{
+		molarMass = (75.6896-17.61243*pow(10,-5)*height+1.33603*pow(10,-10)*pow(height,2)-2.87884*pow(10,-17)*pow(height,3))*pow(10,-3);
+	}
+	else if (height < 1050000)
+	{
+		molarMass = (112.4838-30.68086*pow(10,-5)*height+2.90329*pow(10,-10)*pow(height,2)-9.20616*pow(10,-17)*pow(height,3))*pow(10,-3);
+	}
+	else if (height < 1200000)
+	{
+		molarMass = (9.8970-1.19732*pow(10,-5)*height+7.78247*pow(10,-12)*pow(height,2)-1.77541*pow(10,-18)*pow(height,3))*pow(10,-3);
+	}
 	return molarMass
 }
 
