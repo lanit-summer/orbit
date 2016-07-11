@@ -210,23 +210,22 @@ function loadSampleOrbit() {
         if (arr.length != 1) {
             posArray = new Array(arr.length);
             speedArray = new Array(arr.length);
-
-            for (var i = 0; i < arr.length; i++) {
+            for (var i = 0; i < arr.length - 1; i++) {
                 var line = arr[i].split(' ');
 
                 var position = new Array(3);
-                position[0] = line[1];
-                position[1] = line[2];
-                position[2] = line[3];
+                position[0] = parseInt(line[1]);
+                position[1] = parseInt(line[2]);
+                position[2] = parseInt(line[3]);
 
                 posArray[i] = position;
 
-                //console.log("Pos " + i + " X: " + posArray[i][0] + "Y: " + posArray[i][1] + "Z: " + posArray[i][2]);
+                console.log("Pos " + i + " X: " + posArray[i][0] + " Y: " + posArray[i][1] + " Z: " + posArray[i][2]);
 
                 speed = new Array(3);
-                speed[0] = line[4];
-                speed[1] = line[5];
-                speed[2] = line[6];
+                speed[0] = parseInt(line[4]);
+                speed[1] = parseInt(line[5]);
+                speed[2] = parseInt(line[6]);
 
                 speedArray[i] = speed;
             }
