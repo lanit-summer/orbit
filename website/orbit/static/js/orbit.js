@@ -6,7 +6,6 @@ var mouseX = 0, mouseY = 0;
 var boost = 1; //ускорение
 var prevBoost = 1; //нужно для stop
 var paused = false;
-
 var mouseDown = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
@@ -15,13 +14,13 @@ var speedArray;
 var posArray;
 
 document.addEventListener('DOMContentLoaded', function() {
+    loadSampleOrbit();
     init();
     animate();
 }, false);
 
 function init() {
-    loadSampleOrbit();
-
+    console.log(posArray.length);
     document.onmousedown = function() {
         ++mouseDown;
     }
@@ -54,7 +53,7 @@ function init() {
         }
     }
 
-    container = document.getElementById( 'scene' );
+    container = document.getElementById('scene');
     camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000000);
 
     scene = new THREE.Scene();
@@ -65,7 +64,7 @@ function init() {
     //FIXME
     var imgurl = "../../static/img/land_ocean_ice_cloud_2048.jpg";
     loader.load(imgurl, function (texture) { 
-                    var geometry = new THREE.SphereGeometry(6371, 30, 30 );
+                    var geometry = new THREE.SphereGeometry(6371, 30, 30);
                     var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5 });
                     var mesh = new THREE.Mesh(geometry, material);
                     earth.add(mesh);
@@ -202,10 +201,8 @@ function loadSampleOrbit() {
     } else if (window.ActiveXObject) {
         xhr = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    xhr.open("GET","../../static/js/orbit.xyzv");
-    xhr.send();
-    xhr.onreadystatechange = function(){
 
+    xhr.onreadystatechange = function(){
         var arr = xhr.responseText.split('\n');
         if (arr.length != 1) {
             posArray = new Array(arr.length);
@@ -220,7 +217,7 @@ function loadSampleOrbit() {
 
                 posArray[i] = position;
 
-                console.log("Pos " + i + " X: " + posArray[i][0] + " Y: " + posArray[i][1] + " Z: " + posArray[i][2]);
+                //console.log("Pos " + i + " X: " + posArray[i][0] + " Y: " + posArray[i][1] + " Z: " + posArray[i][2]);
 
                 speed = new Array(3);
                 speed[0] = parseInt(line[4]);
@@ -233,4 +230,6 @@ function loadSampleOrbit() {
             renewBoostSign();
         }
     };
+    xhr.open("GET","../../static/js/orbit.xyzv", false);
+    xhr.send();
 }
