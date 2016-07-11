@@ -227,10 +227,10 @@ vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
 }
 
 //Calculate aerodynamic heating for spaceship. 
-//Formula: T+(v^2)/2
+//Formula: Tn=T0+0.2*M^2
 double aerodynamicHeating(double temperature, vec speed)
 {
-	double heating = temperature + pow(speed.getScalar(), 2) / 2; // (K)
+	double heating = temperature + 0.2*pow(speed.getScalar()/speedofsound.getScalar(), 2); // (K)
 	return heating;
 }
 
