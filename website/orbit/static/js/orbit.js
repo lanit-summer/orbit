@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 function init() {
+    start();
+    console.log(posArray.length);
     document.onmousedown = function() {
         ++mouseDown;
     }

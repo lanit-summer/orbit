@@ -17,6 +17,7 @@
         <script type="text/javascript" src="{% static "js/Projector.js" %}"></script>
         <script type="text/javascript" src="{% static "js/CanvasRenderer.js" %}"></script>
         <script type="text/javascript" src="{% static "js/orbit.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/time.js" %}"></script>
 
         <header>
             <nav>
@@ -62,7 +63,9 @@
                 </div>
                 <div class="arg-block">
                     <span class="arg">Время</span>
-                    <span class="val">0</span>
+                    <span class="val" id = "time_span_hour">0</span>
+                    <span class="val" id = "time_span_min">0</span>
+                    <span class="val" id = "time_span_sec">0</span>
                 </div>
             </div>
         </div>
