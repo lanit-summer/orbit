@@ -144,6 +144,32 @@ double temperature(double height) //calculates the temperature at a certain heig
 	return temperature;
 }
 //
+
+double molarMass(double height)
+{
+	if (height < 94000)
+	{
+		molarMass = 28.964420*pow(10,-3);
+	}
+	else if (height < 97000)
+	{
+		molarMass = (28.82+0.158*sqrt(1-7.5*pow(10,-8)*(pow(height-94000),2))-2.479*pow(10,-4)*sqrt(97000-height))*pow(10,-3);
+	}
+	else if (height < 97500)
+	{
+		molarMass = (28.91-0.00012*height)*pow(10,-3);
+	}
+	else if (height < 120000)
+	{
+		molarMass = (26.21-0.0001511*height)*pow(10,-3);
+	}
+	else if (height < 250000)
+	{
+		molarMass = (46.9083-29.71210*pow(10,-5)*height+12.08693*pow(10,-10)*pow(height,2)-1.85675*pow(10,-15)*pow(height,3))*pow(10,-3);
+			}
+	return molarMass
+}
+
 double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
 {
 	if (height <= EarthRadius) { return SeaLevelAirDensity; }
