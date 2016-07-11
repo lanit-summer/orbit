@@ -24,8 +24,8 @@ function init() {
     }
 
     container = document.getElementById( 'scene' );
-    camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 2000 );
-    camera.position.z = 500;
+    camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000000);
+
     scene = new THREE.Scene();
     earth = new THREE.Group();
     scene.add(earth);
@@ -34,12 +34,12 @@ function init() {
     //FIXME
     var imgurl = "../../static/img/land_ocean_ice_cloud_2048.jpg";
     loader.load(imgurl, function (texture) { 
-                    var geometry = new THREE.SphereGeometry( 200, 30, 30 );
+                    var geometry = new THREE.SphereGeometry(6371, 30, 30 );
                     var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5 });
                     var mesh = new THREE.Mesh(geometry, material);
                     earth.add(mesh);
     } );
-
+    camera.position.z = 13371;
     var canvas = document.createElement( 'canvas' );
     canvas.width = 128;
     canvas.height = 128;
@@ -82,8 +82,6 @@ function mousewheel( e ) {
     var ny = cPos.y + ((r==0)?0:(d * cPos.y/sqr));
     var nz = cPos.z + ((sqrZ==0)?0:(d * cPos.z/sqrZ));
 
-    if (nx > 2000 || ny > 2000 || nz > 2000)
-        return;
 
     if (Math.sqrt(nx*nx + ny*ny + nz*nz) < 300)
         return; 
