@@ -1,9 +1,0 @@
-{
-#time {jd 2453163.0416667}
-time{utc "2015-01-01T00:01:24.0000"}
-select{object "Orbit-test-spacecraft"}
-center {time 5.0}
-goto { time 5.0 }
-follow{}
-lock{}
-}
