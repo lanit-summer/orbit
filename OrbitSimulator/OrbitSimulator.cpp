@@ -1,8 +1,10 @@
 ﻿// OrbitSimulator.cpp : Defines the exported functions for the DLL application.
 //
 #pragma once
-#include "stdafx.h"
+#include <stdexcept>
+//#include "stdafx.h"
 #include "OrbitSimulator.h"
+#include <iostream>
 
 vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / R^2
 {
@@ -65,9 +67,9 @@ double airDensity(double height) //calculates the air density at a certain heigh
 	double T = temperature(heightAboveSeaLevel); //temperature at a certain height
 	if (T <= 0.0) { return 0.0; }
 	else
-		// p = p0 * e^(-M * g * H / (R * T)) 
-		// airDensity = p * M / (R * T) 
-	{ 
+		// p = p0 * e^(-M * g * H / (R * T))
+		// airDensity = p * M / (R * T)
+	{
 		double p0 = 101325, //normal atmospheric pressure at sea level (Pa)
 			g = G * EarthMass / pow(height, 2), //acceleration due to gravity
 			//on the Earth's surface (km/s^2)
@@ -75,13 +77,13 @@ double airDensity(double height) //calculates the air density at a certain heigh
 			M = 0.0289644, //the molar mass of dry air (kg / mol)
 			p = p0 * exp(-M * g * heightAboveSeaLevel * pow(10.0, 6) / (R * T)), //pressure at the certain height (Pa)
 			density = p * M * pow(10.0, 9) / (R * T); //air density at the certain height (kg / km^3)
-		return density;  
+		return density;
 	}
 }
 
-//calculates an aerodynamic force 
+//calculates an aerodynamic force
 // p * v^2 * S^2 / 2
-vec calculateAerodynamicForce(vec speed, double square, double height) 
+vec calculateAerodynamicForce(vec speed, double square, double height)
 {
 	double v = speed.getScalar();
 	double p = airDensity(height);
@@ -89,13 +91,13 @@ vec calculateAerodynamicForce(vec speed, double square, double height)
 	return result;
 }
 
-// Calculate tractive force using next formula: 
+// Calculate tractive force using next formula:
 //                  mLevel * impulse * (vectorOrientation / scalarOrientation)
 // Input parameters:
 // massLevel - fuel mass flow
 // impulse - specific impulse
 // (vectorOrientation / scalarOrientation) - unit vector of ship orientation
-vec calculateTractiveForce(double massLevel, double impulse, vec vectorOrientation) 
+vec calculateTractiveForce(double massLevel, double impulse, vec vectorOrientation)
 {
 	double scalarOrientation = vectorOrientation.getScalar();
 	if (scalarOrientation == 0) {
@@ -107,7 +109,7 @@ vec calculateTractiveForce(double massLevel, double impulse, vec vectorOrientati
 }
 
 //calculates an angular velocity by the moment of inertia
-//momentForce* sizeOfSec / momentInertia + previousVelocity 
+//momentForce* sizeOfSec / momentInertia + previousVelocity
 vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
 							 vec tractiveForce, Rotation moment, double quantSizeOfSec,
 							 double length, vec previousAngularVelocity)
@@ -140,7 +142,7 @@ vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
 	return currentAngularVelocity;
 }
 
-//Calculate aerodynamic heating for spaceship. 
+//Calculate aerodynamic heating for spaceship.
 //Formula: T+(v^2)/2
 double aerodynamicHeating(double temperature, vec speed)
 {
@@ -160,7 +162,7 @@ vec CalculateAcceleration(
 	vec orientation)
 {
 	const double Cx = 1;
-	double currentHeight = position.getScalar(); 
+	double currentHeight = position.getScalar();
 	double accFromAirScalar =
 		- Cx*airDensity(currentHeight) * previousSpeed.getScalar()  * (size*size) / (2.0 * totalMass);
 	vec accFromAir = previousSpeed*accFromAirScalar;
@@ -176,7 +178,7 @@ vec CalculateAcceleration(
 vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumption,
 		  double mShip, double mFuel, Rotation moment, double impulse,
 		  double size, double quantSizeOfSec, double maxOverload, double maxHeating)
-{			
+{
 	double mTotal = mShip + mFuel;
 	double H = position.getScalar();
 	double scSpeedFirst = previousSpeed.getScalar();
@@ -202,13 +204,13 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 			{
 				throw invalid_argument("Overload");
 			}
-			exit = previousSpeed + acceleration*quantSizeOfSec;   
+			exit = previousSpeed + acceleration*quantSizeOfSec;
 		}
 		catch(...)
 		{
 		}
 		//double v1 = airDensity(H) * scSpeedFirst * S / (2.0 * mTotal);
-		////Change of speed because of 
+		////Change of speed because of
 		//double v2 = 1 / quantSizeOfSec  - v1,
 		//	v3 = calculateTractiveForce(fuelConsumption, impulse,
 		//	orientation).getScalar() / mTotal,
@@ -252,7 +254,7 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 
 //Form flight plan for whole flight traectory.
 //using initial flight plan set in ship parameters
-//and time quants. 
+//and time quants.
 vector<PartOfFlightPlan> GetTraectoryFlightPlan(
 	vector<PartOfFlightPlan> flightPlan, Quants quants)
 {
@@ -260,13 +262,13 @@ vector<PartOfFlightPlan> GetTraectoryFlightPlan(
 	double controlledFlightTime = 0;
 	for(int i = 0; i<flightPlan.size(); i++)
 	{
-		controlledFlightTime +=flightPlan[i].delayTime;  
+		controlledFlightTime +=flightPlan[i].delayTime;
 	}
 	double uncontrolledFlightTime = fullFlightTime - controlledFlightTime;
 	if(uncontrolledFlightTime >0)
 	{
-		PartOfFlightPlan lastPartOfFlightStub = {uncontrolledFlightTime, 0, {0,0,0}};
-		flightPlan.push_back(lastPartOfFlightStub); 
+		PartOfFlightPlan lastPartOfFlightStub = {uncontrolledFlightTime, 0, {0,0,0}, {0,0,0}};
+		flightPlan.push_back(lastPartOfFlightStub);
 	}
 	return flightPlan;
 }
@@ -274,14 +276,14 @@ vector<PartOfFlightPlan> GetTraectoryFlightPlan(
 //calculates a flight plan for the ship with specified parameters.
 //input parameters:
 //ShipPosition - Starting position of the ship (position, orientation, speedFirst, rotationalMoment)
-//ShipParams - Parameters of the ship (edge length, ship mass without fuel, fuel mass, 
-//             maximum moment of inertia, maximum fuel mass flow rate, 
+//ShipParams - Parameters of the ship (edge length, ship mass without fuel, fuel mass,
+//             maximum moment of inertia, maximum fuel mass flow rate,
 //             specific impulse of the engine, an array of commands, maximum overload,
 //             maximum heating)
-//Quants - Represents a time period the ship's path is calculated for 
+//Quants - Represents a time period the ship's path is calculated for
 //         (number of time intervals, size of interval (sec))
 //
-//output: structure of vector of position and scalar of speed at each time interval  
+//output: structure of vector of position and scalar of speed at each time interval
 
 vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 										ShipParams shipParams, Quants quants)
@@ -293,10 +295,12 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 	double level,currentFlightPlanTime;
 	vec currentSpeed = initialPosition.speedFirst;
 	Rotation moment = initialPosition.moment;
+	Engine engine;
+	double engineP = shipParams.engineImpulse;
 	vec currentOrientation = initialPosition.orientation;
 	vec previousAngularVelocity = {0, 0, 0};
 	vec currentPosition = initialPosition.position;
-	vector<PartOfFlightPlan> flightCommands = GetTraectoryFlightPlan(shipParams.flightPlan, quants); 
+	vector<PartOfFlightPlan> flightCommands = GetTraectoryFlightPlan(shipParams.flightPlan, quants);
 
 	int i = 0,
 		j = 0;
@@ -307,6 +311,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 	{
 		level = flightCommands[j].impulseValue;
 		moment = flightCommands[j].rotateValue;
+		engine = flightCommands[j].engineValue;
 		vec gravityForce = calculateGravityForce(currentPosition, m);
 		vec aerodynamicForce = calculateAerodynamicForce(currentSpeed, S, height);
 		vec tractiveForce = calculateTractiveForce(level, shipParams.impulsePerFuel, currentOrientation);
@@ -323,6 +328,51 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 				level, shipParams.shipMass, fuel, moment,
 				shipParams.impulsePerFuel, shipParams.shipEdgeLength,
 				time, shipParams.maxOverload, shipParams.maxHeating);
+            if ((engine.engineX != 1) && (engine.engineX != -1) && (engine.engineX != 0))
+            {
+                cout << "Incorrect command for engineX" << endl;
+            }
+            else
+            {
+                if (engine.engineX == 1)
+                {
+                    currentSpeed.x += engineP / m;
+                }
+                if (engine.engineX == -1)
+                {
+                    currentSpeed.x -= engineP / m;
+                }
+            }
+            if ((engine.engineY != 1) && (engine.engineY != -1) && (engine.engineY != 0))
+            {
+                cout << "Incorrect command for engineX" << endl;
+            }
+            else
+            {
+                if (engine.engineY == 1)
+                {
+                    currentSpeed.y += engineP / m;
+                }
+                if (engine.engineY == -1)
+                {
+                    currentSpeed.y -= engineP / m;
+                }
+            }
+            if ((engine.engineZ != 1) && (engine.engineZ != -1) && (engine.engineZ != 0))
+            {
+                cout << "Incorrect command for engineX" << endl;
+            }
+            else
+            {
+                if (engine.engineZ == 1)
+                {
+                    currentSpeed.z += engineP / m;
+                }
+                if (engine.engineZ == -1)
+                {
+                    currentSpeed.z -= engineP / m;
+                }
+            }
 			currentFlightPlan.speed = currentSpeed;
 			m -= fuel;
 			fuel = 0.0;
@@ -341,6 +391,51 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 				shipParams.impulsePerFuel, shipParams.shipEdgeLength,
 				quants.quantSizeOfSec, shipParams.maxOverload,
 				shipParams.maxHeating);
+            if ((engine.engineX != 1) && (engine.engineX != -1) && (engine.engineX != 0))
+            {
+                cout << "Incorrect command for engineX" << endl;
+            }
+            else
+            {
+                if (engine.engineX == 1)
+                {
+                    currentSpeed.x += engineP / m;
+                }
+                if (engine.engineX == -1)
+                {
+                    currentSpeed.x -= engineP / m;
+                }
+            }
+            if ((engine.engineY != 1) && (engine.engineY != -1) && (engine.engineY != 0))
+            {
+                cout << "Incorrect command for engineX" << endl;
+            }
+            else
+            {
+                if (engine.engineY == 1)
+                {
+                    currentSpeed.y += engineP / m;
+                }
+                if (engine.engineY == -1)
+                {
+                    currentSpeed.y -= engineP / m;
+                }
+            }
+            if ((engine.engineZ != 1) && (engine.engineZ != -1) && (engine.engineZ != 0))
+            {
+                cout << "Incorrect command for engineX" << endl;
+            }
+            else
+            {
+                if (engine.engineZ == 1)
+                {
+                    currentSpeed.z += engineP / m;
+                }
+                if (engine.engineZ == -1)
+                {
+                    currentSpeed.z -= engineP / m;
+                }
+            }
 			currentFlightPlan.speed = currentSpeed;
 			fuel -= level * quants.quantSizeOfSec;
 			m -= level * quants.quantSizeOfSec;
@@ -400,6 +495,6 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 		{
 			calculatedFlightPlan.push_back(currentFlightPlan);
 		}
-	} 
+	}
 	return calculatedFlightPlan;
 }
