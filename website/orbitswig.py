@@ -99,6 +99,7 @@ EarthRadius = cvar.EarthRadius
 ZeroCelsius = cvar.ZeroCelsius
 AtmosphereBoundary = cvar.AtmosphereBoundary
 SeaLevelAirDensity = cvar.SeaLevelAirDensity
+g = cvar.g
 
 class ShipPosition(_object):
     __swig_setmethods__ = {}
@@ -239,35 +240,6 @@ ReturnValues_swigregister(ReturnValues)
 def computeFlightPlan(*args):
   return _orbit.computeFlightPlan(*args)
 computeFlightPlan = _orbit.computeFlightPlan
-class SwigPyIterator(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, SwigPyIterator, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, SwigPyIterator, name)
-    def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined - class is abstract")
-    __repr__ = _swig_repr
-    __swig_destroy__ = _orbit.delete_SwigPyIterator
-    __del__ = lambda self : None;
-    def value(self): return _orbit.SwigPyIterator_value(self)
-    def incr(self, n=1): return _orbit.SwigPyIterator_incr(self, n)
-    def decr(self, n=1): return _orbit.SwigPyIterator_decr(self, n)
-    def distance(self, *args): return _orbit.SwigPyIterator_distance(self, *args)
-    def equal(self, *args): return _orbit.SwigPyIterator_equal(self, *args)
-    def copy(self): return _orbit.SwigPyIterator_copy(self)
-    def next(self): return _orbit.SwigPyIterator_next(self)
-    def __next__(self): return _orbit.SwigPyIterator___next__(self)
-    def previous(self): return _orbit.SwigPyIterator_previous(self)
-    def advance(self, *args): return _orbit.SwigPyIterator_advance(self, *args)
-    def __eq__(self, *args): return _orbit.SwigPyIterator___eq__(self, *args)
-    def __ne__(self, *args): return _orbit.SwigPyIterator___ne__(self, *args)
-    def __iadd__(self, *args): return _orbit.SwigPyIterator___iadd__(self, *args)
-    def __isub__(self, *args): return _orbit.SwigPyIterator___isub__(self, *args)
-    def __add__(self, *args): return _orbit.SwigPyIterator___add__(self, *args)
-    def __sub__(self, *args): return _orbit.SwigPyIterator___sub__(self, *args)
-    def __iter__(self): return self
-SwigPyIterator_swigregister = _orbit.SwigPyIterator_swigregister
-SwigPyIterator_swigregister(SwigPyIterator)
-
 class vec(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, vec, name, value)
@@ -290,6 +262,8 @@ class vec(_object):
     def createQuaternion(self): return _orbit.vec_createQuaternion(self)
     def multiplyWithQuaternion(self, *args): return _orbit.vec_multiplyWithQuaternion(self, *args)
     def __eq__(self, *args): return _orbit.vec___eq__(self, *args)
+    def __add__(self, *args): return _orbit.vec___add__(self, *args)
+    def __mul__(self, *args): return _orbit.vec___mul__(self, *args)
     def __init__(self): 
         this = _orbit.new_vec()
         try: self.this.append(this)
@@ -328,6 +302,35 @@ class quaternion(_object):
     __del__ = lambda self : None;
 quaternion_swigregister = _orbit.quaternion_swigregister
 quaternion_swigregister(quaternion)
+
+class SwigPyIterator(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, SwigPyIterator, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, SwigPyIterator, name)
+    def __init__(self, *args, **kwargs): raise AttributeError("No constructor defined - class is abstract")
+    __repr__ = _swig_repr
+    __swig_destroy__ = _orbit.delete_SwigPyIterator
+    __del__ = lambda self : None;
+    def value(self): return _orbit.SwigPyIterator_value(self)
+    def incr(self, n=1): return _orbit.SwigPyIterator_incr(self, n)
+    def decr(self, n=1): return _orbit.SwigPyIterator_decr(self, n)
+    def distance(self, *args): return _orbit.SwigPyIterator_distance(self, *args)
+    def equal(self, *args): return _orbit.SwigPyIterator_equal(self, *args)
+    def copy(self): return _orbit.SwigPyIterator_copy(self)
+    def next(self): return _orbit.SwigPyIterator_next(self)
+    def __next__(self): return _orbit.SwigPyIterator___next__(self)
+    def previous(self): return _orbit.SwigPyIterator_previous(self)
+    def advance(self, *args): return _orbit.SwigPyIterator_advance(self, *args)
+    def __eq__(self, *args): return _orbit.SwigPyIterator___eq__(self, *args)
+    def __ne__(self, *args): return _orbit.SwigPyIterator___ne__(self, *args)
+    def __iadd__(self, *args): return _orbit.SwigPyIterator___iadd__(self, *args)
+    def __isub__(self, *args): return _orbit.SwigPyIterator___isub__(self, *args)
+    def __add__(self, *args): return _orbit.SwigPyIterator___add__(self, *args)
+    def __sub__(self, *args): return _orbit.SwigPyIterator___sub__(self, *args)
+    def __iter__(self): return self
+SwigPyIterator_swigregister = _orbit.SwigPyIterator_swigregister
+SwigPyIterator_swigregister(SwigPyIterator)
 
 class vector_of_part_flight_plan(_object):
     __swig_setmethods__ = {}

@@ -47,3 +47,7 @@ ipch/
 # .idea/uiDesigner.xml
 
 __pycache__/
+
+*.vcxproj
+*.vcxproj.filters
+*.sln

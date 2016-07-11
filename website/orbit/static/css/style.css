@@ -216,6 +216,40 @@ h2 {
     margin: 20px;
     text-decoration: none;
 }
+.command-menu {
+    margin: 0 auto;
+    padding: 0px;
+    width: 520px;
+}
+.command {
+    display: table-cell;
+    padding: 10px 15px;
+    background: #252525;
+    font: 18px "Roboto Light";
+    color: #fff;
+    cursor: pointer;
+}
+.command:hover {
+    background: #101010;
+    -webkit-transition: background 700ms;
+    -moz-transition: background 700ms;
+    -o-transition: background 700ms;
+    transition: background 700ms;    
+}
+.command-value-block {
+    display: table-cell;
+}
+.command-value {
+    padding: 6px 5px;
+    width: 71px;
+    background: #fff;
+    border: 4px solid #252525;
+    font: 18px "Roboto";
+    color: #000;
+    text-align: center;
+    -webkit-appearance: none;
+    outline: none;
+}
 /* Fonts*/
 @font-face {
     font-family: "Roboto";
