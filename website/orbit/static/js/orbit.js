@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 function init() {
-    console.log(posArray.length);
     document.onmousedown = function() {
         ++mouseDown;
     }
@@ -58,6 +57,7 @@ function init() {
 
     scene = new THREE.Scene();
     earth = new THREE.Group();
+    
     scene.add(earth);
     // earth
     var loader = new THREE.TextureLoader();
@@ -69,6 +69,9 @@ function init() {
                     var mesh = new THREE.Mesh(geometry, material);
                     earth.add(mesh);
     } );
+    
+    loadShip();
+    
     camera.position.z = 13371;
     var canvas = document.createElement( 'canvas' );
     canvas.width = 128;
@@ -81,10 +84,14 @@ function init() {
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight - 70);
     container.appendChild( renderer.domElement );
-    document.addEventListener('mousemove', onDocumentMouseMove, false );
-    document.addEventListener('mousewheel', mousewheel, false );
-    document.addEventListener('DOMMouseScroll', mousewheel, false ); // firefox
+    
+    //document.addEventListener('mousemove', onDocumentMouseMove, false );
+    //document.addEventListener('mousewheel', mousewheel, false );
+    //document.addEventListener('DOMMouseScroll', mousewheel, false ); // firefox
     window.addEventListener('resize', onWindowResize, false );
+    
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.target = new THREE.Vector3(0, 100, 0);
 }
 
 function onWindowResize() {
@@ -160,6 +167,7 @@ function playBoost() {
 function animate() {
     requestAnimationFrame(animate);
     render();
+    controls.update();
 }
 
 function onWindowResize() {
@@ -176,6 +184,19 @@ function render() {
     updateEarthRotation();
     updateEarthSolRotation();
     renderer.render(scene, camera);
+}
+
+function loadShip() {
+    ship = new THREE.Group();
+    var geometry = new THREE.BoxGeometry( 100, 100, 100 );
+    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    var cube = new THREE.Mesh( geometry, material );
+    ship.add(cube);
+    var xpos = posArray[0][0];
+    var ypos = posArray[0][2];
+    var zpos = posArray[0][1];
+    cube.position.set(xpos, ypos, zpos);
+    scene.add(ship);
 }
 
 function updateShipOrbit() {
