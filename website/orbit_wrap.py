@@ -231,15 +231,10 @@ def generate_celestia_script(vector_of_ret_val, quant_size):
     delta = datetime.timedelta(seconds=quant_size)
 
     script = ''
+    i = 0
     for ret_value in vector_of_ret_val:
-        script += '{datetime} {value}\n'.format(datetime=julian_date(current_dt.year,
-                                                                     current_dt.month,
-                                                                     current_dt.day,
-                                                                     current_dt.hour,
-                                                                     current_dt.minute,
-                                                                     current_dt.second),
-                                                value=return_value_to_str(ret_value)
-        )
+        i += 1
+        script += '{time} {value}\n'.format(time=i, value=return_value_to_str(ret_value))
         current_dt += delta
 
     return script
