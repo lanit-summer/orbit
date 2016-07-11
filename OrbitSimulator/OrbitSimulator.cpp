@@ -65,37 +65,45 @@ double temperature(double height) //calculates the temperature at a certain heig
 		throw invalid_argument("Height is less than the radius of the Earth");
 	}
 	double temperature = ZeroCelsius;
-	if (height > 145) //at each height there's an equation of temperature calculation
+	if (height < 11019)
 	{
-		return 0.0;
+		temperature = 288.15-0.0065*(height);
 	}
-	else if (height > 94)
+	else if (height < 20063)
 	{
-		temperature += 140 * (height - 94) / 51 - 90;
+		temperature = 216-0.0065*(height-11019);
 	}
-	else if (height > 84)
+	else if (height < 32162)
 	{
-		temperature -= 90;
+		temperature = 216.65;
 	}
-	else if (height > 54)
+	else if (height < 47350)
 	{
-		temperature += -3 * height + 162;
+		temperature = 228.65+0.0010*(height-32162);
 	}
-	else if (height > 47)
+	else if (height < 51412)
 	{
-		return temperature;
+		temperature = 270.65+0.0028*(height-47350);
 	}
-	else if (height > 20)
+	else if (height < 71802)
 	{
-		temperature += (20 * height - 940) / 9;
+		temperature = 270.65;
 	}
-	else if (height > 10)
+	else if (height < 86152)
 	{
-		temperature -= 60;
+		temperature = 214.65-0.0028*(height-71802);
 	}
-	else
+	else if (height < 95411)
 	{
-		temperature += -8 * height + 20;
+		temperature = 186.65-0.0020*(height-71802);
+	}
+	else if (height < 104128)
+	{
+		temperature = 186.525;
+	}
+	else if (height < 120000)
+	{
+		temperature = 334.417
 	}
 	return temperature;
 }
