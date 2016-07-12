@@ -187,7 +187,7 @@ double molarMass(double height)
 	{
 		molarMass = (9.8970-1.19732*pow(10,-5)*height+7.78247*pow(10,-12)*pow(height,2)-1.77541*pow(10,-18)*pow(height,3))*pow(10,-3);
 	}
-	return molarMass
+	return molarMass;
 }
 
 //концентрация в зависимости от высоты согласно ГОСТ
@@ -238,7 +238,7 @@ double concentration(double height) //n=n(h)
 	{
 		concentration = (0.383220*pow(10,2)-0.50980*pow(10,-4)*height)*pow(10,11)
 	}
-	return concentration
+	return concentration;
 }
 //что было раньше в коде
 //double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
@@ -263,7 +263,7 @@ double concentration(double height) //n=n(h)
 //}
 
 //давление согласно ГОСТ
-double pressure(double temperature)// нужно ли делать функцию давление(температура, высота) или достаточно давление(температура)
+double pressure(double height, double temperature)// нужно ли делать функцию давление(температура, высота) или достаточно давление(температура)
 {
 	if (height < 120000) //тут давление не по ГОСТ, в ГОСТ трудные формулы до 120 км. Нужно проконсультироваться, что такое бетта. Пока используем простую формулу
 	{
@@ -279,9 +279,23 @@ double pressure(double temperature)// нужно ли делать функци�
 		Navogadro = 6.022*pow(10,23);//число Авогадро
 		pressure = concentration*R*temperature/Navogadro;
 	}
-	return pressure
+	return pressure;
 }
 
+//плотность согласно ГОСТ
+double airDensity(double temperature)
+{
+	R = 8.31;
+	airDensity = pressure*molarMass/(R*temperature); //ro=(p*M)/(R*T)
+	return airDensity;
+}
+
+//скорость звука согласно ГОСТ
+double speedOfSound(double temperature)
+{
+	speedOfSound = 2.046796*sqrt(temperature);
+	return speedOfSound;
+}
 
 //calculates an aerodynamic force 
 // p * v^2 * S^2 / 2
@@ -345,10 +359,11 @@ vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
 }
 
 //Calculate aerodynamic heating for spaceship. 
-//Formula: Tn=T0+0.2*M^2
+//Formula: Tn=T0+0.2*M^2 aerodynamicHeating и heating КАКАЯ ПЕРЕМЕННАЯ РАССЧИТЫВАЕТСЯ ДАЛЬШЕ?
+//M=V/a - М - число Маха. М - есть отношение скорости полета тела к скорости звука на данной высоте
 double aerodynamicHeating(double temperature, vec speed)
 {
-	double heating = temperature + 0.2*pow(speed.getScalar()/speedofsound.getScalar(), 2); // (K)
+	double heating = temperature + 0.2*pow(speed.getScalar()/speedOfSound, 2); // (K)
 	return heating;
 }
 
