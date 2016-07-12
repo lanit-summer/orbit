@@ -144,7 +144,7 @@ double temperature(double height) //calculates the temperature at a certain heig
 	return temperature;
 }
 //
-// molar mass 
+// молярная масса воздуха в зависимости от высоты по ГОСТ-4401-81
 double molarMass(double height)
 {
 	if (height < 94000)
@@ -191,15 +191,55 @@ double molarMass(double height)
 }
 
 //концентрация в зависимости от высоты согласно ГОСТ
-double concentration(double height)
+double concentration(double height) //n=n(h)
 {
 	if (height < 120000) 
 	{
 		BoltzmannConstant = 1.38064852*pow(10,-23); //J/K
-		p0 = 101325; //normal atmospheric pressure at sea level (Pa)
-		g = G * EarthMass / pow(height, 2); //acceleration due to gravity
-		concentration = (p0*exp(-molarMass*g*height/(R*temperature)));
+		p0 = 101325; //нормальное давление в Па
+		G = 6.67408*pow(10,-11); //гравитационная постоянная
+		R = 8.31 // универсальная газовая постоянная
+		g = G * EarthMass / pow(height, 2); //ускорение свободного падения
+		p = p0*exp(-molarMass*g*height/(R*temperature));// давление по обычной формуле p=p0*exp(-Mgh/(RT)
+		concentration = 7.243611*pow(10,22)*(p/temperature);//концентрация из ГОСТ
 	}
+	else if (height < 150000)// концентрация взята из ГОСТ, таблица 7, стр 178. Пока взяли n=(A0+A1*h)*10^m
+	{
+		concentration = (0.210005867*pow(10,4)-0.5618444757*pow(10,-1)*height)*pow(10,17);
+	}
+	else if (height < 200000)
+	{
+		concentration = (0.10163937*pow(10,4)-0.211953083*pow(10,-1)*height)*pow(10,16);
+	}
+	else if (height < 250000)
+	{
+		concentration = (0.7631575*pow(10,3)-0.1150600844*pow(10,-1)*height)*pow(10,15);
+	}
+	else if (height < 350000)
+	{
+		concentration = (0.1882203*pow(10,3)-0.2265999519*pow(10,-2)*height)*pow(10,15);
+	}
+	else if (height < 450000)
+	{
+		concentration = (0.2804823*pow(10,3)-0.2432231125*pow(10,-2)*height)*pow(10,14);
+	}
+	else if (height < 600000)
+	{
+		concentration = (0.5599362*pow(10,3)-0.3714141392*pow(10,-2)*height)*pow(10,13);
+	}
+	else if (height < 800000)
+	{
+		concentration = (0.8358756*pow(10,3)-0.4265393073*pow(10,-2)*height)*pow(10,12);
+	}
+	else if (height < 1000000)
+	{
+		concentration = (0.8364965*pow(10,2)-0.3162492458*pow(10,-3)*height)*pow(10,12);
+	}
+	else if (height < 1200000)
+	{
+		concentration = (0.383220*pow(10,2)-0.50980*pow(10,-4)*height)*pow(10,11)
+	}
+	return concentration
 }
 
 double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
