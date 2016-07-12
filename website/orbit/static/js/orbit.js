@@ -9,6 +9,7 @@ var paused = false;
 var mouseDown = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
+var cube;
 
 var speedArray;
 var posArray;
@@ -192,7 +193,7 @@ function loadShip() {
     ship = new THREE.Group();
     var geometry = new THREE.BoxGeometry( 100, 100, 100 );
     var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    var cube = new THREE.Mesh( geometry, material );
+    cube = new THREE.Mesh( geometry, material );
     ship.add(cube);
     var xpos = posArray[0][0];
     var ypos = posArray[0][2];
@@ -202,7 +203,17 @@ function loadShip() {
 }
 
 function updateShipOrbit() {
-
+    var xpos = posArray[total_seconds][0];
+    var ypos = posArray[total_seconds][2];
+    var zpos = posArray[total_seconds][1];
+ 
+    var curMill = (total_seconds + 1) * 1000 - total_milliseconds;
+    xpos += curMill / 1000 * speedArray[total_seconds][0];
+    ypos += curMill / 1000 * speedArray[total_seconds][1];
+    ypos += curMill / 1000 * speedArray[total_seconds][2];
+    console.log(curMill / 1000);
+    //console.log(xpos + " " + ypos + " " + zpos);
+    cube.position.set(xpos, ypos, zpos);
 }
 
 function updateEarthRotation() {
