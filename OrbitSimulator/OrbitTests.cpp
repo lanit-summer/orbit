@@ -48,37 +48,37 @@ TEST_CASE("Calculate Angular Velocity", "[AngularVelocity]") {
 
 TEST_CASE("Calculate temperature", "[temperature]") {
 	SECTION("1st equation - at 6 km") {
-		double H = 6;
+		double H = 6000;
 		double result = temperature(H);
 		REQUIRE(floor(result) == 245); 
 	}
 	SECTION("2nd equation - at 15 km") {
-		double H = 15;
+		double H = 15000;
 		double result = temperature(H);
 		REQUIRE(floor(result) == 213); 
 	}
 	SECTION("3rd equation - at 30 km") {
-		double H = 30;
+		double H = 30000;
 		double result = temperature(H);
 		REQUIRE(floor(result) == 235); 
 	}
 	SECTION("4th equation - at 50 km") {
-		double H = 50;
+		double H = 50000;
 		double result = temperature(H);
 		REQUIRE(result == ZeroCelsius); 
 	}
 	SECTION("5th equation - at 80 km") {
-		double H = 80;
+		double H = 80000;
 		double result = temperature(H);
 		REQUIRE(floor(result) == 195); 
 	}
 	SECTION("6th equation - at 90 km") {
-		double H = 90;
+		double H = 90000;
 		double result = temperature(H);
 		REQUIRE(floor(result) == 183); 
 	}
 	SECTION("7th equation - at 140 km") {
-		double H = 140;
+		double H = 140000;
 		double result = temperature(H);
 		REQUIRE(floor(result) == 309); 
 	}
@@ -88,22 +88,25 @@ TEST_CASE("Calculate air density", "[airDensity]") {
 	SECTION("at 0 km") {
 		double H = EarthRadius;
 		double result = airDensity(H);
-		REQUIRE(result == 1225000000);
+		REQUIRE(result == 1.225);
 	}
 	SECTION("at 30 km") {
-		double H = 30 + EarthRadius;
+		double H = 30000 + EarthRadius;
 		double result = airDensity(H);
-		REQUIRE(floor(result) == 20119443);
+		REQUIRE(result <= 0.0201194434);
+		REQUIRE(result >= 0.0201194432);
 	}
 	SECTION("at 50 km") {
-		double H = 50 + EarthRadius;
+		double H = 50000 + EarthRadius;
 		double result = airDensity(H);
-		REQUIRE(floor(result) == 2748034);
+		REQUIRE(result <= 0.002748035);
+		REQUIRE(result >= 0.002748033);
 	}
 	SECTION("at 80 km") {
-		double H = 80 + EarthRadius;
+		double H = 80000 + EarthRadius;
 		double result = airDensity(H);
-		REQUIRE(floor(result) == 2128);
+		REQUIRE(result <= 0.000002129);
+		REQUIRE(result >= 0.000002127);
 	}
 }
 
@@ -116,25 +119,24 @@ TEST_CASE("Calculate Gravity force", "[GravityForce]") {
 		REQUIRE(result == zeroVec);
 	}
 	SECTION( "normal values" ) {
-		vec position = {6471, 0, 0};
+		vec position = {6471000, 0, 0};
 		double mass = 1;
 		vec result = calculateGravityForce(position, mass);
-		REQUIRE(result.x >= 0.0094);
-		REQUIRE(result.x <= 0.0096);
+		REQUIRE(result.x >= 9.4);
+		REQUIRE(result.x <= 9.6);
 	}
 }
 
 TEST_CASE("Calculate geostationary orbit", "[computeFlightPlan]") {
 	SECTION("If distance is 42164 and speed")
 	{
-		vec position = {42164,0,0};
+		vec position = {42164000,0,0};
 		vec orientation = {1,0,0};
-		vec initialSpeed = {0,3.07,0};
+		vec initialSpeed = {0,3070,0};
 		Rotation initialRotation = {0,0,0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
-		 
-		ShipParams spaceCraftParameters = {1, 2, 0, initialRotation, 0, 0,std::vector<PartOfFlightPlan>(),1000000,1000000};
-		Quants flightTime = {86000, 1};
+		Quants flightTime = {86000, 1}; 
+		ShipParams spaceCraftParameters = {1000, 2, 0, initialRotation, 0, 0,std::vector<PartOfFlightPlan>(),1000000,1000000};
 		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);   
 	}
 }
@@ -171,17 +173,17 @@ TEST_CASE("Calculate Tractive force", "[TractiveForce]") {
 
 TEST_CASE("Calculate Aerodynamic force", "[AerodynamicForce]") {
 	SECTION( "if we are too far from Earth" ) {
-		vec speed = {1, 1, 1};
-		double square = 2;
-		double height = 100000;
+		vec speed = {1000, 1000, 1000};
+		double square = 2000;
+		double height = 100000000;
 		vec result = calculateAerodynamicForce (speed, square, height);
 		vec zeroVec = {0, 0, 0};
 		REQUIRE(result == zeroVec);
 	}
 	SECTION( "if we have zero speed" ) {
 		vec speed = {0, 0, 0};
-		double square = 2;
-		double height = 6471;
+		double square = 2000;
+		double height = 6471000;
 		vec result = calculateAerodynamicForce (speed, square, height);
 		vec zeroVec = {0, 0, 0};
 		REQUIRE(result == zeroVec);
@@ -190,34 +192,34 @@ TEST_CASE("Calculate Aerodynamic force", "[AerodynamicForce]") {
 
 TEST_CASE("Calculate speed", "[Speed]") {
 	SECTION( "average values" ) {
-		vec previousSpeed = {1, 0, 0};
-		vec position = {6550, 0, 0};
+		vec previousSpeed = {1000, 0, 0};
+		vec position = {65500000, 0, 0};
 		vec orientation = {1, 0, 0};
 		double fuelConsumption = 1;
 		double mShip = 100;
 		double mFuel = 50;
 		Rotation moment = {0, 0, 0};
 		double specificImpulse = 1;
-		double size = 1;
+		double size = 1000;
 		double quantSizeOfSec = 1;
 		double maxOverload = 10;
 		double maxHeating = 100;
 		vec result = speed(previousSpeed, position, orientation, fuelConsumption,
 			mShip, mFuel, moment, specificImpulse,
 			size, quantSizeOfSec, maxOverload, maxHeating);
-		REQUIRE(result.x >= 0.997);
-		REQUIRE(result.x <= 0.998);
+		REQUIRE(result.x >= 998);
+		REQUIRE(result.x <= 1000);
 	}
 	SECTION( "if quantSizeOfSec is zero" ) {
-		vec previousSpeed = {1, 0, 0};
-		vec position = {6471, 0, 0};
+		vec previousSpeed = {1000, 0, 0};
+		vec position = {6471000, 0, 0};
 		vec orientation = {1, 0, 0};
 		double fuelConsumption = 1;
 		double mShip = 1000;
 		double mFuel = 50;
 		Rotation moment = {0, 0, 0};
 		double specificImpulse = 100;
-		double size = 100;
+		double size = 100000;
 		double quantSizeOfSec = 0;
 		double maxOverload = 10;
 		double maxHeating = 100;
@@ -229,11 +231,11 @@ TEST_CASE("Calculate speed", "[Speed]") {
 }
 
 TEST_CASE("Calculate Explorer 6 orbit (russian/deutsch wikipedia)", "[computeFlightPlan]") {
-	SECTION("Launched from 245 km, start speed = 10.296 km/s")
+	SECTION("Launched from 245000 m, start speed = 10296 m/s")
 	{
-		vec position = {0, 6623.1, 0};
+		vec position = {0, 6623100, 0};
 		vec orientation = {-1, 0, 0};
-		vec initialSpeed = {-10.296099, 0, 0};
+		vec initialSpeed = {-10296.099, 0, 0};
 		Rotation initialRotation = {0, 0, 0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
 		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
@@ -245,10 +247,10 @@ TEST_CASE("Calculate Explorer 6 orbit (russian/deutsch wikipedia)", "[computeFli
 			double height = calculationResults[i].position.getScalar();
 			double speed  = calculationResults[i].speed.getScalar();
 			if (height > max) { max = height; }
-			REQUIRE(height < 48800);
-			REQUIRE(height > 6623);
-			REQUIRE(speed < 11.2);
-			if (height <= 6623.1 && i > 10) { 
+			REQUIRE(height < 48800000);
+			REQUIRE(height > 6623000);
+			REQUIRE(speed < 11200);
+			if (height <= 6623100 && i > 10) { 
 				double period = (double) i / 60;
 				REQUIRE(period < 766.0);
 				REQUIRE(period >= 764.0);
@@ -258,11 +260,11 @@ TEST_CASE("Calculate Explorer 6 orbit (russian/deutsch wikipedia)", "[computeFli
 }
 
 TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]") {
-	SECTION("Launched from 237 km, start speed = 10.29 km/s")
+	SECTION("Launched from 237000 m, start speed = 10290 m/s")
 	{
-		vec position = {0, 6615.1, 0};
+		vec position = {0, 6615100, 0};
 		vec orientation = {-1, 0, 0};
-		vec initialSpeed = {-10.2967, 0, 0};
+		vec initialSpeed = {-10296.7, 0, 0};
 		Rotation initialRotation = {0, 0, 0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
 		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
@@ -274,10 +276,10 @@ TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]
 			double height = calculationResults[i].position.getScalar();
 			double speed  = calculationResults[i].speed.getScalar();
 			if (height > max) { max = height; }
-			REQUIRE(height < 48300);
-			REQUIRE(height > 6615);
-			REQUIRE(speed < 11.2);
-			if (height <= 6615.1 && i > 10) { 
+			REQUIRE(height < 48300000);
+			REQUIRE(height > 6615000);
+			REQUIRE(speed < 11200);
+			if (height <= 6615100 && i > 10) { 
 				double period = (double) i / 60;
 				REQUIRE(period < 755.0);
 				REQUIRE(period >= 753.0);
@@ -287,11 +289,11 @@ TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]
 }
 
 TEST_CASE("Calculate Vostok 1 orbit", "[computeFlightPlan]") {
-	SECTION("Launched from 175 km, start speed = 7.8375 km/s")
+	SECTION("Launched from 175000 m, start speed = 7837.5 m/s")
 	{
-		vec position = {0, 0, 6553.22};
+		vec position = {0, 0, 6553220};
 		vec orientation = {1, 0, 0};
-		vec initialSpeed = {-7.8375, 0, 0};
+		vec initialSpeed = {-7837.5, 0, 0};
 		Rotation initialRotation = {0, 0, 0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
 		Quants flightTime = {6480, 1};
@@ -300,18 +302,16 @@ TEST_CASE("Calculate Vostok 1 orbit", "[computeFlightPlan]") {
 		PartOfFlightPlan plan2 = {29, 11, {0, 0, 0}};
 		flightPlan[0] = plan1;
 		flightPlan[1] = plan2;
-		ShipParams spaceCraftParameters = {0.0025, 3725.0, 1000, initialRotation, 100.0, 2.61,
+		ShipParams spaceCraftParameters = {2.5, 3725.0, 1000, initialRotation, 100.0, 2.61,
 			flightPlan, 10, 5274.0};
 		vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
 		double max = 0;
 		for (int i = 0; i < flightTime.numberOfQuants; i++) {
 			double height = calculationResults[i].position.getScalar();
 			double speed  = calculationResults[i].speed.getScalar();
-			REQUIRE(height < EarthRadius + 302.0);
+			REQUIRE(height < EarthRadius + 302000.0);
 			REQUIRE(height > EarthRadius);
-			REQUIRE(speed < 7.9);
-			cout<<height<<"\n";
+			REQUIRE(speed < 7900);
 		}
 	}
-	_gettch();
 }
