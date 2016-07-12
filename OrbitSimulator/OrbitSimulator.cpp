@@ -190,6 +190,18 @@ double molarMass(double height)
 	return molarMass
 }
 
+//концентрация в зависимости от высоты согласно ГОСТ
+double concentration(double height)
+{
+	if (height < 120000) 
+	{
+		BoltzmannConstant = 1.38064852*pow(10,-23); //J/K
+		p0 = 101325; //normal atmospheric pressure at sea level (Pa)
+		g = G * EarthMass / pow(height, 2); //acceleration due to gravity
+		concentration = (p0*exp(-molarMass*g*height/(R*temperature)));
+	}
+}
+
 double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
 {
 	if (height <= EarthRadius) { return SeaLevelAirDensity; }
