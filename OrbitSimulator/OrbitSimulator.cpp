@@ -195,7 +195,6 @@ double concentration(double height) //n=n(h)
 {
 	if (height < 120000) 
 	{
-		BoltzmannConstant = 1.38064852*pow(10,-23); //J/K
 		p0 = 101325; //нормальное давление в Па
 		G = 6.67408*pow(10,-11); //гравитационная постоянная
 		R = 8.31 // универсальная газовая постоянная
@@ -241,27 +240,48 @@ double concentration(double height) //n=n(h)
 	}
 	return concentration
 }
+//что было раньше в коде
+//double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
+//{
+//	if (height <= EarthRadius) { return SeaLevelAirDensity; }
+//	double heightAboveSeaLevel = height - EarthRadius;
+//	double T = temperature(heightAboveSeaLevel); //temperature at a certain height
+//	if (T <= 0.0) { return 0.0; }
+//	else
+//		// p = p0 * e^(-M * g * H / (R * T)) 
+//		// airDensity = p * M / (R * T) 
+//	{ 
+//		double p0 = 101325, //normal atmospheric pressure at sea level (Pa)
+//			g = G * EarthMass / pow(height, 2), //acceleration due to gravity
+//			//on the Earth's surface (km/s^2)
+//			R = 8.31447, //universal gas constant (J / (mol * K))
+//			M = 0.0289644, //the molar mass of dry air (kg / mol)
+//			p = p0 * exp(-M * g * heightAboveSeaLevel * pow(10.0, 6) / (R * T)), //pressure at the certain height (Pa)
+//			density = p * M * pow(10.0, 9) / (R * T); //air density at the certain height (kg / km^3)
+//		return density;  
+//	}
+//}
 
-double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
+//давление согласно ГОСТ
+double pressure(double temperature)// нужно ли делать функцию давление(температура, высота) или достаточно давление(температура)
 {
-	if (height <= EarthRadius) { return SeaLevelAirDensity; }
-	double heightAboveSeaLevel = height - EarthRadius;
-	double T = temperature(heightAboveSeaLevel); //temperature at a certain height
-	if (T <= 0.0) { return 0.0; }
-	else
-		// p = p0 * e^(-M * g * H / (R * T)) 
-		// airDensity = p * M / (R * T) 
-	{ 
-		double p0 = 101325, //normal atmospheric pressure at sea level (Pa)
-			g = G * EarthMass / pow(height, 2), //acceleration due to gravity
-			//on the Earth's surface (km/s^2)
-			R = 8.31447, //universal gas constant (J / (mol * K))
-			M = 0.0289644, //the molar mass of dry air (kg / mol)
-			p = p0 * exp(-M * g * heightAboveSeaLevel * pow(10.0, 6) / (R * T)), //pressure at the certain height (Pa)
-			density = p * M * pow(10.0, 9) / (R * T); //air density at the certain height (kg / km^3)
-		return density;  
+	if (height < 120000) //тут давление не по ГОСТ, в ГОСТ трудные формулы до 120 км. Нужно проконсультироваться, что такое бетта. Пока используем простую формулу
+	{
+		p0 = 101325; //нормальное давление в Па
+		G = 6.67408*pow(10,-11); //гравитационная постоянная
+		R = 8.31 // универсальная газовая постоянная
+		g = G * EarthMass / pow(height, 2); //ускорение свободного падения
+		pressure = p0*exp(-molarMass*g*height/(R*temperature));// давление по обычной формуле p=p0*exp(-Mgh/(RT)	
 	}
+	else if (height >120000)
+	{
+		R = 8.31;//универсальная газовая постоянная Дж/(к*моль)
+		Navogadro = 6.022*pow(10,23);//число Авогадро
+		pressure = concentration*R*temperature/Navogadro;
+	}
+	return pressure
 }
+
 
 //calculates an aerodynamic force 
 // p * v^2 * S^2 / 2
