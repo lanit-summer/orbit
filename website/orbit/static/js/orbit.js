@@ -56,7 +56,7 @@ function init() {
     }
 
     container = document.getElementById('scene');
-    camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000000);
+    camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 200000000);
 
     scene = new THREE.Scene();
     earth = new THREE.Group();
@@ -200,6 +200,28 @@ function loadShip() {
     var zpos = posArray[0][1];
     cube.position.set(xpos, ypos, zpos);
     scene.add(ship);
+    loadMoon();
+    loadSun();
+}
+
+function loadMoon() {
+    moon = new THREE.Group();
+    var geometry = new THREE.BoxGeometry( 1700, 1700, 1700 );
+    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    var cube2 = new THREE.Mesh( geometry, material );
+    moon.add(cube2);
+    cube2.position.set(-320000, 0, 0);
+    scene.add(moon);
+}
+
+function loadSun() {
+    sun = new THREE.Group();
+    var geometry = new THREE.BoxGeometry(695700, 695700, 695700 );
+    var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+    var cube2 = new THREE.Mesh( geometry, material );
+    sun.add(cube2);
+    cube2.position.set(0, -149600000, 0);
+    scene.add(sun);
 }
 
 function updateShipOrbit() {
