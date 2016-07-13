@@ -77,3 +77,12 @@ nav {
     outline: none;
     resize: none;
 }
+
+.camera-label {
+    display: inline;   
+    margin: 10px;
+}
+
+.camera-modes {
+    display: inline;
+}

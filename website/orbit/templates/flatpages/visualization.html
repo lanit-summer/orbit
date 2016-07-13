@@ -43,6 +43,18 @@
                 <div class="logs-block">
                     <textarea readonly></textarea>
                 </div>
+                
+                <div class = "camera-label">
+                    <label for="lookAt">Посмотреть на</label>
+                </div>
+                <div class = "camera-modes">
+                    <select id="lookAt" onchange="">
+                        <option value="earth">Землю</option>
+                        <option value="moon">Луну</option>
+                        <option value="satelite">Спутник</option>
+                    </select>   
+                </div>
+                
             </div>
         </div>
         <div class="panel-btn"><img src="{% static "img/icons/icon4.png" %}" alt=""></div>

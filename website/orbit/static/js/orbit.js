@@ -59,7 +59,22 @@ function init() {
             stopBoost();
         }
     }
-
+    
+    document.getElementById("lookAt").onchange = function(){
+        if (this.value == "moon") {
+            controls.target = moon.position;
+            camera.lookAt(moon);
+        }
+        if (this.value == "earth") {
+            controls.target = earth.position;
+            camera.lookAt(earth);
+        }
+        if (this.value == "satelite") {
+            controls.target = ship.position;
+            camera.lookAt(ship);
+        }
+    }
+    
     container = document.getElementById('scene');
     camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 200000000);
 
@@ -111,7 +126,7 @@ function init() {
     window.addEventListener('resize', onWindowResize, false );
     
     controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.target = new THREE.Vector3(0, 100, 0);
+    controls.target = earth.position;
 }
 
 function onWindowResize() {
@@ -199,7 +214,6 @@ function onWindowResize() {
 }
 
 function render() {
-    camera.lookAt(earth.position);
     updateShipOrbit();
     updateEarthRotation();
     updateEarthSolRotation();
@@ -215,7 +229,7 @@ function loadShip() {
     var xpos = posArray[0][0];
     var ypos = posArray[0][2];
     var zpos = posArray[0][1];
-    cube.position.set(xpos, ypos, zpos);
+    ship.position.set(xpos, ypos, zpos);
     scene.add(ship);
 }
 
@@ -226,17 +240,17 @@ function updateShipOrbit() {
 
     var curMill = (total_seconds + 1) * 1000 - total_milliseconds;
     xpos += curMill / 1000 * speedArray[total_seconds][0];
-    ypos += curMill / 1000 * speedArray[total_seconds][1];
     ypos += curMill / 1000 * speedArray[total_seconds][2];
+    zpos += curMill / 1000 * speedArray[total_seconds][1];
     document.getElementById("pos_x").innerHTML = xpos.toFixed(2);
     document.getElementById("pos_y").innerHTML = ypos.toFixed(2);
     document.getElementById("pos_z").innerHTML = zpos.toFixed(2);
 
     document.getElementById("speed_x").innerHTML = speedArray[total_seconds][0].toFixed(2);
-    document.getElementById("speed_y").innerHTML = speedArray[total_seconds][1].toFixed(2);
-    document.getElementById("speed_z").innerHTML = speedArray[total_seconds][2].toFixed(2);
+    document.getElementById("speed_y").innerHTML = speedArray[total_seconds][2].toFixed(2);
+    document.getElementById("speed_z").innerHTML = speedArray[total_seconds][1].toFixed(2);
 
-    cube.position.set(xpos, ypos, zpos);
+    ship.position.set(xpos, ypos, zpos);
 }
 
 function updateEarthRotation() {
