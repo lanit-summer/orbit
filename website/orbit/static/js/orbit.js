@@ -250,7 +250,7 @@ function updateShipOrbit() {
 
 function updateEarthRotation() {
     //TODO
-    earth.rotation.y -= 0.0005 * boost;
+    earth.rotation.y -= 0.00000072 * boost
 }
 
 function updateEarthSolRotation() {
