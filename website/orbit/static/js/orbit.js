@@ -228,13 +228,19 @@ function updateShipOrbit() {
     var xpos = posArray[total_seconds][0];
     var ypos = posArray[total_seconds][2];
     var zpos = posArray[total_seconds][1];
- 
+
     var curMill = (total_seconds + 1) * 1000 - total_milliseconds;
     xpos += curMill / 1000 * speedArray[total_seconds][0];
     ypos += curMill / 1000 * speedArray[total_seconds][1];
     ypos += curMill / 1000 * speedArray[total_seconds][2];
-    console.log(curMill / 1000);
-    //console.log(xpos + " " + ypos + " " + zpos);
+    document.getElementById("pos_x").innerHTML = xpos.toFixed(2);
+    document.getElementById("pos_y").innerHTML = ypos.toFixed(2);
+    document.getElementById("pos_z").innerHTML = zpos.toFixed(2);
+
+    document.getElementById("speed_x").innerHTML = speedArray[total_seconds][0].toFixed(2);
+    document.getElementById("speed_y").innerHTML = speedArray[total_seconds][1].toFixed(2);
+    document.getElementById("speed_z").innerHTML = speedArray[total_seconds][2].toFixed(2);
+
     cube.position.set(xpos, ypos, zpos);
 }
 

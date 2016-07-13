@@ -41,7 +41,7 @@ nav {
 .navigation {
     position: fixed;
     top: 63; right: 0;
-    width: 300px;
+    width: 350px;
     background: rgba(0, 0, 70, 0.8);
 }
 .arg-block {
