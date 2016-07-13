@@ -10,6 +10,7 @@ var mouseDown = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 var cube;
+var moon;
 
 var speedArray;
 var posArray;
@@ -21,6 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 function init() {
+    var trajectory = document.getElementById("trajectory").value;
+    if (trajectory) {
+        loadOrbitFromCalculator(trajectory);
+    }
     start();
     console.log(posArray.length);
     document.onmousedown = function() {
@@ -72,7 +77,19 @@ function init() {
                     var mesh = new THREE.Mesh(geometry, material);
                     earth.add(mesh);
     } );
-    
+
+    moon = new THREE.Group();
+    scene.add(moon);
+    var loader = new THREE.TextureLoader();
+    var imgurl = "../../static/img/Moon.jpg"
+    loader.load(imgurl, function (texture) { 
+                    var geometry = new THREE.SphereGeometry(1737, 30, 30);
+                    var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5 });
+                    var mesh = new THREE.Mesh(geometry, material);
+                    moon.add(mesh);
+    });
+    moon.position.set(-32000, 0, 0);
+
     loadShip();
     
     camera.position.z = 13371;
@@ -200,28 +217,6 @@ function loadShip() {
     var zpos = posArray[0][1];
     cube.position.set(xpos, ypos, zpos);
     scene.add(ship);
-    loadMoon();
-    loadSun();
-}
-
-function loadMoon() {
-    moon = new THREE.Group();
-    var geometry = new THREE.BoxGeometry( 1700, 1700, 1700 );
-    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    var cube2 = new THREE.Mesh( geometry, material );
-    moon.add(cube2);
-    cube2.position.set(-320000, 0, 0);
-    scene.add(moon);
-}
-
-function loadSun() {
-    sun = new THREE.Group();
-    var geometry = new THREE.BoxGeometry(695700, 695700, 695700 );
-    var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-    var cube2 = new THREE.Mesh( geometry, material );
-    sun.add(cube2);
-    cube2.position.set(0, -149600000, 0);
-    scene.add(sun);
 }
 
 function updateShipOrbit() {
@@ -246,7 +241,7 @@ function updateShipOrbit() {
 
 function updateEarthRotation() {
     //TODO
-    earth.rotation.y -= 0.0005 * boost;
+    earth.rotation.y -= 0.00000072 * boost;
 }
 
 function updateEarthSolRotation() {
@@ -295,3 +290,34 @@ function loadSampleOrbit() {
     xhr.open("GET","../../static/js/orbit.xyzv", false);
     xhr.send();
 }
+
+//TODO Duplicate code
+
+function loadOrbitFromCalculator(text) {
+    var arr = text.split('\n');
+    if (arr.length != 1) {
+        posArray = new Array(arr.length);
+        speedArray = new Array(arr.length);
+        for (var i = 0; i < arr.length - 1; i++) {
+            var line = arr[i].split(' ');
+
+            var position = new Array(3);
+            position[0] = parseInt(line[1]);
+            position[1] = parseInt(line[2]);
+            position[2] = parseInt(line[3]);
+
+            posArray[i] = position;
+
+            //console.log("Pos " + i + " X: " + posArray[i][0] + " Y: " + posArray[i][1] + " Z: " + posArray[i][2]);
+
+            speed = new Array(3);
+            speed[0] = parseInt(line[4]);
+            speed[1] = parseInt(line[5]);
+            speed[2] = parseInt(line[6]);
+
+            speedArray[i] = speed;
+        }
+        boost = Math.ceil(posArray.length / 180);
+        renewBoostSign();
+    }
+} 

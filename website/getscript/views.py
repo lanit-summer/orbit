@@ -8,6 +8,8 @@ from django.template import Context, loader
 from django import forms
 import orbit_wrap
 
+global script
+
 class MainForm(forms.Form):
     PositionX = forms.CharField(required=True, max_length=10)
     PositionY = forms.CharField(required=True, max_length=10)
@@ -129,11 +131,9 @@ def script(request):
                                             fl_plan_l)
 
         flight_plan = orbit_wrap.orbitswig.computeFlightPlan(initial_position, ship_params, quants)
-
+        global script
         script = orbit_wrap.generate_celestia_script(flight_plan, quants.quantSizeOfSec)
 
-        with open("getscript/Orbit-test/data/orbit.xyzv", 'w') as file:
-            file.write(script)     
         return render(request, 'flatpages/script.html', {'form': form, 'script': script})
     else:
         form = MainForm(data=request.POST)
@@ -171,7 +171,8 @@ def clear_form(request):
     return HttpResponseRedirect('/calculator/')
 
 def visualization(request):
-    return render(request, 'flatpages/visualization.html')
+    global script
+    return render(request, 'flatpages/visualization.html', {'script':script})
 
 def zipdir(basedir, archivename):
     from contextlib import closing
@@ -185,14 +186,14 @@ def zipdir(basedir, archivename):
         z.write("getscript/spacesimulator.cel", "spacesimulator.cel")
 	z.write("getscript/install.txt", "install.txt")
 def get_file(request):
-
     import os, tempfile, zipfile
     from wsgiref.util import FileWrapper
     from django.conf import settings
     from django.http import HttpResponse
     import mimetypes
     from zipfile import ZipFile   
-
+    with open("getscript/Orbit-test/data/orbit.xyzv", 'w') as file:
+        file.write(script)     
     zipdir("getscript/Orbit-test", "getscript/SimulatorTrajectory.zip")
     filename     = "getscript/SimulatorTrajectory.zip"
     download_name = "SimulatorTrajectory.zip"
