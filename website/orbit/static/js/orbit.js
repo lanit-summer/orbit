@@ -10,6 +10,7 @@ var mouseDown = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 var cube;
+var moon;
 
 var speedArray;
 var posArray;
@@ -76,7 +77,19 @@ function init() {
                     var mesh = new THREE.Mesh(geometry, material);
                     earth.add(mesh);
     } );
-    
+
+    moon = new THREE.Group();
+    scene.add(moon);
+    var loader = new THREE.TextureLoader();
+    var imgurl = "../../static/img/Moon.jpg"
+    loader.load(imgurl, function (texture) { 
+                    var geometry = new THREE.SphereGeometry(1737, 30, 30);
+                    var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5 });
+                    var mesh = new THREE.Mesh(geometry, material);
+                    moon.add(mesh);
+    });
+    moon.position.set(-32000, 0, 0);
+
     loadShip();
     
     camera.position.z = 13371;
@@ -204,28 +217,6 @@ function loadShip() {
     var zpos = posArray[0][1];
     cube.position.set(xpos, ypos, zpos);
     scene.add(ship);
-    loadMoon();
-    loadSun();
-}
-
-function loadMoon() {
-    moon = new THREE.Group();
-    var geometry = new THREE.BoxGeometry( 1700, 1700, 1700 );
-    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    var cube2 = new THREE.Mesh( geometry, material );
-    moon.add(cube2);
-    cube2.position.set(-320000, 0, 0);
-    scene.add(moon);
-}
-
-function loadSun() {
-    sun = new THREE.Group();
-    var geometry = new THREE.BoxGeometry(695700, 695700, 695700 );
-    var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
-    var cube2 = new THREE.Mesh( geometry, material );
-    sun.add(cube2);
-    cube2.position.set(0, -149600000, 0);
-    scene.add(sun);
 }
 
 function updateShipOrbit() {
