@@ -199,11 +199,9 @@ function playBoost() {
 }
 
 function animate() {
-    if (!paused) {
-        requestAnimationFrame(animate);
-        render();
-        controls.update();
-    }
+    requestAnimationFrame(animate);
+    render();
+    controls.update();
 }
 
 function onWindowResize() {
