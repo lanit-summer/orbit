@@ -27,7 +27,6 @@ function init() {
         loadOrbitFromCalculator(trajectory);
     }
     start();
-    console.log(posArray.length);
     document.onmousedown = function() {
         ++mouseDown;
     }
@@ -87,7 +86,7 @@ function init() {
     //FIXME
     var imgurl = "../../static/img/land_ocean_ice_cloud_2048.jpg";
     loader.load(imgurl, function (texture) { 
-                    var geometry = new THREE.SphereGeometry(6371, 30, 30);
+                    var geometry = new THREE.SphereGeometry(6371, 50, 50);
                     var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5 });
                     var mesh = new THREE.Mesh(geometry, material);
                     earth.add(mesh);
@@ -200,9 +199,11 @@ function playBoost() {
 }
 
 function animate() {
-    requestAnimationFrame(animate);
-    render();
-    controls.update();
+    if (!paused) {
+        requestAnimationFrame(animate);
+        render();
+        controls.update();
+    }
 }
 
 function onWindowResize() {
@@ -234,6 +235,11 @@ function loadShip() {
 }
 
 function updateShipOrbit() {
+    if (total_seconds == posArray.length - 1) {
+        alert("Симуляция закончена");
+        paused = true;
+        return;
+    }
     var xpos = posArray[total_seconds][0];
     var ypos = posArray[total_seconds][2];
     var zpos = posArray[total_seconds][1];
