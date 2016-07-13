@@ -111,7 +111,7 @@ double temperature(double height) //calculates the temperature at a certain heig
 	}
 	else if (height < 160000)
 	{
-		temperatire = 559.60+0.006800*(height-140000);
+		temperature = 559.60+0.006800*(height-140000);
 	}
 	else if (height < 200000)
 	{
