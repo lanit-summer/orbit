@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang=ru>
+    <head>
+        {% load staticfiles %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css">
+        <link href="{% static "css/panel.css" %}" rel="stylesheet" type="text/css">
+        <title>
+			{{ flatpage.title }}
+		</title>
+    </head>
+    <body>
+        {% load staticfiles %}
+        <header>
+            <nav>
+                <a href="/"><img src="{% static "img/icons/icon1.png" %}" alt="">Главная</a>
+                <a href="/calculator/"><img src="{% static "img/icons/icon2.png" %}" alt="">Калькулятор</a>
+                <a href="/help/"><img src="{% static "img/icons/icon3.png" %}" alt="">Справка</a>
+            </nav>
+        </header>
+        <div class="panel">
+            <div class="v-block-title">Панель управления</div>
+            <div class="v-block">
+                <div class="controls">
+                    <div class="arg-block">
+                        <span class="arg">Скорость</span>
+                        <span class="val">x2</span>
+                    </div>
+                    <img src="{% static "img/icons/icon6.png" %}" alt="">
+                    <img src="{% static "img/icons/icon9.png" %}" alt="">
+                    <img src="{% static "img/icons/icon8.png" %}" alt="">
+                    <img src="{% static "img/icons/icon7.png" %}" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="panel-btn"><img src="{% static "img/icons/icon4.png" %}" alt=""></div>
+        <div class="navigation">
+            <div class="v-block-title">Навигация</div>
+            <div class="v-block">
+                <div class="arg-block">
+                    <span class="arg">Координаты</span>
+                    <span class="val">0</span>
+                    <span class="val">0</span>
+                    <span class="val">0</span>
+                </div>
+                <div class="arg-block">
+                    <span class="arg">Скорость</span>
+                    <span class="val">0</span>
+                    <span class="val">0</span>
+                    <span class="val">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="scene"></div>
+
+        <script type="text/javascript" src="{% static "js/three.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/Projector.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/CanvasRenderer.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/orbit.js" %}"></script>
+        <script>
+
+        </script>
+        <script type="text/javascript" src="{% static "js/jquery-2.0.3.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/jquery-ui.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/panel.js" %}"></script>
+
+        {{ flatpage.content }}
+
+    </body>
+</html>
