@@ -378,7 +378,8 @@ vec CalculateAcceleration(
 	vec position,
 	vec orientation)
 {
-	const double Cx = 1;
+	//Cx=1.02 for cube, Cx=0.47 for sphere
+	const double Cx = 0.47;
 	double currentHeight = position.getScalar(); 
 	double accFromAirScalar =
 		- Cx*airDensity(currentHeight) * previousSpeed.getScalar()  * (size*size) / (2.0 * totalMass);
