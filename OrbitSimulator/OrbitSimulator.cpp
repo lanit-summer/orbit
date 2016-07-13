@@ -204,11 +204,11 @@ double concentration(double height) //n=n(h)
 	}
 	else if (height < 150000)// концентрация взята из ГОСТ, таблица 7, стр 178. Пока взяли n=(A0+A1*h)*10^m
 	{
-		concentration = (0.210005867*pow(10,4)-0.5618444757*pow(10,-1)*height)*pow(10,17);
+		concentration = (0.210005867*pow(10,4)-0.5618444757*pow(10,-1)*height+0.5663986231*pow(10,-6)*pow(height,2)-0.2547466858*pow(10,-11)*pow(height,3)+0.4309844119*pow(10,-17)*pow(height,4))*pow(10,17);
 	}
 	else if (height < 200000)
 	{
-		concentration = (0.10163937*pow(10,4)-0.211953083*pow(10,-1)*height)*pow(10,16);
+		concentration = (0.10163937*pow(10,4)-0.211953083*pow(10,-1)*height+0.1671627815*pow(10,-6)*pow(height,2)-0.5894237068*pow(10,-12)*pow(height,3)+0.7826684089*pow(10,-18)*pow(height,4))*pow(10,16);
 	}
 	else if (height < 250000)
 	{
