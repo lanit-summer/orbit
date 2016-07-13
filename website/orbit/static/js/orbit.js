@@ -21,6 +21,10 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 function init() {
+    var trajectory = document.getElementById("trajectory").value;
+    if (trajectory) {
+        loadOrbitFromCalculator(trajectory);
+    }
     start();
     console.log(posArray.length);
     document.onmousedown = function() {
@@ -295,3 +299,34 @@ function loadSampleOrbit() {
     xhr.open("GET","../../static/js/orbit.xyzv", false);
     xhr.send();
 }
+
+//TODO Duplicate code
+
+function loadOrbitFromCalculator(text) {
+    var arr = text.split('\n');
+    if (arr.length != 1) {
+        posArray = new Array(arr.length);
+        speedArray = new Array(arr.length);
+        for (var i = 0; i < arr.length - 1; i++) {
+            var line = arr[i].split(' ');
+
+            var position = new Array(3);
+            position[0] = parseInt(line[1]);
+            position[1] = parseInt(line[2]);
+            position[2] = parseInt(line[3]);
+
+            posArray[i] = position;
+
+            //console.log("Pos " + i + " X: " + posArray[i][0] + " Y: " + posArray[i][1] + " Z: " + posArray[i][2]);
+
+            speed = new Array(3);
+            speed[0] = parseInt(line[4]);
+            speed[1] = parseInt(line[5]);
+            speed[2] = parseInt(line[6]);
+
+            speedArray[i] = speed;
+        }
+        boost = Math.ceil(posArray.length / 180);
+        renewBoostSign();
+    }
+} 
