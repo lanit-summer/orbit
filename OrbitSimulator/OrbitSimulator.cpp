@@ -177,7 +177,8 @@ vec CalculateAcceleration(
 //calculates a speed at each time interval
 vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumption,
 		  double mShip, double mFuel, Rotation moment, double impulse,
-		  double size, double quantSizeOfSec, double maxOverload, double maxHeating)
+		  double size, double quantSizeOfSec, double maxOverload, double maxHeating,
+		  Engine engine, double engineP)
 {
 	double mTotal = mShip + mFuel;
 	double H = position.getScalar();
@@ -205,6 +206,51 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 				throw invalid_argument("Overload");
 			}
 			exit = previousSpeed + acceleration*quantSizeOfSec;
+			if ((engine.engineX != 1) && (engine.engineX != -1) && (engine.engineX != 0))
+            {
+                cout << "Incorrect command for engineX" << endl;
+            }
+            else
+            {
+                if (engine.engineX == 1)
+                {
+                    exit.x += engineP / mTotal;
+                }
+                if (engine.engineX == -1)
+                {
+                    exit.x -= engineP / mTotal;
+                }
+            }
+            if ((engine.engineY != 1) && (engine.engineY != -1) && (engine.engineY != 0))
+            {
+                cout << "Incorrect command for engineX" << endl;
+            }
+            else
+            {
+                if (engine.engineY == 1)
+                {
+                    exit.y += engineP / mTotal;
+                }
+                if (engine.engineY == -1)
+                {
+                    exit.y -= engineP / mTotal;
+                }
+            }
+            if ((engine.engineZ != 1) && (engine.engineZ != -1) && (engine.engineZ != 0))
+            {
+                cout << "Incorrect command for engineX" << endl;
+            }
+            else
+            {
+                if (engine.engineZ == 1)
+                {
+                    exit.z += engineP / mTotal;
+                }
+                if (engine.engineZ == -1)
+                {
+                    exit.z -= engineP / mTotal;
+                }
+            }
 		}
 		catch(...)
 		{
@@ -327,52 +373,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 			currentSpeed = speed(currentSpeed, currentPosition, currentOrientation,
 				level, shipParams.shipMass, fuel, moment,
 				shipParams.impulsePerFuel, shipParams.shipEdgeLength,
-				time, shipParams.maxOverload, shipParams.maxHeating);
-            if ((engine.engineX != 1) && (engine.engineX != -1) && (engine.engineX != 0))
-            {
-                cout << "Incorrect command for engineX" << endl;
-            }
-            else
-            {
-                if (engine.engineX == 1)
-                {
-                    currentSpeed.x += engineP / m;
-                }
-                if (engine.engineX == -1)
-                {
-                    currentSpeed.x -= engineP / m;
-                }
-            }
-            if ((engine.engineY != 1) && (engine.engineY != -1) && (engine.engineY != 0))
-            {
-                cout << "Incorrect command for engineX" << endl;
-            }
-            else
-            {
-                if (engine.engineY == 1)
-                {
-                    currentSpeed.y += engineP / m;
-                }
-                if (engine.engineY == -1)
-                {
-                    currentSpeed.y -= engineP / m;
-                }
-            }
-            if ((engine.engineZ != 1) && (engine.engineZ != -1) && (engine.engineZ != 0))
-            {
-                cout << "Incorrect command for engineX" << endl;
-            }
-            else
-            {
-                if (engine.engineZ == 1)
-                {
-                    currentSpeed.z += engineP / m;
-                }
-                if (engine.engineZ == -1)
-                {
-                    currentSpeed.z -= engineP / m;
-                }
-            }
+				time, shipParams.maxOverload, shipParams.maxHeating, engine, engineP);
 			currentFlightPlan.speed = currentSpeed;
 			m -= fuel;
 			fuel = 0.0;
@@ -382,7 +383,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 			currentSpeed = speed(currentSpeed, currentPosition, currentOrientation, 0.0,
 				shipParams.shipMass, fuel, moment,
 				shipParams.impulsePerFuel, shipParams.shipEdgeLength,
-				timeOut, shipParams.maxOverload, shipParams.maxHeating);
+				timeOut, shipParams.maxOverload, shipParams.maxHeating, {0,0,0}, engineP);
 		}
 		else //if we have enough fuel
 		{
@@ -390,52 +391,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 				level, shipParams.shipMass, fuel, moment,
 				shipParams.impulsePerFuel, shipParams.shipEdgeLength,
 				quants.quantSizeOfSec, shipParams.maxOverload,
-				shipParams.maxHeating);
-            if ((engine.engineX != 1) && (engine.engineX != -1) && (engine.engineX != 0))
-            {
-                cout << "Incorrect command for engineX" << endl;
-            }
-            else
-            {
-                if (engine.engineX == 1)
-                {
-                    currentSpeed.x += engineP / m;
-                }
-                if (engine.engineX == -1)
-                {
-                    currentSpeed.x -= engineP / m;
-                }
-            }
-            if ((engine.engineY != 1) && (engine.engineY != -1) && (engine.engineY != 0))
-            {
-                cout << "Incorrect command for engineX" << endl;
-            }
-            else
-            {
-                if (engine.engineY == 1)
-                {
-                    currentSpeed.y += engineP / m;
-                }
-                if (engine.engineY == -1)
-                {
-                    currentSpeed.y -= engineP / m;
-                }
-            }
-            if ((engine.engineZ != 1) && (engine.engineZ != -1) && (engine.engineZ != 0))
-            {
-                cout << "Incorrect command for engineX" << endl;
-            }
-            else
-            {
-                if (engine.engineZ == 1)
-                {
-                    currentSpeed.z += engineP / m;
-                }
-                if (engine.engineZ == -1)
-                {
-                    currentSpeed.z -= engineP / m;
-                }
-            }
+				shipParams.maxHeating, engine, engineP);
 			currentFlightPlan.speed = currentSpeed;
 			fuel -= level * quants.quantSizeOfSec;
 			m -= level * quants.quantSizeOfSec;
