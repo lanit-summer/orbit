@@ -96,12 +96,7 @@ function init() {
     backgroundScene.add(backgroundCamera );
     backgroundScene.add(backgroundMesh );
 	
-	var renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-	
-	
+	var renderer = new THREE.CanvasRenderer();
 	var texture = THREE.ImageUtils.loadTexture( '../../static/img/maxresdefault.jpg' );
         var backgroundMesh = new THREE.Mesh(
             new THREE.PlaneGeometry(2, 2, 0),
@@ -124,12 +119,11 @@ function init() {
 	
 	var renderStar = function () {
             requestAnimationFrame(renderStar);
-
             renderer.autoClear = false;
             renderer.clear();
             renderer.render(backgroundScene , backgroundCamera );
             renderer.render(scene, camera);
-       };
+    };
 	
 	renderStar();
 
