@@ -59,7 +59,11 @@ function init() {
             stopBoost();
         }
     }
-    
+
+    document.getElementById("restart").onclick = function(){
+        restart();
+    }
+
     document.getElementById("lookAt").onchange = function(){
         if (this.value == "moon") {
             controls.target = moon.position;
@@ -189,7 +193,8 @@ function decreaseBoost() {
 }
 
 function stopBoost() {
-    prevBoost = boost;
+    if (boost != 0)
+        prevBoost = boost;
     boost = 0;
     paused = true;
 }
@@ -339,4 +344,10 @@ function loadOrbitFromCalculator(text) {
         boost = Math.ceil(posArray.length / 180);
         renewBoostSign();
     }
-} 
+}
+
+function restart() {
+    stopBoost();
+    total_seconds = 0;
+    total_milliseconds = 0;
+}
