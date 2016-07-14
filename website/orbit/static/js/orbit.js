@@ -37,7 +37,7 @@ function init() {
 
     document.getElementById("increase").onclick = function(){
         if (!paused) {
-            inrecaseBoost();
+            increaseBoost();
             renewBoostSign();
         }
     }
@@ -96,7 +96,7 @@ function init() {
     backgroundScene.add(backgroundCamera );
     backgroundScene.add(backgroundMesh );
 	
-	var renderer = new THREE.CanvasRenderer();
+	renderer = new THREE.CanvasRenderer();
 	var texture = THREE.ImageUtils.loadTexture( '../../static/img/maxresdefault.jpg' );
         var backgroundMesh = new THREE.Mesh(
             new THREE.PlaneGeometry(2, 2, 0),
@@ -231,13 +231,13 @@ function onDocumentMouseMove(event) {
     }
 }
 
-function inrecaseBoost() {
-    boost ++;
+function increaseBoost() {
+    boost *= 2;
 }
 
 function decreaseBoost() {
     if (boost > 0 )
-        boost --;
+        boost /= 2;
 }
 
 function stopBoost() {
@@ -287,10 +287,9 @@ function loadShip() {
 }
 
 function updateShipOrbit() {
-    if (total_seconds == posArray.length - 1) {
+    if (total_seconds > posArray.length - 1) {
         alert("Симуляция закончена");
-        paused = true;
-        return;
+        restart();
     }
     var xpos = posArray[total_seconds][0];
     var ypos = posArray[total_seconds][2];
