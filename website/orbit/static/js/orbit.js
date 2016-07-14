@@ -78,7 +78,61 @@ function init() {
             camera.lookAt(ship);
         }
     }
+
+	var loader = new THREE.TextureLoader();
+
+	var texture = loader.load( "../../static/img/maxresdefault.jpg" );
+        var backgroundMesh = new THREE.Mesh(
+            new THREE.PlaneGeometry(2, 2, 0),
+            new THREE.MeshBasicMaterial({
+                map: texture
+            }));
+	backgroundMesh.material.depthTest = false;
+    backgroundMesh.material.depthWrite = false;
+
     
+    var backgroundScene = new THREE.Scene();
+    var backgroundCamera = new THREE.Camera();
+    backgroundScene.add(backgroundCamera );
+    backgroundScene.add(backgroundMesh );
+	
+	var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+	
+	
+	var texture = THREE.ImageUtils.loadTexture( '../../static/img/maxresdefault.jpg' );
+        var backgroundMesh = new THREE.Mesh(
+            new THREE.PlaneGeometry(2, 2, 0),
+            new THREE.MeshBasicMaterial({
+                map: texture
+            }));
+			
+	backgroundMesh.material.depthTest = false;
+    backgroundMesh.material.depthWrite = false;
+		
+	var backgroundScene = new THREE.Scene();
+    var backgroundCamera = new THREE.Camera();
+    backgroundScene.add(backgroundCamera );
+    backgroundScene.add(backgroundMesh );
+	
+	var backgroundScene = new THREE.Scene();
+    var backgroundCamera = new THREE.Camera();
+    backgroundScene.add(backgroundCamera );
+    backgroundScene.add(backgroundMesh );
+	
+	var renderStar = function () {
+            requestAnimationFrame(renderStar);
+
+            renderer.autoClear = false;
+            renderer.clear();
+            renderer.render(backgroundScene , backgroundCamera );
+            renderer.render(scene, camera);
+       };
+	
+	renderStar();
+
     container = document.getElementById('scene');
     camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 200000000);
 
