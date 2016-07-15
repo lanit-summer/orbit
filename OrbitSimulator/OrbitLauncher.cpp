@@ -43,7 +43,7 @@ int main() {
         abc[i].rotateValue.rotationAroundX = 0.0;
         abc[i].rotateValue.rotationAroundY = 0.0;
         abc[i].rotateValue.rotationAroundZ = 0.0;
-        abc[i].engineValue.engineX = -1;
+        abc[i].engineValue.engineX = 1;
         abc[i].engineValue.engineY = -1;
         abc[i].engineValue.engineZ = 0;
         shipParams.flightPlan[i].delayTime = 2;

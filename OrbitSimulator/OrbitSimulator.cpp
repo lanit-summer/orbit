@@ -4,7 +4,6 @@
 #include <stdexcept>
 //#include "stdafx.h"
 #include "OrbitSimulator.h"
-#include <iostream>
 
 vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / R^2
 {
@@ -208,7 +207,7 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 			exit = previousSpeed + acceleration*quantSizeOfSec;
 			if ((engine.engineX != 1) && (engine.engineX != -1) && (engine.engineX != 0))
             {
-                cout << "Incorrect command for engineX" << endl;
+                throw invalid_argument("Incorrect command for engineX");
             }
             else
             {
@@ -223,7 +222,7 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
             }
             if ((engine.engineY != 1) && (engine.engineY != -1) && (engine.engineY != 0))
             {
-                cout << "Incorrect command for engineX" << endl;
+                throw invalid_argument("Incorrect command for engineY");
             }
             else
             {
@@ -238,7 +237,7 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
             }
             if ((engine.engineZ != 1) && (engine.engineZ != -1) && (engine.engineZ != 0))
             {
-                cout << "Incorrect command for engineX" << endl;
+                throw invalid_argument("Incorrect command for engineZ");
             }
             else
             {
