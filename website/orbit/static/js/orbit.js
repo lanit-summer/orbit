@@ -79,14 +79,15 @@ function init() {
         }
     }
 
+    renderer = Detector.webgl? new THREE.WebGLRenderer(): new THREE.CanvasRenderer();
 	var loader = new THREE.TextureLoader();
 
 	var texture = loader.load( "../../static/img/maxresdefault.jpg" );
-        var backgroundMesh = new THREE.Mesh(
-            new THREE.PlaneGeometry(2, 2, 0),
-            new THREE.MeshBasicMaterial({
-                map: texture
-            }));
+    var backgroundMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(2, 2, 0),
+        new THREE.MeshBasicMaterial({
+            map: texture
+        }));
 	backgroundMesh.material.depthTest = false;
     backgroundMesh.material.depthWrite = false;
 
@@ -96,7 +97,7 @@ function init() {
     backgroundScene.add(backgroundCamera );
     backgroundScene.add(backgroundMesh );
 	
-	renderer = new THREE.CanvasRenderer();
+
 	var texture = THREE.ImageUtils.loadTexture( '../../static/img/maxresdefault.jpg' );
         var backgroundMesh = new THREE.Mesh(
             new THREE.PlaneGeometry(2, 2, 0),
@@ -136,7 +137,6 @@ function init() {
     scene.add(earth);
     // earth
     var loader = new THREE.TextureLoader();
-    //FIXME
     var imgurl = "../../static/img/land_ocean_ice_cloud_2048.jpg";
     loader.load(imgurl, function (texture) { 
                     var geometry = new THREE.SphereGeometry(6371, 50, 50);
@@ -155,7 +155,7 @@ function init() {
                     var mesh = new THREE.Mesh(geometry, material);
                     moon.add(mesh);
     });
-    moon.position.set(-32000, 0, 0);
+    moon.position.set(-160000, 0, 0);
 
     loadShip();
     
@@ -166,17 +166,12 @@ function init() {
     var context = canvas.getContext('2d');
     context.fillRect( 0, 0, canvas.width, canvas.height );
 
-    renderer = new THREE.CanvasRenderer();
     renderer.setClearColor(0x000000, 1);
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( window.innerWidth, window.innerHeight - 70);
     container.appendChild( renderer.domElement );
-    
-    //document.addEventListener('mousemove', onDocumentMouseMove, false );
-    //document.addEventListener('mousewheel', mousewheel, false );
-    //document.addEventListener('DOMMouseScroll', mousewheel, false ); // firefox
+
     window.addEventListener('resize', onWindowResize, false );
-    
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.target = earth.position;
 }
@@ -193,51 +188,13 @@ function renewBoostSign() {
     document.getElementById("currentBoost").innerHTML="x"+boost;
 }
 
-function mousewheel( e ) {      
-    var d = ((typeof e.wheelDelta != "undefined")?(-e.wheelDelta):e.detail);
-    d = 100 * ((d>0)?1:-1);
-
-    var cPos = camera.position;
-    if (isNaN(cPos.x) || isNaN(cPos.y) || isNaN(cPos.y))
-      return;
-
-    var r = cPos.x * cPos.x + cPos.y * cPos.y;
-    var sqr = Math.sqrt(r);
-    var sqrZ = Math.sqrt(cPos.z * cPos.z + r);
-
-
-    var nx = cPos.x + ((r==0)?0:(d * cPos.x/sqr));
-    var ny = cPos.y + ((r==0)?0:(d * cPos.y/sqr));
-    var nz = cPos.z + ((sqrZ==0)?0:(d * cPos.z/sqrZ));
-
-
-    if (Math.sqrt(nx*nx + ny*ny + nz*nz) < 300)
-        return; 
-
-    if (isNaN(nx) || isNaN(ny) || isNaN(nz))
-      return;
-
-    cPos.x = nx;
-    cPos.y = ny;
-    cPos.z = nz;
-}
-
-
-function onDocumentMouseMove(event) {
-    if (mouseDown) {
-        mouseX = (event.clientX - windowHalfX);
-        mouseY = (event.clientY - windowHalfY);
-        //TODO
-    }
-}
-
 function increaseBoost() {
     boost *= 2;
 }
 
 function decreaseBoost() {
-    if (boost > 0 )
-        boost /= 2;
+    if (boost > 0)
+        boost = Math.ceil(boost / 2);
 }
 
 function stopBoost() {
@@ -311,15 +268,7 @@ function updateShipOrbit() {
 }
 
 function updateEarthRotation() {
-    //TODO
     earth.rotation.y -= 0.00000072 * boost;
-}
-
-function updateEarthSolRotation() {
-    //TODO
-    //earth.x -= x * boost;
-    //earth.y -= y * boost;
-    //earth.z -= z * boost;
 }
 
 function loadSampleOrbit() {
@@ -342,10 +291,7 @@ function loadSampleOrbit() {
                 position[0] = parseInt(line[1]);
                 position[1] = parseInt(line[2]);
                 position[2] = parseInt(line[3]);
-
                 posArray[i] = position;
-
-                //console.log("Pos " + i + " X: " + posArray[i][0] + " Y: " + posArray[i][1] + " Z: " + posArray[i][2]);
 
                 speed = new Array(3);
                 speed[0] = parseInt(line[4]);
@@ -376,16 +322,12 @@ function loadOrbitFromCalculator(text) {
             position[0] = parseInt(line[1]);
             position[1] = parseInt(line[2]);
             position[2] = parseInt(line[3]);
-
             posArray[i] = position;
-
-            //console.log("Pos " + i + " X: " + posArray[i][0] + " Y: " + posArray[i][1] + " Z: " + posArray[i][2]);
 
             speed = new Array(3);
             speed[0] = parseInt(line[4]);
             speed[1] = parseInt(line[5]);
             speed[2] = parseInt(line[6]);
-
             speedArray[i] = speed;
         }
         boost = Math.ceil(posArray.length / 180);
