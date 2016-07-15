@@ -9,7 +9,7 @@ nav {
 }
 .panel {
     position: fixed;
-    top: 63; left: -300px;
+    top: 63px; left: -300px;
     width: 300px;
     height: 100%;
     background: rgba(0, 0, 70, 0.8);
@@ -40,7 +40,7 @@ nav {
 }
 .navigation {
     position: fixed;
-    top: 63; right: 0;
+    top: 63px; right: 0;
     width: 350px;
     background: rgba(0, 0, 70, 0.8);
 }
@@ -59,30 +59,48 @@ nav {
     text-align: center;
 }
 .controls img {
-    width: 40px;
-    height: 40px;
-    margin: 10px 10px;
+    width: 32px;
+    height: 32px;
+    margin: 10px 5px;
     cursor: pointer;
 }
 .logs-block {
-    margin-top: 10px;
+    margin-top: 30px;
+    color: #0ff;
+    text-align: center;
 }
 .logs-block textarea {
     width: 235px;
     height: 250px;
     padding: 10px;
     margin: 10px;
+    background: #fff;
     font: 14px "Roboto";
+    border: none;
     -webkit-appearance: none;
     outline: none;
     resize: none;
 }
-
+.camera-block {
+    margin-top: 20px;
+    text-align: center;
+}
 .camera-label {
-    display: inline;   
-    margin: 10px;
+    margin-top: 10px;
+    color: #0ff;
 }
 
 .camera-modes {
-    display: inline;
+    margin-top: 10px;
+}
+.camera-modes select {
+    width: 100px;
+    background: #fff url('../img/icons/icon11.png') no-repeat;
+    background-position: right center;
+    padding: 5px 20px 5px 10px;
+    font: 14px "Roboto";
+    border: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
 }

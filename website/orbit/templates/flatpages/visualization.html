@@ -33,29 +33,30 @@
                 <div class="controls">
                     <div class="arg-block">
                         <span class="arg">Скорость</span>
-                        <span class="val" id = "currentBoost">x2</span>
+                        <span class="val" id="currentBoost">x2</span>
                     </div>
-                    <img src="{% static "img/icons/icon6.png" %}" id = "decrease" alt="">
-                    <img src="{% static "img/icons/icon9.png" %}" id = "play" alt="">
-                    <img src="{% static "img/icons/icon8.png" %}" id = "stop" alt="">
-                    <img src="{% static "img/icons/icon7.png" %}" id = "increase" alt="">
-                    <img src="{% static "img/icons/icon9.png" %}" id = "restart" alt="">
+                    <img src="{% static "img/icons/icon6.png" %}" id="decrease" alt="">
+                    <img src="{% static "img/icons/icon9.png" %}" id="play" alt="">
+                    <img src="{% static "img/icons/icon8.png" %}" id="stop" alt="">
+                    <img src="{% static "img/icons/icon10.png" %}" id="restart" alt="">
+                    <img src="{% static "img/icons/icon7.png" %}" id="increase" alt="">
+                </div>
+                <div class="camera-block">
+                    <div class="camera-label">
+                        <label for="lookAt">Выбор камеры</label>
+                    </div>
+                    <div class="camera-modes">
+                        <select id="lookAt">
+                            <option value="earth">Земля</option>
+                            <option value="moon">Луна</option>
+                            <option value="satelite">Спутник</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="logs-block">
+                    <div>Лог</div>
                     <textarea readonly></textarea>
                 </div>
-                
-                <div class = "camera-label">
-                    <label for="lookAt">Посмотреть на</label>
-                </div>
-                <div class = "camera-modes">
-                    <select id="lookAt" onchange="">
-                        <option value="earth">Землю</option>
-                        <option value="moon">Луну</option>
-                        <option value="satelite">Спутник</option>
-                    </select>   
-                </div>
-                
             </div>
         </div>
         <div class="panel-btn"><img src="{% static "img/icons/icon4.png" %}" alt=""></div>
@@ -84,7 +85,6 @@
         </div>
 
         <div id="scene"></div>
-
 
         <script type="text/javascript" src="{% static "js/jquery-2.0.3.min.js" %}"></script>
         <script type="text/javascript" src="{% static "js/jquery-ui.min.js" %}"></script>
