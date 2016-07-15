@@ -113,17 +113,12 @@ function init() {
     backgroundScene.add(backgroundCamera );
     backgroundScene.add(backgroundMesh );
 	
-	var backgroundScene = new THREE.Scene();
-    var backgroundCamera = new THREE.Camera();
-    backgroundScene.add(backgroundCamera );
-    backgroundScene.add(backgroundMesh );
 	
 	var renderStar = function () {
-            requestAnimationFrame(renderStar);
-            renderer.autoClear = false;
-            renderer.clear();
-            renderer.render(backgroundScene , backgroundCamera );
-            renderer.render(scene, camera);
+        requestAnimationFrame(renderStar);
+        renderer.autoClear = false;
+        renderer.clear();
+        renderer.render(backgroundScene , backgroundCamera );
     };
 	
 	renderStar();
@@ -226,7 +221,6 @@ function onWindowResize() {
 function render() {
     updateShipOrbit();
     updateEarthRotation();
-    updateEarthSolRotation();
     renderer.render(scene, camera);
 }
 
