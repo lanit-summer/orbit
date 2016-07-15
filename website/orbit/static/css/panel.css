@@ -41,7 +41,7 @@ nav {
 .navigation {
     position: fixed;
     top: 63; right: 0;
-    width: 300px;
+    width: 350px;
     background: rgba(0, 0, 70, 0.8);
 }
 .arg-block {
@@ -69,11 +69,20 @@ nav {
 }
 .logs-block textarea {
     width: 235px;
-    height: 300px;
+    height: 250px;
     padding: 10px;
     margin: 10px;
     font: 14px "Roboto";
     -webkit-appearance: none;
     outline: none;
     resize: none;
+}
+
+.camera-label {
+    display: inline;   
+    margin: 10px;
+}
+
+.camera-modes {
+    display: inline;
 }
