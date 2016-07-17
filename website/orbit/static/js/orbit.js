@@ -129,24 +129,27 @@ function init() {
     scene = new THREE.Scene();
     earth = new THREE.Group();
     
+    addLights();
+    
     scene.add(earth);
     // earth
     var loader = new THREE.TextureLoader();
     var imgurl = "../../static/img/land_ocean_ice_cloud_2048.jpg";
     loader.load(imgurl, function (texture) { 
                     var geometry = new THREE.SphereGeometry(6371, 50, 50);
-                    var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5 });
+                    var material = new THREE.MeshPhongMaterial({ map: texture, overdraw: 0.5 });
                     var mesh = new THREE.Mesh(geometry, material);
                     earth.add(mesh);
     } );
 
     moon = new THREE.Group();
     scene.add(moon);
+    
     var loader = new THREE.TextureLoader();
     var imgurl = "../../static/img/Moon.jpg"
     loader.load(imgurl, function (texture) { 
                     var geometry = new THREE.SphereGeometry(1737, 30, 30);
-                    var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5 });
+                    var material = new THREE.MeshPhongMaterial({ map: texture, overdraw: 0.5 });
                     var mesh = new THREE.Mesh(geometry, material);
                     moon.add(mesh);
     });
@@ -172,11 +175,9 @@ function init() {
 }
 
 function onWindowResize() {
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function renewBoostSign() {
@@ -210,18 +211,24 @@ function animate() {
     controls.update();
 }
 
-function onWindowResize() {
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-}
-
 function render() {
     updateShipOrbit();
     updateEarthRotation();
     renderer.render(scene, camera);
+}
+
+function addLights() {
+    var dirLight = new THREE.DirectionalLight(0xffffff, 1);
+    dirLight.position.set(-200000, 0, 0);
+    scene.add(dirLight);
+    
+    var spotLight = new THREE.SpotLight(0xffffff, 0.7, 200000, 180, 0);
+    spotLight.position.set(0, 0, 0);
+    var spotTarget = new THREE.Object3D();
+    spotTarget.position.set(-160000, 0, 0);
+    spotLight.target = spotTarget;
+  
+    scene.add(spotLight);
 }
 
 function loadShip() {
