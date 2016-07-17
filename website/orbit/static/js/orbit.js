@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 function init() {
-    stopBoost();
+    restart();
     var trajectory = document.getElementById("trajectory").value;
     if (trajectory) {
         loadOrbitFromCalculator(trajectory);
