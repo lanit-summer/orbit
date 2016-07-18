@@ -185,7 +185,8 @@ function renewBoostSign() {
 }
 
 function increaseBoost() {
-    boost *= 2;
+    if (boost < 1000)
+        boost *= 2;
 }
 
 function decreaseBoost() {
