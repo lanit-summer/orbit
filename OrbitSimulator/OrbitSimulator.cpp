@@ -205,50 +205,29 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 				throw invalid_argument("Overload");
 			}
 			exit = previousSpeed + acceleration*quantSizeOfSec;
-			if ((engine.engineX != 1) && (engine.engineX != -1) && (engine.engineX != 0))
+			if ((engine.X != 1) && (engine.X != -1) && (engine.X != 0))
             {
                 throw invalid_argument("Incorrect command for engineX");
             }
             else
             {
-                if (engine.engineX == 1)
-                {
-                    exit.x += engineP / mTotal;
-                }
-                if (engine.engineX == -1)
-                {
-                    exit.x -= engineP / mTotal;
-                }
+                exit.x += engine.X * engineP / mTotal;
             }
-            if ((engine.engineY != 1) && (engine.engineY != -1) && (engine.engineY != 0))
+            if ((engine.Y != 1) && (engine.Y != -1) && (engine.Y != 0))
             {
                 throw invalid_argument("Incorrect command for engineY");
             }
             else
             {
-                if (engine.engineY == 1)
-                {
-                    exit.y += engineP / mTotal;
-                }
-                if (engine.engineY == -1)
-                {
-                    exit.y -= engineP / mTotal;
-                }
+                exit.y += engine.Y * engineP / mTotal;
             }
-            if ((engine.engineZ != 1) && (engine.engineZ != -1) && (engine.engineZ != 0))
+            if ((engine.Z != 1) && (engine.Z != -1) && (engine.Z != 0))
             {
                 throw invalid_argument("Incorrect command for engineZ");
             }
             else
             {
-                if (engine.engineZ == 1)
-                {
-                    exit.z += engineP / mTotal;
-                }
-                if (engine.engineZ == -1)
-                {
-                    exit.z -= engineP / mTotal;
-                }
+                exit.z += engine.Z * engineP / mTotal;
             }
 		}
 		catch(...)
