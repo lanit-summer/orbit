@@ -269,7 +269,7 @@ function updateShipOrbit() {
 }
 
 function updateEarthRotation() {
-    earth.rotation.y -= 0.00000072 * boost;
+    earth.rotation.y = -total_milliseconds * 0.000000072921158553;
 }
 
 function loadSampleOrbit() {
