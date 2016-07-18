@@ -18,6 +18,7 @@ vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / 
 
 double temperature(double height) //calculates the temperature at a certain height (K)
 {
+	height /= 1000;
 	if (height < 0)
 	{
 		throw invalid_argument("Height is less than the radius of the Earth");
@@ -73,8 +74,8 @@ double airDensity(double height) //calculates the air density at a certain heigh
 			//on the Earth's surface (km/s^2)
 			R = 8.31447, //universal gas constant (J / (mol * K))
 			M = 0.0289644, //the molar mass of dry air (kg / mol)
-			p = p0 * exp(-M * g * heightAboveSeaLevel * pow(10.0, 6) / (R * T)), //pressure at the certain height (Pa)
-			density = p * M * pow(10.0, 9) / (R * T); //air density at the certain height (kg / km^3)
+			p = p0 * exp(-M * g * heightAboveSeaLevel / (R * T)), //pressure at the certain height (Pa)
+			density = p * M / (R * T); //air density at the certain height (kg / km^3)
 		return density;  
 	}
 }
@@ -382,10 +383,12 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 
 		height = currentPosition.getScalar();
 		currentFlightPlan.position = currentPosition;
-		if (currentFlightPlanTime <= quants.quantSizeOfSec) //delay time is over, so we need to take the next pack of commands
+		if (currentFlightPlanTime < quants.quantSizeOfSec) //delay time is over, so we need to take the next pack of commands
 		{
 			j++;
-			currentFlightPlanTime = flightCommands[j].delayTime;
+			if (j < flightCommands.size() - 1) {
+				currentFlightPlanTime = flightCommands[j].delayTime;
+			}
 		}
 		else
 		{
