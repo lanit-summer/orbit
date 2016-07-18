@@ -238,19 +238,22 @@ TEST_CASE("Calculate Explorer 6 orbit (russian/deutsch wikipedia)", "[computeFli
 		vec initialSpeed = {-10296.099, 0, 0};
 		Rotation initialRotation = {0, 0, 0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
-		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
-			std::vector<PartOfFlightPlan>(), 1000000, 1000000};
 		Quants flightTime = {45910, 1};
-		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
+		vector<PartOfFlightPlan> flightPlan(flightTime.numberOfQuants);
+		PartOfFlightPlan plan = {45910, 0, {0, 0, 0}};
+		flightPlan[0] = plan;
+		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
+			flightPlan, 1000000, 1000000};
+		vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);   
 		double max = 0;
 		for (int i = 0; i < flightTime.numberOfQuants; i++) {
 			double height = calculationResults[i].position.getScalar();
 			double speed  = calculationResults[i].speed.getScalar();
 			if (height > max) { max = height; }
-			REQUIRE(height < 48800000);
-			REQUIRE(height > 6623000);
+			REQUIRE(height < EarthRadius + 42400100);
+			REQUIRE(height > EarthRadius + 244998);
 			REQUIRE(speed < 11200);
-			if (height <= 6623100 && i > 10) { 
+			if ((height - EarthRadius) <= 245000 && i > 60) { 
 				double period = (double) i / 60;
 				REQUIRE(period < 766.0);
 				REQUIRE(period >= 764.0);
@@ -267,19 +270,22 @@ TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]
 		vec initialSpeed = {-10296.7, 0, 0};
 		Rotation initialRotation = {0, 0, 0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
-		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
-			std::vector<PartOfFlightPlan>(), 1000000, 1000000};
 		Quants flightTime = {45300, 1};
-		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
+		vector<PartOfFlightPlan> flightPlan(flightTime.numberOfQuants);
+		PartOfFlightPlan plan = {45300, 0, {0, 0, 0}};
+		flightPlan[0] = plan;
+		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
+			flightPlan, 1000000, 1000000};
+		vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);   
 		double max = 0;
 		for (int i = 0; i < flightTime.numberOfQuants; i++) {
 			double height = calculationResults[i].position.getScalar();
 			double speed  = calculationResults[i].speed.getScalar();
 			if (height > max) { max = height; }
-			REQUIRE(height < 48300000);
-			REQUIRE(height > 6615000);
+			REQUIRE(height < EarthRadius + 41900000);
+			REQUIRE(height > EarthRadius + 236998);
 			REQUIRE(speed < 11200);
-			if (height <= 6615100 && i > 10) { 
+			if ((height - EarthRadius) <= 237000 && i > 60) { 
 				double period = (double) i / 60;
 				REQUIRE(period < 755.0);
 				REQUIRE(period >= 753.0);
@@ -298,10 +304,8 @@ TEST_CASE("Calculate Vostok 1 orbit", "[computeFlightPlan]") {
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
 		Quants flightTime = {6480, 1};
 		vector<PartOfFlightPlan> flightPlan(flightTime.numberOfQuants);
-		PartOfFlightPlan plan1 = {5420, 0, {0, 0, 0}};
-		PartOfFlightPlan plan2 = {29, 11, {0, 0, 0}};
-		flightPlan[0] = plan1;
-		flightPlan[1] = plan2;
+		PartOfFlightPlan plan = {5352, 0, {0, 0, 0}};
+		flightPlan[0] = plan;
 		ShipParams spaceCraftParameters = {2.5, 3725.0, 1000, initialRotation, 100.0, 2.61,
 			flightPlan, 10, 5274.0};
 		vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
@@ -309,9 +313,14 @@ TEST_CASE("Calculate Vostok 1 orbit", "[computeFlightPlan]") {
 		for (int i = 0; i < flightTime.numberOfQuants; i++) {
 			double height = calculationResults[i].position.getScalar();
 			double speed  = calculationResults[i].speed.getScalar();
-			REQUIRE(height < EarthRadius + 302000.0);
-			REQUIRE(height > EarthRadius);
+			REQUIRE(height < EarthRadius + 301970.0);
+			REQUIRE(height > EarthRadius + 174998.0);
 			REQUIRE(speed < 7900);
+			if ((height - EarthRadius)<175000 && i > 60)  { 
+				double period = (double) i / 60;
+				REQUIRE(period < 90.2);
+				REQUIRE(period >= 89.0);
+			}
 		}
 	}
 }
