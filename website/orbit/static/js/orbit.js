@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 function init() {
-    restart();
     var trajectory = document.getElementById("trajectory").value;
     if (trajectory) {
         loadOrbitFromCalculator(trajectory);
@@ -172,6 +171,7 @@ function init() {
     window.addEventListener('resize', onWindowResize, false );
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.target = earth.position;
+    restart();
 }
 
 function onWindowResize() {
