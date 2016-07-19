@@ -21,6 +21,15 @@ typedef vec Orient; //orientation vector
 typedef vec Position; //position vector
 //typedef Rotation RotationSpeed; //rotation speed vector
 
+//engines for maneuvering, 3 types of values:
+//0 - don't work
+//1 - acceleration
+//-1 - deceleration
+struct Engine
+{
+    int x, y, z;
+};
+
 //starting position, orientation, speed and moment of inertia
 struct ShipPosition
 {
@@ -36,6 +45,7 @@ struct PartOfFlightPlan
     double delayTime; //delay time (must be a multiple of the size of quant)
     double impulseValue; //fuel mass flow rate
     Rotation rotateValue; //moment of inertia
+    Engine engineValue; //work of maneuvering engines
 };
 
 //ship parameters
@@ -47,6 +57,7 @@ struct ShipParams
     Rotation maxRotation; //maximum moment of inertia
     double maxFuelUsagePerSec; //maximum fuel mass flow rate
     double impulsePerFuel; //specific impulse of the engine
+    double engineImpulse; //impulse of maneuvering engines
     std::vector<PartOfFlightPlan> flightPlan; //an array of commands
     double maxOverload; //maximum overload
     double maxHeating; //maximum heating
