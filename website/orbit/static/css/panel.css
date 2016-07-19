@@ -1,0 +1,66 @@
+body {
+    background: #000;
+}
+header {
+    background: #000050;
+}
+nav {
+    text-align: center;
+}
+.panel {
+    position: fixed;
+    top: 63; left: -300px;
+    width: 300px;
+    height: 100%;
+    background: rgba(0, 0, 70, 0.8);
+}
+.v-block {
+    padding: 10px;
+    font-size: 16px;
+}
+.v-block-title {
+    padding: 10px 0px;
+    font-size: 21px;
+    text-align: center;
+}
+.panel-btn {
+    position: fixed;
+    top: 50%;
+    width: 40px;
+    height: 80px;
+    margin-top: -40px;
+    background: rgba(0, 0, 70, 0.8);
+    text-align: center;
+    cursor: pointer;
+}
+.panel-btn img {
+    width: 30px;
+    height: 30px;
+    margin-top: 25px;
+}
+.navigation {
+    position: fixed;
+    top: 63; right: 0;
+    width: 300px;
+    background: rgba(0, 0, 70, 0.8);
+}
+.arg-block {
+    margin-bottom: 10px;
+}
+.arg {
+    margin-right: 10px;
+    color: #0ff;
+}
+.val {
+    margin: 5px;
+    color: #ffff00;
+}
+.controls {
+    text-align: center;
+}
+.controls img {
+    width: 40px;
+    height: 40px;
+    margin: 10px 10px;
+    cursor: pointer;
+}

@@ -170,6 +170,8 @@ def clear_form(request):
         pass
     return HttpResponseRedirect('/calculator/')
 
+def visualization(request):
+    return render(request, 'flatpages/visualization.html')
 
 def zipdir(basedir, archivename):
     from contextlib import closing
