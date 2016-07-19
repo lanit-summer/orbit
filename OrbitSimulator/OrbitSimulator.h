@@ -27,7 +27,7 @@ typedef vec Position; //position vector
 //-1 - deceleration
 struct Engine
 {
-    int X, Y, Z;
+    int x, y, z;
 };
 
 //starting position, orientation, speed and moment of inertia

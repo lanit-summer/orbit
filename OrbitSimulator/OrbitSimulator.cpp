@@ -173,6 +173,23 @@ vec CalculateAcceleration(
 	return acc;
 }
 
+//calculate speed from engines for maneuvering, 3 types of values:
+//0 - don't work
+//1 - acceleration
+//-1 - deceleration
+double calculateManeuveringSpeed(int engineValue, double engineP, double mass)
+{
+    if ((engineValue != 1) && (engineValue != -1) && (engineValue != 0))
+    {
+        throw invalid_argument("Incorrect command for maneuvering engine");
+        return 0;
+    }
+    else
+    {
+        return engineValue * engineP / mass;
+    }
+}
+
 //calculates a speed at each time interval
 vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumption,
 		  double mShip, double mFuel, Rotation moment, double impulse,
@@ -193,7 +210,7 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 		try
 		{
 			vec acceleration =
-				CalculateAcceleration(
+                CalculateAcceleration(
 				size, mTotal, fuelConsumption, impulse, previousSpeed, position, orientation);
 			double currentOverloadScalar =	acceleration.getScalar()/g; 	// calculate overload in proportions to g.
 			if(currentOverloadScalar <0)
@@ -205,30 +222,9 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 				throw invalid_argument("Overload");
 			}
 			exit = previousSpeed + acceleration*quantSizeOfSec;
-			if ((engine.X != 1) && (engine.X != -1) && (engine.X != 0))
-            {
-                throw invalid_argument("Incorrect command for engineX");
-            }
-            else
-            {
-                exit.x += engine.X * engineP / mTotal;
-            }
-            if ((engine.Y != 1) && (engine.Y != -1) && (engine.Y != 0))
-            {
-                throw invalid_argument("Incorrect command for engineY");
-            }
-            else
-            {
-                exit.y += engine.Y * engineP / mTotal;
-            }
-            if ((engine.Z != 1) && (engine.Z != -1) && (engine.Z != 0))
-            {
-                throw invalid_argument("Incorrect command for engineZ");
-            }
-            else
-            {
-                exit.z += engine.Z * engineP / mTotal;
-            }
+			exit.x += calculateManeuveringSpeed(engine.x, engineP, mTotal);
+			exit.y += calculateManeuveringSpeed(engine.y, engineP, mTotal);
+			exit.z += calculateManeuveringSpeed(engine.z, engineP, mTotal);
 		}
 		catch(...)
 		{

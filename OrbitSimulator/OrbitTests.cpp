@@ -1,7 +1,7 @@
-// Tests for Orbit Simulator 
+// Tests for Orbit Simulator
 //
 #pragma once
-#include "stdafx.h"
+//#include "stdafx.h"
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "OrbitSimulator.cpp"
@@ -12,7 +12,7 @@ TEST_CASE("Calculate Aerodynamic heating", "[AerodynamicHeating]") {
 	vec speedZero = {0, 0, 0};
 	double T = 100;
 	double result = aerodynamicHeating(T, speedZero);
-	REQUIRE(result==100); 
+	REQUIRE(result==100);
 }
 
 //Angular velocity, result values from Maple 14
@@ -50,37 +50,37 @@ TEST_CASE("Calculate temperature", "[temperature]") {
 	SECTION("1st equation - at 6 km") {
 		double H = 6;
 		double result = temperature(H);
-		REQUIRE(floor(result) == 245); 
+		REQUIRE(floor(result) == 245);
 	}
 	SECTION("2nd equation - at 15 km") {
 		double H = 15;
 		double result = temperature(H);
-		REQUIRE(floor(result) == 213); 
+		REQUIRE(floor(result) == 213);
 	}
 	SECTION("3rd equation - at 30 km") {
 		double H = 30;
 		double result = temperature(H);
-		REQUIRE(floor(result) == 235); 
+		REQUIRE(floor(result) == 235);
 	}
 	SECTION("4th equation - at 50 km") {
 		double H = 50;
 		double result = temperature(H);
-		REQUIRE(result == ZeroCelsius); 
+		REQUIRE(result == ZeroCelsius);
 	}
 	SECTION("5th equation - at 80 km") {
 		double H = 80;
 		double result = temperature(H);
-		REQUIRE(floor(result) == 195); 
+		REQUIRE(floor(result) == 195);
 	}
 	SECTION("6th equation - at 90 km") {
 		double H = 90;
 		double result = temperature(H);
-		REQUIRE(floor(result) == 183); 
+		REQUIRE(floor(result) == 183);
 	}
 	SECTION("7th equation - at 140 km") {
 		double H = 140;
 		double result = temperature(H);
-		REQUIRE(floor(result) == 309); 
+		REQUIRE(floor(result) == 309);
 	}
 }
 
@@ -132,10 +132,10 @@ TEST_CASE("Calculate geostationary orbit", "[computeFlightPlan]") {
 		vec initialSpeed = {0,3.07,0};
 		Rotation initialRotation = {0,0,0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
-		 
-		ShipParams spaceCraftParameters = {1, 2, 0, initialRotation, 0, 0,std::vector<PartOfFlightPlan>(),1000000,1000000};
+
+		ShipParams spaceCraftParameters = {1, 2, 0, initialRotation, 0, 0, 0,std::vector<PartOfFlightPlan>(),1000000,1000000};
 		Quants flightTime = {86000, 1};
-		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);   
+		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);
 	}
 }
 
@@ -202,9 +202,11 @@ TEST_CASE("Calculate speed", "[Speed]") {
 		double quantSizeOfSec = 1;
 		double maxOverload = 10;
 		double maxHeating = 100;
+		Engine engine = {0, 0, 0};
+		double engineP = 0;
 		vec result = speed(previousSpeed, position, orientation, fuelConsumption,
 			mShip, mFuel, moment, specificImpulse,
-			size, quantSizeOfSec, maxOverload, maxHeating);
+			size, quantSizeOfSec, maxOverload, maxHeating, engine, engineP);
 		REQUIRE(result.x >= 0.997);
 		REQUIRE(result.x <= 0.998);
 	}
@@ -221,9 +223,11 @@ TEST_CASE("Calculate speed", "[Speed]") {
 		double quantSizeOfSec = 0;
 		double maxOverload = 10;
 		double maxHeating = 100;
+		Engine engine = {0, 0, 0};
+		double engineP = 0;
 		vec result = speed(previousSpeed, position, orientation, fuelConsumption,
 			mShip, mFuel, moment, specificImpulse,
-			size, quantSizeOfSec, maxOverload, maxHeating);
+			size, quantSizeOfSec, maxOverload, maxHeating, engine, engineP);
 		REQUIRE(result == previousSpeed);
 	}
 }
@@ -236,10 +240,10 @@ TEST_CASE("Calculate Explorer 6 orbit (russian/deutsch wikipedia)", "[computeFli
 		vec initialSpeed = {-10.296099, 0, 0};
 		Rotation initialRotation = {0, 0, 0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
-		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
+		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0, 0,
 			std::vector<PartOfFlightPlan>(), 1000000, 1000000};
 		Quants flightTime = {45910, 1};
-		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
+		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);
 		double max = 0;
 		for (int i = 0; i < flightTime.numberOfQuants; i++) {
 			double height = calculationResults[i].position.getScalar();
@@ -248,7 +252,7 @@ TEST_CASE("Calculate Explorer 6 orbit (russian/deutsch wikipedia)", "[computeFli
 			REQUIRE(height < 48800);
 			REQUIRE(height > 6623);
 			REQUIRE(speed < 11.2);
-			if (height <= 6623.1 && i > 10) { 
+			if (height <= 6623.1 && i > 10) {
 				double period = (double) i / 60;
 				REQUIRE(period < 766.0);
 				REQUIRE(period >= 764.0);
@@ -265,10 +269,10 @@ TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]
 		vec initialSpeed = {-10.2967, 0, 0};
 		Rotation initialRotation = {0, 0, 0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
-		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
+		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0, 0,
 			std::vector<PartOfFlightPlan>(), 1000000, 1000000};
 		Quants flightTime = {45300, 1};
-		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
+		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);
 		double max = 0;
 		for (int i = 0; i < flightTime.numberOfQuants; i++) {
 			double height = calculationResults[i].position.getScalar();
@@ -277,7 +281,7 @@ TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]
 			REQUIRE(height < 48300);
 			REQUIRE(height > 6615);
 			REQUIRE(speed < 11.2);
-			if (height <= 6615.1 && i > 10) { 
+			if (height <= 6615.1 && i > 10) {
 				double period = (double) i / 60;
 				REQUIRE(period < 755.0);
 				REQUIRE(period >= 753.0);
@@ -300,9 +304,9 @@ TEST_CASE("Calculate Vostok 1 orbit", "[computeFlightPlan]") {
 		PartOfFlightPlan plan2 = {29, 11, {0, 0, 0}};
 		flightPlan[0] = plan1;
 		flightPlan[1] = plan2;
-		ShipParams spaceCraftParameters = {0.0025, 3725.0, 1000, initialRotation, 100.0, 2.61,
+		ShipParams spaceCraftParameters = {0.0025, 3725.0, 1000, initialRotation, 100.0, 2.61, 0,
 			flightPlan, 10, 5274.0};
-		vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
+		vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);
 		double max = 0;
 		for (int i = 0; i < flightTime.numberOfQuants; i++) {
 			double height = calculationResults[i].position.getScalar();
@@ -313,5 +317,59 @@ TEST_CASE("Calculate Vostok 1 orbit", "[computeFlightPlan]") {
 			cout<<height<<"\n";
 		}
 	}
-	_gettch();
+}
+
+//Calculate the X-axis speed, check that Y and Z components are zero
+//and check that if engines are off the ship is stationary
+TEST_CASE("Calculate maneuvering speed", "[Speed]") {
+    SECTION("Calculation") {
+        vec previousSpeed = {0, 0, 0};
+        vec position = {6550, 0, 0};
+        vec orientation = {1, 0, 0};
+        double fuelConsumption = 0;
+        double mShip = 10;
+        double mFuel = 0;
+        Rotation moment = {0, 0, 0};
+        double specificImpulse = 0;
+        double size = 1;
+        double quantSizeOfSec = 1;
+        double maxOverload = 10;
+        double maxHeating = 100;
+        Engine engine = {1, 0, 0};
+        double engineP = 10;
+        vec supportingSpeed = speed(previousSpeed, position, orientation, fuelConsumption,
+            mShip, mFuel, moment, specificImpulse,
+            size, quantSizeOfSec, maxOverload, maxHeating, {0, 0, 0}, 0);
+        vec result = speed(previousSpeed, position, orientation, fuelConsumption,
+            mShip, mFuel, moment, specificImpulse,
+            size, quantSizeOfSec, maxOverload, maxHeating, engine, engineP) + supportingSpeed.multiplyWithDouble(-1);
+        REQUIRE(result.x == 1);
+        REQUIRE(result.y == 0);
+        REQUIRE(result.z == 0);
+    }
+    SECTION("Stationary") {
+        vec previousSpeed = {0, 0, 0};
+        vec position = {6550, 0, 0};
+        vec orientation = {1, 0, 0};
+        double fuelConsumption = 0;
+        double mShip = 10;
+        double mFuel = 0;
+        Rotation moment = {0, 0, 0};
+        double specificImpulse = 0;
+        double size = 1;
+        double quantSizeOfSec = 1;
+        double maxOverload = 10;
+        double maxHeating = 100;
+        Engine engine = {0, 0, 0};
+        double engineP = 0;
+        vec supportingSpeed = speed(previousSpeed, position, orientation, fuelConsumption,
+            mShip, mFuel, moment, specificImpulse,
+            size, quantSizeOfSec, maxOverload, maxHeating, {0, 0, 0}, 0);
+        vec result = speed(previousSpeed, position, orientation, fuelConsumption,
+            mShip, mFuel, moment, specificImpulse,
+            size, quantSizeOfSec, maxOverload, maxHeating, engine, engineP) + supportingSpeed.multiplyWithDouble(-1);
+        REQUIRE(result.x == 0);
+        REQUIRE(result.y == 0);
+        REQUIRE(result.z == 0);
+    }
 }
