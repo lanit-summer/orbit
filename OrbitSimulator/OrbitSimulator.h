@@ -63,6 +63,7 @@ struct ReturnValues
 {
     Position position;
     vec speed;
+    double overload;
 };
 
 std::vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
