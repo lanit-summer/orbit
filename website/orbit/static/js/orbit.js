@@ -233,16 +233,16 @@ function addLights() {
 }
 
 function loadShip() {
-    ship = new THREE.Group();
-    var geometry = new THREE.BoxGeometry( 100, 100, 100 );
-    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    cube = new THREE.Mesh( geometry, material );
-    ship.add(cube);
-    var xpos = posArray[0][0];
-    var ypos = posArray[0][2];
-    var zpos = posArray[0][1];
-    ship.position.set(xpos, ypos, zpos);
-    scene.add(ship);
+    var loader = new THREE.ObjectLoader();
+    loader.load('../../static/js/ship.json',function ( obj ) {
+        ship = obj;
+        var xpos = posArray[0][0];
+        var ypos = posArray[0][2];
+        var zpos = posArray[0][1];
+        ship.scale.set(15, 15, 15);
+        ship.position.set(xpos, ypos, zpos);
+        scene.add(ship);
+    });
 }
 
 function updateShipOrbit() {
