@@ -57,8 +57,10 @@ vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / 
 //	}
 //	return temperature;
 //}
-//температура в соответствии с ГОСТ
-double temperature(double height) //calculates the temperature at a certain height (K)
+
+
+//температура в соответствии с ГОСТ-4401-81. В ГОСТе каждому промежутку высоты соответствует свое выражение для температуры с "магическими" константами
+double temperature(double height) //Вычисление температуры в зависимости от высоты, К
 {
 	if (height < 0)
 	{
@@ -143,8 +145,9 @@ double temperature(double height) //calculates the temperature at a certain heig
 	}
 	return temperature;
 }
-//
-// молярная масса воздуха в зависимости от высоты по ГОСТ-4401-81
+
+
+// молярная масса воздуха в зависимости от высоты по ГОСТ-4401-81. Промежутку высоты в метрах соответствует свое значение молярной массы кг/моль.
 double molarMass(double height)
 {
 	if (height < 94000)
@@ -190,7 +193,7 @@ double molarMass(double height)
 	return molarMass;
 }
 
-//концентрация в зависимости от высоты согласно ГОСТ
+//концентрация в зависимости от высоты согласно ГОСТ-4401-81. концентрация, м^-3
 double concentration(double height) //n=n(h)
 {
 	if (height < 120000) 
