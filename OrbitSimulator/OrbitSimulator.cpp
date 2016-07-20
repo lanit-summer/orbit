@@ -58,7 +58,7 @@ vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / 
 //	return temperature;
 //}
 
-
+//-----------------------------------------------------------------------------------
 //температура в соответствии с ГОСТ-4401-81, стр 175. В ГОСТе каждому промежутку высоты соответствует свое выражение для температуры с "магическими" константами
 double temperature(double height) //Вычисление температуры в зависимости от высоты, температура К, высота м.
 {
@@ -146,7 +146,7 @@ double temperature(double height) //Вычисление температуры 
 	return temperature;
 }
 
-
+//---------------------------------------------------------------------------------
 // молярная масса воздуха в зависимости от высоты по ГОСТ-4401-81, стр 173. Промежутку высоты в метрах соответствует свое значение молярной массы кг/моль.
 double molarMass(double height)
 {
@@ -193,6 +193,7 @@ double molarMass(double height)
 	return molarMass;
 }
 
+//------------------------------------------------------------------------------
 //концентрация в зависимости от высоты согласно ГОСТ-4401-81? стр 176. концентрация, м^-3
 double concentration(double height) //n=n(h)
 {
@@ -265,6 +266,7 @@ double concentration(double height) //n=n(h)
 //	}
 //}
 
+//-----------------------------------------------------------------------------
 //давление согласно ГОСТ-4401-81
 double pressure(double height, double temperature)
 {
@@ -285,6 +287,7 @@ double pressure(double height, double temperature)
 	return pressure;
 }
 
+//-------------------------------------------------------------
 //плотность воздуха согласно ГОСТ-4401-81, стр 176, плотность кг/м^3
 double airDensity(double temperature)
 {
@@ -293,6 +296,7 @@ double airDensity(double temperature)
 	return airDensity;
 }
 
+//--------------------------------------------------------------
 //скорость звука согласно ГОСТ-4401-81, стр 178, м/с
 double speedOfSound(double temperature)
 {
@@ -361,6 +365,7 @@ vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
 	return currentAngularVelocity;
 }
 
+//-----------------------------------------------
 //Calculate aerodynamic heating for spaceship. 
 //Formula: Tn=T0+0.2*M^2,  Tn- - температура нагретых молекул,  T0- температура окружающей среды, 
 //M=V/a - М - число Маха. М - есть отношение скорости полета тела к скорости звука на данной высоте
