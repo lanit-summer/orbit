@@ -136,7 +136,7 @@ TEST_CASE("Calculate geostationary orbit", "[computeFlightPlan]") {
 		Rotation initialRotation = {0,0,0};
 		ShipPosition spaceCraftPosition = {position, orientation, initialSpeed, initialRotation};
 		Quants flightTime = {86000, 1}; 
-		ShipParams spaceCraftParameters = {1000, 2, 0, initialRotation, 0, 0,std::vector<PartOfFlightPlan>(),1000000,1000000};
+		ShipParams spaceCraftParameters = {1000, 2, 0, initialRotation, 0, 0,std::vector<PartOfFlightPlan>(),1000000};
 		std::vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);   
 	}
 }
@@ -202,11 +202,10 @@ TEST_CASE("Calculate speed", "[Speed]") {
 		double specificImpulse = 1;
 		double size = 1000;
 		double quantSizeOfSec = 1;
-		double maxOverload = 10;
 		double maxHeating = 100;
 		vec result = speed(previousSpeed, position, orientation, fuelConsumption,
 			mShip, mFuel, moment, specificImpulse,
-			size, quantSizeOfSec, maxOverload, maxHeating);
+			size, quantSizeOfSec, maxHeating);
 		REQUIRE(result.x >= 998);
 		REQUIRE(result.x <= 1000);
 	}
@@ -221,11 +220,10 @@ TEST_CASE("Calculate speed", "[Speed]") {
 		double specificImpulse = 100;
 		double size = 100000;
 		double quantSizeOfSec = 0;
-		double maxOverload = 10;
 		double maxHeating = 100;
 		vec result = speed(previousSpeed, position, orientation, fuelConsumption,
 			mShip, mFuel, moment, specificImpulse,
-			size, quantSizeOfSec, maxOverload, maxHeating);
+			size, quantSizeOfSec, maxHeating);
 		REQUIRE(result == previousSpeed);
 	}
 }
@@ -243,7 +241,7 @@ TEST_CASE("Calculate Explorer 6 orbit (russian/deutsch wikipedia)", "[computeFli
 		PartOfFlightPlan plan = {45910, 0, {0, 0, 0}};
 		flightPlan[0] = plan;
 		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
-			flightPlan, 1000000, 1000000};
+			flightPlan,1000000};
 		vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);   
 		double max = 0;
 		for (int i = 0; i < flightTime.numberOfQuants; i++) {
@@ -275,7 +273,7 @@ TEST_CASE("Calculate Explorer 6 orbit (english wikipedia)", "[computeFlightPlan]
 		PartOfFlightPlan plan = {45300, 0, {0, 0, 0}};
 		flightPlan[0] = plan;
 		ShipParams spaceCraftParameters = {1, 64, 0, initialRotation, 0, 0,
-			flightPlan, 1000000, 1000000};
+			flightPlan,1000000};
 		vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);   
 		double max = 0;
 		for (int i = 0; i < flightTime.numberOfQuants; i++) {
@@ -307,12 +305,14 @@ TEST_CASE("Calculate Vostok 1 orbit", "[computeFlightPlan]") {
 		PartOfFlightPlan plan = {5352, 0, {0, 0, 0}};
 		flightPlan[0] = plan;
 		ShipParams spaceCraftParameters = {2.5, 3725.0, 1000, initialRotation, 100.0, 2.61,
-			flightPlan, 10, 5274.0};
+			flightPlan,5274.0};
 		vector<ReturnValues> calculationResults = computeFlightPlan(spaceCraftPosition, spaceCraftParameters, flightTime);  
 		double max = 0;
 		for (int i = 0; i < flightTime.numberOfQuants; i++) {
 			double height = calculationResults[i].position.getScalar();
 			double speed  = calculationResults[i].speed.getScalar();
+			double overload = calculationResults[i].overload;
+			REQUIRE(overload < 10);
 			REQUIRE(height < EarthRadius + 301970.0);
 			REQUIRE(height > EarthRadius + 174998.0);
 			REQUIRE(speed < 7900);
