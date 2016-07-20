@@ -59,8 +59,8 @@ vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / 
 //}
 
 
-//температура в соответствии с ГОСТ-4401-81. В ГОСТе каждому промежутку высоты соответствует свое выражение для температуры с "магическими" константами
-double temperature(double height) //Вычисление температуры в зависимости от высоты, К
+//температура в соответствии с ГОСТ-4401-81, стр 175. В ГОСТе каждому промежутку высоты соответствует свое выражение для температуры с "магическими" константами
+double temperature(double height) //Вычисление температуры в зависимости от высоты, температура К, высота м.
 {
 	if (height < 0)
 	{
@@ -147,7 +147,7 @@ double temperature(double height) //Вычисление температуры 
 }
 
 
-// молярная масса воздуха в зависимости от высоты по ГОСТ-4401-81. Промежутку высоты в метрах соответствует свое значение молярной массы кг/моль.
+// молярная масса воздуха в зависимости от высоты по ГОСТ-4401-81, стр 173. Промежутку высоты в метрах соответствует свое значение молярной массы кг/моль.
 double molarMass(double height)
 {
 	if (height < 94000)
@@ -215,31 +215,31 @@ double concentration(double height) //n=n(h)
 	}
 	else if (height < 250000)
 	{
-		concentration = (0.7631575*pow(10,3)-0.1150600844*pow(10,-1)*height)*pow(10,15);
+		concentration = (0.7631575*pow(10,3)-0.1150600844*pow(10,-1)*height+0,6612598428*pow(10,-7)*pow(height,2)-0.1708736137*pow(10,-12)*pow(height,3)+0.1669823114*pow(10,-18)*pow(height,4))*pow(10,15);
 	}
 	else if (height < 350000)
 	{
-		concentration = (0.1882203*pow(10,3)-0.2265999519*pow(10,-2)*height)*pow(10,15);
+		concentration = (0.1882203*pow(10,3)-0.2265999519*pow(10,-2)*height+0.1041726141*pow(10,-7)*pow(height,2)-0.2155574922*pow(10,-13)*pow(height,3)+0.1687430962*pow(10,-19)*pow(height,4))*pow(10,15);
 	}
 	else if (height < 450000)
 	{
-		concentration = (0.2804823*pow(10,3)-0.2432231125*pow(10,-2)*height)*pow(10,14);
+		concentration = (0.2804823*pow(10,3)-0.2432231125*pow(10,-2)*height+0.8055024663*pow(10,8)*pow(height,2)-0.1202418519*pow(10,-13)*pow(height,3)+0.6805101379*pow(10,-20)*pow(height,4))*pow(10,14);
 	}
 	else if (height < 600000)
 	{
-		concentration = (0.5599362*pow(10,3)-0.3714141392*pow(10,-2)*height)*pow(10,13);
+		concentration = (0.5599362*pow(10,3)-0.3714141392*pow(10,-2)*height+0.9358870345*pow(10,-8)*pow(height,2)-0.1058591881*pow(10,-13)*pow(height,3)+0.4525531532*pow(10,-20)*pow(height,4))*pow(10,13);
 	}
 	else if (height < 800000)
 	{
-		concentration = (0.8358756*pow(10,3)-0.4265393073*pow(10,-2)*height)*pow(10,12);
+		concentration = (0.8358756*pow(10,3)-0.4265393073*pow(10,-2)*height+0.8252842085*pow(10,-8)*pow(height,2)-0.7150127437*pow(10,-14)*pow(height,3)+0.2335744331*pow(10,-20)*pow(height,4))*pow(10,12);
 	}
 	else if (height < 1000000)
 	{
-		concentration = (0.8364965*pow(10,2)-0.3162492458*pow(10,-3)*height)*pow(10,12);
+		concentration = (0.8364965*pow(10,2)-0.3162492458*pow(10,-3)*height+0.4602064246*pow(10,-9)*pow(height,2)-0.3021858469*pow(10,-15)*pow(height,3)+0.7512304301*pow(10,-22)*pow(height,4))*pow(10,12);
 	}
 	else if (height < 1200000)
 	{
-		concentration = (0.383220*pow(10,2)-0.50980*pow(10,-4)*height)*pow(10,11)
+		concentration = (0.383220*pow(10,2)-0.50980*pow(10,-4)*height+0.181*pow(10,-10)*pow(height,2))*pow(10,11)
 	}
 	return concentration;
 }
