@@ -16,5 +16,15 @@ $(function() {
         $(this).animate({marginBottom: "5px"}, 80);
         $(this).animate({marginBottom: "10px"}, 80);
     });
+    $(".sun-modes img").click(function() {
+        if ($(this).attr("src") == "/static/img/icons/icon12.png") {
+            $(this).attr("src", "/static/img/icons/icon13.png");
+            // turnOn();
+        }
+        else {
+            $(this).attr("src", "/static/img/icons/icon12.png");
+            // turnOff();
+        }
+    });
 });
 

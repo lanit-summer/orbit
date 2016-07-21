@@ -81,15 +81,19 @@ nav {
     outline: none;
     resize: none;
 }
-.camera-block {
-    margin-top: 20px;
+.modes-block {
     text-align: center;
 }
-.camera-label {
+.mode {
+    display: inline-block;
+    vertical-align: top;
+    margin: 20px 15px 0px 15px;
+    text-align: center;
+}
+.mode-label {
     margin-top: 10px;
     color: #0ff;
 }
-
 .camera-modes {
     margin-top: 10px;
 }
@@ -97,10 +101,28 @@ nav {
     width: 100px;
     background: #fff url('../img/icons/icon11.png') no-repeat;
     background-position: right center;
+    margin-top: 6px;
     padding: 5px 20px 5px 10px;
     font: 14px "Roboto";
     border: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px; 
+    text-overflow: '';
+    -ms-appearance: none;
+    appearance: none!important;
     outline: none;
+    cursor: pointer;
+}
+.camera-modes select::-ms-expand {
+  display: none;
+}
+.sun-modes {
+    margin-top: 10px;
+    text-align: center;
+}
+.sun-modes img {
+    width: 32px;
+    height: 32px;
     cursor: pointer;
 }
