@@ -48,7 +48,6 @@ struct ShipParams
     double maxFuelUsagePerSec; //maximum fuel mass flow rate
     double impulsePerFuel; //specific impulse of the engine
     std::vector<PartOfFlightPlan> flightPlan; //an array of commands
-    double maxOverload; //maximum overload
     double maxHeating; //maximum heating
 };
 
@@ -63,6 +62,7 @@ struct ReturnValues
 {
     Position position;
     vec speed;
+    double overload;
 };
 
 std::vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,

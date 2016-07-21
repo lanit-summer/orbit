@@ -176,7 +176,7 @@ vec CalculateAcceleration(
 //calculates a speed at each time interval
 vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumption,
 		  double mShip, double mFuel, Rotation moment, double impulse,
-		  double size, double quantSizeOfSec, double maxOverload, double maxHeating)
+		  double size, double quantSizeOfSec,double maxHeating)
 {			
 	double mTotal = mShip + mFuel;
 	double H = position.getScalar();
@@ -194,16 +194,47 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 			vec acceleration =
 				CalculateAcceleration(
 				size, mTotal, fuelConsumption, impulse, previousSpeed, position, orientation);
-			double currentOverloadScalar =	acceleration.getScalar()/g; 	// calculate overload in proportions to g.
-			if(currentOverloadScalar <0)
-			{
-				int t = 0;
-			}
-			if (currentOverloadScalar > maxOverload) //TODO: Check on the site that maxOverload set in proportions to g.
-			{
-				throw invalid_argument("Overload");
-			}
 			exit = previousSpeed + acceleration*quantSizeOfSec;   
+		}
+		catch(...)
+		{
+		}
+	
+	}
+
+	if (H <= AtmosphereBoundary)
+	{
+		double a = aerodynamicHeating(temperature(position.getScalar()), exit);
+		if (a > maxHeating)
+		{
+			throw invalid_argument("Overheating");
+		}
+	}
+	return exit;
+}
+
+//calculates a overload at each time interval
+double overload(vec previousSpeed, vec position, vec orientation, double fuelConsumption,
+		  double mShip, double mFuel, double impulse,
+		  double size, double quantSizeOfSec)
+{		
+	double mTotal = mShip + mFuel;
+	double H = position.getScalar();
+	double scSpeedFirst = previousSpeed.getScalar();
+	double S = size * size;
+	double currentOverloadScalar = 0;
+	if (mTotal != 0) {
+		if (quantSizeOfSec <= 0.0)
+		{
+			return 0;
+		}
+
+		try
+		{
+			vec acceleration =
+				CalculateAcceleration(
+				size, mTotal, fuelConsumption, impulse, previousSpeed, position, orientation);
+			currentOverloadScalar =	acceleration.getScalar()/g; 	// calculate overload in proportions to g.
 		}
 		catch(...)
 		{
@@ -239,16 +270,7 @@ vec speed(vec previousSpeed, vec position, vec orientation, double fuelConsumpti
 		//Calculate current overload proportional to g.
 		//double currentOverload = overload.getScalar() / g;
 	}
-
-	if (H <= AtmosphereBoundary)
-	{
-		double a = aerodynamicHeating(temperature(position.getScalar()), exit);
-		if (a > maxHeating)
-		{
-			throw invalid_argument("Overheating");
-		}
-	}
-	return exit;
+	return currentOverloadScalar;
 }
 
 //Form flight plan for whole flight traectory.
@@ -293,6 +315,7 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 		m = fuel + shipParams.shipMass;
 	double level,currentFlightPlanTime;
 	vec currentSpeed = initialPosition.speedFirst;
+	double currentOverload = 0;
 	Rotation moment = initialPosition.moment;
 	vec currentOrientation = initialPosition.orientation;
 	vec previousAngularVelocity = {0, 0, 0};
@@ -323,8 +346,12 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 			currentSpeed = speed(currentSpeed, currentPosition, currentOrientation,
 				level, shipParams.shipMass, fuel, moment,
 				shipParams.impulsePerFuel, shipParams.shipEdgeLength,
-				time, shipParams.maxOverload, shipParams.maxHeating);
+				time,shipParams.maxHeating);
 			currentFlightPlan.speed = currentSpeed;
+			currentOverload = overload(currentSpeed, currentPosition, currentOrientation,
+				level, shipParams.shipMass, fuel,shipParams.impulsePerFuel,
+				shipParams.shipEdgeLength,time);
+			currentFlightPlan.overload = currentOverload;
 			m -= fuel;
 			fuel = 0.0;
 			currentPosition.x = currentPosition.x + currentSpeed.x * time;
@@ -333,16 +360,19 @@ vector <ReturnValues> computeFlightPlan(ShipPosition initialPosition,
 			currentSpeed = speed(currentSpeed, currentPosition, currentOrientation, 0.0,
 				shipParams.shipMass, fuel, moment,
 				shipParams.impulsePerFuel, shipParams.shipEdgeLength,
-				timeOut, shipParams.maxOverload, shipParams.maxHeating);
+				timeOut,shipParams.maxHeating);
 		}
 		else //if we have enough fuel
 		{
 			currentSpeed = speed(currentSpeed, currentPosition, currentOrientation,
 				level, shipParams.shipMass, fuel, moment,
 				shipParams.impulsePerFuel, shipParams.shipEdgeLength,
-				quants.quantSizeOfSec, shipParams.maxOverload,
-				shipParams.maxHeating);
+				quants.quantSizeOfSec,shipParams.maxHeating);
 			currentFlightPlan.speed = currentSpeed;
+			currentOverload = overload(currentSpeed, currentPosition, currentOrientation,
+				level, shipParams.shipMass, fuel,shipParams.impulsePerFuel,
+				shipParams.shipEdgeLength,quants.quantSizeOfSec);
+			currentFlightPlan.overload = currentOverload;
 			fuel -= level * quants.quantSizeOfSec;
 			m -= level * quants.quantSizeOfSec;
 		}

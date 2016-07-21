@@ -30,8 +30,7 @@ int main() {
     shipParams.maxRotation.rotationAroundZ = 0.0;
     shipParams.maxFuelUsagePerSec = 100.0;
     shipParams.impulsePerFuel = 2.61;
-    shipParams.maxOverload = 10.0;
-    shipParams.maxHeating = 5274.0; // 5000Ñ
+    shipParams.maxHeating = 5274.0; // 5000Ã‘
     quants.quantSizeOfSec = 1;
     quants.numberOfQuants = 6480;
     int i;
