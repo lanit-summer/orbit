@@ -2,20 +2,17 @@ var container;
 var camera, scene, renderer;
 var earth;
 var ship;
-var mouseX = 0, mouseY = 0;
+var moon;
 var boost = 1; //ускорение
 var prevBoost = 1; //нужно для stop
 var paused = false;
 var mouseDown = 0;
-var windowHalfX = window.innerWidth / 2;
-var windowHalfY = window.innerHeight / 2;
-var cube;
-var moon;
+var loader;
 
 var speedArray;
 var posArray;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     loadSampleOrbit();
     init();
     animate();
@@ -26,44 +23,74 @@ function init() {
     if (trajectory) {
         loadOrbitFromCalculator(trajectory);
     }
-    start();
-    document.onmousedown = function() {
-        ++mouseDown;
-    }
-    document.onmouseup = function() {
-        --mouseDown;
-    }
 
-    document.getElementById("increase").onclick = function(){
+    start();
+    controlSpead();
+    changeView();
+
+    renderer = Detector.webgl ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
+    container = document.getElementById('scene');
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 200000000);
+    scene = new THREE.Scene();
+
+    addLights();
+    loadEarth();
+    loadMoon();
+    loadShip();
+    loadStars();
+
+    camera.position.z = 13371;
+
+    var canvas = document.createElement('canvas');
+    canvas.width = 128;
+    canvas.height = 128;
+    var context = canvas.getContext('2d');
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    renderer.setClearColor(0x000000, 1);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight - 70);
+    container.appendChild(renderer.domElement);
+
+    window.addEventListener('resize', onWindowResize, false);
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.target = earth.position;
+    restart();
+}
+
+function controlSpead() {
+    document.getElementById("increase").onclick = function () {
         if (!paused) {
             increaseBoost();
             renewBoostSign();
         }
     }
 
-    document.getElementById("decrease").onclick = function(){
+    document.getElementById("decrease").onclick = function () {
         if (!paused) {
             decreaseBoost();
             renewBoostSign();
         }
     }
 
-    document.getElementById("play").onclick = function(){
+    document.getElementById("play").onclick = function () {
         if (paused)
             playBoost();
     }
 
-    document.getElementById("stop").onclick = function(){
+    document.getElementById("stop").onclick = function () {
         if (!paused) {
             stopBoost();
         }
     }
 
-    document.getElementById("restart").onclick = function(){
+    document.getElementById("restart").onclick = function () {
         restart();
     }
+}
 
-    document.getElementById("lookAt").onchange = function(){
+function changeView() {
+    document.getElementById("lookAt").onchange = function () {
         if (this.value == "moon") {
             controls.target = moon.position;
             camera.lookAt(moon);
@@ -77,101 +104,63 @@ function init() {
             camera.lookAt(ship);
         }
     }
+}
 
-    renderer = Detector.webgl? new THREE.WebGLRenderer(): new THREE.CanvasRenderer();
-	var loader = new THREE.TextureLoader();
-
-	var texture = loader.load( "../../static/img/maxresdefault.jpg" );
+function loadStars() {
+    var texture = loader.load("../../static/img/maxresdefault.jpg");
     var backgroundMesh = new THREE.Mesh(
         new THREE.PlaneGeometry(2, 2, 0),
         new THREE.MeshBasicMaterial({
             map: texture
         }));
-	backgroundMesh.material.depthTest = false;
+    backgroundMesh.material.depthTest = false;
     backgroundMesh.material.depthWrite = false;
 
-    
+
     var backgroundScene = new THREE.Scene();
     var backgroundCamera = new THREE.Camera();
-    backgroundScene.add(backgroundCamera );
-    backgroundScene.add(backgroundMesh );
-	
+    backgroundScene.add(backgroundCamera);
+    backgroundScene.add(backgroundMesh);
 
-	var texture = THREE.ImageUtils.loadTexture( '../../static/img/maxresdefault.jpg' );
-        var backgroundMesh = new THREE.Mesh(
-            new THREE.PlaneGeometry(2, 2, 0),
-            new THREE.MeshBasicMaterial({
-                map: texture
-            }));
-			
-	backgroundMesh.material.depthTest = false;
-    backgroundMesh.material.depthWrite = false;
-		
-	var backgroundScene = new THREE.Scene();
-    var backgroundCamera = new THREE.Camera();
-    backgroundScene.add(backgroundCamera );
-    backgroundScene.add(backgroundMesh );
-	
-	
-	var renderStar = function () {
+    var renderStar = function () {
         requestAnimationFrame(renderStar);
         renderer.autoClear = false;
         renderer.clear();
-        renderer.render(backgroundScene , backgroundCamera );
+        renderer.render(backgroundScene, backgroundCamera);
     };
-	
-	renderStar();
 
-    container = document.getElementById('scene');
-    camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 200000000);
+    renderStar();
+}
 
-    scene = new THREE.Scene();
-    earth = new THREE.Group();
-    
-    addLights();
-    
-    scene.add(earth);
-    // earth
-    var loader = new THREE.TextureLoader();
+function loadEarth() {
+    earth = new THREE.Mesh();
+
+    loader = new THREE.TextureLoader();
     var imgurl = "../../static/img/land_ocean_ice_cloud_2048.jpg";
-    loader.load(imgurl, function (texture) { 
-                    var geometry = new THREE.SphereGeometry(6371, 50, 50);
-                    var material = new THREE.MeshPhongMaterial({ map: texture, overdraw: 0.5 });
-                    var mesh = new THREE.Mesh(geometry, material);
-                    earth.add(mesh);
-    } );
-
-    moon = new THREE.Group();
-    scene.add(moon);
-    
-    var loader = new THREE.TextureLoader();
-    var imgurl = "../../static/img/Moon.jpg"
-    loader.load(imgurl, function (texture) { 
-                    var geometry = new THREE.SphereGeometry(1737, 30, 30);
-                    var material = new THREE.MeshPhongMaterial({ map: texture, overdraw: 0.5 });
-                    var mesh = new THREE.Mesh(geometry, material);
-                    moon.add(mesh);
+    loader.load(imgurl, function (texture) {
+        earth.geometry = new THREE.SphereGeometry(6371, 50, 50);
+        earth.material = new THREE.MeshPhongMaterial({
+            map: texture,
+            overdraw: 0.5
+        });
     });
+    scene.add(earth);
+}
+
+function loadMoon() {
+    moon = new THREE.Mesh();
+
+    loader = new THREE.TextureLoader();
+    var imgurl = "../../static/img/Moon.jpg"
+    loader.load(imgurl, function (texture) {
+        moon.geometry = new THREE.SphereGeometry(1737, 30, 30);
+        moon.material = new THREE.MeshPhongMaterial({
+            map: texture,
+            overdraw: 0.5
+        });
+    });
+    scene.add(moon);
     moon.position.set(-160000, 0, 0);
-
-    loadShip();
-    
-    camera.position.z = 13371;
-    var canvas = document.createElement( 'canvas' );
-    canvas.width = 128;
-    canvas.height = 128;
-    var context = canvas.getContext('2d');
-    context.fillRect( 0, 0, canvas.width, canvas.height );
-
-    renderer.setClearColor(0x000000, 1);
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight - 70);
-    container.appendChild( renderer.domElement );
-
-    window.addEventListener('resize', onWindowResize, false );
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.target = earth.position;
-    restart();
 }
 
 function onWindowResize() {
@@ -181,7 +170,7 @@ function onWindowResize() {
 }
 
 function renewBoostSign() {
-    document.getElementById("currentBoost").innerHTML="x"+boost;
+    document.getElementById("currentBoost").innerHTML = "x" + boost;
 }
 
 function increaseBoost() {
@@ -222,19 +211,19 @@ function addLights() {
     var dirLight = new THREE.DirectionalLight(0xffffff, 1);
     dirLight.position.set(-200000, 0, 0);
     scene.add(dirLight);
-    
+
     var spotLight = new THREE.SpotLight(0xffffff, 0.7, 200000, 180, 0);
     spotLight.position.set(0, 0, 0);
     var spotTarget = new THREE.Object3D();
     spotTarget.position.set(-160000, 0, 0);
     spotLight.target = spotTarget;
-  
+
     scene.add(spotLight);
 }
 
 function loadShip() {
     var loader = new THREE.ObjectLoader();
-    loader.load('../../static/js/ship.json',function ( obj ) {
+    loader.load('../../static/js/ship.json', function (obj) {
         ship = obj;
         var xpos = posArray[0][0];
         var ypos = posArray[0][2];
@@ -281,7 +270,7 @@ function loadSampleOrbit() {
         xhr = new ActiveXObject("Microsoft.XMLHTTP");
     }
 
-    xhr.onreadystatechange = function(){
+    xhr.onreadystatechange = function () {
         var arr = xhr.responseText.split('\n');
         if (arr.length != 1) {
             posArray = new Array(arr.length);
@@ -306,7 +295,7 @@ function loadSampleOrbit() {
             renewBoostSign();
         }
     };
-    xhr.open("GET","../../static/js/orbit.xyzv", false);
+    xhr.open("GET", "../../static/js/orbit.xyzv", false);
     xhr.send();
 }
 
