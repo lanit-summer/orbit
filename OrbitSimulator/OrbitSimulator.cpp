@@ -15,68 +15,293 @@ vec calculateGravityForce(vec distance, double shipMass) //G * mEarth * mShip / 
 	vec res = distance.multiplyWithDouble(a);
 	return res; // (N * 10^3)
 }
+//что было раньше в коде
+//double temperature(double height) //calculates the temperature at a certain height (K)
+//{
+//	if (height < 0)
+//	{
+//		throw invalid_argument("Height is less than the radius of the Earth");
+//	}
+//	double temperature = ZeroCelsius;
+//	if (height > 145) //at each height there's an equation of temperature calculation
+//	{
+//		return 0.0;
+//	}
+//	else if (height > 94)
+//	{
+//		temperature += 140 * (height - 94) / 51 - 90;
+//	}
+//	else if (height > 84)
+//	{
+//		temperature -= 90;
+//	}
+//	else if (height > 54)
+//	{
+//		temperature += -3 * height + 162;
+//	}
+//	else if (height > 47)
+//	{
+//		return temperature;
+//	}
+//	else if (height > 20)
+//	{
+//		temperature += (20 * height - 940) / 9;
+//	}
+//	else if (height > 10)
+//	{
+//		temperature -= 60;
+//	}
+//	else
+//	{
+//		temperature += -8 * height + 20;
+//	}
+//	return temperature;
+//}
 
-double temperature(double height) //calculates the temperature at a certain height (K)
+//-----------------------------------------------------------------------------------
+//температура в соответствии с ГОСТ-4401-81, стр 175. В ГОСТе каждому промежутку высоты соответствует свое выражение для температуры с "магическими" константами
+double temperature(double height) //Вычисление температуры в зависимости от высоты, температура К, высота м.
 {
 	if (height < 0)
 	{
 		throw invalid_argument("Height is less than the radius of the Earth");
 	}
 	double temperature = ZeroCelsius;
-	if (height > 145) //at each height there's an equation of temperature calculation
+	if (height < 11019)
 	{
-		return 0.0;
+		temperature = 288.15-0.0065*(height);
 	}
-	else if (height > 94)
+	else if (height < 20063)
 	{
-		temperature += 140 * (height - 94) / 51 - 90;
+		temperature = 216-0.0065*(height-11019);
 	}
-	else if (height > 84)
+	else if (height < 32162)
 	{
-		temperature -= 90;
+		temperature = 216.65;
 	}
-	else if (height > 54)
+	else if (height < 47350)
 	{
-		temperature += -3 * height + 162;
+		temperature = 228.65+0.0010*(height-32162);
 	}
-	else if (height > 47)
+	else if (height < 51412)
 	{
-		return temperature;
+		temperature = 270.65+0.0028*(height-47350);
 	}
-	else if (height > 20)
+	else if (height < 71802)
 	{
-		temperature += (20 * height - 940) / 9;
+		temperature = 270.65;
 	}
-	else if (height > 10)
+	else if (height < 86152)
 	{
-		temperature -= 60;
+		temperature = 214.65-0.0028*(height-71802);
 	}
-	else
+	else if (height < 95411)
 	{
-		temperature += -8 * height + 20;
+		temperature = 186.65-0.0020*(height-71802);
+	}
+	else if (height < 104128)
+	{
+		temperature = 186.525;
+	}
+	else if (height < 120000)
+	{
+		temperature = 203.81;
+	}
+	else if (height < 140000)
+	{
+		temperature = 334.42+0.011259*(height-120000);
+	}
+	else if (height < 160000)
+	{
+		temperature = 559.60+0.006800*(height-140000);
+	}
+	else if (height < 200000)
+	{
+		temperature = 695.60+0.003970*(height-160000);
+	}
+	else if (height < 250000)
+	{
+		temperature = 834.40+0.001750*(height-200000);
+	}
+	else if (height < 325000)
+	{
+		temperature = 941.90+0.00057*(height-250000);
+	}
+	else if (height < 400000)
+	{
+		temperature = 984.65+0.0001500*(height-325000);
+	}
+	else if (height < 600000)
+	{
+		temperature = 995.90+0.00002*(height-400000);
+	}
+	else if (height < 800000)
+	{
+		temperature = 999.9-0.0000005*(height-600000);
+	}
+	else if (height <1200000)
+	{
+		temperature = 1000;
 	}
 	return temperature;
 }
 
-double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
+//---------------------------------------------------------------------------------
+// молярная масса воздуха в зависимости от высоты по ГОСТ-4401-81, стр 173. Промежутку высоты в метрах соответствует свое значение молярной массы кг/моль.
+double molarMass(double height)
 {
-	if (height <= EarthRadius) { return SeaLevelAirDensity; }
-	double heightAboveSeaLevel = height - EarthRadius;
-	double T = temperature(heightAboveSeaLevel); //temperature at a certain height
-	if (T <= 0.0) { return 0.0; }
-	else
-		// p = p0 * e^(-M * g * H / (R * T)) 
-		// airDensity = p * M / (R * T) 
-	{ 
-		double p0 = 101325, //normal atmospheric pressure at sea level (Pa)
-			g = G * EarthMass / pow(height, 2), //acceleration due to gravity
-			//on the Earth's surface (km/s^2)
-			R = 8.31447, //universal gas constant (J / (mol * K))
-			M = 0.0289644, //the molar mass of dry air (kg / mol)
-			p = p0 * exp(-M * g * heightAboveSeaLevel * pow(10.0, 6) / (R * T)), //pressure at the certain height (Pa)
-			density = p * M * pow(10.0, 9) / (R * T); //air density at the certain height (kg / km^3)
-		return density;  
+	if (height < 94000)
+	{
+		molarMass = 28.964420*pow(10,-3);
 	}
+	else if (height < 97000)
+	{
+		molarMass = (28.82+0.158*sqrt(1-7.5*pow(10,-8)*(pow(height-94000),2))-2.479*pow(10,-4)*sqrt(97000-height))*pow(10,-3);
+	}
+	else if (height < 97500)
+	{
+		molarMass = (28.91-0.00012*height)*pow(10,-3);
+	}
+	else if (height < 120000)
+	{
+		molarMass = (26.21-0.0001511*height)*pow(10,-3);
+	}
+	else if (height < 250000)
+	{
+		molarMass = (46.9083-29.71210*pow(10,-5)*height+12.08693*pow(10,-10)*pow(height,2)-1.85675*pow(10,-15)*pow(height,3))*pow(10,-3);
+	}
+	else if (height < 400000)
+	{
+		molarMass = (40.4668-15.52722*pow(10,-5)*height+3.55735*pow(10,-10)*pow(height,2)-3.02340*pow(10,-15)*pow(height,3))*pow(10,-3);
+	}
+	else if (height < 650000)
+	{
+		molarMass = (6.3770+6.25497*pow(10,-5)*height-1.10144*pow(10,-10)*pow(height,2)+3.36907*pow(10,-17)*pow(height,3))*pow(10,-3);
+	}
+	else if (height < 900000)
+	{
+		molarMass = (75.6896-17.61243*pow(10,-5)*height+1.33603*pow(10,-10)*pow(height,2)-2.87884*pow(10,-17)*pow(height,3))*pow(10,-3);
+	}
+	else if (height < 1050000)
+	{
+		molarMass = (112.4838-30.68086*pow(10,-5)*height+2.90329*pow(10,-10)*pow(height,2)-9.20616*pow(10,-17)*pow(height,3))*pow(10,-3);
+	}
+	else if (height < 1200000)
+	{
+		molarMass = (9.8970-1.19732*pow(10,-5)*height+7.78247*pow(10,-12)*pow(height,2)-1.77541*pow(10,-18)*pow(height,3))*pow(10,-3);
+	}
+	return molarMass;
+}
+
+//------------------------------------------------------------------------------
+//концентрация в зависимости от высоты согласно ГОСТ-4401-81? стр 176. концентрация, м^-3
+double concentration(double height) //n=n(h)
+{
+	if (height < 120000) 
+	{
+		p0 = 101325; //нормальное давление в Па
+		G = 6.67408*pow(10,-11); //гравитационная постоянная
+		R = 8.31 // универсальная газовая постоянная
+		g = G * EarthMass / pow(height, 2); //ускорение свободного падения
+		p = p0*exp(-molarMass*g*height/(R*temperature));// давление по обычной формуле p=p0*exp(-Mgh/(RT)
+		concentration = 7.243611*pow(10,22)*(p/temperature);//концентрация из ГОСТ
+	}
+	else if (height < 150000)// концентрация взята из ГОСТ, таблица 7, стр 178. 
+	{
+		concentration = (0.210005867*pow(10,4)-0.5618444757*pow(10,-1)*height+0.5663986231*pow(10,-6)*pow(height,2)-0.2547466858*pow(10,-11)*pow(height,3)+0.4309844119*pow(10,-17)*pow(height,4))*pow(10,17);
+	}
+	else if (height < 200000)
+	{
+		concentration = (0.10163937*pow(10,4)-0.211953083*pow(10,-1)*height+0.1671627815*pow(10,-6)*pow(height,2)-0.5894237068*pow(10,-12)*pow(height,3)+0.7826684089*pow(10,-18)*pow(height,4))*pow(10,16);
+	}
+	else if (height < 250000)
+	{
+		concentration = (0.7631575*pow(10,3)-0.1150600844*pow(10,-1)*height+0,6612598428*pow(10,-7)*pow(height,2)-0.1708736137*pow(10,-12)*pow(height,3)+0.1669823114*pow(10,-18)*pow(height,4))*pow(10,15);
+	}
+	else if (height < 350000)
+	{
+		concentration = (0.1882203*pow(10,3)-0.2265999519*pow(10,-2)*height+0.1041726141*pow(10,-7)*pow(height,2)-0.2155574922*pow(10,-13)*pow(height,3)+0.1687430962*pow(10,-19)*pow(height,4))*pow(10,15);
+	}
+	else if (height < 450000)
+	{
+		concentration = (0.2804823*pow(10,3)-0.2432231125*pow(10,-2)*height+0.8055024663*pow(10,8)*pow(height,2)-0.1202418519*pow(10,-13)*pow(height,3)+0.6805101379*pow(10,-20)*pow(height,4))*pow(10,14);
+	}
+	else if (height < 600000)
+	{
+		concentration = (0.5599362*pow(10,3)-0.3714141392*pow(10,-2)*height+0.9358870345*pow(10,-8)*pow(height,2)-0.1058591881*pow(10,-13)*pow(height,3)+0.4525531532*pow(10,-20)*pow(height,4))*pow(10,13);
+	}
+	else if (height < 800000)
+	{
+		concentration = (0.8358756*pow(10,3)-0.4265393073*pow(10,-2)*height+0.8252842085*pow(10,-8)*pow(height,2)-0.7150127437*pow(10,-14)*pow(height,3)+0.2335744331*pow(10,-20)*pow(height,4))*pow(10,12);
+	}
+	else if (height < 1000000)
+	{
+		concentration = (0.8364965*pow(10,2)-0.3162492458*pow(10,-3)*height+0.4602064246*pow(10,-9)*pow(height,2)-0.3021858469*pow(10,-15)*pow(height,3)+0.7512304301*pow(10,-22)*pow(height,4))*pow(10,12);
+	}
+	else if (height < 1200000)
+	{
+		concentration = (0.383220*pow(10,2)-0.50980*pow(10,-4)*height+0.181*pow(10,-10)*pow(height,2))*pow(10,11)
+	}
+	return concentration;
+}
+//что было раньше в коде
+//double airDensity(double height) //calculates the air density at a certain height (height = height + EarthRadius)
+//{
+//	if (height <= EarthRadius) { return SeaLevelAirDensity; }
+//	double heightAboveSeaLevel = height - EarthRadius;
+//	double T = temperature(heightAboveSeaLevel); //temperature at a certain height
+//	if (T <= 0.0) { return 0.0; }
+//	else
+//		// p = p0 * e^(-M * g * H / (R * T)) 
+//		// airDensity = p * M / (R * T) 
+//	{ 
+//		double p0 = 101325, //normal atmospheric pressure at sea level (Pa)
+//			g = G * EarthMass / pow(height, 2), //acceleration due to gravity
+//			//on the Earth's surface (km/s^2)
+//			R = 8.31447, //universal gas constant (J / (mol * K))
+//			M = 0.0289644, //the molar mass of dry air (kg / mol)
+//			p = p0 * exp(-M * g * heightAboveSeaLevel * pow(10.0, 6) / (R * T)), //pressure at the certain height (Pa)
+//			density = p * M * pow(10.0, 9) / (R * T); //air density at the certain height (kg / km^3)
+//		return density;  
+//	}
+//}
+
+//-----------------------------------------------------------------------------
+//давление согласно ГОСТ-4401-81
+double pressure(double height, double temperature)
+{
+	if (height < 120000) //тут давление не по ГОСТ, в ГОСТ трудные формулы до 120 км. Нужно проконсультироваться, что такое бетта. Пока используем простую формулу
+	{
+		p0 = 101325; //нормальное давление в Па
+		G = 6.67408*pow(10,-11); //гравитационная постоянная
+		R = 8.31 // универсальная газовая постоянная
+		g = G * EarthMass / pow(height, 2); //ускорение свободного падения
+		pressure = p0*exp(-molarMass*g*height/(R*temperature));// давление по обычной формуле p=p0*exp(-Mgh/(RT)	
+	}
+	else if (height >120000)
+	{
+		R = 8.31;//универсальная газовая постоянная Дж/(к*моль)
+		Navogadro = 6.022*pow(10,23);//число Авогадро
+		pressure = concentration*R*temperature/Navogadro;
+	}
+	return pressure;
+}
+
+//-------------------------------------------------------------
+//плотность воздуха согласно ГОСТ-4401-81, стр 176, плотность кг/м^3
+double airDensity(double temperature)
+{
+	R = 8.31;
+	airDensity = pressure*molarMass/(R*temperature); //ro=(p*M)/(R*T)
+	return airDensity;
+}
+
+//--------------------------------------------------------------
+//скорость звука согласно ГОСТ-4401-81, стр 178, м/с
+double speedOfSound(double temperature)
+{
+	speedOfSound = 2.046796*sqrt(temperature);
+	return speedOfSound;
 }
 
 //calculates an aerodynamic force 
@@ -140,11 +365,13 @@ vec calculateAngularVelocity(vec gravityForce, vec aerodynamicForce,
 	return currentAngularVelocity;
 }
 
+//-----------------------------------------------
 //Calculate aerodynamic heating for spaceship. 
-//Formula: T+(v^2)/2
+//Formula: Tn=T0+0.2*M^2,  Tn- - температура нагретых молекул,  T0- температура окружающей среды, 
+//M=V/a - М - число Маха. М - есть отношение скорости полета тела к скорости звука на данной высоте
 double aerodynamicHeating(double temperature, vec speed)
 {
-	double heating = temperature + pow(speed.getScalar(), 2) / 2; // (K)
+	double heating = temperature + 0.2*pow(speed.getScalar()/speedOfSound, 2); // (K)
 	return heating;
 }
 
@@ -159,7 +386,8 @@ vec CalculateAcceleration(
 	vec position,
 	vec orientation)
 {
-	const double Cx = 1;
+	//Cx=1.02 for cube, Cx=0.47 for sphere
+	const double Cx = 0.47;
 	double currentHeight = position.getScalar(); 
 	double accFromAirScalar =
 		- Cx*airDensity(currentHeight) * previousSpeed.getScalar()  * (size*size) / (2.0 * totalMass);
