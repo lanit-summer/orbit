@@ -8,7 +8,7 @@ var prevBoost = 1; //нужно для stop
 var paused = false;
 var mouseDown = 0;
 var loader;
-
+var pivot;
 var speedArray;
 var posArray;
 
@@ -44,7 +44,7 @@ function init() {
     }
 
     start();
-    controlSpead();
+    controlSpeed();
     changeView();
 
     renderer = Detector.webgl ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
@@ -54,12 +54,16 @@ function init() {
 
     if (Detector.webgl)
         addLights();
-
+    
     loadEarth();
     loadMoon();
     loadShip();
     loadStars();
 
+	pivot = new THREE.Object3D();
+    scene.add(pivot);
+    pivot.add(moon);
+    
     camera.position.z = 13371;
 
     var canvas = document.createElement('canvas');
@@ -79,7 +83,7 @@ function init() {
     restart();
 }
 
-function controlSpead() {
+function controlSpeed() {
     document.getElementById("increase").onclick = function () {
         if (!paused) {
             increaseBoost();
@@ -207,7 +211,12 @@ function animate() {
 function render() {
     updateShipOrbit();
     updateEarthRotation();
+    updateMoonOrbitRotation();
     renderer.render(scene, camera);
+}
+
+function updateMoonOrbitRotation() {
+    pivot.rotation.y += 0.002;
 }
 
 function addLights() {
