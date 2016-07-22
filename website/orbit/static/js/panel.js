@@ -19,11 +19,11 @@ $(function() {
     $(".sun-modes img").click(function() {
         if ($(this).attr("src") == "/static/img/icons/icon12.png") {
             $(this).attr("src", "/static/img/icons/icon13.png");
-            // turnOn();
+            sunTurnOn();
         }
         else {
             $(this).attr("src", "/static/img/icons/icon12.png");
-            // turnOff();
+            sunTurnOff();
         }
     });
 });
